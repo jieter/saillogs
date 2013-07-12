@@ -3,7 +3,7 @@
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
-html, body, #map_canvas {
+html, body, #map {
 	margin: 0;
 	padding: 0;
 
@@ -11,14 +11,14 @@ html, body, #map_canvas {
 	font-family: Georgia,serif;
 }
 
-#map_wrapper{
+#map_wrapper {
 	position: fixed;
 	top: 0;
 	left: 0; right: 0; z-index: 0;
 	height: 100%;
 }
 
-#map{
+#map {
 	position: absolute;
 	top:0; left:0; right: 0;
 	height: 100%;
@@ -29,14 +29,14 @@ h1{
 	padding-left: 10px;
 	margin-bottom: 2px;
 }
-div#uitleg{
+div#explanation {
 	font-size: 10px;
 	line-height: 12px;
 	color: #bbb;
 	padding-left: 10px;
 }
 
-div#verhaal{
+div#story {
 	z-index: 1000;
 	position:absolute;
 	right: 20px;
@@ -59,7 +59,7 @@ div.leg {
 	cursor: pointer;
 }
 
-div.leg.active{
+div.leg.active {
 	border-left: 2px solid white;
 	border-right: 2px solid white;
 	background-color: #f1f1f1;

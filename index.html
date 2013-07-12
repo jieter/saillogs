@@ -15,9 +15,9 @@
 <body>
 	<div id="map_wrapper"><div id="map"></div></div>
 
-	<div id="verhaal">
+	<div id="story">
 		<h1></h1>
-		<div id="uitleg">
+		<div id="explanation">
 			Klik op de paragraaf om naar plek in de kaart te pannen...
 		</div>
 	</div>
@@ -28,150 +28,9 @@
 	<script src="js/jquery.scrollTo.js"></script>
 
 	<script src="data.js"></script>
-
-	<script>
-	(function () {
-		'use strict';
-
-		var legs = data.legs;
-		document.title = data.title;
-		$('#verhaal h1').html(data.title);
-
-		var tonerLite = L.tileLayer("http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png", {
-			attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-			subdomains: 'abcd',
-			minZoom: 0,
-			maxZoom: 20
-		});
-		var esri = L.tileLayer("http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
-			attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-			maxZoom: 16
-		});
-		var map = L.map('map', {
-			center: [51.6, 4.4],
-			zoom: 10,
-			zoomControl: false,
-			layers: esri
-		});
-
-		var lines = L.featureGroup().addTo(map);
-
-		for (var i in legs) {
-			if (legs[i].path) {
-				var poly;
-				var style = L.Util.extend({
-					color: legs[i].color
-				}, data.defaultStyle);
-				if (typeof legs[i].path === 'string') {
-					poly = L.Polyline.fromEncoded(legs[i].path, style);
-				} else {
-					poly = L.polyline(legs[i].path, style);
-				}
-
-				poly.addTo(lines);
-				legs[i]['_leaflet_id'] = L.stamp(poly);
-			}
-
-			// insert the text
-			$('#verhaal').append(
-				$('<div class="leg" id="leg' + i + '">').html(legs[i].text)
-			);
-		}
+	<script src="app.js"></script>
 
 
-		$('#verhaal').on('click', '.leg', function (event) {
-			var id = $(this).attr('id').substr(3, 1);
-			var leg = legs[id];
-
-			if (leg['_leaflet_id']) {
-				var currentPoly = lines.getLayer(leg['_leaflet_id']);
-				var bounds = currentPoly.getBounds();
-
-				lines.bringToFront(currentPoly);
-				lines.eachLayer(function (layer) {
-					layer.setStyle(data.defaultStyle);
-				});
-
-				currentPoly.setStyle(data.highlightStyle);
-
-				// Compensate for story on the right.
-				bounds.extend([
-					bounds.getNorth(),
-					bounds.getEast() + (bounds.getEast() - bounds.getWest())
-				]);
-
-				map.fitBounds(bounds);
-			}
-
-			$('div.leg').not($(this)).removeClass('active');
-			$(this).addClass('active');
-
-			$.scrollTo($(this), 500);
-		});
-	})();
-	// //define leg click callback.
-	// var legClick=function(i){
-	// 	return function(){
-	// 		var current=polys.getAt(i);
-
-	// 		//hightlight one leg
-	// 		polys.forEach(function(element, index){
-	// 			element.setOptions({
-	// 				strokeOpacity: defaults.strokeOpacity,
-	// 				strokeWidth: defaults.strokeWidth
-	// 			});
-	// 		});
-	// 		current.setOptions({strokeOpacity: 1, strokeWidth: 4});
-
-	// 		//fit map to bounds of clicked leg.
-	// 		var bounds=current.getBounds();
-	// 		var sw=bounds.getSouthWest();
-	// 		var ne=bounds.getNorthEast();
-
-	// 		//compensate for story in the right.
-	// 		var widthcompensation=ne.lng()-sw.lng();
-
-	// 		bounds.extend(new google.maps.LatLng(ne.lat(), ne.lng()+widthcompensation));
-	// 		map.fitBounds(bounds);
-
-	// 		$.scrollTo('#leg'+i, 500);
-	// 		$('p').removeClass('active');
-	// 		$('#leg'+i).addClass('active');
-	// 	}
-	// }
-
-	// var map;
-	// var polys=new google.maps.MVCArray();
-
-
-
-	// 	for(i in legs){
-	// 		polys.setAt(i,
-	// 			new google.maps.Polyline({
-	// 				map: map,
-	// 				path: google.maps.geometry.encoding.decodePath(legs[i].path),
-	// 				strokeColor: legs[i].color,
-	// 				strokeOpacity: defaults.strokeOpacity,
-	// 				strokeWidth: defaults.strokeWidth
-	// 			})
-	// 		);
-	// 		//enlarge map bounds...
-	// 		mapbounds=mapbounds.union(polys.getAt(i).getBounds());
-
-	// 		//add clicklisteners for each leg.
-	// 		google.maps.event.addListener(polys.getAt(i), 'click', legClick(i));
-	// 	}
-	// 	var sw=mapbounds.getSouthWest();
-	// 	var ne=mapbounds.getNorthEast();
-
-	// 	//compensate for story in the right.
-	// 	var widthcompensation=(ne.lng()-sw.lng());
-	// 	mapbounds.extend(new google.maps.LatLng(ne.lat(), ne.lng()+widthcompensation));
-	// 	map.panToBounds(mapbounds);
-	// }
-
-
-</script>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-19828019-6']);
