@@ -6,6 +6,7 @@
 html, body, #map {
 	margin: 0;
 	padding: 0;
+	overflow: hidden;
 
 	font-size: 14px;
 	font-family: Georgia,serif;
@@ -24,7 +25,7 @@ html, body, #map {
 	height: 100%;
 }
 
-h1{
+h1 {
 	font-size: 1.5em;
 	padding-left: 10px;
 	margin-bottom: 2px;
@@ -34,6 +35,7 @@ div#explanation {
 	line-height: 12px;
 	color: #bbb;
 	padding-left: 10px;
+	margin-bottom: 6px;
 }
 
 div#story {
@@ -62,26 +64,27 @@ div.leg {
 div.leg.active {
 	border-left: 2px solid white;
 	border-right: 2px solid white;
-	background-color: #f1f1f1;
+	background-color: rgba(100, 100, 100, 0.05);
 
 }
 a { border: 0px; }
 
-a.popout{
+#story img {
 	position: relative;
 	float: left;
 	clear: both;
-}
-a.popout img{
+
 	width: 200px;
 	margin-left: -230px;
 	border: 4px solid rgba(100, 100, 100, 0.2);
 }
-table{
-	margin-left: 10px;
-	margin-top: 10px;
+img.modalImage {
+	width: 100%;
 }
-table td.meta{
+table {
+	margin: 10px;
+}
+table td.meta {
 	color: #555;
 	padding-right: 20px;
 }

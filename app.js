@@ -51,23 +51,27 @@
 		}
 	});
 
-
-	$('#story').on('click', '.leg', function () {
+	$('#story').on('click', '.leg', function (event) {
+		if ($(event.target).is('img')) {
+			return;
+		}
 		var id = $(this).attr('id').substr(3, 1);
 		var leg = legs[id];
+
+		// clear highlight on all layers
+		lines.eachLayer(function (layer) {
+			layer.setStyle(data.defaultStyle);
+		});
 
 		if (leg['_leaflet_id']) {
 			var currentPoly = lines.getLayer(leg['_leaflet_id']);
 			var bounds = currentPoly.getBounds();
 
 			lines.bringToFront(currentPoly);
-			lines.eachLayer(function (layer) {
-				layer.setStyle(data.defaultStyle);
-			});
 
 			currentPoly.setStyle(data.highlightStyle);
 
-			// Compensate bounds for story on the right.
+			// compensate bounds for story on the right.
 			bounds.extend([
 				bounds.getNorth(),
 				bounds.getEast() + (bounds.getEast() - bounds.getWest())
@@ -80,5 +84,15 @@
 		$(this).addClass('active');
 
 		$.scrollTo($(this), 500);
+	});
+
+	// modal for images
+	$('img').avgrund({
+		width: 800,
+		height: 600,
+		// enableStackAnimation: true,
+		template: function (elem) {
+			return '<img class="modalImage" src="' + elem.attr('src').replace('.thumb', '') + '" />';
+		}
 	});
 })();
