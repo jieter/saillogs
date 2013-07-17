@@ -6,16 +6,36 @@
 	document.title = data.title;
 	$('#story h1').html(data.title);
 
-	var esri = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-		attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-		maxZoom: 16
+	var layer =  L.tileLayer("http://a{s}.acetate.geoiq.com/tiles/terrain/{z}/{x}/{y}.png", {
+		attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+		subdomains: '0123',
+		minZoom: 2,
+		maxZoom: 18
 	});
+
+	var OpenSeaMap = L.tileLayer("http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png", {
+		attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
+	});
+	var Acetate_labels = L.tileLayer("http://a{s}.acetate.geoiq.com/tiles/acetate-labels/{z}/{x}/{y}.png", {
+		attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+		subdomains: '0123',
+		minZoom: 2,
+		maxZoom: 18
+	});
+
 	var map = L.map('map', {
 		center: [51.6, 4.4],
 		zoom: 10,
 		zoomControl: false,
-		layers: esri
+		layers: layer
 	});
+
+	L.control.layers({}, {
+		OpenSeaMap: OpenSeaMap.addTo(map),
+		Labels: Acetate_labels.addTo(map)
+	}, {
+		position: 'topleft'
+	}).addTo(map);
 
 	var lines = L.featureGroup().addTo(map);
 
@@ -86,13 +106,5 @@
 		$.scrollTo($(this), 500);
 	});
 
-	// modal for images
-	$('img').avgrund({
-		width: 800,
-		height: 600,
-		// enableStackAnimation: true,
-		template: function (elem) {
-			return '<img class="modalImage" src="' + elem.attr('src').replace('.thumb', '') + '" />';
-		}
-	});
+
 })();
