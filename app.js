@@ -3,23 +3,42 @@
 	/* global data:true */
 
 	var map = setupMap();
+	window.map = map;
+	var lines;
 	var story = $('#story');
 
 	// present list of available stories
 	if (location.hash === '') {
+		renderIndex();
+	} else {
+		loadJSON(location.hash.slice(1));
+	}
+	$(window).bind('hashchange', function() {
+		var hash = window.location.hash.slice(1);
+		if (hash === '') {
+			renderIndex();
+		} else {
+			loadJSON(hash);
+		}
+	});
+	story.on('click', '[data-name]', function (event) {
+		var name = $(this).data('name');
+		location.hash = name;
+	});
+
+	function renderIndex() {
+		story.find('h1').html('Kies een verhaal uit de lijst.');
+		story.find('.leg').remove();
 		var selector = $($.parseHTML('<ul class="selector">')).appendTo(story);
+
 		$.each(index, function (key, value) {
 			selector.append('<li data-name="' + key + '">' + value + '</li>');
 		});
-		story.on('click', '[data-name]', function (event) {
-			var name = $(this).data('name');
-			console.log(name);
-			loadJSON(name);
-		});
-	} else {
-		load(location.hash.slice(1));
-	}
 
+		if (lines instanceof L.FeatureGroup) {
+			map.removeLayer(lines);
+		}
+	};
 	function setupMap() {
 		var layer =  L.tileLayer("http://a{s}.acetate.geoiq.com/tiles/terrain/{z}/{x}/{y}.png", {
 			attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
@@ -49,19 +68,23 @@
 			OpenSeaMap: OpenSeaMap.addTo(map),
 			Labels: Acetate_labels.addTo(map)
 		}, {
-			position: 'topleft'
+			position: 'topleft',
+			collapsed: false
 		}).addTo(map);
+
+		map.on('click', function (event) {
+			console.log(event.latlng.toString());
+		})
 		return map;
 	};
 
 
 	function loadJSON(name) {
-		console.log(name);
 		$.ajax({
 			url: 'data/' + name + '.json',
 			dataType: 'json',
 			success: function (response) {
-				loadStory(response);
+				loadStory(name, response);
 			},
 			error: function (e) {
 				console.log(e);
@@ -69,16 +92,20 @@
 		});
 	};
 
-	function loadStory(data) {
-		var legs = data.legs;
+	function loadStory(name, data) {
+
 		document.title = data.title;
 		story.find('.selector').hide();
 		story.find('h1').html(data.title);
 		story.find('.explanation').show();
 
+		if (lines instanceof L.FeatureGroup) {
+			map.removeLayer(lines);
+			lines = null;
+		}
+		lines = L.featureGroup().addTo(map);
 
-		var lines = L.featureGroup().addTo(map);
-
+		var legs = data.legs;
 		for (var i in legs) {
 			if (legs[i].path) {
 				var poly;
@@ -96,11 +123,21 @@
 
 				legs[i]['_leaflet_id'] = L.stamp(poly);
 			}
+			if (legs[i].marker) {
+				var marker = L.marker(legs[i].marker).addTo(lines);
+				legs[i]['_leaflet_id'] = L.stamp(marker);
+			}
+			if (legs[i].text) {
+				var storyText = legs[i].text.replace(/src="/g, 'src="data/' + name + '/');
 
-			// story for this leg.
-			story.append(
-				$('<div class="leg" id="leg' + i + '">').html(legs[i].text)
-			);
+				// story for this leg.
+				story.append(
+					$('<div class="leg" id="leg' + i + '">').html(storyText)
+				);
+			}
+		}
+		if (lines.getLayers().lenth > 0) {
+			map.fitBounds(lines.getBounds());
 		}
 
 		lines.on('click', function (event) {
@@ -120,24 +157,33 @@
 
 			// clear highlight on all layers
 			lines.eachLayer(function (layer) {
-				layer.setStyle(data.defaultStyle);
+				if (layer.setStyle) {
+					layer.setStyle(data.defaultStyle);
+				}
 			});
 
 			if (leg['_leaflet_id']) {
-				var currentPoly = lines.getLayer(leg['_leaflet_id']);
-				var bounds = currentPoly.getBounds();
+				var current = lines.getLayer(leg['_leaflet_id']);
 
-				lines.bringToFront(currentPoly);
+				if (current) {
+				 	if (current.getBounds) {
+						var bounds = current.getBounds();
+						lines.bringToFront(current);
+						if (current.setStyle) {
+							current.setStyle(data.highlightStyle);
+						}
 
-				currentPoly.setStyle(data.highlightStyle);
+						// compensate bounds for story on the right.
+						bounds.extend([
+							bounds.getNorth(),
+							bounds.getEast() + (bounds.getEast() - bounds.getWest())
+						]);
 
-				// compensate bounds for story on the right.
-				bounds.extend([
-					bounds.getNorth(),
-					bounds.getEast() + (bounds.getEast() - bounds.getWest())
-				]);
-
-				map.fitBounds(bounds);
+						map.fitBounds(bounds);
+					} else if (current.getLatLng) {
+						map.panTo(current.getLatLng());
+					}
+				}
 			}
 
 			$('div.leg').not($(this)).removeClass('active');

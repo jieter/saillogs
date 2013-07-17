@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Serif);
 * {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -8,7 +9,7 @@ html, body, #map {
 	padding: 0;
 
 	font-size: 14px;
-	font-family: Georgia,serif;
+	font-family: "PT Serif", Georgia,serif;
 }
 
 #map_wrapper {
@@ -35,6 +36,21 @@ div#explanation {
 	color: #bbb;
 	padding-left: 10px;
 	margin-bottom: 6px;
+}
+
+ul.selector {
+	list-style-type: none;
+	padding: 10px;
+}
+ul.selector li {
+	cursor: pointer;
+	margin: 2px;
+	padding: 4px 8px;
+
+	background-color: #fafafa;
+}
+ul.selector li:hover {
+	background-color: #eee;
 }
 
 div#story {
