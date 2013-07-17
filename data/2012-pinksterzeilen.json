@@ -1,0 +1,46 @@
+{
+	"title": "Pinksterzeilen 2012.",
+	"defaultStyle": {
+		"opacity": 0.4,
+		"weight": 3
+	},
+	"highlightStyle": {
+		"opacity": 0.7,
+		"weight": 5
+	},
+	"legs": [{
+		"comment": "Naar Sixhaven",
+		"path": "_ns_I_hf`@}CpGvC`KtFvb@jQrChVbA`f@dHn@pLaIhE~m@vIzSfsAngShq|@vzEjpOpEbpA~@h\\wAlVeEvb@eF|b@sd@xqAmCbG}ClEgHhYaEdL_Bzr@Unp@mBhs@bGjm@dBjj@JvBiAh@yDhAvDy@nANnDl{@w@vNkCdAC|@@l@Qf@[I_@HMW??",
+		"color": "#ff0000",
+		"text": "Na wat heen en weer gebel over boodschappen, treinstations, files en alternatieve routes staan we met zijn zevenen op de parkeerplaats Deko Marina in Lelystad. De eerste indrukken van de <em>Batouwe</em> zijn goed, het weer voorspelt veel goeds, kortom: we hebben er zin in!<br />
+	Alle zut wordt vanuit de boot in de auto geladen en krijgt een meer of minder definitief plekje. De soep staat al op als we de trossen losgooien om richting Amsterdam te vertrekken. Na een rappe schutting met nog een stuk of wat andere jachtjes kunnen de zeilen omhoog voor een mooi ruim koersje richting het vuurtoreneiland.<br />
+	Omdat het <abbr title=\"Elektronisch kompas voor stuurautomaat en plotter.\">fluxgate-kompas</abbr> verkeerd om in de boot gemonteerd is vaart het bootje op de plotter achteruit. Een beetje onhandig, zeker omdat ook het analoge kompas een behoorlijke afwijking heeft. Maargoed, we varen geen wedstrijd dus een paar mijl extra varen scheelt enkel nachtrust.<br />
+	Het plan was eigenlijk te overnachten aan de wachtsteiger van de Schellingwoudebrug, maar de overijverige brugwachter gooit de lampjes al op rood-groen. Op Jieters vraag of we aan de wachtsteiger van de oranjesluizen mogen liggen komt een negatief antwoord. Zulke dingen moet je natuurlijk ook niet vragen, maar gewoon doen.<br />
+	Dan maar op zoek naar een plekje in een marina in Amsterdam. Aeolus' stoplicht geeft aan dat ze vol zitten, maar in de immer gezellige Six-haven is nog wel een boot te persen. Tegenover de woonark leggen we aan. Dat we daardoor de doorgang bijna helemaal blokkeren, is van later zorg: nu eerst nog even genieten van de gezelligheid en een biertje..."
+	},
+	{
+		"comment": "Naar IJmuiden",
+		"path": "}zu~Hmg}\\Fb@\\@TF\\o@DiBxBu@VfFq@zI_B`GyFiNe@WDq@tGhPDrDmG~D}DlJcYpNoe@nBk`@bt@_u@xlAid@vdAaTdhAiJ`_BcSnaDyHbjAs[bvEuWr|DoQ`rBqm@|hBao@rqAq_Al_CyI|b@yFzl@cCji@?pd@}@rw@o@~QdFn_@}Ari@t@~`A\\vlA??",
+		"color": "#000ff0"
+	},
+	{
+		"comment": "Naar Den Helder",
+		"path":"k|e_Ic{_[Kbg@mAg@gBqEEvIdBhXzAjD|@fHzAn\\kAhT_Brj@Ijb@Cdz@wBrcAeDfJ_QfQk]jKssAwBk~D{CeqC{Ko{NcPq{FadCuoFm{BqkFssF}nX_mEwqHwpBe{Bd_@a}@uI{BaiGikA}i@wdAe_@`QcgHih@wg@nWwaBfy@vUvC~EhDdDlHfd@~Bz@tI?fLmLlFiDdMe[jNsTtJfCxGvDrBzAsAjFyMpNcK{@{F`KaAiB",
+		"color": "#0f0f00"
+	},
+	{
+		"comment":"Naar Enkhuizen",
+		"path":"{debIq}d\\[z@hAfBzFuJ`Lz@lHsKdGqEl@uAm@eB}B]cIwEuJyCgOvVuNx[mTvMaFv@{BgOgS}u@qQaGgdE_tCbZa_K{j@msExtCktJlyAgiHhu@}Zlq@caBfL{Y~]l[zb@sm@`TwXjHoMtIxC`]{Zhk@gv@bEfCwFbO|JsObkTin`@hcC}sH~fEmrKtwGlbFtJxv@fUnv@a@xAm@`BMxBaB~N`@X??",
+		"color":"#0ff000"
+	},
+	{
+		"comment":"Naar Stavoren",
+		"path":"s~s`Iich_@q@i@xB}UvCsDwEuU_Ei@HgHyGgS{Rkg@orVkqK{e@tqG{bIihCsKmH{BaKH{DbEi@HmE?F",
+		"color": "#0afaf0"
+	},
+	{
+		"comment":"Naar Lelystad",
+		"path":"shxaIuju_@_@~E_Dz@YtEdDlL~IfCfz@n_@ddFl}@hsd@ux`@dnNv_Cz{@n|EzoAd}@np@zXtLqG{CaGzCeI??",
+		"color":"#abcdef"
+	}]
+}
