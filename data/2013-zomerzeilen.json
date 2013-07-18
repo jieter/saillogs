@@ -9,9 +9,9 @@
 		"weight": 5
 	},
 	"legs": [{
+		"marker": [51.82262, 4.11962],
 		"color": "#000000",
 		"date": "2013-07-17",
-		"text": "Voor het vierde jaar op rij op weg met de Equilibre. Na tochten naar Londen, Schotland, Denenmarken en Ipswitch is het nu toch echt eens tijd om de kanaaleilanden met een bezoekje te vereren...",
-		"marker": [51.82262, 4.11962]
+		"text": "Voor het vierde jaar op rij op weg met de Equilibre. Na tochten naar Londen, Schotland, Denenmarken en Ipswitch is het nu toch echt eens tijd om de kanaaleilanden met een bezoekje te vereren..."
 	}]
 }
