@@ -57,7 +57,8 @@ div#story {
 	z-index: 1000;
 	position:absolute;
 	right: 20px;
-	width: 400px;
+	width: 40%;
+	min-width: 350px;
 	margin-left: 400px;
 
 	padding: 0 0 10px 0;
@@ -70,14 +71,14 @@ div#story {
 }
 
 div.leg {
-	border-left: 2px solid white;
+	border-left: 4px solid white;
 	border-right: 2px solid white;
 	padding: 0 10px;
 	cursor: pointer;
 }
 
 div.leg.active {
-	border-left: 2px solid white;
+	border-left: 4px solid white;
 	border-right: 2px solid white;
 	background-color: rgba(100, 100, 100, 0.05);
 

@@ -136,9 +136,14 @@
 				var storyText = legs[i].text.replace(/src="/g, 'src="data/' + name + '/');
 
 				// story for this leg.
-				story.append(
-					$('<div class="leg" id="leg' + i + '">').html(storyText)
-				);
+				var legStory = $('<div class="leg" id="leg' + i + '">').html(storyText);
+				if (legs[i].color) {
+					var rgb = hexToRgb(legs[i].color);
+					var color = 'rgba(' + rgb[0] + ', ' + rgb[1] + ', ' + rgb[2] + ', 0.5)';
+					legStory.css('border-left', '4px solid ' + color);
+				}
+
+				legStory.appendTo(story);
 			}
 		}
 		if (lines.getLayers().length > 0) {
@@ -172,7 +177,7 @@
 				var current = lines.getLayer(leg['_leaflet_id']);
 
 				if (current) {
-				 	if (current.getBounds) {
+					if (current.getBounds) {
 						var bounds = current.getBounds();
 						lines.bringToFront(current);
 						if (current.setStyle) {
@@ -198,4 +203,14 @@
 			$.scrollTo($(this), 500);
 		});
 	};
+
+	// From http://stackoverflow.com/a/5624139
+	function hexToRgb(hex) {
+		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+		return result ? [
+			parseInt(result[1], 16),
+			parseInt(result[2], 16),
+			parseInt(result[3], 16)
+		] : null;
+	}
 })();
