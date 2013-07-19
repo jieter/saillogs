@@ -78,7 +78,11 @@
 		}).addTo(map);
 
 		map.on('click', function (event) {
-			console.log(event.latlng.toString());
+			console.log({
+				click: event.latlng.toString(),
+				center: map.getCenter().toString(),
+				zoom: map.getZoom()
+			});
 		});
 		return map;
 	}
@@ -146,8 +150,13 @@
 				legStory.appendTo(story);
 			}
 		}
+
+		// Move map to newly loaded area.
 		if (lines.getLayers().length > 0) {
 			map.fitBounds(lines.getBounds());
+			if (map.getZoom() > 14) {
+				map.setZoom(14);
+			}
 		}
 
 		lines.off('click').on('click', function (event) {
@@ -211,5 +220,11 @@
 			parseInt(result[2], 16),
 			parseInt(result[3], 16)
 		] : null;
+	}
+
+	if (!('console' in window)) {
+		window.console = {
+			log: function () {}
+		};
 	}
 })();
