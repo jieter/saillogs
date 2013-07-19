@@ -1,3 +1,4 @@
+
 (function () {
 	'use strict';
 	/* global data:true */
@@ -29,6 +30,7 @@
 	function renderIndex() {
 		story.find('h1').html('Kies een verhaal uit de lijst.');
 		story.find('.leg').remove();
+		story.find('#explanation').hide();
 		var selector = $($.parseHTML('<ul class="selector">')).appendTo(story);
 
 		$.each(index, function (key, value) {
@@ -36,7 +38,10 @@
 		});
 
 		if (lines instanceof L.FeatureGroup) {
-			map.removeLayer(lines);
+			lines.clearLayers();
+			if (map.hasLayer(lines)) {
+				map.removeLayer(lines);
+			}
 		}
 	};
 	function setupMap() {
@@ -97,7 +102,7 @@
 		document.title = data.title;
 		story.find('.selector').hide();
 		story.find('h1').html(data.title);
-		story.find('.explanation').show();
+		story.find('#explanation').show();
 
 		if (lines instanceof L.FeatureGroup) {
 			map.removeLayer(lines);
@@ -136,11 +141,11 @@
 				);
 			}
 		}
-		if (lines.getLayers().lenth > 0) {
+		if (lines.getLayers().length > 0) {
 			map.fitBounds(lines.getBounds());
 		}
 
-		lines.on('click', function (event) {
+		lines.off('click').on('click', function (event) {
 			for (var i in legs) {
 				if (L.stamp(event.layer) === legs[i]['_leaflet_id']) {
 					$('#leg' + i).click();
@@ -148,12 +153,13 @@
 			}
 		});
 
-		$('#story').on('click', '.leg', function (event) {
+		$('#story').off('click', '.leg').on('click', '.leg', function (event) {
 			if ($(event.target).is('img')) {
 				return;
 			}
 			var id = $(this).attr('id').substr(3, 1);
 			var leg = legs[id];
+			console.log(legs);
 
 			// clear highlight on all layers
 			lines.eachLayer(function (layer) {
@@ -162,7 +168,7 @@
 				}
 			});
 
-			if (leg['_leaflet_id']) {
+			if (leg && leg['_leaflet_id']) {
 				var current = lines.getLayer(leg['_leaflet_id']);
 
 				if (current) {
