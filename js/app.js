@@ -163,7 +163,6 @@
 			}
 			var id = $(this).attr('id').substr(3, 1);
 			var leg = legs[id];
-			console.log(legs);
 
 			// clear highlight on all layers
 			lines.eachLayer(function (layer) {
