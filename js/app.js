@@ -1,10 +1,9 @@
 
 (function () {
 	'use strict';
-	/* global data:true */
+	/* global console:true, index:true */
 
 	var map = setupMap();
-	window.map = map;
 	var lines;
 	var story = $('#story');
 
@@ -14,7 +13,7 @@
 	} else {
 		loadJSON(location.hash.slice(1));
 	}
-	$(window).bind('hashchange', function() {
+	$(window).bind('hashchange', function () {
 		var hash = window.location.hash.slice(1);
 		if (hash === '') {
 			renderIndex();
@@ -22,7 +21,7 @@
 			loadJSON(hash);
 		}
 	});
-	story.on('click', '[data-name]', function (event) {
+	story.on('click', '[data-name]', function () {
 		var name = $(this).data('name');
 		location.hash = name;
 	});
@@ -43,19 +42,19 @@
 				map.removeLayer(lines);
 			}
 		}
-	};
+	}
 	function setupMap() {
-		var layer =  L.tileLayer("http://a{s}.acetate.geoiq.com/tiles/terrain/{z}/{x}/{y}.png", {
+		var layer =  L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/terrain/{z}/{x}/{y}.png', {
 			attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 			subdomains: '0123',
 			minZoom: 2,
 			maxZoom: 18
 		});
 
-		var OpenSeaMap = L.tileLayer("http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png", {
+		var OpenSeaMap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
 			attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
 		});
-		var Acetate_labels = L.tileLayer("http://a{s}.acetate.geoiq.com/tiles/acetate-labels/{z}/{x}/{y}.png", {
+		var AcetateLabels = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-labels/{z}/{x}/{y}.png', {
 			attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 			subdomains: '0123',
 			minZoom: 2,
@@ -71,7 +70,7 @@
 
 		L.control.layers({}, {
 			OpenSeaMap: OpenSeaMap.addTo(map),
-			Labels: Acetate_labels.addTo(map)
+			Labels: AcetateLabels.addTo(map)
 		}, {
 			position: 'topleft',
 			collapsed: false
@@ -79,9 +78,9 @@
 
 		map.on('click', function (event) {
 			console.log(event.latlng.toString());
-		})
+		});
 		return map;
-	};
+	}
 
 
 	function loadJSON(name) {
@@ -95,7 +94,7 @@
 				console.log(e);
 			}
 		});
-	};
+	}
 
 	function loadStory(name, data) {
 
@@ -202,7 +201,7 @@
 
 			$.scrollTo($(this), 500);
 		});
-	};
+	}
 
 	// From http://stackoverflow.com/a/5624139
 	function hexToRgb(hex) {
