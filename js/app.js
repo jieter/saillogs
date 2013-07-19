@@ -27,6 +27,7 @@
 	});
 
 	function renderIndex() {
+		document.title = 'Jieters zeilverslagen';
 		story.find('h1').html('Kies een verhaal uit de lijst.');
 		story.find('.leg').remove();
 		story.find('#explanation').hide();
