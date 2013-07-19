@@ -27,7 +27,7 @@ html, body, #map {
 
 h1 {
 	font-size: 1.5em;
-	padding-left: 10px;
+	padding: 0 10px;
 	margin-bottom: 2px;
 }
 div#explanation {
@@ -57,8 +57,9 @@ div#story {
 	z-index: 1000;
 	position:absolute;
 	right: 20px;
-	width: 40%;
-	min-width: 350px;
+	width: 33%;
+	min-width: 300px;
+	max-width: 500px;
 	margin-left: 400px;
 
 	padding: 0 0 10px 0;
