@@ -141,7 +141,7 @@
 				// story for this leg.
 				var legStory = $('<div class="leg" id="leg' + i + '">').html(storyText);
 				if (legs[i].date) {
-					legStory.prepend('<div class="date">' + legs[i].date + '</div>')
+					legStory.prepend('<div class="date">' + legs[i].date.replace('-', ' ') + '</div>')
 				}
 				if (legs[i].color) {
 					var rgb = hexToRgb(legs[i].color);
