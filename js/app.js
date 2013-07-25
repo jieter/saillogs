@@ -1,4 +1,3 @@
-
 (function () {
 	'use strict';
 	/* global console:true, index:true */
@@ -141,6 +140,9 @@
 
 				// story for this leg.
 				var legStory = $('<div class="leg" id="leg' + i + '">').html(storyText);
+				if (legs[i].date) {
+					legStory.prepend('<div class="date">' + legs[i].date + '</div>')
+				}
 				if (legs[i].color) {
 					var rgb = hexToRgb(legs[i].color);
 					var color = 'rgba(' + rgb[0] + ', ' + rgb[1] + ', ' + rgb[2] + ', 0.5)';
