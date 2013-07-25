@@ -84,6 +84,10 @@ div.leg.active {
 	background-color: rgba(100, 100, 100, 0.05);
 
 }
+div.leg .date {
+	width: 60px;
+	float: left;
+}
 a { border: 0px; }
 
 #story img {
