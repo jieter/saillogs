@@ -77,7 +77,7 @@
 		}).addTo(map);
 		
 		window.newLeg = [];
-		map.on('dblclick', function (event) {
+		map.on('contextmenu', function (event) {
 			window.newLeg.push([event.latlng.lat, event.latlng.lng]);
 		});
 		map.on('click', function (event) {
