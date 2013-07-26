@@ -75,7 +75,11 @@
 			position: 'topleft',
 			collapsed: false
 		}).addTo(map);
-
+		
+		window.newLeg = [];
+		map.on('dblclick', function (event) {
+			window.newLeg.push([event.latlng.lat, event.latlng.lng]);
+		});
 		map.on('click', function (event) {
 			console.log({
 				click: event.latlng.toString(),
