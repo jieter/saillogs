@@ -75,7 +75,7 @@
 			position: 'topleft',
 			collapsed: false
 		}).addTo(map);
-		
+
 		window.newLeg = [];
 		map.on('contextmenu', function (event) {
 			window.newLeg.push([event.latlng.lat, event.latlng.lng]);
@@ -145,7 +145,8 @@
 				// story for this leg.
 				var legStory = $('<div class="leg" id="leg' + i + '">').html(storyText);
 				if (legs[i].date) {
-					legStory.prepend('<div class="date">' + legs[i].date.replace('-', ' ') + '</div>')
+					var date = legs[i].date.substr(6);
+					legStory.prepend('<div class="date">' + date + '</div>')
 				}
 				if (legs[i].color) {
 					var rgb = hexToRgb(legs[i].color);
