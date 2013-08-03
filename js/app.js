@@ -68,7 +68,7 @@
 			layers: layer
 		});
 
-		L.control.layers({}, {
+		map._layerControl = L.control.layers({}, {
 			OpenSeaMap: OpenSeaMap,//.addTo(map),
 			Labels: AcetateLabels.addTo(map)
 		}, {
@@ -186,32 +186,18 @@
 			}
 		}
 
-		if (data.track_geojson) {
+		if (data.trackGeojson) {
 			$.ajax({
 				url: 'data/' + name + '/track.geojson',
 				dataType: 'json',
 				success: function (data) {
 					var track = L.geoJson(data, {
-						style: function () {
-							return {
-								color: '#000',
-								weight: 1,
-								dashArray: [4, 4]
-							}
-						}
+						style: data.trackStyle
 					});
-
+					map._layerControl.addOverlay(track.addTo(map), 'track');
 
 				}
 			});
-			// var gpx = new L.GPX('data/' + name + '/track.gpx', {
-			// 	async: true,
-			// 	polyline_options: {
-			// 		color: '#000',
-			// 		weight: 1,
-			// 		dashArray: [4, 4]
-			// 	}
-			// });
 		}
 
 		// Move map to newly loaded area.

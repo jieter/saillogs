@@ -8,7 +8,12 @@
 		"opacity": 0.7,
 		"weight": 5
 	},
-	"track_geojson": true,
+	"trackStyle": {
+		"color": "#000",
+		"weight": 1,
+		"dashArray": [4, 4]
+	},
+	"trackGeojson": true,
 	"legs": [{
 		"marker": [51.82262, 4.11962],
 		"color": "#000000",
