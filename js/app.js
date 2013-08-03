@@ -99,7 +99,7 @@
 				loadStory(name, response);
 			},
 			error: function (e) {
-				console.log(e);
+				console.log("Error in AJAX/parsing JSON", e);
 			}
 		});
 	}
@@ -144,10 +144,12 @@
 
 				// story for this leg.
 				var legStory = $('<div class="leg" id="leg' + i + '">').html(storyText);
+
 				if (legs[i].date) {
 					var date = legs[i].date.substr(6);
 					legStory.prepend('<div class="date">' + date + '</div>')
 				}
+
 				if (legs[i].color) {
 					var rgb = hexToRgb(legs[i].color);
 					var color = 'rgba(' + rgb[0] + ', ' + rgb[1] + ', ' + rgb[2] + ', 0.5)';

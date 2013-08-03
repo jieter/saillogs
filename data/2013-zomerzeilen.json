@@ -74,6 +74,9 @@
 		"date": "2013-08-02",
 		"color": "#bbaabb",
 		"text": "Stellendam -> Hellevoetsluis <br />"
+	},
+	{
+		"text": "<table><tr><td class=\"meta\">Boot:</td><td>Spirit 36 'Equilibre'</td></tr><tr><td class=\"meta\">Gevaren: </td><td>&plusmn; 680NM</td></tr></table>"
 	}
 	]
 }
