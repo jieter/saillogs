@@ -56,21 +56,22 @@ ul.selector li:hover {
 #index {
 	z-index: 1000;
 	position: fixed;
-	top: 0;
-	left: 50%;
-	margin-left: -200px;
-
-	width: 400px;
+	left: 0;
+	top: 10%;
+	width: 50px;
 }
 #index .leg {
-	width: 43px;
+	width: 38px;
 	height: 22px;
 	background-color: white;
 	float: left;
 	margin: 0 1px 1px 0;
 	padding: 1px 3px;
 	cursor: pointer;
-
+	text-align: center;
+}
+#index .leg.active {
+	background-color: #efefef;
 }
 #story {
 	z-index: 1000;
@@ -93,8 +94,9 @@ ul.selector li:hover {
 #story .leg {
 	border-left: 4px solid white;
 	border-right: 2px solid white;
-	padding: 0 10px 10px 10px;
+	padding: 0 10px 0 10px;
 	cursor: pointer;
+	margin-bottom: 10px;
 }
 
 #story .leg.active {

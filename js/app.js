@@ -180,8 +180,11 @@
 					legStory.prepend('<div class="date">' + date + '</div>');
 
 					var legIndex = $('<div class="leg">' + date + '</div>').appendTo($('#index'));
-
 					legIndex.data('legId', i);
+				}
+
+				if (legs[i].title) {
+					legStory.prepend('<h2>' + legs[i].title '</h2>');
 				}
 
 				if (legs[i].color) {
@@ -263,8 +266,14 @@
 				}
 			}
 
-			$('.leg').removeClass('active');
-			$('.leg').addClass('active');
+			$('.leg').each(function () {
+				var leg = $(this);
+				if (leg.data('legId') == id) {
+					leg.addClass('active');
+				} else {
+					leg.removeClass('active');
+				}
+			});
 
 			$.scrollTo($(this), 500);
 		});
