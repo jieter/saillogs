@@ -184,7 +184,7 @@
 				}
 
 				if (legs[i].title) {
-					legStory.prepend('<h2>' + legs[i].title '</h2>');
+					legStory.prepend('<h2>' + legs[i].title + '</h2>');
 				}
 
 				if (legs[i].color) {
@@ -270,12 +270,16 @@
 				var leg = $(this);
 				if (leg.data('legId') == id) {
 					leg.addClass('active');
+
+					if (leg.parent().is('#story')) {
+						$.scrollTo(leg, 500);
+					}
 				} else {
 					leg.removeClass('active');
 				}
 			});
 
-			$.scrollTo($(this), 500);
+
 		});
 	}
 
