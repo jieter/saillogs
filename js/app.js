@@ -86,7 +86,7 @@
 		return map;
 	}
 
-	window.startEdit = function() {
+	window.startEdit = function () {
 		var drawControl = new L.Control.Draw({
 			draw: {
 				polygon: false,
@@ -101,7 +101,7 @@
 			var layer = event.layer;
 			layer.setStyle({
 				color: '#000000'
-			})
+			});
 			map.addLayer(layer);
 
 			var dump = [];
@@ -114,8 +114,7 @@
 			}
 			console.log(JSON.stringify(dump));
 		});
-	}
-
+	};
 
 	function loadJSON(name) {
 		$.ajax({
@@ -125,7 +124,7 @@
 				loadStory(name, response);
 			},
 			error: function (e) {
-				console.log("Error in AJAX/parsing JSON", e);
+				console.log('Error in AJAX/parsing JSON', e);
 			}
 		});
 	}
@@ -173,7 +172,7 @@
 
 				if (legs[i].date) {
 					var date = legs[i].date.substr(6);
-					legStory.prepend('<div class="date">' + date + '</div>')
+					legStory.prepend('<div class="date">' + date + '</div>');
 				}
 
 				if (legs[i].color) {
@@ -206,7 +205,7 @@
 			if ($(event.target).is('img')) {
 				return;
 			}
-			var id = $(this).attr('id').substr(3, 1);
+			var id = $(this).attr('id').substr(3);
 			var leg = legs[id];
 
 			// clear highlight on all layers
