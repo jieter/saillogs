@@ -76,10 +76,6 @@
 			collapsed: false
 		}).addTo(map);
 
-		window.newLeg = [];
-		map.on('contextmenu', function (event) {
-			window.newLeg.push([event.latlng.lat, event.latlng.lng]);
-		});
 		map.on('click', function (event) {
 			console.log({
 				click: event.latlng.toString(),
@@ -88,6 +84,27 @@
 			});
 		});
 		return map;
+	}
+
+	window.startEdit = function() {
+		var drawControl = new L.Control.Draw({
+			draw: {
+				polygon: false,
+				marker: false,
+				rectangle: false,
+				circle: false
+			}
+		});
+
+		drawControl.addTo(map);
+		map.on('draw:created', function (event) {
+			var layer = event.layer;
+			layer.setStyle({
+				color: '#000000'
+			})
+			map.addLayer(layer);
+			console.log(JSON.stringify(layer.getLatLngs()));
+		});
 	}
 
 
