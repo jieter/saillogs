@@ -103,7 +103,16 @@
 				color: '#000000'
 			})
 			map.addLayer(layer);
-			console.log(JSON.stringify(layer.getLatLngs()));
+
+			var dump = [];
+			var latLngs = layer.getLatLngs();
+			for (var i in latLngs) {
+				dump.push([
+					latLngs[i].lat,
+					latLngs[i].lng
+				]);
+			}
+			console.log(JSON.stringify(dump));
 		});
 	}
 
