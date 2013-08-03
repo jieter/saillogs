@@ -69,7 +69,7 @@
 		});
 
 		L.control.layers({}, {
-			OpenSeaMap: OpenSeaMap.addTo(map),
+			OpenSeaMap: OpenSeaMap,//.addTo(map),
 			Labels: AcetateLabels.addTo(map)
 		}, {
 			position: 'topleft',
@@ -83,6 +83,7 @@
 				zoom: map.getZoom()
 			});
 		});
+		console.log(map);
 		return map;
 	}
 
@@ -185,6 +186,34 @@
 			}
 		}
 
+		if (data.track_geojson) {
+			$.ajax({
+				url: 'data/' + name + '/track.geojson',
+				dataType: 'json',
+				success: function (data) {
+					var track = L.geoJson(data, {
+						style: function () {
+							return {
+								color: '#000',
+								weight: 1,
+								dashArray: [4, 4]
+							}
+						}
+					});
+
+
+				}
+			});
+			// var gpx = new L.GPX('data/' + name + '/track.gpx', {
+			// 	async: true,
+			// 	polyline_options: {
+			// 		color: '#000',
+			// 		weight: 1,
+			// 		dashArray: [4, 4]
+			// 	}
+			// });
+		}
+
 		// Move map to newly loaded area.
 		if (lines.getLayers().length > 0) {
 			map.fitBounds(lines.getBounds());
@@ -230,7 +259,7 @@
 						bounds.extend([
 							bounds.getNorth(),
 							bounds.getEast() + (bounds.getEast() - bounds.getWest())
-						]);
+						]).pad(0.2);
 
 						map.fitBounds(bounds);
 					} else if (current.getLatLng) {
