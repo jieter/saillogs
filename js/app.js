@@ -202,7 +202,7 @@
 
 		// Move map to newly loaded area.
 		if (lines.getLayers().length > 0) {
-			map.fitBounds(lines.getBounds());
+			map.fitBounds(lines.getBounds().pad(0.2));
 			if (map.getZoom() > 14) {
 				map.setZoom(14);
 			}
@@ -226,7 +226,7 @@
 			// clear highlight on all layers
 			lines.eachLayer(function (layer) {
 				if (layer.setStyle) {
-					layer.setStyle(data.defaultStyle);
+					layer.setStyle(data.styles['default']);
 				}
 			});
 
