@@ -69,7 +69,7 @@
 		});
 
 		map._layerControl = L.control.layers({}, {
-			OpenSeaMap: OpenSeaMap,//.addTo(map),
+			OpenSeaMap: OpenSeaMap.addTo(map),
 			Labels: AcetateLabels.addTo(map)
 		}, {
 			position: 'topleft',
@@ -109,8 +109,8 @@
 			var latLngs = layer.getLatLngs();
 			for (var i in latLngs) {
 				dump.push([
-					latLngs[i].lat,
-					latLngs[i].lng
+					L.Util.formatNum(latLngs[i].lat, 5),
+					L.Util.formatNum(latLngs[i].lng, 5)
 				]);
 			}
 			console.log(JSON.stringify(dump));
@@ -147,7 +147,7 @@
 		for (var i in legs) {
 			if (legs[i].path) {
 				var poly;
-				var style = L.Util.extend({}, data.defaultStyle, {
+				var style = L.Util.extend({}, data.styles.default, {
 					color: legs[i].color
 				});
 
@@ -190,9 +190,9 @@
 			$.ajax({
 				url: 'data/' + name + '/track.geojson',
 				dataType: 'json',
-				success: function (data) {
-					var track = L.geoJson(data, {
-						style: data.trackStyle
+				success: function (geojson) {
+					var track = L.geoJson(geojson, {
+						style: data.styles.track
 					});
 					map._layerControl.addOverlay(track.addTo(map), 'track');
 
@@ -238,7 +238,7 @@
 						var bounds = current.getBounds();
 						lines.bringToFront(current);
 						if (current.setStyle) {
-							current.setStyle(data.highlightStyle);
+							current.setStyle(data.styles.highlight);
 						}
 
 						// compensate bounds for story on the right.

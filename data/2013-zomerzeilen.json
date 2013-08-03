@@ -1,22 +1,23 @@
 {
 	"title": "Zomerzeilen 2013.",
-	"defaultStyle": {
-		"opacity": 0.4,
-		"weight": 3
-	},
-	"highlightStyle": {
-		"opacity": 0.7,
-		"weight": 5
-	},
-	"trackStyle": {
-		"color": "#000",
-		"weight": 1,
-		"dashArray": [4, 4]
+	"styles": {
+		"default": {
+			"opacity": 0.4,
+			"weight": 3
+		},
+		"highlight": {
+			"opacity": 0.7,
+			"weight": 5
+		},
+		"track": {
+			"color": "#000",
+			"weight": 1,
+			"dashArray": [4, 4]
+		}
 	},
 	"trackGeojson": true,
 	"legs": [{
 		"marker": [51.82262, 4.11962],
-		"color": "#000000",
 		"date": "2013-07-17",
 		"text": "Voor het vierde jaar op rij op weg met de Equilibre. Na tochten naar Londen, Schotland, Denenmarken en Ipswitch is het nu toch echt eens tijd om de kanaaleilanden met een bezoekje te vereren..."
 	},
@@ -29,7 +30,7 @@
 	{
 		"date": "2013-07-22",
 		"color": "#0fff0f",
-		"path": [[50.76404220065041, -1.2968158721923826], [50.768439422651454, -1.300506591796875], [50.77354185355239, -1.3151836395263672], [50.74014883602854, -1.473541259765625], [50.70711247794506, -1.5325927734375], [50.678404110257134, -1.5741348266601562], [50.661214182272396, -1.5895843505859375], [50.469742723755154, -1.8209838867187498], [50.090631104781586, -1.9418334960937498], [50.08710669808234, -1.988525390625], [50.553579956456524, -2.30712890625], [50.61178530642466, -2.4355316162109375], [50.608135962090145, -2.447376251220703], [50.60693760818473, -2.452869415283203]],
+		"path": [[50.76849,-1.30051],[50.7736,-1.31544],[50.75286,-1.41466],[50.7069,-1.54495],[50.66018,-1.61314],[50.51605,-1.94046],[50.25072,-2.01187],[50.55271,-2.30713],[50.61287,-2.4321],[50.60765,-2.46094]],
 		"text": "Na een prima nacht in Cowes vertrekken we richting Guernsey, aan het einde van de morgen om het tij in de Needles mee te hebben. In de havenmond ligt een mooie grote groene ton, maar de genua zorgt ervoor dat we die tot op het laatste moment over het hoofd zien. Een laatste stuurcorrectie baat niet, de ton laat een mooie groene streep achter op de romp. <br /> Het is al vrij rap gedaan met het zeilen, de wind kakt er uit. We zien mooie stroomrafelingen en de stroom geeft ons een flinke zet mee naar buiten. Ter hoogte van de Needles gaat de wind weer aan en kan het zeil omhoog. <br />Langzaam wordt het steeds mistiger, tot we in onze eigen wereld varen. Het horen van verschillende scheepshoorns is een bizarre ervaring, terugtoeteren met een klein scheepsding voelt als een schertsvertoning. Omdat we geen radar of AIS aan boord hebben is het niet verantwoord de grote schepen te kruisen en besluiten we om te keren richting de UK. Weymouth is het nieuwe doel. <br /> Al snel wordt het zicht beter: als de nacht valt zien we de vier flitsen van Portland Bill en wat andere lichtjes op de wal. Opnieuw trekt het dicht en we roepen iedereen aan dek om mee te kijken. Haap zit voorop en ziet fata-morgana's, Margriet ziet lichtjes op twee uur, die niemand anders ziet. Henk stuurt. Als we op zo'n 0,2 NM van de havenhoofden zijn stuurt Abraham verder, zonder dat we nog iets van de haven hebben gezien. Langzaam varen we in de richting waar volgens de computer met GPS de haven is. Opeens verschijnt het havenlicht en zien we ook wat andere lichtjes op de wal. Bizar om zo een haven aan te varen. Tijd voor een biertje.<br />65NM in 13 uur."
 	},
 	{
