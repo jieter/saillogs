@@ -83,7 +83,18 @@
 				zoom: map.getZoom()
 			});
 		});
-		console.log(map);
+
+		// map._indexControl = new (L.Control.extend({
+		// 	options: {
+		// 		position: 'bottomleft'
+		// 	},
+		// 	onAdd: function (map) {
+		// 		var container = L.DomUtil.create('div', '');
+
+		// 		return container;
+		// 	}
+		// }));
+
 		return map;
 	}
 
@@ -173,6 +184,10 @@
 				var legStory = $('<div class="leg">').html(storyText);
 				legStory.data('legId', i);
 
+				if (legs[i].title) {
+					legStory.prepend('<h3>' + legs[i].title + '</h3>');
+				}
+
 				if (legs[i].date) {
 					var dateParts = legs[i].date.split('-');
 					var date = dateParts[2] + '-' + parseInt(dateParts[1]);
@@ -183,9 +198,6 @@
 					legIndex.data('legId', i);
 				}
 
-				if (legs[i].title) {
-					legStory.prepend('<h2>' + legs[i].title + '</h2>');
-				}
 
 				if (legs[i].color) {
 					var rgb = hexToRgb(legs[i].color);
