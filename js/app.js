@@ -136,6 +136,7 @@
 		story.find('.selector').hide();
 		story.find('h1').html(data.title);
 		story.find('#explanation').show();
+		$('#index').html('');
 
 		if (lines instanceof L.FeatureGroup) {
 			map.removeLayer(lines);
@@ -169,11 +170,18 @@
 				var storyText = legs[i].text.replace(/src="/g, 'src="data/' + name + '/');
 
 				// story for this leg.
-				var legStory = $('<div class="leg" id="leg' + i + '">').html(storyText);
+				var legStory = $('<div class="leg">').html(storyText);
+				legStory.data('legId', i);
 
 				if (legs[i].date) {
-					var date = legs[i].date.substr(6);
+					var dateParts = legs[i].date.split('-');
+					var date = dateParts[2] + '-' + parseInt(dateParts[1]);
+
 					legStory.prepend('<div class="date">' + date + '</div>');
+
+					var legIndex = $('<div class="leg">' + date + '</div>').appendTo($('#index'));
+
+					legIndex.data('legId', i);
 				}
 
 				if (legs[i].color) {
@@ -184,6 +192,7 @@
 
 				legStory.appendTo(story);
 			}
+
 		}
 
 		if (data.trackGeojson) {
@@ -216,11 +225,11 @@
 			}
 		});
 
-		$('#story').off('click', '.leg').on('click', '.leg', function (event) {
+		$('#story, #index').off('click', '.leg').on('click', '.leg', function (event) {
 			if ($(event.target).is('img')) {
 				return;
 			}
-			var id = $(this).attr('id').substr(3);
+			var id = $(this).data('legId');
 			var leg = legs[id];
 
 			// clear highlight on all layers
@@ -254,8 +263,8 @@
 				}
 			}
 
-			$('div.leg').not($(this)).removeClass('active');
-			$(this).addClass('active');
+			$('.leg').removeClass('active');
+			$('.leg').addClass('active');
 
 			$.scrollTo($(this), 500);
 		});

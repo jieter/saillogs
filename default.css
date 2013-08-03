@@ -53,7 +53,26 @@ ul.selector li:hover {
 	background-color: #eee;
 }
 
-div#story {
+#index {
+	z-index: 1000;
+	position: fixed;
+	top: 0;
+	left: 50%;
+	margin-left: -200px;
+
+	width: 400px;
+}
+#index .leg {
+	width: 43px;
+	height: 22px;
+	background-color: white;
+	float: left;
+	margin: 0 1px 1px 0;
+	padding: 1px 3px;
+	cursor: pointer;
+
+}
+#story {
 	z-index: 1000;
 	position:absolute;
 	right: 20px;
@@ -71,20 +90,20 @@ div#story {
 	border-right: 4px solid rgba(100, 100, 100, 0.2);
 }
 
-div.leg {
+#story .leg {
 	border-left: 4px solid white;
 	border-right: 2px solid white;
 	padding: 0 10px 10px 10px;
 	cursor: pointer;
 }
 
-div.leg.active {
+#story .leg.active {
 	border-left: 4px solid white;
 	border-right: 2px solid white;
 	background-color: rgba(100, 100, 100, 0.05);
 
 }
-div.leg .date {
+#story .leg .date {
 	width: 43px;
 	height: 22px;
 	text-align: center;
