@@ -5,17 +5,18 @@
 	var map = setupMap();
 	var lines;
 	var story = $('#story');
+	var index = $('#index');
 
 	// present list of available stories
 	if (location.hash === '') {
-		renderIndex();
+		renderStorylist();
 	} else {
 		loadJSON(location.hash.slice(1));
 	}
 	$(window).bind('hashchange', function () {
 		var hash = window.location.hash.slice(1);
 		if (hash === '') {
-			renderIndex();
+			renderStorylist();
 		} else {
 			loadJSON(hash);
 		}
@@ -25,14 +26,15 @@
 		location.hash = name;
 	});
 
-	function renderIndex() {
+	function renderStorylist() {
 		document.title = 'Jieters zeilverslagen';
 		story.find('h1').html('Kies een verhaal uit de lijst.');
 		story.find('.leg').remove();
 		story.find('#explanation').hide();
+		index.html('');
 		var selector = $($.parseHTML('<ul class="selector">')).appendTo(story);
 
-		$.each(index, function (key, value) {
+		$.each(availableStories, function (key, value) {
 			selector.append('<li data-name="' + key + '">' + value + '</li>');
 		});
 
@@ -72,28 +74,24 @@
 			OpenSeaMap: OpenSeaMap.addTo(map),
 			Labels: AcetateLabels.addTo(map)
 		}, {
-			position: 'topleft',
+			position: 'bottomleft',
 			collapsed: false
 		}).addTo(map);
 
-		map.on('click', function (event) {
-			console.log({
-				click: event.latlng.toString(),
-				center: map.getCenter().toString(),
-				zoom: map.getZoom()
-			});
-		});
 
-		// map._indexControl = new (L.Control.extend({
-		// 	options: {
-		// 		position: 'bottomleft'
-		// 	},
-		// 	onAdd: function (map) {
-		// 		var container = L.DomUtil.create('div', '');
+		map._indexControl = new (L.Control.extend({
+			options: {
+				position: 'topleft'
+			},
+			onAdd: function () {
+				var container = L.DomUtil.create('div', '');
+				container.id = 'index';
 
-		// 		return container;
-		// 	}
-		// }));
+				return container;
+			}
+		}))();
+
+		map._indexControl.addTo(map);
 
 		return map;
 	}
@@ -126,6 +124,14 @@
 			}
 			console.log(JSON.stringify(dump));
 		});
+
+		map.on('click', function (event) {
+			console.log({
+				click: event.latlng.toString(),
+				center: map.getCenter().toString(),
+				zoom: map.getZoom()
+			});
+		});
 	};
 
 	function loadJSON(name) {
@@ -147,7 +153,7 @@
 		story.find('.selector').hide();
 		story.find('h1').html(data.title);
 		story.find('#explanation').show();
-		$('#index').html('');
+		index.html('');
 
 		if (lines instanceof L.FeatureGroup) {
 			map.removeLayer(lines);
@@ -184,20 +190,32 @@
 				var legStory = $('<div class="leg">').html(storyText);
 				legStory.data('legId', i);
 
+				var legIndex = $('<div class="leg"></div>');
+				legIndex.data('legId', i);
+
 				if (legs[i].title) {
 					legStory.prepend('<h3>' + legs[i].title + '</h3>');
+					legIndex.data('title', legs[i].title);
 				}
 
 				if (legs[i].date) {
 					var dateParts = legs[i].date.split('-');
-					var date = dateParts[2] + '-' + parseInt(dateParts[1]);
+					var dateObj = new Date(dateParts[0], dateParts[1], dateParts[2]);
+					var month = parseInt(dateParts[1], 10);
+					var day = parseInt(dateParts[2], 10);
+					var date = day + '-' + month;
 
 					legStory.prepend('<div class="date">' + date + '</div>');
 
-					var legIndex = $('<div class="leg">' + date + '</div>').appendTo($('#index'));
-					legIndex.data('legId', i);
-				}
 
+					legIndex.html(day);
+
+					if (index.find('.month-' + month).length !== 1) {
+						index.append('<span class="month month-' + month + '"></span>');
+						legIndex.css('margin-left', (dateObj.getDay() * 21) + 'px');
+					}
+					legIndex.appendTo(index.find('.month-' + month));
+				}
 
 				if (legs[i].color) {
 					var rgb = hexToRgb(legs[i].color);
@@ -280,18 +298,20 @@
 
 			$('.leg').each(function () {
 				var leg = $(this);
-				if (leg.data('legId') == id) {
+				if (leg.data('legId') === id) {
 					leg.addClass('active');
 
 					if (leg.parent().is('#story')) {
-						$.scrollTo(leg, 500);
+						$.scrollTo(leg, 500, {
+							offset: {
+								top: -20
+							}
+						});
 					}
 				} else {
 					leg.removeClass('active');
 				}
 			});
-
-
 		});
 	}
 
