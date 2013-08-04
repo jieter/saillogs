@@ -243,7 +243,7 @@
 							}
 						}
 					}
-
+					// make weekend-days bold
 					if (dateObj.getDay() === 0 || dateObj.getDay() === 6) {
 						legIndex.css('font-weight', 'bold');
 					}
@@ -294,7 +294,7 @@
 		});
 
 		$('#story, #index').off('click', '.leg').on('click', '.leg', function (event) {
-			if ($(event.target).is('img')) {
+			if ($(event.target).is('img,a')) {
 				return;
 			}
 			var id = $(this).data('legId');

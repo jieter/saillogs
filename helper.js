@@ -46,7 +46,16 @@ var fs = require('fs');
 
 	// generate thumbnails for all pics with a .thumb suffix.
 	var thumbs = function () {
-
+		var thumb = require('node-thumbnail').thumb;
+		thumb({
+			source: 'data/2013-zomerzeilen/',
+			destination: 'data/2013-zomerzeilen/',
+			suffix: '.thumb',
+			concurrency: 4,
+			width: 150
+		}, function() {
+			console.log('All done!');
+		});
 	};
 
 	if (process.argv.length > 2) {
