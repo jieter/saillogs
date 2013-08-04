@@ -149,6 +149,24 @@
 
 	function loadStory(name, data) {
 
+		var defaultStyles = {
+			leg: {
+				opacity: 0.4,
+				weight: 3
+			},
+			highlight: {
+				opacity: 0.7,
+				weight: 5
+			},
+			track: {
+				color: "#000",
+				weight: 1,
+				dashArray: [4, 4]
+			}
+		};
+
+		data.styles = $.extend(data.styles, defaultStyles);
+
 		document.title = data.title;
 		story.find('.selector').hide();
 		story.find('h1').html(data.title);
@@ -165,7 +183,7 @@
 		for (var i in legs) {
 			if (legs[i].path) {
 				var poly;
-				var style = L.Util.extend({}, data.styles.default, {
+				var style = L.Util.extend({}, data.styles.leg, {
 					color: legs[i].color
 				});
 
@@ -196,6 +214,7 @@
 				if (legs[i].title) {
 					legStory.prepend('<h3>' + legs[i].title + '</h3>');
 					legIndex.data('title', legs[i].title);
+					legIndex.attr('title', legs[i].title);
 				}
 
 				if (legs[i].date) {
@@ -250,7 +269,7 @@
 					var track = L.geoJson(geojson, {
 						style: data.styles.track
 					});
-					map._layerControl.addOverlay(track.addTo(map), 'track');
+					map._layerControl.addOverlay(track.addTo(map), 'Opgeslagen track');
 
 				}
 			});
@@ -282,7 +301,7 @@
 			// clear highlight on all layers
 			lines.eachLayer(function (layer) {
 				if (layer.setStyle) {
-					layer.setStyle(data.styles['default']);
+					layer.setStyle(data.styles.leg);
 				}
 			});
 
