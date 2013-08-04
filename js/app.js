@@ -235,7 +235,7 @@
 		lines.off('click').on('click', function (event) {
 			for (var i in legs) {
 				if (L.stamp(event.layer) === legs[i]['_leaflet_id']) {
-					$('#leg' + i).click();
+					$('#story .leg').eq(i).click();
 				}
 			}
 		});
