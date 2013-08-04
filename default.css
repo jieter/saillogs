@@ -53,16 +53,17 @@ ul.selector li:hover {
 	background-color: #eee;
 }
 
-#index .month {
+#index {
 	width: 147px;
-	display: block;
 }
-#index .leg {
+#index .leg, #index .filler {
 	width: 20px;
 	height: 22px;
 	float: left;
-	background-color: white;
 	margin: 0 1px 1px 0;
+}
+#index .leg {
+	background-color: white;
 	padding: 1px 3px;
 	cursor: pointer;
 	text-align: center;

@@ -200,21 +200,35 @@
 
 				if (legs[i].date) {
 					var dateParts = legs[i].date.split('-');
-					var dateObj = new Date(dateParts[0], dateParts[1], dateParts[2]);
+					var dateObj = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
 					var month = parseInt(dateParts[1], 10);
 					var day = parseInt(dateParts[2], 10);
 					var date = day + '-' + month;
 
 					legStory.prepend('<div class="date">' + date + '</div>');
 
-
 					legIndex.html(day);
 
-					if (index.find('.month-' + month).length !== 1) {
-						index.append('<span class="month month-' + month + '"></span>');
+					var diff = null;
+					if (index.children().length < 1) {
 						legIndex.css('margin-left', (dateObj.getDay() * 21) + 'px');
+					} else {
+						var last = index.children().last();
+						diff = day - last.html();
+						if (diff > 1) {
+							// insert empty days.
+							for (var j = diff; j > 1; j--) {
+								index.append('<div class="filler"></div>');
+							}
+						}
 					}
-					legIndex.appendTo(index.find('.month-' + month));
+
+					if (dateObj.getDay() === 0 || dateObj.getDay() === 6) {
+						legIndex.css('font-weight', 'bold');
+					}
+					if (diff !== 0) {
+						legIndex.appendTo(index);
+					}
 				}
 
 				if (legs[i].color) {
