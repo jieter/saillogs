@@ -303,7 +303,10 @@
 			// clear highlight on all layers
 			lines.eachLayer(function (layer) {
 				if (layer.setStyle) {
-					layer.setStyle(data.styles.leg);
+					var style = data.styles.leg;
+					// remove color while resetting...
+					delete style.color;
+					layer.setStyle(style);
 				}
 			});
 
