@@ -151,6 +151,7 @@
 
 		var defaultStyles = {
 			leg: {
+				color: '#00f',
 				opacity: 0.4,
 				weight: 3
 			},
@@ -183,9 +184,10 @@
 		for (var i in legs) {
 			if (legs[i].path) {
 				var poly;
-				var style = L.Util.extend({}, data.styles.leg, {
-					color: legs[i].color
-				});
+				var style = L.Util.extend({}, data.styles.leg);
+				if (legs[i].color) {
+					L.Util.extend(style, { color: legs[i].color});
+				}
 
 				if (typeof legs[i].path === 'string') {
 					poly = L.Polyline.fromEncoded(legs[i].path, style);
