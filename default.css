@@ -140,6 +140,10 @@ img.modalImage {
 table {
 	margin: 10px;
 }
+table td {
+	vertical-align: top;
+	text-align: left;
+}
 table td.meta {
 	color: #555;
 	padding-right: 20px;
