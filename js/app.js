@@ -48,16 +48,24 @@
 					modal.append('<img src="' + src + '" />');
 				}
 
-				modal.add(overlay).one('click', function () {
+				var close = function () {
 					overlay.css('display', 'none');
 					$('html,body').css('overflow', 'auto')
 					modal.remove();
-				});
+				};
+
+				modal.add(overlay).one('click', close);
+				$(window).on('keyup', function (event) {
+					if (event.keyCode === 27) {
+						close();
+						$(window).off('keyup');
+					}
+				})
 
 				overlay.show();
 				modal.show().fadeTo(200, 1);
 
-				if (el.attr('title') != '') {
+				if (el.attr('title') && el.attr('title') !== '') {
 					modal.prepend('<span class="title">' + el.attr('title') + '</span>');
 				}
 			});
