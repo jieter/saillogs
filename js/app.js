@@ -318,13 +318,13 @@
 		attachListeners: function () {
 			var self = this;
 			// make clicks on polylines/markers refer to stories
-			this.features.off('click').on('click', function (event) {
+			this.features.on('click', function (event) {
 				if (event.layer.legId) {
 					self.story.find('.leg').eq(event.layer.legId).click();
 				}
 			});
 
-			$('#story, #index').off('click', '.leg').on('click', '.leg', function (event) {
+			$('#story, #index').on('click', '.leg', function (event) {
 				if ($(event.target).is('img,a')) {
 					return;
 				}
