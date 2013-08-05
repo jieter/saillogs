@@ -52,7 +52,7 @@ var fs = require('fs');
 			destination: 'data/2013-zomerzeilen/',
 			suffix: '.thumb',
 			concurrency: 4,
-			width: 150
+			width: 200
 		}, function () {
 			console.log('All done!');
 		});
