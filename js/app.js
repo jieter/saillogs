@@ -19,6 +19,40 @@
 		};
 	}
 
+	// Simple img overlay...
+	$.fn['imgModal'] = function () {
+		var overlay = $('#modal_overlay');
+
+		return this.each(function () {
+			var el = $(this);
+			el.on('click', function () {
+				$('html,body').css('overflow', 'hidden');
+
+				var img = $(this);
+				var src = img.attr('src').replace('.thumb', '');
+
+				var modal = $('<div class="modal"><span class="modal_close">&times;</span></div>');
+				modal.appendTo(overlay);
+
+				modal.css({
+					'margin-left': -(modal.outerWidth() / 2) + 'px',
+					'top': '100px'
+				});
+
+				modal.append('<img src="' + src + '" />');
+
+				modal.add(overlay).one('click', function () {
+					overlay.css('display', 'none');
+					$('html,body').css('overflow', 'auto')
+					modal.remove();
+				})
+
+				overlay.show();
+				modal.show().fadeTo(200, 1);
+			});
+		});
+	};
+
 	// Keep a calendar with days with stories.
 	var StoryIndex = L.Control.extend({
 		options: {
@@ -277,12 +311,13 @@
 			}
 
 			if (leg.text) {
-				var storyText = leg.text.replace(/src="/g, 'src="data/' + this.imagePrefix + '/');
+				var storyText = this._markup(leg.text);
 
 				// story for this leg.
 				var legStory = $('<div class="leg">').html(storyText);
 
-				legStory.find('img').attr('title', 'Klik voor een grotere versie');
+				legStory.find('img').imgModal();
+
 				legStory.data({
 					'legId': leg.id,
 					'leg': leg
@@ -382,6 +417,17 @@
 				});
 			});
 
+		},
+
+		_markup: function (string) {
+			// prefix path with path to image dir.
+			string = string.replace(/src="/g, 'src="data/' + this.imagePrefix + '/');
+
+			// Markdown img syntax: ![Alt](src), also prefixed
+			string = string.replace(/!\[(.*)\]\((.*)\)/g,
+				'<img src="data/' + this.imagePrefix + '/$2" title="$1"/>');
+
+			return string;
 		},
 
 		startEdit: function () {
