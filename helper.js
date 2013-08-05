@@ -48,7 +48,7 @@ var fs = require('fs');
 	var thumbs = function () {
 		var thumb = require('node-thumbnail').thumb;
 		thumb({
-			source: 'data/2013-zomerzeilen/',
+			source: 'orig/',
 			destination: 'data/2013-zomerzeilen/',
 			suffix: '.thumb',
 			concurrency: 4,
@@ -56,6 +56,16 @@ var fs = require('fs');
 		}, function () {
 			console.log('All done!');
 		});
+		thumb({
+			source: 'orig/',
+			destination: 'data/2013-zomerzeilen/',
+			suffix: '',
+			concurrency: 4,
+			width: 1000
+		}, function () {
+			console.log('All done!');
+		});
+
 	};
 
 	if (process.argv.length > 2) {
