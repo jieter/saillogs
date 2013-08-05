@@ -424,7 +424,7 @@
 			string = string.replace(/src="/g, 'src="data/' + this.imagePrefix + '/');
 
 			// Markdown img syntax: ![Alt](src), also prefixed
-			string = string.replace(/!\[(.*)\]\((.*)\)/g,
+			string = string.replace(/!\[([^\]]*)\]\(([^)]*)\)/g,
 				'<img src="data/' + this.imagePrefix + '/$2" title="$1"/>');
 
 			return string;
