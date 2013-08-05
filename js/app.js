@@ -153,7 +153,6 @@
 	}
 
 	function loadStory(name, data) {
-
 		var defaultStyles = {
 			leg: {
 				color: '#00f',
@@ -213,6 +212,7 @@
 
 				// story for this leg.
 				var legStory = $('<div class="leg">').html(storyText);
+				legStory.find('img').attr('title', 'Klik voor een grotere versie');
 				legStory.data('legId', i);
 
 				var legIndex = $('<div class="leg"></div>');
@@ -220,7 +220,6 @@
 
 				if (legs[i].title) {
 					legStory.prepend('<h3>' + legs[i].title + '</h3>');
-					legIndex.data('title', legs[i].title);
 					legIndex.attr('title', legs[i].title);
 				}
 
