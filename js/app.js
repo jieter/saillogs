@@ -4,6 +4,7 @@
 
 	var map = setupMap();
 	var lines;
+	var trackLayer;
 	var story = $('#story');
 	var index = $('#index');
 
@@ -43,6 +44,10 @@
 			if (map.hasLayer(lines)) {
 				map.removeLayer(lines);
 			}
+		}
+		if (map.hasLayer(trackLayer)) {
+			map._layerControl.removeLayer(trackLayer);
+			map.removeLayer(trackLayer);
 		}
 	}
 	function setupMap() {
@@ -160,7 +165,7 @@
 				weight: 5
 			},
 			track: {
-				color: "#000",
+				color: '#000',
 				weight: 1,
 				dashArray: [4, 4]
 			}
@@ -260,7 +265,6 @@
 
 				legStory.appendTo(story);
 			}
-
 		}
 
 		if (data.trackGeojson) {
@@ -268,10 +272,10 @@
 				url: 'data/' + name + '/track.geojson',
 				dataType: 'json',
 				success: function (geojson) {
-					var track = L.geoJson(geojson, {
+					trackLayer = L.geoJson(geojson, {
 						style: data.styles.track
-					});
-					map._layerControl.addOverlay(track.addTo(map), 'Opgeslagen track');
+					}).addTo(map);
+					map._layerControl.addOverlay(trackLayer, 'Opgeslagen track');
 
 				}
 			});

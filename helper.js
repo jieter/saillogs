@@ -53,7 +53,7 @@ var fs = require('fs');
 			suffix: '.thumb',
 			concurrency: 4,
 			width: 150
-		}, function() {
+		}, function () {
 			console.log('All done!');
 		});
 	};
