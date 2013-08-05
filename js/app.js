@@ -324,7 +324,7 @@
 				}
 			});
 
-			$('#story, #index').one('click', '.leg', function (event) {
+			$('#story, #index').off('click', '.leg').on('click', '.leg', function (event) {
 				if ($(event.target).is('img,a')) {
 					return;
 				}
@@ -363,7 +363,7 @@
 						}
 					}
 				}
-				console.log('leg id', $(this).data());
+
 				$('.leg').each(function () {
 					var current = $(this);
 					if (current.data('legId') === leg.id) {
