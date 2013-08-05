@@ -19,8 +19,8 @@
 		};
 	}
 
-	// Simple img overlay...
-	$.fn['imgModal'] = function () {
+	// Simple media overlay...
+	$.fn['mediaModal'] = function () {
 		var overlay = $('#modal_overlay');
 
 		return this.each(function () {
@@ -29,25 +29,30 @@
 			el.on('click', function () {
 				$('html,body').css('overflow', 'hidden');
 
-				var img = $(this);
-				var src = img.attr('src').replace('.thumb', '');
-
 				var modal = $('<div class="modal"><span class="modal_close">&times;</span></div>');
 				modal.appendTo(overlay);
-
-
 				modal.css({
 					'margin-left': -(modal.outerWidth() / 2) + 'px',
 					'top': '100px'
 				});
 
-				modal.append('<img src="' + src + '" />');
+				if (el.data('url')) {
+					// youtube embed
+					var ytId = el.data('url').substr(-11);
+
+					modal.append('<iframe id="ytplayer" type="text/html" width="800" height="600" src="http://www.youtube.com/embed/' + ytId + '?autoplay=1&origin=http://jieter.nl" frameborder="0"/>');
+
+				} else {
+					// image
+					var src = el.attr('src').replace('.thumb', '');
+					modal.append('<img src="' + src + '" />');
+				}
 
 				modal.add(overlay).one('click', function () {
 					overlay.css('display', 'none');
 					$('html,body').css('overflow', 'auto')
 					modal.remove();
-				})
+				});
 
 				overlay.show();
 				modal.show().fadeTo(200, 1);
@@ -322,7 +327,7 @@
 				// story for this leg.
 				var legStory = $('<div class="leg">').html(storyText);
 
-				legStory.find('img').imgModal();
+				legStory.find('img, .youtube').mediaModal();
 
 				legStory.data({
 					'legId': leg.id,
@@ -427,11 +432,20 @@
 
 		_markup: function (string) {
 			// prefix path with path to image dir.
-			string = string.replace(/src="/g, 'src="data/' + this.imagePrefix + '/');
+			string = string.replace(/src="/g, 'class="thumb" src="data/' + this.imagePrefix + '/');
 
-			// Markdown img syntax: ![Alt](src), also prefixed
-			string = string.replace(/!\[([^\]]*)\]\(([^)]*)\)/g,
-				'<img src="data/' + this.imagePrefix + '/$2" title="$1"/>');
+			// Markdown img/youtube syntax: ![Alt](src), also prefixed
+			var prefix = 'data/' + this.imagePrefix + '/';
+			string = string.replace(/!\[([^\]]*)\]\(([^)]*)\)/g, function (match, alt, src) {
+				alt = alt.trim();
+				if (src.substr(0, 15) == 'http://youtu.be') {
+					return '<span class="youtube" data-url="' + src + '" title="' + alt + '"><img src="youtube-play.png" /> ' + alt + '</span>';
+				} else {
+					return '<img src="' + prefix + src + '" class="thumb" title="' + alt + '"/>';
+				}
+			});
+
+
 
 			return string;
 		},
