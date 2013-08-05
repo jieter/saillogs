@@ -170,11 +170,23 @@ table td.meta {
 	z-index: 111111;
 	left: 50%;
 	background-color: white;
-	width: 800px;
-	height: 600px;
+	width: 808px;
+	height: 608px;
+	border: 4px solid rgba(0, 0, 0, 0.7);
+}
+.modal .title {
+	display: block;
+	position: absolute;
+	margin-left: -4px;
+	background-color: rgba(255, 255, 255, 0.95);
+	color: black;
+	padding: 4px 8px;
+	top: -50px;
+	border: 4px solid rgba(0, 0, 0, 0.7);
 }
 .modal img {
 	max-width: 800px;
+	max-height: 800px;
 	overflow: hidden;
 }
 .modal_close {

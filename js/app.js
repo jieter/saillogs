@@ -25,6 +25,7 @@
 
 		return this.each(function () {
 			var el = $(this);
+
 			el.on('click', function () {
 				$('html,body').css('overflow', 'hidden');
 
@@ -33,6 +34,7 @@
 
 				var modal = $('<div class="modal"><span class="modal_close">&times;</span></div>');
 				modal.appendTo(overlay);
+
 
 				modal.css({
 					'margin-left': -(modal.outerWidth() / 2) + 'px',
@@ -49,6 +51,10 @@
 
 				overlay.show();
 				modal.show().fadeTo(200, 1);
+
+				if (el.attr('title') != '') {
+					modal.prepend('<span class="title">' + el.attr('title') + '</span>');
+				}
 			});
 		});
 	};
