@@ -23,19 +23,15 @@
 	$.fn['mediaModal'] = function () {
 		var overlay = $('#modal_overlay');
 		var body = $('html,body');
-
-		return this.each(function () {
+		var handles = this;
+		return handles.each(function () {
 			var el = $(this);
 
 			el.on('click', function () {
-				body.css('overflow', 'hidden');
+				// body.css('overflow', 'hidden');
 
 				var modal = $('<div class="modal"><span class="modal_close">&times;</span></div>');
 				modal.appendTo(overlay);
-				modal.css({
-					'margin-left': -(modal.outerWidth() / 2) + 'px',
-					'top': '100px'
-				});
 
 				if (el.data('url')) {
 					// youtube embed
@@ -46,25 +42,57 @@
 				} else {
 					// image
 					var src = el.attr('src').replace('.thumb', '');
-					modal.append('<img src="' + src + '" />');
+					var img = $('<img src="' + src + '" />').appendTo(modal);
+
+					img.one('load', function () {
+						var border = parseInt(modal.css('border-left-width'), 10);
+						if (img.height() > img.width()) {
+							modal.css({
+								'max-height': img.height() + 2 * border,
+								'height': img.height() + 2 * border,
+								'width': img.width() + 2 * border
+							});
+							modal.css({
+								'margin-left': -(modal.outerWidth() / 2) + 'px'
+							});
+						} else {
+							modal.css('height', img.height() + 2 * border);
+						}
+					});
+
 				}
 
 				var close = function () {
-					overlay.css('display', 'none');
-					body.css('overflow', 'auto');
-					modal.remove();
+					overlay.fadeOut(200, function () {
+						overlay.css('display', 'none');
+						// body.css('overflow', 'auto');
+						modal.remove();
+					});
 				};
 
 				modal.add(overlay).one('click', close);
+
 				$(window).on('keyup', function (event) {
 					if (event.keyCode === 27) { // 27 = Escape
 						close();
 						$(window).off('keyup');
+					} else {
+						event.preventDefault();
+						// TODO
+						if (event.keyCode === 39) { // 39 = Right arrow
+
+						} else if (event.keyCode === 37) { // 37 = Left arrow
+
+						}
 					}
 				});
 
 				overlay.show();
 				modal.show().fadeTo(200, 1);
+				modal.css({
+					'margin-left': -(modal.outerWidth() / 2) + 'px',
+					'top': '100px'
+				});
 
 				if (el.attr('title') && el.attr('title') !== '') {
 					modal.prepend('<span class="title">' + el.attr('title') + '</span>');

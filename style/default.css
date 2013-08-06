@@ -182,8 +182,9 @@ table td.meta {
 	z-index: 111111;
 	left: 50%;
 	background-color: white;
+	max-width: 808px;
+	max-height: 808px;
 	width: 808px;
-	max-height: 608px;
 	border: 4px solid rgba(0, 0, 0, 0.7);
 }
 .modal .title {
