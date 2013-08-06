@@ -187,7 +187,7 @@
 		},
 
 		renderMap: function () {
-			var layer =  L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/terrain/{z}/{x}/{y}.png', {
+			var layer = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 				attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 				subdomains: '0123',
 				minZoom: 2,
@@ -196,12 +196,6 @@
 
 			var OpenSeaMap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
 				attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
-			});
-			var AcetateLabels = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-labels/{z}/{x}/{y}.png', {
-				attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
-				subdomains: '0123',
-				minZoom: 2,
-				maxZoom: 18
 			});
 
 			var map = L.map('map', {
@@ -212,8 +206,7 @@
 			});
 
 			this.layerControl = L.control.layers({}, {
-				OpenSeaMap: OpenSeaMap,//.addTo(map),
-				Labels: AcetateLabels.addTo(map)
+				OpenSeaMap: OpenSeaMap//.addTo(map),
 			}, {
 				position: 'bottomleft',
 				collapsed: false
