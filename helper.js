@@ -44,26 +44,54 @@ var fs = require('fs');
 		});
 	};
 
-	// generate thumbnails for all pics with a .thumb suffix.
+	/*
+	 * Looks in data/[]/orig/ for JPG files and generates
+	 * a thumb and a bigger image from the original, leafing the
+	 * original untouched.
+	 */
 	var thumbs = function () {
 		var thumb = require('node-thumbnail').thumb;
-		thumb({
-			source: 'orig/',
-			destination: 'data/2013-zomerzeilen/',
-			suffix: '.thumb',
-			concurrency: 4,
-			width: 200
-		}, function () {
-			console.log('All done!');
+
+		var prefix = __dirname + '/data/';
+
+		var queue = [];
+		fs.readdirSync(prefix).forEach(function (filename) {
+			if (!fs.statSync(prefix + filename).isDirectory()) {
+				return;
+			}
+
+			var origDir = prefix + filename + '/orig';
+			if (!fs.existsSync(origDir)) {
+				return;
+			}
+			if (fs.statSync(origDir).isDirectory()) {
+				queue.push(filename);
+			}
 		});
-		thumb({
-			source: 'orig/',
-			destination: 'data/2013-zomerzeilen/',
-			suffix: '',
-			concurrency: 4,
-			width: 1000
-		}, function () {
-			console.log('All done!');
+
+		queue.forEach(function (item) {
+			var source = prefix + item + '/orig';
+			var destination = prefix + item;
+
+			thumb({
+				source: source,
+				destination: destination,
+				suffix: '.thumb',
+				width: 200
+			}, function () {
+				console.log('All thumbs for ' + item + ' done!');
+			});
+
+
+			thumb({
+				source: source,
+				destination: destination,
+				suffix: '',
+				width: 1000
+			}, function () {
+				console.log('All big versions for for ' + item + ' done!');
+			});
+
 		});
 	};
 
