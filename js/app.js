@@ -235,6 +235,7 @@
 
 				var preface = $('<div class="leg"></div>');
 				preface.html(this._markup(logIndex.text));
+				preface.find('img, .youtube').mediaModal();
 				preface.appendTo(story);
 			}
 
@@ -445,7 +446,7 @@
 			string = string.replace(/!\[([^\]]*)\]\(([^)]*)\)/g, function (match, alt, src) {
 				alt = alt.trim();
 				if (src.substr(0, 15) === 'http://youtu.be') {
-					return '<span class="youtube" data-url="' + src + '" title="' + alt + '"><img src="youtube-play.png" /> ' + alt + '</span>';
+					return '<span class="youtube" data-url="' + src + '" title="' + alt + '"><img src="style/youtube-play.png" /> ' + alt + '</span>';
 				} else {
 					return '<img src="' + prefix + src + '" class="thumb" title="' + alt + '"/>';
 				}
