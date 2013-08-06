@@ -226,7 +226,7 @@
 			document.title = 'Jieters zeilverslagen';
 			this.index.html('');
 
-			story.find('h1').html('Jieters zeilveslagen');
+			story.find('h1').html('Jieters zeilverslagen');
 			story.find('.leg').remove();
 			story.find('#explanation').hide();
 
