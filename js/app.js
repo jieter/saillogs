@@ -500,5 +500,5 @@
 
 	});
 
-	return new Saillog();
+	window.saillog = new Saillog();
 })();
