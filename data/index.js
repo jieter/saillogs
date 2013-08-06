@@ -2,6 +2,7 @@
 var logIndex = {
 	center: [51.6, 3],
 	zoom: 8,
+	text: "Op deze site is een aantal verhalen te vinden van zeiltochten die ik heb gemaakt. Sommigen zijn compleet met beeldmateriaal en een opgenomen tracklog uit de GPS, anderen zijn slechts voorzien van marginaal commentaar...",
 	logs: [
 		{
 			'name': '2013-zomerzeilen',

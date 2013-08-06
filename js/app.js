@@ -152,18 +152,8 @@
 
 			this.map = this.renderMap();
 			this.features = L.featureGroup();
+
 			this.attachListeners();
-
-			var self = this;
-			$(window).on('hashchange', function () {
-				var hash = window.location.hash.slice(1);
-				if (hash === '') {
-					self.renderStorylist();
-				} else {
-					self.loadJSON(hash);
-				}
-			}).trigger('hashchange');
-
 		},
 
 		loadJSON: function (name) {
@@ -207,10 +197,10 @@
 			}).addTo(map);
 
 			this.storyIndex = new StoryIndex().addTo(map);
-
 			return map;
 		},
 
+		// Remove all stuff for the stories from the map and pan to original state.
 		clearMap: function () {
 			var map = this.map;
 			if (this.features instanceof L.FeatureGroup) {
@@ -234,35 +224,42 @@
 			var story = this.story;
 
 			document.title = 'Jieters zeilverslagen';
-			story.find('h1').html('Kies een verhaal uit de lijst.');
+			this.index.html('');
+
+			story.find('h1').html('Jieters zeilveslagen');
 			story.find('.leg').remove();
 			story.find('#explanation').hide();
-			this.index.html('');
-			var list = $($.parseHTML('<ul class="selector">')).appendTo(story);
 
+			if (logIndex.text !== undefined) {
+				this.imagePrefix = 'data/';
+
+				var preface = $('<div class="leg"></div>');
+				preface.html(this._markup(logIndex.text));
+				preface.appendTo(story);
+			}
+
+			var list = $($.parseHTML('<ul class="selector">')).appendTo(story);
 			$.each(logIndex.logs, function (key, log) {
 				list.append('<li data-name="' + log.name + '">' + log.title + '</li>');
 			});
-
-			list
-				.off('click', '[data-name]')
-				.on('click', '[data-name]', function () {
-					var name = $(this).data('name');
-					location.hash = name;
-				});
+			list.one('click', '[data-name]', function () {
+				var name = $(this).data('name');
+				location.hash = name;
+			});
 		},
 
 		renderStory: function (name, data) {
 			var story = this.story;
 
 			data.styles = $.extend(data.styles, this.defaultStyles);
-			this.imagePrefix = name;
+			this.imagePrefix = 'data/' + name + '/';
 
 			document.title = data.title;
-			story.find('.selector').hide();
+			story.find('.selector').remove();
 			story.find('h1').html(data.title);
 			story.find('#explanation').show();
-			this.index.html('');
+			story.find('.leg').remove();
+
 			// refresh selector.
 			this.index = $(this.index.selector);
 
@@ -428,14 +425,23 @@
 				});
 			});
 
+			$(window).on('hashchange', function () {
+				var hash = window.location.hash.slice(1);
+				if (hash === '') {
+					self.renderStorylist();
+				} else {
+					self.loadJSON(hash);
+				}
+			}).trigger('hashchange');
 		},
 
+		// All text fields are processed by this method.
 		_markup: function (string) {
 			// prefix path with path to image dir.
-			string = string.replace(/src="/g, 'class="thumb" src="data/' + this.imagePrefix + '/');
+			string = string.replace(/src="/g, 'class="thumb" src="' + this.imagePrefix);
 
 			// Markdown img/youtube syntax: ![Alt](src), also prefixed
-			var prefix = 'data/' + this.imagePrefix + '/';
+			var prefix = this.imagePrefix;
 			string = string.replace(/!\[([^\]]*)\]\(([^)]*)\)/g, function (match, alt, src) {
 				alt = alt.trim();
 				if (src.substr(0, 15) === 'http://youtu.be') {
