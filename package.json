@@ -5,7 +5,8 @@
   "main": "index.html",
   "dependencies": {
     "connect": "~2.8.4",
-    "node-thumbnail": "~0.4.0"
+    "node-thumbnail": "~0.4.0",
+    "json-lint": "~0.1.0"
   },
   "devDependencies": {
     "jshint": "~latest"

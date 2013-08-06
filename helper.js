@@ -49,27 +49,41 @@ var fs = require('fs');
 	 * a thumb and a bigger image from the original, leafing the
 	 * original untouched.
 	 */
-	var thumbs = function () {
+	var thumbs = function (dirname) {
 		var thumb = require('node-thumbnail').thumb;
 
 		var prefix = __dirname + '/data/';
 
-		var queue = [];
-		fs.readdirSync(prefix).forEach(function (filename) {
-			if (!fs.statSync(prefix + filename).isDirectory()) {
-				return;
+		var hasOrig = function (dirname) {
+			if (!fs.statSync(prefix + dirname).isDirectory()) {
+				return false;
 			}
 
-			var origDir = prefix + filename + '/orig';
+			var origDir = prefix + dirname + '/orig';
 			if (!fs.existsSync(origDir)) {
-				return;
+				return true;
 			}
-			if (fs.statSync(origDir).isDirectory()) {
-				queue.push(filename);
-			}
-		});
+			return fs.statSync(origDir).isDirectory();
+		};
 
-		console.log('Create pics for all originals...')
+		var queue = [];
+		if (dirname) {
+			if (hasOrig(dirname)) {
+				console.log('Create pics for log ' + dirname + '...');
+				queue.push(dirname);
+			} else {
+				console.log('No such log ' + dirname)
+			}
+		} else {
+			// just process all
+			fs.readdirSync(prefix).forEach(function (dirname) {
+				if (hasOrig(dirname)) {
+					queue.push(dirname);
+				}
+			});
+			console.log('Create pics for all originals (' + queue.join(', ') + ')...')
+		}
+
 
 		queue.forEach(function (item) {
 			var source = prefix + item + '/orig';
@@ -95,6 +109,28 @@ var fs = require('fs');
 
 		});
 	};
+
+	var lint = function () {
+		var clean = true;
+		var JSONLint = require('json-lint');
+		var prefix = __dirname + '/data/';
+		fs.readdirSync(prefix).forEach(function (file) {
+			if (file.substr(-5) == '.json') {
+				var lint = JSONLint(fs.readFileSync(prefix + file, 'utf8'))
+				if (lint.error) {
+					console.log('Error in file ' + file, {
+						error: lint.error,
+						line: lint.line
+					});
+					clean = false;
+				}
+			}
+		});
+
+		if (clean) {
+			console.log('No json lint errors');
+		}
+	}
 
 	var convertSailplanner = function (key) {
 		var http = require('http');
@@ -143,11 +179,14 @@ var fs = require('fs');
 			compress(process.argv[3]);
 			break;
 		case 'thumbs':
-			thumbs();
+			thumbs(process.argv[3]);
 			break;
 		case 'convert':
 			convertSailplanner(process.argv[3]);
 			break;
+		case 'lint':
+			lint();
+		break;
 		default:
 			console.error('Unknown action:', process.argv[2]);
 		}
