@@ -7,7 +7,9 @@
     "connect": "~2.8.4",
     "node-thumbnail": "~0.4.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jshint": "~latest"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -21,7 +23,7 @@
     "story",
     "log"
   ],
-  "author": "Jan Pieter Waagmeester",
+  "author": "Jan Pieter Waagmeester <jieter@jieter.nl>",
   "license": "BSD",
   "readmeFilename": "README.md",
   "gitHead": "4e12f8daa3be1903460a771685f76c2c12c022eb"

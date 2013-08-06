@@ -151,25 +151,19 @@
 			this.index = $('#index');
 
 			this.map = this.renderMap();
-			this.features = L.featureGroup().addTo(this.map);
+			this.features = L.featureGroup();
+			this.attachListeners();
 
-			// present list of available stories
-			if (location.hash === '') {
-				this.renderStorylist();
-			} else {
-				this.loadJSON(location.hash.slice(1));
-			}
 			var self = this;
-			$(window).bind('hashchange', function () {
+			$(window).on('hashchange', function () {
 				var hash = window.location.hash.slice(1);
 				if (hash === '') {
 					self.renderStorylist();
 				} else {
 					self.loadJSON(hash);
 				}
-			});
+			}).trigger('hashchange');
 
-			this.attachListeners();
 		},
 
 		loadJSON: function (name) {
@@ -242,13 +236,13 @@
 			story.find('.leg').remove();
 			story.find('#explanation').hide();
 			this.index.html('');
-			var selector = $($.parseHTML('<ul class="selector">')).appendTo(story);
+			var list = $($.parseHTML('<ul class="selector">')).appendTo(story);
 
 			$.each(availableStories, function (key, value) {
-				selector.append('<li data-name="' + key + '">' + value + '</li>');
+				list.append('<li data-name="' + key + '">' + value + '</li>');
 			});
 
-			story
+			list
 				.off('click', '[data-name]')
 				.on('click', '[data-name]', function () {
 					var name = $(this).data('name');
@@ -272,6 +266,7 @@
 
 			for (var i in data.legs) {
 				data.legs[i].id = i;
+
 				var feature = this.renderLeg(data.legs[i], data.styles.leg);
 
 				if (feature) {
@@ -300,6 +295,7 @@
 					this.map.setZoom(14);
 				}
 			}
+			this.features.addTo(this.map);
 		},
 
 		renderLeg: function (leg, style) {
