@@ -1,0 +1,28 @@
+{
+  "name": "saillogs",
+  "version": "0.0.0",
+  "description": "Nice way to present stories about sailing journeys",
+  "main": "index.html",
+  "dependencies": {
+    "connect": "~2.8.4",
+    "node-thumbnail": "~0.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jieter/saillogs.git"
+  },
+  "keywords": [
+    "sailing",
+    "story",
+    "log"
+  ],
+  "author": "Jan Pieter Waagmeester",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "4e12f8daa3be1903460a771685f76c2c12c022eb"
+}
