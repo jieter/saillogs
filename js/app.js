@@ -22,10 +22,11 @@
 	// Simple media overlay...
 	$.fn['mediaModal'] = function () {
 		var overlay = $('#modal_overlay');
+		var body = $('html,body');
+
 
 		return this.each(function () {
 			var el = $(this);
-			var body = $('html,body');
 
 			el.on('click', function () {
 				body.css('overflow', 'hidden');
