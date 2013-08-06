@@ -193,8 +193,8 @@
 			});
 
 			var map = L.map('map', {
-				center: [51.6, 3],
-				zoom: 8,
+				center: logIndex.center,
+				zoom: logIndex.zoom,
 				zoomControl: false,
 				layers: layer
 			});
@@ -205,7 +205,6 @@
 				position: 'bottomleft',
 				collapsed: false
 			}).addTo(map);
-
 
 			this.storyIndex = new StoryIndex().addTo(map);
 
@@ -224,6 +223,9 @@
 				this.layerControl.removeLayer(this.trackLayer);
 				map.removeLayer(this.trackLayer);
 			}
+			map.setView(logIndex.center, logIndex.zoom, {
+				animate: true
+			});
 		},
 
 		renderStorylist: function () {
@@ -238,8 +240,8 @@
 			this.index.html('');
 			var list = $($.parseHTML('<ul class="selector">')).appendTo(story);
 
-			$.each(availableStories, function (key, value) {
-				list.append('<li data-name="' + key + '">' + value + '</li>');
+			$.each(logIndex.logs, function (key, log) {
+				list.append('<li data-name="' + log.name + '">' + log.title + '</li>');
 			});
 
 			list
