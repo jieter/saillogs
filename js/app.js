@@ -24,7 +24,6 @@
 		var overlay = $('#modal_overlay');
 		var body = $('html,body');
 
-
 		return this.each(function () {
 			var el = $(this);
 
@@ -228,7 +227,7 @@
 				}
 			}
 			if (map.hasLayer(this.trackLayer)) {
-				map.layerControl.removeLayer(this.trackLayer);
+				this.layerControl.removeLayer(this.trackLayer);
 				map.removeLayer(this.trackLayer);
 			}
 		},
@@ -324,7 +323,7 @@
 				feature.addTo(this.features);
 			}
 
-			if (leg.text) {
+			if (leg.text !== undefined) {
 				var storyText = this._markup(leg.text);
 
 				// story for this leg.

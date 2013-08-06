@@ -65,7 +65,47 @@ var fs = require('fs');
 		}, function () {
 			console.log('All done!');
 		});
+	};
 
+	var convertSailplanner = function (key) {
+		var http = require('http');
+		var url = 'http://sailplanner.nl/getLegs/key:' + key;
+
+		http.get(url, function (res) {
+			var data = '';
+
+			res.on('data', function (chunk) {
+				data += chunk;
+			});
+			res.on('end', function () {
+				var json = JSON.parse(data);
+				var out = {
+					title: json.data.options.comment,
+					originalURL: json.url,
+					legs: []
+				};
+
+				json.data.legs.forEach(function (leg) {
+					out.legs.push({
+						title: leg.options.comment,
+						color: leg.options.color,
+						path: leg.path,
+						text: ''
+					});
+				});
+
+				var filename = __dirname + '/data/' + key + '.json';
+				fs.writeFile(filename, JSON.stringify(out, null, '\t'), function (err) {
+					if (err) {
+						throw err;
+					}
+					console.log('Saved sailplanner to saillog json format in ' + filename);
+				});
+
+			});
+		}).on('error', function (event) {
+			console.log('Got error: ' + event.message);
+		});
 	};
 
 	if (process.argv.length > 2) {
@@ -75,6 +115,9 @@ var fs = require('fs');
 			break;
 		case 'thumbs':
 			thumbs();
+			break;
+		case 'convert':
+			convertSailplanner(process.argv[3]);
 			break;
 		default:
 			console.error('Unknown action:', process.argv[2]);
