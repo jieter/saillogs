@@ -69,6 +69,8 @@ var fs = require('fs');
 			}
 		});
 
+		console.log('Create pics for all originals...')
+
 		queue.forEach(function (item) {
 			var source = prefix + item + '/orig';
 			var destination = prefix + item;
@@ -76,20 +78,19 @@ var fs = require('fs');
 			thumb({
 				source: source,
 				destination: destination,
+				quiet: true,
 				suffix: '.thumb',
 				width: 200
 			}, function () {
-				console.log('All thumbs for ' + item + ' done!');
+				console.log('... done.');
 			});
-
 
 			thumb({
 				source: source,
 				destination: destination,
+				quiet: true,
 				suffix: '',
 				width: 1000
-			}, function () {
-				console.log('All big versions for for ' + item + ' done!');
 			});
 
 		});
