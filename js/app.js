@@ -25,9 +25,10 @@
 
 		return this.each(function () {
 			var el = $(this);
+			var body = $('html,body');
 
 			el.on('click', function () {
-				$('html,body').css('overflow', 'hidden');
+				body.css('overflow', 'hidden');
 
 				var modal = $('<div class="modal"><span class="modal_close">&times;</span></div>');
 				modal.appendTo(overlay);
@@ -50,17 +51,17 @@
 
 				var close = function () {
 					overlay.css('display', 'none');
-					$('html,body').css('overflow', 'auto')
+					body.css('overflow', 'auto');
 					modal.remove();
 				};
 
 				modal.add(overlay).one('click', close);
 				$(window).on('keyup', function (event) {
-					if (event.keyCode === 27) {
+					if (event.keyCode === 27) { // 27 = Escape
 						close();
 						$(window).off('keyup');
 					}
-				})
+				});
 
 				overlay.show();
 				modal.show().fadeTo(200, 1);
@@ -446,14 +447,12 @@
 			var prefix = 'data/' + this.imagePrefix + '/';
 			string = string.replace(/!\[([^\]]*)\]\(([^)]*)\)/g, function (match, alt, src) {
 				alt = alt.trim();
-				if (src.substr(0, 15) == 'http://youtu.be') {
+				if (src.substr(0, 15) === 'http://youtu.be') {
 					return '<span class="youtube" data-url="' + src + '" title="' + alt + '"><img src="youtube-play.png" /> ' + alt + '</span>';
 				} else {
 					return '<img src="' + prefix + src + '" class="thumb" title="' + alt + '"/>';
 				}
 			});
-
-
 
 			return string;
 		},
