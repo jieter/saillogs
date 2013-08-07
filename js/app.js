@@ -170,7 +170,13 @@
 			this.index = $(this.index.selector);
 
 			var self = this;
-			this.features.addData(data);
+			data.features.forEach(function (feature) {
+				if (feature.geometry) {
+					self.features.addData(feature);
+				} else {
+					self.renderLegStory(feature.properties);
+				}
+			});
 
 			if (data.trackGeojson) {
 				var self = this;
