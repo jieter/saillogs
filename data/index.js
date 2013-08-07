@@ -10,6 +10,11 @@ var logIndex = {
 			'date': '2013-07-19'
 		},
 		{
+			'name': '2012-zomerzeilen',
+			'title': 'Zomerzeilen 2012',
+			'date': '2012-07-27'
+		},
+		{
 			'name': '2012-pinksterzeilen',
 			'title': 'Pinksterzeilen 2012',
 			'date': '2012-05-25'
