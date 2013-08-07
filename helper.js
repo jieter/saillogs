@@ -91,6 +91,19 @@ var fs = require('fs');
 		}
 	};
 
+	var swapFile = function (filename) {
+		var prefix = __dirname + '/data/';
+
+		var json = JSON.parse(fs.readFileSync(prefix + filename, 'utf8'));
+
+		json.features.forEach(function (feature, key) {
+			json.features[key].geometry.coordinates = swap(feature.geometry.coordinates);
+		});
+
+
+		console.log(JSON.stringify(json, null, '\t'));
+	};
+
 	/*
 	 * Looks in data/[]/orig/ for JPG files and generates
 	 * a thumb and a bigger image from the original, leafing the
@@ -303,12 +316,9 @@ var fs = require('fs');
 		case 'convert':
 			convertSailplanner(process.argv[3]);
 			break;
-		case 'lint':
-			lint();
-		break;
-		case 'toGeoJSON':
-			toGeoJSON(process.argv[3]);
-		break;
+		case 'lint': lint(); break;
+		case 'swapFile': swapFile(process.argv[3]); break;
+		case 'toGeoJSON': toGeoJSON(process.argv[3]); break;
 		default:
 			console.error('Unknown action:', process.argv[2]);
 		}
