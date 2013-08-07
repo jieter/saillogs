@@ -23,7 +23,7 @@
 	var Saillog = L.Class.extend({
 		defaultStyles: {
 			leg: {
-				color: '#00f',
+				color: '#0000ff',
 				opacity: 0.4,
 				weight: 3
 			},
@@ -93,9 +93,14 @@
 			var self = this;
 			this.features = L.geoJson(null, {
 				style: function (feature) {
-					return L.extend({}, self.defaultStyles.leg, {
-						color: feature.properties.color
-					});
+					var style = L.extend({}, self.defaultStyles.leg);
+					if (feature.properties.color) {
+						L.extend(style, {
+							color: self.defaultStyles.leg.color
+						});
+					}
+
+					return style;
 				},
 				onEachFeature: function (feature, layer) {
 					feature.properties['_leaflet_id'] = L.stamp(layer);
