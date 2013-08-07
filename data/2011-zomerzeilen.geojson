@@ -1286,5 +1286,6 @@
 				"text": "<table><tr><td class=\"meta\">Boot:</td><td>Spirit 36 'Equilibre'</td></tr><tr><td class=\"meta\">Gevaren: </td><td>&plusmn; 1400NM</td></tr></table>"
 			}
 		}
-	]
+	],
+	"trackGeojson": true
 }
