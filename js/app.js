@@ -151,6 +151,9 @@
 
 			var list = $($.parseHTML('<ul class="selector">')).appendTo(story);
 			$.each(logIndex.logs, function (key, log) {
+				if (log.disable && location.port !== '9999') {
+					return;
+				}
 				list.append('<li data-name="' + log.name + '">' + log.title + '</li>');
 			});
 			list.one('click', '[data-name]', function () {

@@ -12,7 +12,8 @@ var logIndex = {
 		{
 			'name': '2012-zomerzeilen',
 			'title': 'Zomerzeilen 2012',
-			'date': '2012-07-27'
+			'date': '2012-07-27',
+			'disable': true
 		},
 		{
 			'name': '2012-pinksterzeilen',
