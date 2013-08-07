@@ -478,7 +478,7 @@
 							// compensate bounds for story on the right.
 							bounds.extend([
 								bounds.getNorth(),
-								bounds.getEast() + (bounds.getEast() - bounds.getWest())
+								bounds.getEast() + 1.25 * (bounds.getEast() - bounds.getWest())
 							]).pad(0.2);
 
 							self.map.fitBounds(bounds);
