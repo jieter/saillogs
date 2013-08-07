@@ -94,9 +94,10 @@
 			this.features = L.geoJson(null, {
 				style: function (feature) {
 					var style = L.extend({}, self.defaultStyles.leg);
+
 					if (feature.properties.color) {
 						L.extend(style, {
-							color: self.defaultStyles.leg.color
+							color: feature.properties.color
 						});
 					}
 
