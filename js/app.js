@@ -68,8 +68,6 @@
 
 		var resize = function () {
 			var content = modal.find('.modal_content');
-			console.log('resize called', content.width(), content.height());
-
 			var border = parseInt(modal.css('border-left-width'), 10) * 2;
 			modal.css({
 				'width': content.width() + border,
@@ -87,14 +85,31 @@
 			modal.fadeOut(200, function () {
 				modal.find('img, iframe').remove();
 			});
+			overlay.add(modal).off('click');
 		};
 
 		return this.each(function () {
 			var container = $(this);
 
+			var jumpFrom = function (el, direction) {
+				var thumbs = container.find(options.selector);
+				var currentId = thumbs.index(el);
+				var other;
+				if (direction > 0) { // 39 = Right arrow
+					other = thumbs.eq(currentId + 1);
+				} else { // 37 = Left arrow
+					other = thumbs.eq(currentId - 1)
+				}
+				if (other && other.length == 1) {
+					load(other).on('load', resize);
+
+					return other;
+				}
+				return el;
+			};
+
 			container.on('click', options.selector, function () {
 				var el = $(this);
-
 				var content = load(el);
 
 				content.on('load', function () {
@@ -103,7 +118,21 @@
 				});
 
 				// close handler
-				overlay.add(modal).on('click', closeModal);
+				overlay.add(modal).on('click', function (event) {
+					var target = $(event.target);
+					if (target.is('img.modal_content')) {
+						var offset = target.offset();
+						if (event.clientX - offset.left > target.width() / 2) {
+							el = jumpFrom(el, 1);
+						} else {
+							el = jumpFrom(el, -1);
+						}
+						event.preventDefault();
+						event.stopPropagation();
+					} else {
+						closeModal();
+					}
+				});
 
 				// some keyboard controls
 				$(window).on('keyup', function (event) {
@@ -113,77 +142,15 @@
 					} else {
 						event.preventDefault();
 
-						var thumbs = container.find(options.selector);
-						var currentId = thumbs.index(el);
-						var other;
 						if (event.keyCode === 39) { // 39 = Right arrow
-							other = thumbs.eq(currentId + 1);
+							el = jumpFrom(el, 1)
 						} else if (event.keyCode === 37) { // 37 = Left arrow
-							other = thumbs.eq(currentId - 1)
+							el = jumpFrom(el, -1)
 						}
-						if (other && other.length == 1) {
-							load(other).on('load', resize);
-							el = other;
-						}
-					}
 
+					}
 				});
 			});
-
-			// el.on('click', function () {
-
-
-			// 	if (el.data('url')) {
-
-			// 	} else {
-			// 		// image
-			// 		var src = el.attr('src').replace('.thumb', '');
-			// 		var img = $('<img src="' + src + '" />').appendTo(modal);
-
-			// 		img.one('load', function () {
-			// 			var border = parseInt(modal.css('border-left-width'), 10);
-			// 			if (img.height() > img.width()) {
-			// 				modal.css({
-			// 					'max-height': img.height() + 2 * border,
-			// 					'height': img.height() + 2 * border,
-			// 					'width': img.width() + 2 * border
-			// 				});
-			// 				modal.css({
-			// 					'margin-left': -(modal.outerWidth() / 2) + 'px'
-			// 				});
-			// 			} else {
-			// 				modal.css('height', img.height() + 2 * border);
-			// 			}
-			// 		});
-
-			// 	}
-
-			// 	var close = function () {
-			// 		overlay.fadeOut(200, function () {
-			// 			overlay.css('display', 'none');
-			// 			modal.remove();
-			// 		});
-			// 	};
-
-			// 	modal.add(overlay).one('click', close);
-
-			// 	$(window).on('keyup', function (event) {
-			// 		if (event.keyCode === 27) { // 27 = Escape
-			// 			close();
-			// 			$(window).off('keyup');
-			// 		} else {
-			// 			event.preventDefault();
-			// 			// TODO
-			// 			if (event.keyCode === 39) { // 39 = Right arrow
-
-			// 			} else if (event.keyCode === 37) { // 37 = Left arrow
-
-			// 			}
-			// 		}
-			// 	});
-
-
-			// });
 		});
 	};
 
