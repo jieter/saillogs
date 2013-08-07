@@ -233,6 +233,15 @@ var fs = require('fs');
 	};
 
 	var toGeoJSON = function (filename) {
+		if (!filename) {
+			fs.readdirSync('data/').forEach(function (value) {
+				if (value.substr(-5) == '.json') {
+					toGeoJSON(value.substr(0, value.length - 5));
+				}
+			});
+			return;
+		}
+
 		var prefix = __dirname + '/data/';
 		var json = fs.readFileSync(prefix + filename + '.json', 'utf8');
 		json = JSON.parse(json);
@@ -263,6 +272,7 @@ var fs = require('fs');
 					type: "Feature",
 					properties: leg
 				});
+				return;
 			}
 
 			delete leg.path;
@@ -279,7 +289,7 @@ var fs = require('fs');
 		})
 
 		fs.writeFileSync(prefix + filename + '.geojson', JSON.stringify(geojson, null, '\t'));
-		console.log('wrote geojson');
+		console.log('wrote geojson: ' + filename);
 	};
 
 	if (process.argv.length > 2) {

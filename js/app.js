@@ -306,24 +306,24 @@
 							self.map.panTo(current.getLatLng());
 						}
 					}
+					$('.leg').each(function () {
+						var current = $(this);
+						if (current.data('leg')['_leaflet_id'] === leg['_leaflet_id']) {
+							current.addClass('active');
+
+							if (current.parent().is('#story')) {
+								$.scrollTo(current, 500, {
+									offset: {
+										top: -20
+									}
+								});
+							}
+						} else {
+							current.removeClass('active');
+						}
+					});
 				}
 
-				$('.leg').each(function () {
-					var current = $(this);
-					if (current.data('leg')['_leaflet_id'] === leg['_leaflet_id']) {
-						current.addClass('active');
-
-						if (current.parent().is('#story')) {
-							$.scrollTo(current, 500, {
-								offset: {
-									top: -20
-								}
-							});
-						}
-					} else {
-						current.removeClass('active');
-					}
-				});
 			});
 
 			// listen to hash changes.

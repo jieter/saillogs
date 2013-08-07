@@ -190,6 +190,13 @@
 		},
 		{
 			"type": "Feature",
+			"properties": {
+				"title": "Sixhaven - Mooi uitzicht!",
+				"text": "Na een veel te korte nacht is er wat Vlaams geroezemoes aan dek. Het is half zeven, en een mooi jacht uit Antwerpen met een stel Vlaamse mannen wil vertrekken, maar krijgen hun boot niet langs die van ons. Snel schiet Jieter een broek aan en samen met Corine wordt door wat meer speling op de voorlandvast gezorgd dat de dikke vlaamse dame er door kan. Rap weer terug in bed, want er is nog lang niet voldoende gedroomd. <br /> De tweede boot die er langs wil is geen twijfelgeval: van een groot strijkijzer komt een vinnige dame als afgezant melden dat we in de weg liggen. Terwijl Jieter de boot naar een ander box vaart komt de havenmeester aanlopen en zegt: \"als je nou een beetje sportief bent leg je hier aan en kom je nog even netjes betalen\", waarop we antwoorden dat dat precies het plan is. Als we even later gaan betalen herkent hij ons niet en vindt hij het niet nodig dat we betalen als we meteen weer vertrekken. We moeten echter nog even wachten, dus we betalen de halve prijs. Als we even later in de zon zitten te ontbijten komt de man met de pet op ineens weer langs om zijn excuses aan te bieden voor zijn opmerkingen eerder die morgen..."
+			}
+		},
+		{
+			"type": "Feature",
 			"geometry": {
 				"type": "LineString",
 				"coordinates": [
@@ -972,6 +979,12 @@
 				"title": "Naar Lelystad",
 				"color": "#abcdef",
 				"text": ""
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"text": "<table><tr><td class=\"meta\">Boot:</td><td>GibSea 37 'Batouwe'</td></tr><tr><td class=\"meta\">Gevaren: </td><td>&plusmn; 204NM</td></tr><tr><td class=\"meta\">Foto's</td><td>Samuel</td></tr></table>"
 			}
 		}
 	]

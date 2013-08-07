@@ -4,6 +4,12 @@
 	"features": [
 		{
 			"type": "Feature",
+			"properties": {
+				"text": "Opnieuw een vakantie op zee, nu met twee bootjes: de Equilibre, een Spirit 36 vanuit Lemmer en de Mi Dushi, een Beneteau First 32S5 vanuit Stellendam."
+			}
+		},
+		{
+			"type": "Feature",
 			"geometry": {
 				"type": "LineString",
 				"coordinates": [
