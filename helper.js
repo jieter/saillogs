@@ -78,6 +78,19 @@ var fs = require('fs');
 		return latlngs;
 	};
 
+	// swap x/y for geojson
+	var swap = function (array) {
+		if (array.length == 2 && typeof array[0] === 'number') {
+			return [array[1], array[0]];
+		} else {
+			var ret = [];
+			array.forEach(function (value) {
+				ret.push(swap(value));
+			})
+			return ret;
+		}
+	};
+
 	/*
 	 * Looks in data/[]/orig/ for JPG files and generates
 	 * a thumb and a bigger image from the original, leafing the
@@ -179,21 +192,33 @@ var fs = require('fs');
 			res.on('end', function () {
 				var json = JSON.parse(data);
 				var out = {
+					type: 'FeatureCollection',
 					title: json.data.options.comment,
 					originalURL: json.url,
-					legs: []
+					features: []
 				};
 
 				json.data.legs.forEach(function (leg) {
-					out.legs.push({
-						title: leg.options.comment,
-						color: leg.options.color,
-						path: leg.path,
-						text: ''
+					if (leg.options.comment) {
+						leg.options.title = leg.options.comment;
+						delete leg.options.comment;
+					}
+					delete leg.options.geodesic;
+					delete leg.options.opacity;
+					delete leg.options.width;
+					delete leg.options.speed;
+
+					out.features.push({
+						type: "Feature",
+						geometry: {
+							type: 'LineString',
+							coordinates: swap(decode(leg.path))
+						},
+						properties: leg.options
 					});
 				});
 
-				var filename = __dirname + '/data/' + key + '.json';
+				var filename = __dirname + '/data/' + key + '.geojson';
 				fs.writeFile(filename, JSON.stringify(out, null, '\t'), function (err) {
 					if (err) {
 						throw err;
@@ -207,17 +232,6 @@ var fs = require('fs');
 		});
 	};
 
-	var swap = function (array) {
-		if (array.length == 2 && typeof array[0] === 'number') {
-			return [array[1], array[0]];
-		} else {
-			var ret = [];
-			array.forEach(function (value) {
-				ret.push(swap(value));
-			})
-			return ret;
-		}
-	};
 	var toGeoJSON = function (filename) {
 		var json = fs.readFileSync(__dirname + '/data/' + filename, 'utf8');
 		json = JSON.parse(json);

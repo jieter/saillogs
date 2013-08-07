@@ -19,195 +19,6 @@
 		};
 	}
 
-	// Simple media overlay...
-	$.fn['mediaModal'] = function (options) {
-		options = $.extend({
-			selector: '.thumb',
-			ytTemplate: '<iframe id="ytplayer" class="modal_content" type="text/html" ' +
-				'src="http://www.youtube.com/embed/{id}?autoplay=1" frameborder="0"/>'
-		}, options);
-
-		var overlay = $('#modal_overlay');
-		var modal = $('<div class="modal"><span class="modal_close">&times;</span></div>');
-		modal.appendTo(overlay);
-
-		var load = function (el) {
-			var content;
-			if (el.data('youtube-url')) {
-				var ytId = el.data('youtube-url').substr(-11);
-
-				modal.find('.modal_content').remove();
-				var iframe = $(options.ytTemplate.replace('{id}', ytId));
-				iframe.css({
-					width: modal.innerWidth() + 'px',
-					height: modal.innerHeight() + 'px'
-				});
-
-				content = iframe.appendTo(modal);
-			} else {
-				var src = el.attr('src').replace('.thumb', '');
-
-				modal.find('iframe').remove();
-				var img = modal.find('img');
-				if (img.length !== 1) {
-					img = $('<img src="' + src + '" class="modal_content" />').appendTo(modal);
-				}
-				content = img.attr('src', src);
-			}
-
-			// add caption
-			if (el.attr('title') && el.attr('title') !== '') {
-				var caption = modal.find('.caption');
-				if (caption.length !== 1) {
-					caption = $('<span class="caption"></span>').prependTo(modal);
-				}
-				caption.html(el.attr('title'));
-			}
-			return content;
-		};
-
-		var resize = function () {
-			var content = modal.find('.modal_content');
-			var border = parseInt(modal.css('border-left-width'), 10) * 2;
-			modal.css({
-				'width': content.width() + border,
-				'height': content.height() + border
-			});
-
-			modal.css({
-				'margin-left': -(modal.outerWidth() / 2) + 'px'
-			});
-		};
-		var closeModal = function () {
-			overlay.fadeOut(200, function () {
-				overlay.css('display', 'none');
-			});
-			modal.fadeOut(200, function () {
-				modal.find('img, iframe').remove();
-			});
-			overlay.add(modal).off('click');
-		};
-
-		return this.each(function () {
-			var container = $(this);
-
-			var jumpFrom = function (el, direction) {
-				var thumbs = container.find(options.selector);
-				var currentId = thumbs.index(el);
-				var other;
-				if (direction > 0) { // 39 = Right arrow
-					other = thumbs.eq(currentId + 1);
-				} else { // 37 = Left arrow
-					other = thumbs.eq(currentId - 1)
-				}
-				if (other && other.length == 1) {
-					load(other).on('load', resize);
-
-					return other;
-				}
-				return el;
-			};
-
-			container.on('click', options.selector, function () {
-				var el = $(this);
-				var content = load(el);
-
-				content.on('load', function () {
-					overlay.show();
-					modal.show().fadeTo(200, 1, resize);
-				});
-
-				// close handler
-				overlay.add(modal).on('click', function (event) {
-					var target = $(event.target);
-					if (target.is('img.modal_content')) {
-						var offset = target.offset();
-						if (event.clientX - offset.left > target.width() / 2) {
-							el = jumpFrom(el, 1);
-						} else {
-							el = jumpFrom(el, -1);
-						}
-						event.preventDefault();
-						event.stopPropagation();
-					} else {
-						closeModal();
-					}
-				});
-
-				// some keyboard controls
-				$(window).on('keyup', function (event) {
-					if (event.keyCode === 27) { // 27 = Escape
-						closeModal();
-						$(window).off('keyup');
-					} else {
-						event.preventDefault();
-
-						if (event.keyCode === 39) { // 39 = Right arrow
-							el = jumpFrom(el, 1)
-						} else if (event.keyCode === 37) { // 37 = Left arrow
-							el = jumpFrom(el, -1)
-						}
-
-					}
-				});
-			});
-		});
-	};
-
-	// Keep a calendar with days with stories.
-	var StoryIndex = L.Control.extend({
-		options: {
-			position: 'topleft'
-		},
-		onAdd: function () {
-			this._container = L.DomUtil.create('div', '');
-			this._container.id = 'index';
-
-			return this._container;
-		},
-
-		container: function () {
-			return $(this._container);
-		},
-
-		addStory: function (story) {
-			var container = this.container();
-
-			var parts = story.date.split('-');
-			var date = new Date(parts[0], parts[1] - 1, parts[2]);
-			var day = parseInt(parts[2], 10);
-
-			var item = $('<div class="leg"></div>');
-			item.data({
-				'legId': story.id,
-				'leg': story
-			});
-			item.attr('title', story.title);
-			item.html(day);
-
-			var diff = null;
-			if (container.children().length < 1) {
-				item.css('margin-left', (date.getDay() * 21) + 'px');
-			} else {
-				var last = container.children().last();
-				diff = day - last.html();
-				if (diff > 1) {
-					// insert empty days to align days properly
-					for (var j = diff; j > 1; j--) {
-						container.append('<div class="filler"></div>');
-					}
-				}
-			}
-			// make weekend-days bold
-			if (date.getDay() === 0 || date.getDay() === 6) {
-				item.css('font-weight', 'bold');
-			}
-			// prevent insertion of two stories for one day.
-			if (diff !== 0) {
-				item.appendTo(container);
-			}
-		}
-	});
 
 	var Saillog = L.Class.extend({
 		defaultStyles: {
@@ -232,7 +43,6 @@
 			this.index = $('#index');
 
 			this.map = this.renderMap();
-			this.features = L.featureGroup();
 
 			this.attachListeners();
 		},
@@ -240,10 +50,11 @@
 		loadJSON: function (name) {
 			var self = this;
 			$.ajax({
-				url: 'data/' + name + '.json',
+				url: 'data/' + name + '.geojson',
 				dataType: 'json',
 				success: function (response) {
-					self.renderStory(name, response);
+					response.name = name;
+					self.renderStory(response);
 				},
 				error: function (e) {
 					console.log('Error in AJAX/parsing JSON', e);
@@ -277,7 +88,21 @@
 				collapsed: false
 			}).addTo(map);
 
-			this.storyIndex = new StoryIndex().addTo(map);
+			this.calendar = new CalendarControl().addTo(map);
+
+			var self = this;
+			this.features = L.geoJson(null, {
+				style: function (feature) {
+					return L.extend({}, self.defaultStyles.leg, {
+						color: feature.properties.color
+					});
+				},
+				onEachFeature: function (feature, layer) {
+					feature.properties['_leaflet_id'] = L.stamp(layer);
+
+					self.renderLegStory(feature.properties);
+				}
+			});
 			return map;
 		},
 
@@ -329,11 +154,11 @@
 			});
 		},
 
-		renderStory: function (name, data) {
+		renderStory: function (data) {
 			var story = this.story;
 
 			data.styles = $.extend(data.styles, this.defaultStyles);
-			this.imagePrefix = 'data/' + name + '/';
+			this.imagePrefix = 'data/' + data.name + '/';
 
 			document.title = data.title;
 			story.find('.selector').remove();
@@ -344,25 +169,19 @@
 			// refresh selector.
 			this.index = $(this.index.selector);
 
-			for (var i in data.legs) {
-				data.legs[i].id = i;
-
-				var feature = this.renderLeg(data.legs[i], data.styles.leg);
-
-				if (feature) {
-					data.legs[i]['_leaflet_id'] = L.stamp(feature);
-				}
-			}
+			var self = this;
+			this.features.addData(data);
 
 			if (data.trackGeojson) {
 				var self = this;
 				$.ajax({
-					url: 'data/' + name + '/track.geojson',
+					url: 'data/' + data.name + '/track.geojson',
 					dataType: 'json',
 					success: function (geojson) {
 						self.trackLayer = L.geoJson(geojson, {
 							style: data.styles.track
 						}).addTo(self.map);
+
 						self.layerControl.addOverlay(self.trackLayer, 'Opgeslagen track');
 					}
 				});
@@ -378,44 +197,21 @@
 			this.features.addTo(this.map);
 		},
 
-		renderLeg: function (leg, style) {
-			var feature;
-
-			if (leg.path) {
-				if (leg.color) {
-					L.Util.extend(style, { color: leg.color});
-				}
-
-				if (typeof leg.path === 'string') {
-					feature = L.Polyline.fromEncoded(leg.path, style);
-				} else {
-					feature = L.polyline(leg.path, style);
-				}
-			}
-			if (leg.marker) {
-				feature = L.marker(leg.marker);
-			}
-			if (feature) {
-				feature.addTo(this.features);
-			}
-
+		renderLegStory: function (leg) {
 			if (leg.text !== undefined) {
 				var storyText = this._markup(leg.text);
 
 				// story for this leg.
 				var legStory = $('<div class="leg">').html(storyText);
 
-				legStory.data({
-					'legId': leg.id,
-					'leg': leg
-				});
+				legStory.data('leg', leg);
 
 				if (leg.title) {
 					legStory.prepend('<h3>' + leg.title + '</h3>');
 				}
 
 				if (leg.date) {
-					this.storyIndex.addStory(leg);
+					this.calendar.addStory(leg);
 
 					var parts = leg.date.split('-');
 					var date = parseInt(parts[2], 10) + '-' + parseInt(parts[1], 10);
@@ -431,10 +227,6 @@
 
 				legStory.appendTo(this.story);
 			}
-			if (feature) {
-				feature.legId = leg.id;
-			}
-			return feature;
 		},
 
 		attachListeners: function () {
@@ -442,14 +234,36 @@
 
 			// make clicks on polylines/markers refer to stories
 			this.features.on('click', function (event) {
-				if (event.layer.legId) {
-					self.story.find('.leg').eq(event.layer.legId).click();
+				self.story.find('.leg').each(function () {
+					var leg = $(this);
+					if (leg.data('leg') && leg.data('leg')['_leaflet_id'] === L.stamp(event.layer)) {
+						leg.click();
+					}
+				});
+			});
+			this.features.on({
+				mouseover: function (event) {
+					var layer = event.layer;
+
+					if (layer.setStyle) {
+						layer.setStyle(self.defaultStyles.highlight);
+						layer.bringToFront();
+					}
+					$('.leg').each(function () {
+						var current = $(this);
+						if (current.data('leg')['_leaflet_id'] === L.stamp(layer)) {
+							current.addClass('hover');
+						}
+					});
+				},
+				mouseout: function (event) {
+					self.features.resetStyle(event.layer);
+					$('.leg').removeClass('hover');
 				}
 			});
-
 			// make click on .leg hightlight the leg.
 			$('#story, #index').on('click', '.leg', function (event) {
-				if ($(event.target).is('img,a')) {
+				if ($(event.target).is('img, a')) {
 					return;
 				}
 				var leg = $(this).data('leg');
@@ -466,14 +280,14 @@
 
 				if (leg && leg['_leaflet_id']) {
 					var current = self.features.getLayer(leg['_leaflet_id']);
-
 					if (current) {
+						if (current.setStyle) {
+							current.setStyle(self.defaultStyles.highlight);
+						}
+
 						if (current.getBounds) {
 							var bounds = current.getBounds();
 							self.features.bringToFront(current);
-							if (current.setStyle) {
-								current.setStyle(self.defaultStyles.highlight);
-							}
 
 							// compensate bounds for story on the right.
 							bounds.extend([
@@ -490,7 +304,7 @@
 
 				$('.leg').each(function () {
 					var current = $(this);
-					if (current.data('legId') === leg.id) {
+					if (current.data('leg')['_leaflet_id'] === leg['_leaflet_id']) {
 						current.addClass('active');
 
 						if (current.parent().is('#story')) {

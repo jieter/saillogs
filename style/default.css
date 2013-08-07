@@ -71,7 +71,7 @@ ul.selector li:hover {
 	text-align: center;
 	transition: background-color .2s;
 }
-#index .leg:hover {
+#index .leg:hover, #index .leg.hover {
 	background-color: #e0eeee;
 }
 
