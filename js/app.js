@@ -20,84 +20,170 @@
 	}
 
 	// Simple media overlay...
-	$.fn['mediaModal'] = function () {
+	$.fn['mediaModal'] = function (options) {
+		options = $.extend({
+			selector: '.thumb',
+			ytTemplate: '<iframe id="ytplayer" class="modal_content" type="text/html" ' +
+				'src="http://www.youtube.com/embed/{id}?autoplay=1" frameborder="0"/>'
+		}, options);
+
 		var overlay = $('#modal_overlay');
-		var body = $('html,body');
-		var handles = this;
-		return handles.each(function () {
-			var el = $(this);
+		var modal = $('<div class="modal"><span class="modal_close">&times;</span></div>');
+		modal.appendTo(overlay);
 
-			el.on('click', function () {
-				// body.css('overflow', 'hidden');
+		var load = function (el) {
+			var content;
+			if (el.data('youtube-url')) {
+				var ytId = el.data('youtube-url').substr(-11);
 
-				var modal = $('<div class="modal"><span class="modal_close">&times;</span></div>');
-				modal.appendTo(overlay);
+				modal.find('.modal_content').remove();
+				var iframe = $(options.ytTemplate.replace('{id}', ytId));
+				iframe.css({
+					width: modal.innerWidth() + 'px',
+					height: modal.innerHeight() + 'px'
+				});
 
-				if (el.data('url')) {
-					// youtube embed
-					var ytId = el.data('url').substr(-11);
+				content = iframe.appendTo(modal);
+			} else {
+				var src = el.attr('src').replace('.thumb', '');
 
-					modal.append('<iframe id="ytplayer" type="text/html" width="800" height="600" src="http://www.youtube.com/embed/' + ytId + '?autoplay=1&origin=http://jieter.nl" frameborder="0"/>');
-
-				} else {
-					// image
-					var src = el.attr('src').replace('.thumb', '');
-					var img = $('<img src="' + src + '" />').appendTo(modal);
-
-					img.one('load', function () {
-						var border = parseInt(modal.css('border-left-width'), 10);
-						if (img.height() > img.width()) {
-							modal.css({
-								'max-height': img.height() + 2 * border,
-								'height': img.height() + 2 * border,
-								'width': img.width() + 2 * border
-							});
-							modal.css({
-								'margin-left': -(modal.outerWidth() / 2) + 'px'
-							});
-						} else {
-							modal.css('height', img.height() + 2 * border);
-						}
-					});
-
+				modal.find('iframe').remove();
+				var img = modal.find('img');
+				if (img.length !== 1) {
+					img = $('<img src="' + src + '" class="modal_content" />').appendTo(modal);
 				}
+				content = img.attr('src', src);
+			}
 
-				var close = function () {
-					overlay.fadeOut(200, function () {
-						overlay.css('display', 'none');
-						// body.css('overflow', 'auto');
-						modal.remove();
-					});
-				};
+			// add caption
+			if (el.attr('title') && el.attr('title') !== '') {
+				var caption = modal.find('.caption');
+				if (caption.length !== 1) {
+					caption = $('<span class="caption"></span>').prependTo(modal);
+				}
+				caption.html(el.attr('title'));
+			}
+			return content;
+		};
 
-				modal.add(overlay).one('click', close);
+		var resize = function () {
+			var content = modal.find('.modal_content');
+			console.log('resize called', content.width(), content.height());
 
+			var border = parseInt(modal.css('border-left-width'), 10) * 2;
+			modal.css({
+				'width': content.width() + border,
+				'height': content.height() + border
+			});
+
+			modal.css({
+				'margin-left': -(modal.outerWidth() / 2) + 'px'
+			});
+		};
+		var closeModal = function () {
+			overlay.fadeOut(200, function () {
+				overlay.css('display', 'none');
+			});
+			modal.fadeOut(200, function () {
+				modal.find('img, iframe').remove();
+			});
+		};
+
+		return this.each(function () {
+			var container = $(this);
+
+			container.on('click', options.selector, function () {
+				var el = $(this);
+
+				var content = load(el);
+
+				content.on('load', function () {
+					overlay.show();
+					modal.show().fadeTo(200, 1, resize);
+				});
+
+				// close handler
+				overlay.add(modal).on('click', closeModal);
+
+				// some keyboard controls
 				$(window).on('keyup', function (event) {
 					if (event.keyCode === 27) { // 27 = Escape
-						close();
+						closeModal();
 						$(window).off('keyup');
 					} else {
 						event.preventDefault();
-						// TODO
+
+						var thumbs = container.find(options.selector);
+						var currentId = thumbs.index(el);
+						var other;
 						if (event.keyCode === 39) { // 39 = Right arrow
-
+							other = thumbs.eq(currentId + 1);
 						} else if (event.keyCode === 37) { // 37 = Left arrow
-
+							other = thumbs.eq(currentId - 1)
+						}
+						if (other && other.length == 1) {
+							load(other).on('load', resize);
+							el = other;
 						}
 					}
-				});
 
-				overlay.show();
-				modal.show().fadeTo(200, 1);
-				modal.css({
-					'margin-left': -(modal.outerWidth() / 2) + 'px',
-					'top': '100px'
 				});
-
-				if (el.attr('title') && el.attr('title') !== '') {
-					modal.prepend('<span class="title">' + el.attr('title') + '</span>');
-				}
 			});
+
+			// el.on('click', function () {
+
+
+			// 	if (el.data('url')) {
+
+			// 	} else {
+			// 		// image
+			// 		var src = el.attr('src').replace('.thumb', '');
+			// 		var img = $('<img src="' + src + '" />').appendTo(modal);
+
+			// 		img.one('load', function () {
+			// 			var border = parseInt(modal.css('border-left-width'), 10);
+			// 			if (img.height() > img.width()) {
+			// 				modal.css({
+			// 					'max-height': img.height() + 2 * border,
+			// 					'height': img.height() + 2 * border,
+			// 					'width': img.width() + 2 * border
+			// 				});
+			// 				modal.css({
+			// 					'margin-left': -(modal.outerWidth() / 2) + 'px'
+			// 				});
+			// 			} else {
+			// 				modal.css('height', img.height() + 2 * border);
+			// 			}
+			// 		});
+
+			// 	}
+
+			// 	var close = function () {
+			// 		overlay.fadeOut(200, function () {
+			// 			overlay.css('display', 'none');
+			// 			modal.remove();
+			// 		});
+			// 	};
+
+			// 	modal.add(overlay).one('click', close);
+
+			// 	$(window).on('keyup', function (event) {
+			// 		if (event.keyCode === 27) { // 27 = Escape
+			// 			close();
+			// 			$(window).off('keyup');
+			// 		} else {
+			// 			event.preventDefault();
+			// 			// TODO
+			// 			if (event.keyCode === 39) { // 39 = Right arrow
+
+			// 			} else if (event.keyCode === 37) { // 37 = Left arrow
+
+			// 			}
+			// 		}
+			// 	});
+
+
+			// });
 		});
 	};
 
@@ -263,7 +349,6 @@
 
 				var preface = $('<div class="leg"></div>');
 				preface.html(this._markup(logIndex.text));
-				preface.find('img, .youtube').mediaModal();
 				preface.appendTo(story);
 			}
 
@@ -353,8 +438,6 @@
 				// story for this leg.
 				var legStory = $('<div class="leg">').html(storyText);
 
-				legStory.find('img, .youtube').mediaModal();
-
 				legStory.data({
 					'legId': leg.id,
 					'leg': leg
@@ -389,6 +472,7 @@
 
 		attachListeners: function () {
 			var self = this;
+
 			// make clicks on polylines/markers refer to stories
 			this.features.on('click', function (event) {
 				if (event.layer.legId) {
@@ -396,6 +480,7 @@
 				}
 			});
 
+			// make click on .leg hightlight the leg.
 			$('#story, #index').on('click', '.leg', function (event) {
 				if ($(event.target).is('img,a')) {
 					return;
@@ -454,6 +539,7 @@
 				});
 			});
 
+			// listen to hash changes.
 			$(window).on('hashchange', function () {
 				var hash = window.location.hash.slice(1);
 				if (hash === '') {
@@ -462,6 +548,11 @@
 					self.loadJSON(hash);
 				}
 			}).trigger('hashchange');
+
+			// media modal on .thumb/.youtube
+			$('body').mediaModal({
+				selector: '.thumb, .youtube'
+			});
 		},
 
 		// All text fields are processed by this method.
@@ -474,7 +565,7 @@
 			string = string.replace(/!\[([^\]]*)\]\(([^)]*)\)/g, function (match, alt, src) {
 				alt = alt.trim();
 				if (src.substr(0, 15) === 'http://youtu.be') {
-					return '<span class="youtube" data-url="' + src + '" title="' + alt + '"><img src="style/youtube-play.png" /> ' + alt + '</span>';
+					return '<span class="youtube" data-youtube-url="' + src + '" title="' + alt + '"><img src="style/youtube-play.png" /> ' + alt + '</span>';
 				} else {
 					return '<img src="' + prefix + src + '" class="thumb" title="' + alt + '"/>';
 				}
