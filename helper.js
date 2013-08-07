@@ -43,6 +43,40 @@ var fs = require('fs');
 			}
 		});
 	};
+	var decode = function (encoded) {
+		var len = encoded.length;
+		var index = 0;
+		var latlngs = [];
+		var lat = 0;
+		var lng = 0;
+
+		while (index < len) {
+			var b;
+			var shift = 0;
+			var result = 0;
+			do {
+				b = encoded.charCodeAt(index++) - 63;
+				result |= (b & 0x1f) << shift;
+				shift += 5;
+			} while (b >= 0x20);
+			var dlat = ((result & 1) ? ~(result >> 1) : (result >> 1));
+			lat += dlat;
+
+			shift = 0;
+			result = 0;
+			do {
+				b = encoded.charCodeAt(index++) - 63;
+				result |= (b & 0x1f) << shift;
+				shift += 5;
+			} while (b >= 0x20);
+			var dlng = ((result & 1) ? ~(result >> 1) : (result >> 1));
+			lng += dlng;
+
+			latlngs.push([lat * 1e-5, lng * 1e-5]);
+		}
+
+		return latlngs;
+	};
 
 	/*
 	 * Looks in data/[]/orig/ for JPG files and generates
@@ -173,6 +207,63 @@ var fs = require('fs');
 		});
 	};
 
+	var swap = function (array) {
+		if (array.length == 2 && typeof array[0] === 'number') {
+			return [array[1], array[0]];
+		} else {
+			var ret = [];
+			array.forEach(function (value) {
+				ret.push(swap(value));
+			})
+			return ret;
+		}
+	};
+	var toGeoJSON = function (filename) {
+		var json = fs.readFileSync(__dirname + '/data/' + filename, 'utf8');
+		json = JSON.parse(json);
+
+		var geojson = {
+			type: 'FeatureCollection',
+			title: json.title,
+			features: []
+		};
+		if (json.trackGeojson === true) {
+			geojson.trackGeojson = true;
+		}
+
+		json.legs.forEach(function (leg) {
+			var type, coordinates;
+
+			if (leg.marker) {
+				type = 'Point';
+				coordinates = swap(leg.marker)
+			} else if (leg.path) {
+				if (typeof leg.path === 'string') {
+					leg.path = decode(leg.path);
+				}
+				type = 'LineString';
+				coordinates = swap(leg.path);
+			} else {
+				return;
+			}
+
+			delete leg.path;
+			delete leg.marker;
+
+			geojson.features.push({
+				type: "Feature",
+				geometry: {
+					type: type,
+					coordinates: coordinates
+				},
+				properties: leg
+			});
+		})
+
+		console.log(JSON.stringify(geojson, null, '\t'));
+
+	};
+
 	if (process.argv.length > 2) {
 		switch (process.argv[2]) {
 		case 'compress':
@@ -187,10 +278,13 @@ var fs = require('fs');
 		case 'lint':
 			lint();
 		break;
+		case 'toGeoJSON':
+			toGeoJSON(process.argv[3]);
+		break;
 		default:
 			console.error('Unknown action:', process.argv[2]);
 		}
 	} else {
 		console.log('Please choose an action');
 	}
-})();
+})();;

@@ -1,0 +1,666 @@
+{
+	"type": "FeatureCollection",
+	"title": "Zomerzeilen 2013",
+	"features": [
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					4.11962,
+					51.82262
+				]
+			},
+			"properties": {
+				"date": "2013-07-17",
+				"text": "Voor het vierde jaar op rij op weg met de Equilibre. Na tochten naar Londen, Schotland, Denemarken en Ipswitch is het nu toch echt eens tijd om de kanaaleilanden met een bezoekje te vereren..."
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						4.12399,
+						51.8239
+					],
+					[
+						4.0567,
+						51.8222
+					],
+					[
+						4.03061,
+						51.83323000000001
+					],
+					[
+						4.040220000000001,
+						51.8502
+					],
+					[
+						3.9688100000000004,
+						51.860380000000006
+					],
+					[
+						3.04665,
+						51.66787000000001
+					],
+					[
+						2.8070100000000004,
+						51.614610000000006
+					],
+					[
+						2.1752900000000004,
+						51.6998
+					],
+					[
+						1.7633100000000002,
+						51.35806
+					],
+					[
+						1.4721700000000002,
+						51.10352
+					],
+					[
+						0.98877,
+						50.90303
+					],
+					[
+						0.21423,
+						50.715590000000006
+					],
+					[
+						-0.7910200000000001,
+						50.694720000000004
+					],
+					[
+						-1.18103,
+						50.76426000000001
+					],
+					[
+						-1.29089,
+						50.78163000000001
+					],
+					[
+						-1.29845,
+						50.74732
+					],
+					[
+						-1.29845,
+						50.74732
+					]
+				]
+			},
+			"properties": {
+				"color": "#ff00ff",
+				"date": "2013-07-19",
+				"title": "Schuttende stagairs",
+				"text": "Met pastasalade in de hand vertrokken uit Hellevoetsluis om door een stagair geschut te worden in Stellendam. Het weer is lekker, we genieten van een prachtige heldere nacht. Het windmolenpark blijkt inmiddels wat groter dan op de kaart, maar rond half vier 's nachts hebben we die vrijgevaren en kunnen we richting de shippinglane. ![Whiskey ter viering van het tweede etmaal op zee.](IMG_7335_whiskey.thumb.JPG) De nieuwe dag brengt wat minder zon, maar het is nogsteeds aangenaam toeven aan boord. Aan het einde van de middag passeren we Dover. Rond half twaalf zien we vuurwerk boven Eastbourne. <br /> De nieuwe dag begint een tikkeltje mistig, maar als de zon doorkomt varen we de East Solent op. ![Waar zijn we nou precies Pauli?](IMG_7389_cowes.thumb.JPG)Ondanks het vroege tijdstip is er al een wedstrijdveld solo-jachtjes bezig de boel op te tuigen. De rivier is mooi en verderop komen we nog meer jachtjes tegen.  Eenmaal in Cowes is het bakken geblazen en dus tijd voor een ijsje. Morgen rond de middag op weg richting Guernsey...<br />251 NM in 41 uur"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-1.30051,
+						50.76849
+					],
+					[
+						-1.31544,
+						50.7736
+					],
+					[
+						-1.41466,
+						50.75286
+					],
+					[
+						-1.54495,
+						50.7069
+					],
+					[
+						-1.61314,
+						50.66018
+					],
+					[
+						-1.94046,
+						50.51605
+					],
+					[
+						-2.01187,
+						50.25072
+					],
+					[
+						-2.30713,
+						50.55271
+					],
+					[
+						-2.4321,
+						50.61287
+					],
+					[
+						-2.46094,
+						50.60765
+					]
+				]
+			},
+			"properties": {
+				"date": "2013-07-22",
+				"color": "#0fff0f",
+				"title": "Fog-fatamorgana's",
+				"text": "Na een prima nacht in Cowes vertrekken we richting Guernsey, aan het einde van de morgen om het tij in de Needles mee te hebben. In de havenmond ligt een mooie grote groene ton, maar de genua zorgt ervoor dat we die tot op het laatste moment over het hoofd zien. Een laatste stuurcorrectie baat niet, de ton laat een mooie groene streep achter op de romp. <br /> Het is al vrij rap gedaan met het zeilen, de wind kakt er uit. We zien mooie stroomrafelingen en de stroom geeft ons een flinke zet mee naar buiten. Ter hoogte van de Needles gaat de wind weer aan en kan het zeil omhoog. <br />Langzaam wordt het steeds mistiger, tot we in onze eigen wereld varen. ![Mist](IMG_7402_mist.thumb.JPG) Het horen van verschillende scheepshoorns is een bizarre ervaring, terugtoeteren met een klein scheepsding voelt als een ![schertsvertoning](http://youtu.be/JIA_D_ZJ1dU). Omdat we geen radar of AIS aan boord hebben is het niet verantwoord de grote schepen te kruisen en besluiten we om te keren richting de UK. Weymouth is het nieuwe doel. <br /> Al snel wordt het zicht beter: als de nacht valt zien we de vier flitsen van Portland Bill en wat andere lichtjes op de wal. Opnieuw trekt het dicht en we roepen iedereen aan dek om mee te kijken. Haap zit voorop en ziet fata-morgana's, Margriet ziet lichtjes op twee uur, die niemand anders ziet. Henk stuurt. Als we op zo'n 0,2 NM van de havenhoofden zijn stuurt Abraham verder, zonder dat we nog iets van de haven hebben gezien. Langzaam varen we in de richting waar volgens de computer met GPS de haven is. Opeens verschijnt het havenlicht en zien we ook wat andere lichtjes op de wal. Bizar om zo een haven aan te varen. Tijd voor een biertje.<br />65NM in 13 uur."
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-2.4439,
+					50.60778
+				]
+			},
+			"properties": {
+				"date": "2013-07-23",
+				"title": "Vijf 16-jarigen",
+				"text": "Na een goede nacht blijven we een dagje extra aan wal in Weymouth. De verschrikkingen van de fog patches zitten er bij iedereen nog goed in, dus wordt er ontbeten met een full English breakfast. ![Nothe Fort](P1050385_nothe.JPG) Met bloedworst in de buik wordt er een wandeltocht ingezet naar het Nothe Forth op de kop van de landtong. Hier blijkt dat we, als we ons maar gedragen als 16-jarigen, ook voor die toegangsprijs naar binnen mogen. De eerste 30 pond is al weer bespaard. <br />Vervolgens lopen we op de terugweg langs de RNLI-post van Weymouth, waar we een rondleiding proberen te ritselen. Dit blijkt moeilijker dan gedacht, dus moeten we een uurtje later nog maar eens terugkomen. Dat doen we dus maar, en dan worden onze KNRM-polo's ineens herkend, en krijgen we de uitgebreide rondleiding. Wel moeten we de Coxswain een beetje teleurstellen als die vraagt op welk station wij dienen...<br /> 0 NM in 24 uur."
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-2.45304,
+						50.60656
+					],
+					[
+						-2.44789,
+						50.6083
+					],
+					[
+						-2.43622,
+						50.61135
+					],
+					[
+						-2.30095,
+						50.55489
+					],
+					[
+						-2.27074,
+						50.506
+					],
+					[
+						-2.0256,
+						50.50426
+					],
+					[
+						-1.95007,
+						50.58236
+					],
+					[
+						-1.93857,
+						50.59392
+					],
+					[
+						-1.93686,
+						50.61059
+					],
+					[
+						-1.95042,
+						50.61179
+					]
+				]
+			},
+			"properties": {
+				"date": "2013-07-24",
+				"color": "#44ffff",
+				"title": "Woensdag visdag",
+				"text": "Woensdag 24 juli vertrekken we om 10:00 uur scherp naar Poole. De algehele lamlendigheid aan boord maakt dat we om 09:59 uur klaar staan voor vertrek. Alleen de twee Britse boten naast ons, die ook om 10:00 zouden uitvaren, denken daar anders over. We starten de motor, en gaan met z'n allen in de richting van onze buren varen. Nadat Jieter nog maar eens lichtjes heeft aangedrongen of ze nu dan toch echt weggaan, besluiten de buren om krijgsraad te gaan houden. Gaan we nu wel, of juist niet, dicht langs de Portland Bill. Een ware beproeving voor de bemanning van de Equilibre. Uiteindelijk varen we, na een Tanataluskwelling van 12 minuten, alsnog weg van de steiger. <br />Het blijkt een goede zet te zijn geweest om nog een vislijntje te kopen in de stad. De uitleg van de zeer enthousiaste winkelmedewerker maakt dat wij een goede set hebben om makrelen mee te vangen. De visjes zelf zijn het voor de verandering daarmee eens. ![Markeeltje van de haak halen.](IMG_7474_visvangen.thumb.JPG) We hebben er in no-time twee aan de haak zitten, die door onze eigen Coxswain professioneel ![om zeep worden geholpen](http://youtu.be/4l4QOLoH9Eo). Onze koks-man zet ze vervolgens om in een lekker gebakken visje bij de lunch. <br />Het weer doet een beetje moeilijk vandaag. De wind varieert tussen de 4 en 11 knopen, en ook het zicht laat het soms weer afweten. In onze eigen wereld vermaken we ons prima, waarbij we ook ons toeterende toneelstuk weer voortzetten. Als we tegen de tijstroom in proberen te zeilen wordt het te gortig. We varen met 2,5 knoop naar achteren, van Poole vandaan. De pruttel wordt weer aangeslingerd, en \"slowly but surely\" worden we naar het noorden geduwd. <br />Omdat we er eigenlijk allemaal wel flauw van zijn nemen we een kijkje in Swanage, om onze overnachtingsmogelijkheden daar te beschouwen. Er blijken nog genoeg meerboeien vrij te zijn met voldoende diepte, dus we maken ons klaar voor de nacht. <br /> Voor het avondamusement gaan we aan wal, met zijn vijven in onze bijboot. Dat blijkt an sich al een hele excersitie te zijn. We komen veilig aan wal, en maken het dorpje onveilig. We sluiten de avond af met een pint locaal bier in de Ship Inn. Door de regen gaan we terug naar ons bijbootje. De steiger waaraan deze ligt blijkt alleen nog bereikaar over een loopplank die onder water is komen te staan. We maken ons op voor een nacht aan de mooring. Jieter zegt hierover later: \"alleen bij de kentering van het tij was het wat onrustig\". Daar heeft hij gelijk mee. Alleen jammer dat die kentering zo lang heeft geduurd. <br />43 mijl in 9 uur."
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-1.96518,
+					50.60879
+				]
+			},
+			"properties": {
+				"date": "2013-07-25",
+				"color": "#0000ff",
+				"title": "By other means...",
+				"text": "11:19 Jieter zet Margriet en Pauli af op de pier van Swanage. Op de pier liggen er 8 rijen dik memorialplaatjes en als we aan het begin van de pier komen, blijkt dat we eigenlijk ook entree hadden moeten betalen voor het Trust Fund van de Pier of Swanage. Daar zijn die Engelsen trouwens goed in; TrustFondsen laten spekken. Wij blijken wederom goed te zijn in het niet mee doen. We stappen stevig door naar het schattige Railway Station. Als we de tickets willen kopen, blijkt dat we niet met de trein in Poole kunnen komen, maar de bus staat wel al klaar om te vertrekken. ![Koffertjes op het station](2013-07-25 13.13.15_trein.thumb.jpg) Die willen we niet, dus we kopen een ticket naar Corfe Castle en met veel stoom en gefluit en mooie uitzichten onderweg, komen we na zo'n 20 minuten aan op de plaats van bestemming. ![Corfe Castle](2013-07-25 13.20.43_kasteel.thumb.jpg) De busstop schijnt dichtbij te zijn (iets met 'immer gerade aus', maar dan in het engels en ook een keer 'to the left'). Toch doen we er nog een goed uur over voordat we bij de bushalte zijn, want we moeten eerst nog even de toerist uithangen (lees: veel foto's maken) en eten inslaan. Corfe Castle heeft niet alleen een ontploft kasteel waar je veel geld voor moet betalen om dat van dichtbij te kunnen bekijken, het dorpje zelf is erg leuk om te bekijken. Opvallend: de huisje hebben verrekte lage deurtjes. Gelukkig liepen we alleen maar buiten. <br /> De bus is een dubbeldekker en dus zitten we boven. Het begin is nog even spannend met smalle straatjes, de buschauffeur heeft duidelijk wel lef. Of hij heeft hier vaker gereden, dat kan ook. Nadat we de halfdode-met-wat-er-nog-van-over-is-paarse-hei achter ons hebben gelaten, rijden we door wat dorpjes en vlak voordat we Poole inrijden, krijgt Margriet een smsje dat de mannen al in Poole Quay Marina liggen. Omdat we de tourist information niet zo goed kunnen vinden, vragen we een wat oudere engelsman hoe we daar komen en hij brengt ons er keurig naar toe. De mevrouw van de tourist information is net zo vriendelijk en behulpzaam als onze oude Tomtom, maar weet wél met woorden uit te leggen hoe we bij de Marina komen. ![De groene herkenningstreep, helaas niet aan stuurboord](IMG_7462_groen.thumb.JPG) We zien de Equilibre al gauw liggen, denken we, maar erg verlaten is de boot wel. Daarom kijken we naar de boeg, waar normaliter de naam van de boot staat. Deze boot heeft dat niet, er zit echter wel een groene streep aan bakboordzijde..."
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-1.9487,
+						50.61287
+					],
+					[
+						-1.9281,
+						50.61592
+					],
+					[
+						-1.91231,
+						50.63204
+					],
+					[
+						-1.92432,
+						50.65849
+					],
+					[
+						-1.94235,
+						50.67775
+					],
+					[
+						-1.95625,
+						50.68526
+					],
+					[
+						-1.95213,
+						50.69124
+					],
+					[
+						-1.9523,
+						50.69591
+					],
+					[
+						-1.95265,
+						50.69972
+					],
+					[
+						-1.96569,
+						50.70287
+					],
+					[
+						-1.9772,
+						50.70554
+					],
+					[
+						-1.98483,
+						50.70717
+					],
+					[
+						-1.98599,
+						50.71103
+					],
+					[
+						-1.98419,
+						50.71119
+					]
+				]
+			},
+			"properties": {
+				"date": "2013-07-25",
+				"color": "#44ff44",
+				"title": "Plat voor het laken",
+				"text": "11:31 vertrek van de mooring. Het is maar een mijltje of negen naar Poole, maar het zicht is voor de verandering goed en het uitzicht is prima. De koers is plat voor het laken, dus maar eens even zoeken naar alle meuk voor het spinnakeren. Helaas is de wind van variabel en de concentratie wat laag wat resulteert in twee onverwachte gijpen geïncasseerd door Abraham. Gelukkig doet hij het nog. <br /> We spotten onderweg nog een soort Britse Beatrix voor disabled sailing. Bij de 'Chain ferry' in de opening van Poole harbour slacken we nog even wat af om niet weer met een Nederlands schip een Britse ketting stuk te varen. Na wat gepuzzel op de boeien meren we af in box A13 van Poole Quay marina voor het niet geringe bedrag van 44 Britse ponden. <br /> Als we in Poole de nodige poundlands hebben bezocht zijn ook de dames in town en kunnen we confreren over de bestemming van morgen.<br /> 9 mijl in 2 uur."
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-1.98561,
+						50.71092
+					],
+					[
+						-1.98509,
+						50.70711
+					],
+					[
+						-1.95265,
+						50.69972
+					],
+					[
+						-1.95265,
+						50.69124
+					],
+					[
+						-1.95677,
+						50.68569
+					],
+					[
+						-1.94252,
+						50.67753
+					],
+					[
+						-1.92312,
+						50.6561
+					],
+					[
+						-1.60881,
+						50.71581
+					],
+					[
+						-1.55388,
+						50.70342
+					],
+					[
+						-1.54667,
+						50.70559
+					],
+					[
+						-1.50169,
+						50.73515
+					],
+					[
+						-1.52873,
+						50.75549
+					]
+				]
+			},
+			"properties": {
+				"date": "2013-07-26",
+				"color": "#0000ff",
+				"title": "Fop-mariniers",
+				"text": "Hoewel de planning was om om 09.30 te vertrekking vetrekken we al om 09.02 vanuit Poole. Omdat er nog steeds Fog patches in de voorspelling zijn is de bestemming voor vandaag Lymington. De zon schijnt als we uit de haven vertrekken en bij de chain-ferry zwaaien we nog even naar de Fop-mariniers van de <em>HMS Dasher</em> bij wie we gister een kijkje aan boord mochten nemen. De avond hiervoor meerde er tegenover ons aan de steiger namelijk een marine scheepje aan. ![De HMS Dasher P280 vlak voor de chainferry](P1050473_fopmariniers.JPG) Het bleek een opleidingschip met reservisten. Na wat gepraat mochten we een kijkje nemen. Ze bleken wat malle gewoonten te hebben zoals gezamelijk de vlag strijken om 21.00 uur en twee keer per dag de naam van het schip poetsen.<br /> Na de ferry gaan we rustig verder op de motor. Henk wordt al snel weer aan het werk gezet, en de vislijn overboord gehangen. Al snel zijn we in de buurt van onze bestemming. Voordat we een ligplaatst zoeken tanken we eerst nog wat diesel en benzine voor de boot en de bijboot. Om 13.51 uur liggen we weer vast in de haven van Lymington, waarbij in het kleine boek van sinkerklaas een zwembad belooft werd. Maar wij hadden het niet goed begrepen. Voor het 'zwembad' met zeewater (en life-gaurds, minstens 5) moesten we alsnog betalen wat toen maar niet gedaan hebben. Daarom maar het centrum bezocht. Opbrengst voor vandaag: 22.6 mijl in 4 uur 30 minuten, en 1 markreel."
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-1.52882,
+						50.75525
+					],
+					[
+						-1.50152,
+						50.73559
+					],
+					[
+						-1.3884,
+						50.75231
+					],
+					[
+						-1.29433,
+						50.78109
+					],
+					[
+						-1.1606,
+						50.75818
+					],
+					[
+						-0.79033,
+						50.69385
+					],
+					[
+						-0.47653,
+						50.77294
+					],
+					[
+						-0.10506,
+						50.80724
+					],
+					[
+						-0.10712,
+						50.81201
+					]
+				]
+			},
+			"properties": {
+				"date": "2013-07-27",
+				"color": "#0099ff",
+				"title": "What the heck!",
+				"text": "![De Cobb wordt in gereedheid gebracht om de makreel te kunnen roken](IMG_7530_visroken.thumb.JPG) 9:40 Terwijl de gerookte makreel inmiddels allang is afgekoeld en nog wél op de barbeque ligt, varen we de haven uit. Hoewel we eerder besloten hadden naar Bembridge te gaan, is ook dat doel van tafel geveegd; iets met te ondiep en onhandig en Bembridge in 1 zin. <br />Het is mooi weer, de zon schijnt, dus we smeren weer vollop met de sjonniebrand en de sjonniebrillen moeten ook op. De vislijn wordt uitgegooid, maar de haakjes zitten deze keer vol met wier, blijkbaar houden makrelen daar niet van. Rond kwart voor 12 passeren we een groene boei met vaal groen plekje en ![Pannenkoeken. Alweer...](IMG_7574_pannenkoeken.thumb.JPG) worden er weer pannenkoeken gebakken. Die engelsen bakken broden als steen. <br />![Regenbui met op de achtergrond het eiland Wight](IMG_7589_bui-abraham.thumb.JPG) De wind is soms zoek, soms aan en soms teveel voor de genua, dus we spelen het spelletje mee en doen afwisselende trucjes met de genua in en uit en wisselen 'm met de HA. Precies vlak voor dat de wind er uitkakt, ligt de HA weer op het dek en kan de genua het laatste zuchtje wind ons een zetje meegeven. We hebben het tij tegen en dus motoren we gestaag verder. Terwijl Abraham kookt en Henk roert, maakt Jieter van het huikje een geimproviseerde tent. Zodoende zitten Pauli en Jieter buiten toch lekker droog hun eten op te eten en te tellen hoeveel tijd er tussen de flitsen en rommels zitten; we denken dat het onweer op zo'n 3 kilometer afstand is. Daar blijft gelukkig ook, de windmeter geeft 10 kts aan, en ondanks dat we zeilend langzamer gaan, mag Henk toch naar binnen, want dat is rustiger. <br /> De kust is goed verlicht; we zien overal lampjes en ook 2 keer vuurwerk - oooooooh! Ook blijkt dat het knipperlichtje die wel een heel bijzondere flash heeft, geen boei is, maar een kermisattractie. Als we op de haven aanlopen en op zoek zijn naar een zuidkardinaal op 12 uur, kunnen we die niet vinden. Deze keer is het niet de mist die zand in het eten gooit, maar een mis(t)plaatst ledlichtje die een steekje mist. Terwijl Haap en Abraham overtuigd raken van waar we heen moeten, twijfelt Pauli steeds meer of er überhaupt wel een haven is en of we dan nog eerst een brug door moeten (als we de haven binnenvaren is ze wel overtuigd en bij vertrek blijken de lampjes in grote bogen de lampjes boven op de krijtrotsen - ipv bruggen - te zijn). Als Haap de havenmeester oproept is de eerste vraag die hij krijgt hoe diep we steken; de haveningang is met laag water te ondiep voor ons, dus krijgen we het advies anderhalf uur voor of na laag water de haven in/uit te gaan. <br />Het is even voor 11 als we aanmeren en Pauli bij haar ietwat onhandige landing op de vingersteiger het trapje van de buren via hun boot het water inschopt. Het duurt niet lang of we zien het slaperige hoofd van onze Nederlandse buurvrouw mopperend te voorschijn komen: \"What the HECK!\" is haar eerste primaire reactie. Terwijl Jieter de verdere opmerkingen als 'dat kan je van een Nederlandse boot ook wel verwachten' incasseert en haar kalmeert door te zeggen dat ze haar vlag moet binnenhalen, voorziet de rest van de bemanning de boot van TLC en walstroom. Na een borrel en geen douche (de havenmeester heeft voor dat soort dingen na 22.00 geen dienst meer) zoekt iedereen zijn plekje in de kooi weer op. Na 68 mijl in 13 uur en 20 minuten zijn we aan wat slaap aan toe!"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-0.14665,
+					50.82543
+				]
+			},
+			"properties": {
+				"date": "2013-07-28",
+				"title": "Jazz in Brighton",
+				"text": "In Brighton houden we weer een waldagje. Gelukkig blijkt de buurvrouw ook een aardige kant te hebben: ze biedt haar excuses aan voor haar nachtelijke opmerking en we hebben wat gezellige gesprekjes. ![De pier met allerlei vermaek](IMG_7621_brightonpier.thumb.JPG) Ze geeft ons wat folders van Brighton en advies: we moeten eigenlijk wel in het reuzenrad voor 8 pond de man en het is een eind lopen, dus we kunnen beter met het oude treintje of met de bus gaan. Omdat we wel zin hebben in een goede wandeling lopen we langs de kust richting de stad. ![Zandsculpturen in Brighton](IMG_7656_zandkastelen.thumb.JPG) We bekijken de pier, eten fish and chips onder het genot van straatmuziekant-jazz (met verzoeknummers) en wandelen langs het aparte <a href=\"http://en.wikipedia.org/wiki/Royal_Pavilion\">Royal Pavilion</a>, brengen een kort bezoek aan een kerk en  op de terugweg sparen we nog wat ponden uit door vanaf de boulevard de zandsculpturen te bekijken in plaats van te toegansprijs te dokken."
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						-0.10643,
+						50.81201
+					],
+					[
+						-0.04395,
+						50.71211
+					],
+					[
+						0.55138,
+						50.65904
+					],
+					[
+						0.66605,
+						50.578
+					],
+					[
+						1.22017,
+						50.67645
+					],
+					[
+						1.31218,
+						50.61985
+					],
+					[
+						1.53208,
+						50.72037
+					],
+					[
+						1.5671,
+						50.74205
+					],
+					[
+						1.57216,
+						50.73993
+					],
+					[
+						1.57122,
+						50.73537
+					],
+					[
+						1.59679,
+						50.7282
+					],
+					[
+						1.60014,
+						50.72429
+					]
+				]
+			},
+			"properties": {
+				"date": "2013-07-29",
+				"color": "#ff7f24",
+				"title": "Eindelijk oversteken",
+				"text": "Als we rond 8:00 locale tijd losgooien wordt ons nog een goed reis gewenst door de gezellige buurvrouw. Het waait aardig en hijsen het zeil al in de haven, om dat nog in relatieve rust te kunnen doen. We moeten eenmaal buiten een stuk aan de wind om een beetje vrij te varen van de kust. We hebben toch wel erg veel helling, dus er gaat na een klein stukje ook maar een rif in. Als we eenmaal kunnen afvallen richting boei CS2 komt er wat meer rust in de boot. Het gaat lekker hard, we noteren in het logboek veel grondsnelheden van boven de 7kts. Haap schrikt hier zo van dat hij <em>'er gebeurd geen flikker, maar we gaan \"like the firebrigade\"'</em> schrijft. We bakken pannenkoeken, steken de noordgaande shippinglane over en komen in de buurt van Boulogne. Niemand heeft de boekjes echt goed bestudeerd, dus we weten eigenlijk niet precies waar het havengaatje nou zit. Haap weet zeker dat hij golven ziet breken op de kopse kant, maar waar hij een kopse kant ziet staat gewoon een muur. Gelukkig komen we rond half acht zonder kleerscheuren langs een overduidelijke grote vuurtoren met een heel klein rood stukje de grote voorhaven binnen. <br />Terwijl we in de overvolle jachthaven een plekje zoeken wordt er binnen gekookt zodat we eenmaal vast meteen kunnen aanvallen. We komen als derde in een stapeltje terecht, naast een stel vriendelijke belgen: 'Als ik uw lijn aanneem kost dat wel een pintje'. ![Rummicub](IMG_7657_rummicub.thumb.JPG) Tijdens het eten komt er nog een imposante nederlandse boot 'Sandy Cay' de haven binnenvaren. Er is voor zijn maat niet echt een mooi plekje dus deze nederlandse solozeiler komt naast ons liggen. Ondanks het feit dat hij zeker anderhalf keer zo lang is als de Equilibre...<br />74 mijl in 12 uur"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					1.61499,
+					50.72559
+				]
+			},
+			"properties": {
+				"date": "2013-07-30",
+				"title": "Wandelwaldagje in Frankrijk",
+				"text": "![Spuisluis vlak bij de jachthaven van Boulogne.](2013-07-30 13.22.12_spuien.thumb.jpg) Na een slechte nacht aan de onrustige kant van de haven is het tijd om de boot in een mooi vrijgekomen plekje te parkeren voor de komende nacht. Eigenlijk hebben we er nog niet zo'n zin in, maar het vooruitzicht van een goede nacht zonder al te veel geschommel spreekt wel aan. <br /> Ondanks de regen maken we wandelingen. Boulogne is een stad met geschiedenis: het was in de tijd van de Romeinen de plek van waaruit de invasie van het Verenigd Koninkrijk werd geregeld, wat later door Napoleon nog eens gepoogd is. Er staat een prachtige maar verpauperde baseliek die men lokaal nog 'cathedral' noemt. Boven op de heuvel is een herinneringszuil voor Napoleon opgericht, om aan zijn heroïsche veldtocht naar het Verenigd Koninkrijk te herinneren. Ho, wacht, welke veldtocht?"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						1.60014,
+						50.72429
+					],
+					[
+						1.59662,
+						50.72831
+					],
+					[
+						1.57122,
+						50.73548
+					],
+					[
+						1.57199,
+						50.74037
+					],
+					[
+						1.56718,
+						50.742
+					],
+					[
+						1.56238,
+						50.74477
+					],
+					[
+						1.57139,
+						50.87141
+					],
+					[
+						1.78802,
+						51.07937
+					],
+					[
+						2.61749,
+						51.1759
+					],
+					[
+						2.91412,
+						51.2473
+					],
+					[
+						2.93472,
+						51.23527
+					]
+				]
+			},
+			"properties": {
+				"date": "2013-07-31",
+				"color": "#b6fcd5",
+				"title": "Boulogne -> Oostende",
+				"text": "![Net de haven van Boulogne uit.](IMG_7697_uit_boulogne.thumb.JPG)Voor vandaag staat er een heerlijk open einde op de planning: we varen naar het noorden, en zien wel waar we in een haven gaan liggen. Voordat wij afvaren lenen we nog even een verloopstukje van de buurman om onze watertank bij te vullen. Uiteindelijk is deze buurman ons voor met het afvaren, en dat is maar goed ook. Een prachtig stukje entertainment volgt waarbij de buurman kunstjes aan het doen is met zijn zeiljacht. Ze zijn ook maar met zijn tweetjes... aan dek. Het blijkt dat er benedendeks nog drie jeugdigen liggen, die blijkbaar wilden uitslapen. Door het wat slordig afvaren staan er bij de vier jachten die benedenwinds liggen ineens mensen aan dek, die er eerst nog niet waren. Altijd weer prachtig vermaak. <br /> We kachelen achter alle andere boten aan de haven uit. In een soort gondelvaart-optocht varen we naar de Cap Griz Nez. Hier kunnen we eindelijk wat oploeven, waardoor het hele vaarbeeld weer veranderd. We eten maar weer eens pannenkoeken, ![wisselen vlaggetjes](http://youtu.be/Yp1NHwzbkRc) en kachelen met een prima tempo naar de Vlaamse kust. Het ziet er naar uit dat we niet voor het avondeten in een haven liggen, dus maakt Haap wat smerige pasta, met verlepte groenten en buitengewoon lekkere worst, die het lichtpunt van de maaltijd is. Maar voer is voer, en de voorraden moeten toch een keer opgeschranst worden. <br />Uiteindelijk lopen we Oostende aan, waar we in het Mercatordok mogen liggen. Hier blijkt een \"brandnieuw\" drijvend koninklijk toiletgebouw te zijn, maar de vuilbakken staan nog op dezelfde plek: bij het open baartoilet. Gelukkig kunnen we de dag afsluiten met een portie echte Belgische frieten. Het verbazingwekkende is dat vier bakjes nog leeg gegeten worden ook: het is tenslotte al weer twee uur geleden dat er gegeten is...<br />74 mijl in 12 uur"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						2.93472,
+						51.23527
+					],
+					[
+						2.91138,
+						51.24902
+					],
+					[
+						3.1572,
+						51.35463
+					],
+					[
+						3.63922,
+						51.74085
+					],
+					[
+						3.8689,
+						51.82283
+					],
+					[
+						3.98769,
+						51.85169
+					],
+					[
+						4.0004,
+						51.85805
+					],
+					[
+						4.02443,
+						51.85699
+					],
+					[
+						4.03954,
+						51.85063
+					],
+					[
+						4.03713,
+						51.8326
+					],
+					[
+						4.03336,
+						51.82856
+					]
+				]
+			},
+			"properties": {
+				"date": "2013-08-01",
+				"color": "#551076",
+				"title": "Oostende -> Stellendam",
+				"text": "![Voor Zeebrugge komt deze best dichtbij...](IMG_7729.thumb.JPG) Voor vertrek huiswaarts, wordt door de dames en Abraham nog even de stad bekeken. Naast een hele mooie oude kathedraal, blijken onze zuiderburen vooral veel lelijke hotels aan het strand te kunnen bouwen. Het strikt de belgen niet af; met hordes komen ze van het station voor een dagje bakken op het strand. Terugn van ons rondje Oostende, dobbert de Equilibre al midden in de haven voor de brug. Jieter en Haap pikken ons nog even op, zodat we rond 11:11 kunnen vertrekken. Er is een mooi briesje, die helaas net wat te veel is gedraaid om te spinakeren. Henk wordt weer aan het werk gezet en hij leidt ons met een rap tempo richting het noorden. Plannen zijn er om te wijzigen, dus wordt de bestemming van de Roompot verandert in Stellendam. Het aantal opvarende was ook rap gestegen. Dat is even gezellig, maar na een tijdje ook wel irritant. Jieter begint met de verdelging van deze vliegende schepsels, haap verteld hoeveel er nog te gaan zijn: oneindig min x! De voorraadkasten worden nog even geplunderd; zakken ships weggeschranstd, erdnussen gezaaid en dankbaar gebruik gemaakt van de weer beschikbare Nederlandse telefoonnetwerken. Met Haap als navigator wordt het opkruisen wat beperkt door een stukvaargeul af te snijden. Aan het eind van de trip moeten we er toch aan geloven en worden er nog een paar slagen gemaakt, voor we Stellendam kunnen binnenlopen. Onbewust van het feit dat het toplicht het heeft begeven, varen we als een spookschip in de schemering de haven binnen. We vinden een plekje naast wat hartelijke Duitsers, die ons vrolijk uitlachen over onze bestemming van de volgende dag. Met een borrel word een mooie zeildag afgesloten. <br />68 mijl in 11 uur"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[
+						4.0337,
+						51.82623
+					],
+					[
+						4.04675,
+						51.82008
+					],
+					[
+						4.0543,
+						51.82326
+					],
+					[
+						4.11816,
+						51.81901
+					],
+					[
+						4.1209,
+						51.82305
+					]
+				]
+			},
+			"properties": {
+				"date": "2013-08-02",
+				"color": "#f0f00f",
+				"title": "Heet!",
+				"text": "Na een brakke nacht opgeleukt met kriebelvliegen en het geluid van Neerlands visindustrie is het tijd voor de kortste etappe tot nu toe: we moeten nog helemaal naar Hellevoetsluis. Omdat we zien dat de brug opengaat voor een schutting naar buiten maken we ook maar klaar om de sluis in te kunnen. Na de sluis maken we de pruttel nog even blij met wat nieuwe diesel.<br /> Op het Haringvliet blijkt een blik open zeilbootjes te zijn opengetrokken: er komen er steeds meer uit de haven. Achteraf blijkt het om het 50<sup>e</sup> EK Sharpie te gaan. <br />We hebben kennlijk de warmste dag van de zomer uitgekozen om op te ruimen en schoon te maken, dus het moet maar op tropentempo...<br />3 mijl"
+			}
+		}
+	],
+	"trackGeojson": true
+}
