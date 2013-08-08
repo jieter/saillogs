@@ -51,6 +51,14 @@ ul.selector li {
 
 	background-color: #fafafa;
 }
+ul.selector li.disabled:after {
+	content: 'disabled';
+	float: right;
+	color: white;
+	background-color: #999;
+	padding: 1px 3px;
+	border-radius: 4px;
+}
 ul.selector li:hover {
 	background-color: #eee;
 }

@@ -1,5 +1,7 @@
 // Simple media overlay...
 $.fn['mediaModal'] = function (options) {
+	'use strict';
+
 	options = $.extend({
 		selector: '.thumb',
 		ytTemplate: '<iframe id="ytplayer" class="modal_content" type="text/html" ' +
@@ -70,16 +72,18 @@ $.fn['mediaModal'] = function (options) {
 	return this.each(function () {
 		var container = $(this);
 
+		// Jumps from current element the one left or right
+		// of it, and returns the new element.
 		var jumpFrom = function (el, direction) {
 			var thumbs = container.find(options.selector);
 			var currentId = thumbs.index(el);
 			var other;
-			if (direction > 0) { // 39 = Right arrow
+			if (direction > 0) {
 				other = thumbs.eq(currentId + 1);
-			} else { // 37 = Left arrow
-				other = thumbs.eq(currentId - 1)
+			} else {
+				other = thumbs.eq(currentId - 1);
 			}
-			if (other && other.length == 1) {
+			if (other && other.length === 1) {
 				load(other).on('load', resize);
 
 				return other;
@@ -122,9 +126,9 @@ $.fn['mediaModal'] = function (options) {
 					event.preventDefault();
 
 					if (event.keyCode === 39) { // 39 = Right arrow
-						el = jumpFrom(el, 1)
+						el = jumpFrom(el, 1);
 					} else if (event.keyCode === 37) { // 37 = Left arrow
-						el = jumpFrom(el, -1)
+						el = jumpFrom(el, -1);
 					}
 
 				}

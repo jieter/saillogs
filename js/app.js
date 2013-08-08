@@ -1,6 +1,6 @@
 (function () {
 	'use strict';
-	/* global console:true, availableStories:true */
+	/* global console:true, logIndex:true */
 
 	// From http://stackoverflow.com/a/5624139
 	function hexToRgb(hex) {
@@ -88,7 +88,7 @@
 				collapsed: false
 			}).addTo(map);
 
-			this.calendar = new CalendarControl().addTo(map);
+			this.calendar = new L.CalendarControl().addTo(map);
 
 			var self = this;
 			this.features = L.geoJson(null, {
@@ -155,7 +155,11 @@
 				if (log.disable && location.port !== '9999') {
 					return;
 				}
-				list.append('<li data-name="' + log.name + '">' + log.title + '</li>');
+				var item = $('<li data-name="' + log.name + '">' + log.title + '</li>').appendTo(list);
+				if (log.disable) {
+					item.addClass('disabled');
+				}
+
 			});
 			list.one('click', '[data-name]', function () {
 				var name = $(this).data('name');
@@ -164,6 +168,7 @@
 		},
 
 		renderStory: function (data) {
+			var self = this;
 			var story = this.story;
 
 			data.styles = $.extend(data.styles, this.defaultStyles);
@@ -178,7 +183,6 @@
 			// refresh selector.
 			this.index = $(this.index.selector);
 
-			var self = this;
 			data.features.forEach(function (feature) {
 				if (feature.geometry) {
 					self.features.addData(feature);
@@ -188,7 +192,6 @@
 			});
 
 			if (data.trackGeojson) {
-				var self = this;
 				$.ajax({
 					url: 'data/' + data.name + '/track.geojson',
 					dataType: 'json',

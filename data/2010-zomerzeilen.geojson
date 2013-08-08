@@ -291,7 +291,7 @@
 			},
 			"properties": {
 				"date": "2010-07-20",
-				"title": "Shotley point",
+				"title": "Badderen in Shotley point",
 				"color": "#00ff00",
 				"text": ""
 			}
@@ -799,7 +799,7 @@
 				"date": "2010-07-28",
 				"title": "Zonder stoomlicht door Amsterdam",
 				"color": "#0000ff",
-				"text": "Naar Schellingwoude"
+				"text": "Naar Schellingwoude, Petzl als vervangend stoomlicht na vermaning havendienst."
 			}
 		},
 		{
@@ -833,7 +833,7 @@
 				"date": "2010-07-29",
 				"title": "Enkhuizen",
 				"color": "#FFFF00",
-				"text": ""
+				"text": "Vandaag varen de dames weg, terwijl de kerels allemaal benedendeks zijn. <strong>11:00</strong>Jantine geniet van de helling! Er wordt een hele fotosessie gedaan bij het paard van marken We horen dat we morgen tot 18:00 op de boot mogen blijven, dus we kunnen nog een extra nacht ergens maken. We besluiten als doel Enkhuizen te kiezen en maken rond kwart over twee vast in box P2 van de Compagnieshaven."
 			}
 		},
 		{
@@ -861,9 +861,15 @@
 			},
 			"properties": {
 				"date": "2010-07-30",
-				"title": "En weer terug",
+				"title": "Terug bij af.",
 				"color": "#7fffd4",
-				"text": ""
+				"text": "Na al die mijlen is het maar een kippeneindje naar Lemmer. Als we vastliggen staat er vandaag 18NM op het log."
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"text": "<table><tr><td class=\"meta\">Boot:</td><td>Spirit 36 'Equilibre'</td></tr><tr><td class=\"meta\">Gevaren: </td><td>&plusmn; 680</td></tr></table>"
 			}
 		}
 	]
