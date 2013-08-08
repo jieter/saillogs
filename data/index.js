@@ -24,7 +24,6 @@ var logIndex = {
 			'name': '2011-oktober',
 			'title': 'Oktoberzeilen 2011',
 			'date': '2011-10-21'
-
 		},
 		{
 			'name': '2011-zomerzeilen',
