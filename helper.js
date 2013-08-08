@@ -43,6 +43,8 @@ var fs = require('fs');
 			}
 		});
 	};
+
+	/*jshint bitwise:false */
 	var decode = function (encoded) {
 		var len = encoded.length;
 		var index = 0;
@@ -77,16 +79,17 @@ var fs = require('fs');
 
 		return latlngs;
 	};
+	/*jshint bitwise:true */
 
 	// swap x/y for geojson
 	var swap = function (array) {
-		if (array.length == 2 && typeof array[0] === 'number') {
+		if (array.length === 2 && typeof array[0] === 'number') {
 			return [array[1], array[0]];
 		} else {
 			var ret = [];
 			array.forEach(function (value) {
 				ret.push(swap(value));
-			})
+			});
 			return ret;
 		}
 	};
@@ -132,7 +135,7 @@ var fs = require('fs');
 				console.log('Create pics for log ' + dirname + '...');
 				queue.push(dirname);
 			} else {
-				console.log('No such log ' + dirname)
+				console.log('No such log ' + dirname);
 			}
 		} else {
 			// just process all
@@ -141,7 +144,7 @@ var fs = require('fs');
 					queue.push(dirname);
 				}
 			});
-			console.log('Create pics for all originals (' + queue.join(', ') + ')...')
+			console.log('Create pics for all originals (' + queue.join(', ') + ')...');
 		}
 
 
@@ -172,11 +175,11 @@ var fs = require('fs');
 
 	var lint = function () {
 		var clean = true;
-		var JSONLint = require('json-lint');
+		var jsonlint = require('json-lint');
 		var prefix = __dirname + '/data/';
 		fs.readdirSync(prefix).forEach(function (file) {
-			if (file.substr(-5) == '.json') {
-				var lint = JSONLint(fs.readFileSync(prefix + file, 'utf8'))
+			if (file.substr(-5) === '.json') {
+				var lint = jsonlint(fs.readFileSync(prefix + file, 'utf8'));
 				if (lint.error) {
 					console.log('Error in file ' + file, {
 						error: lint.error,
@@ -190,7 +193,7 @@ var fs = require('fs');
 		if (clean) {
 			console.log('No json lint errors');
 		}
-	}
+	};
 
 	var convertSailplanner = function (key) {
 		var http = require('http');
@@ -222,7 +225,7 @@ var fs = require('fs');
 					delete leg.options.speed;
 
 					out.features.push({
-						type: "Feature",
+						type: 'Feature',
 						geometry: {
 							type: 'LineString',
 							coordinates: swap(decode(leg.path))
@@ -248,7 +251,7 @@ var fs = require('fs');
 	var toGeoJSON = function (filename) {
 		if (!filename) {
 			fs.readdirSync('data/').forEach(function (value) {
-				if (value.substr(-5) == '.json') {
+				if (value.substr(-5) === '.json') {
 					toGeoJSON(value.substr(0, value.length - 5));
 				}
 			});
@@ -273,7 +276,7 @@ var fs = require('fs');
 
 			if (leg.marker) {
 				type = 'Point';
-				coordinates = swap(leg.marker)
+				coordinates = swap(leg.marker);
 			} else if (leg.path) {
 				if (typeof leg.path === 'string') {
 					leg.path = decode(leg.path);
@@ -282,7 +285,7 @@ var fs = require('fs');
 				coordinates = swap(leg.path);
 			} else {
 				geojson.features.push({
-					type: "Feature",
+					type: 'Feature',
 					properties: leg
 				});
 				return;
@@ -292,14 +295,14 @@ var fs = require('fs');
 			delete leg.marker;
 
 			geojson.features.push({
-				type: "Feature",
+				type: 'Feature',
 				geometry: {
 					type: type,
 					coordinates: coordinates
 				},
 				properties: leg
 			});
-		})
+		});
 
 		fs.writeFileSync(prefix + filename + '.geojson', JSON.stringify(geojson, null, '\t'));
 		console.log('wrote geojson: ' + filename);
@@ -316,13 +319,19 @@ var fs = require('fs');
 		case 'convert':
 			convertSailplanner(process.argv[3]);
 			break;
-		case 'lint': lint(); break;
-		case 'swapFile': swapFile(process.argv[3]); break;
-		case 'toGeoJSON': toGeoJSON(process.argv[3]); break;
+		case 'lint':
+			lint();
+			break;
+		case 'swapFile':
+			swapFile(process.argv[3]);
+			break;
+		case 'toGeoJSON':
+			toGeoJSON(process.argv[3]);
+			break;
 		default:
 			console.error('Unknown action:', process.argv[2]);
 		}
 	} else {
 		console.log('Please choose an action');
 	}
-})();;
+})();
