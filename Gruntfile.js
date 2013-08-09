@@ -8,18 +8,27 @@ module.exports = function (grunt) {
 			server: {
 				options: {
 					port: 9999,
-					base: '.',
-					keepalive: true
+					base: '.'
 				}
 			}
 		},
 		'uglify': {
 			options: {
-				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+				report: 'min'
 			},
 			build: {
-				src: 'src/<%= pkg.name %>.js',
-				dest: 'build/<%= pkg.name %>.min.js'
+				files: {
+					'dist/saillogs.min.js': [
+						'js/lib/Leaflet/leaflet.js',
+						'js/lib/Leaflet.draw/leaflet-draw.js',
+						'js/lib/jquery-*.min.js',
+						'js/lib/jquery.scrollTo.js',
+						'js/modal.js',
+						'js/CalendarControl.js'
+						'js/*.js'
+					]
+				}
 			}
 		},
 		'jsonlint': {
@@ -42,5 +51,7 @@ module.exports = function (grunt) {
 	grunt.loadTasks('build/tasks');
 
 	// Default
+	grunt.registerTask('server', 'connect:server:keepalive');
+
 	grunt.registerTask('default', ['uglify', 'jsonlint']);
 };
