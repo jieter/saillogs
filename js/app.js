@@ -57,7 +57,7 @@
 					self.renderStory(response);
 				},
 				error: function (e) {
-					console.log('Error in AJAX/parsing JSON', e);
+					console.log('Error in AJAX/parsing JSON, use `node helper.js lint to check', e);
 				}
 			});
 		},
@@ -104,7 +104,7 @@
 					return style;
 				},
 				onEachFeature: function (feature, layer) {
-					feature.properties['_leaflet_id'] = L.stamp(layer);
+					feature.properties['id'] = L.stamp(layer);
 
 					self.renderLegStory(feature.properties);
 				}
@@ -187,6 +187,8 @@
 				if (feature.geometry) {
 					self.features.addData(feature);
 				} else {
+					// give a unique id to layers without geometry too
+					feature.properties.id = L.stamp({});
 					self.renderLegStory(feature.properties);
 				}
 			});
@@ -254,7 +256,7 @@
 			this.features.on('click', function (event) {
 				self.story.find('.leg').each(function () {
 					var leg = $(this);
-					if (leg.data('leg') && leg.data('leg')['_leaflet_id'] === L.stamp(event.layer)) {
+					if (leg.data('leg') && leg.data('leg')['id'] === L.stamp(event.layer)) {
 						leg.click();
 					}
 				});
@@ -269,7 +271,7 @@
 					}
 					$('.leg').each(function () {
 						var current = $(this);
-						if (current.data('leg')['_leaflet_id'] === L.stamp(layer)) {
+						if (current.data('leg')['id'] === L.stamp(layer)) {
 							current.addClass('hover');
 						}
 					});
@@ -279,12 +281,14 @@
 					$('.leg').removeClass('hover');
 				}
 			});
-			// make click on .leg hightlight the leg.
+
+			// make click on .leg highlight the leg.
 			$('#story, #index').on('click', '.leg', function (event) {
 				if ($(event.target).is('img, a')) {
 					return;
 				}
-				var leg = $(this).data('leg');
+				var target = $(this);
+				var leg = target.data('leg');
 
 				// clear highlight on all layers
 				self.features.eachLayer(function (layer) {
@@ -296,8 +300,8 @@
 					}
 				});
 
-				if (leg && leg['_leaflet_id']) {
-					var current = self.features.getLayer(leg['_leaflet_id']);
+				if (leg && leg['id']) {
+					var current = self.features.getLayer(leg['id']);
 					if (current) {
 						if (current.setStyle) {
 							current.setStyle(self.defaultStyles.highlight);
@@ -318,24 +322,24 @@
 							self.map.panTo(current.getLatLng());
 						}
 					}
-					$('.leg').each(function () {
-						var current = $(this);
-						if (current.data('leg')['_leaflet_id'] === leg['_leaflet_id']) {
-							current.addClass('active');
-
-							if (current.parent().is('#story')) {
-								$.scrollTo(current, 500, {
-									offset: {
-										top: -20
-									}
-								});
-							}
-						} else {
-							current.removeClass('active');
-						}
-					});
 				}
 
+				$('.leg').each(function () {
+					var current = $(this);
+					if (current.data('leg')['id'] === leg['id']) {
+						current.addClass('active');
+
+						if (current.parent().is('#story')) {
+							$.scrollTo(current, 500, {
+								offset: {
+								   top: -20
+								}
+							});
+						   }
+					} else {
+						current.removeClass('active');
+					}
+			   	});
 			});
 
 			// listen to hash changes.

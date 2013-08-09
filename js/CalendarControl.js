@@ -27,7 +27,6 @@
 
 			var item = $('<div class="leg"></div>');
 			item.data({
-				'legId': story.id,
 				'leg': story
 			});
 			item.attr('title', story.title);
