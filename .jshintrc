@@ -2,7 +2,7 @@
 
 	// environment
 	"browser": true,
-	"node": false,
+	"node": true,
 	"strict": true,
 
 	"globals": {

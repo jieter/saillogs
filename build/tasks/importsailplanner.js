@@ -3,7 +3,7 @@
  */
 
 module.exports = function (grunt) {
-	"use strict";
+	'use strict';
 
 	var util = require('../util');
 	var http = require('http');

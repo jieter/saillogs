@@ -17,9 +17,8 @@ module.exports = function(grunt) {
     		src: ['data/*.geojson']
     	}
     },
-    'import-sailplanner': {
-
-    }
+    'geojson-swap': {},
+    'import-sailplanner': {}
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
