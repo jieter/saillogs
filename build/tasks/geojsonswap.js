@@ -4,7 +4,6 @@
  *
  * TODO: recurse into featureCollections.
  *
- * jshint: node:true
  */
 
 module.exports = function (grunt) {

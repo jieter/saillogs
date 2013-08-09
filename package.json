@@ -6,7 +6,8 @@
   "dependencies": {
     "connect": "~2.8.4",
     "node-thumbnail": "~0.4.0",
-    "json-lint": "~0.1.0"
+    "json-lint": "~0.1.0",
+    "grunt-contrib-connect": "~0.3.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
