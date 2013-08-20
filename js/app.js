@@ -150,7 +150,7 @@
 				preface.appendTo(story);
 			}
 
-			var list = $($.parseHTML('<ul class="selector">')).appendTo(story);
+			var list = $('<ul class="selector"></ul>').appendTo(story);
 			$.each(logIndex.logs, function (key, log) {
 				if (log.disable && location.port !== '9999') {
 					return;
@@ -332,14 +332,14 @@
 						if (current.parent().is('#story')) {
 							$.scrollTo(current, 500, {
 								offset: {
-								   top: -20
+									top: -20
 								}
 							});
-						   }
+						}
 					} else {
 						current.removeClass('active');
 					}
-			   	});
+				});
 			});
 
 			// listen to hash changes.
