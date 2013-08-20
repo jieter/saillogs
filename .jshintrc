@@ -1,6 +1,4 @@
 {
-
-	// environment
 	"browser": true,
 	"node": true,
 	"strict": true,
@@ -10,7 +8,6 @@
 		"$": true
 	},
 
-	// code style
 	"bitwise": true,
 	"camelcase": true,
 	"curly": true,
@@ -27,16 +24,11 @@
 	"quotmark": "single",
 	"sub": true,
 
-	// whitespace
+
 	"indent": 4,
 	"trailing": true,
 	"white": true,
 	"smarttabs": true,
 	"maxlen": false
 
-	// code simplicity - not enforced but nice to check from time to time
-	// "maxstatements": 20,
-	// "maxcomplexity": 5
-	// "maxparams": 4,
-	// "maxdepth": 4
 }

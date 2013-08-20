@@ -25,10 +25,16 @@ module.exports = function (grunt) {
 						'js/lib/jquery-*.min.js',
 						'js/lib/jquery.scrollTo.js',
 						'js/modal.js',
-						'js/CalendarControl.js'
+						'js/CalendarControl.js',
 						'js/*.js'
 					]
 				}
+			}
+		},
+		'jshint': {
+			files: ['js/*.js'],
+			options: {
+				jshintrc: '.jshintrc'
 			}
 		},
 		'jsonlint': {
@@ -47,11 +53,13 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-jsonlint');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 
+	// saillog specific tasks
 	grunt.loadTasks('build/tasks');
 
 	// Default
 	grunt.registerTask('server', 'connect:server:keepalive');
 
-	grunt.registerTask('default', ['uglify', 'jsonlint']);
+	grunt.registerTask('default', ['jshint', 'jsonlint', 'uglify']);
 };
