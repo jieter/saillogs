@@ -209,12 +209,18 @@
 
 			// Move map to newly loaded area.
 			if (this.features.getLayers().length > 0) {
-				this.map.fitBounds(this.features.getBounds().pad(0.2));
+				this.fitBounds(this.features.getBounds());
 				if (this.map.getZoom() > 14) {
 					this.map.setZoom(14);
 				}
 			}
 			this.features.addTo(this.map);
+		},
+
+		fitBounds: function (bounds) {
+			this.map.fitBounds(bounds, {
+				paddingBottomRight: [this.story.width() * 1.11, 0]
+			});
 		},
 
 		renderLegStory: function (leg) {
@@ -308,16 +314,8 @@
 						}
 
 						if (current.getBounds) {
-							var bounds = current.getBounds();
+							self.fitBounds(current.getBounds());
 							self.features.bringToFront(current);
-
-							// compensate bounds for story on the right.
-							bounds.extend([
-								bounds.getNorth(),
-								bounds.getEast() + 1.25 * (bounds.getEast() - bounds.getWest())
-							]).pad(0.2);
-
-							self.map.fitBounds(bounds);
 						} else if (current.getLatLng) {
 							self.map.panTo(current.getLatLng());
 						}
