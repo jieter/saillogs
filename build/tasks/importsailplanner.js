@@ -29,6 +29,11 @@ module.exports = function (grunt) {
 				var json = JSON.parse(data);
 				var features = [];
 
+				if (json.success === false) {
+					grunt.fail.fatal('Sailplanner.nl replied: ' + json.message);
+					return;
+				}
+
 				json.data.legs.forEach(function (leg) {
 					if (leg.options.comment) {
 						leg.options.title = leg.options.comment;
