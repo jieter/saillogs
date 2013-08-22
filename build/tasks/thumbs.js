@@ -33,60 +33,73 @@ var settings = {
 var queue;
 
 // create a queue with a task to convert an image.
-var createQueue = function (options) {
+var createQueue = function () {
 	if (queue) {
 		return;
 	}
-	queue = async.queue(function (task, callback) {
-		var name = task.options.source;
-		var ext = path.extname(name);
-		var base = path.basename(name, ext);
-
+	queue = async.queue(function (options, callback) {
 		im.resize({
-			srcPath: task.options.source,
-			dstPath:
-				task.options.destination + '/' +
-				base + task.options.suffix + ext,
-
-			width: task.options.width
+			srcPath: options.source,
+			dstPath: options.destination,
+			width: options.width
 		}, function () {
 			callback();
 		});
 	}, settings.concurrency);
-
-	if (options.drain) {
-		queue.drain = options.drain;
-	}
 
 	return queue;
 };
 
 // put images in the queue
 var run = function (options) {
-	createQueue(options);
+	createQueue();
 
 	var images = fs.readdirSync(options.source);
 	images = _.reject(images, function (file) {
 		return _.indexOf(settings.extensions, path.extname(file)) === -1;
 	});
 
+	var thumbCount = 0;
+
+	var addToQueue = function (options) {
+		var name = options.source;
+		var ext = path.extname(name);
+		var base = path.basename(name, ext);
+
+		options.destination = options.destination + '/' + base + options.suffix + ext;
+
+		if (!fs.existsSync(options.destination) || options.force) {
+			queue.push(options);
+			thumbCount++;
+		}
+	};
+
 	_.each(images, function (image) {
+		var imageOptions = _.defaults({}, options);
+		imageOptions.source = options.source + '/' + image;
+
 		// only one thumb per image:
 		if (typeof options.width === 'Number') {
-			queue.push({options: _.defaults({}, options)}, function () {
-				console.log(image);
-			});
+			addToQueue(imageOptions);
 		} else {
-			_.each(image.width, function (width, suffix) {
-				queue.push({
-					options: _.defaults({}, options, {
-						width: width,
-						suffix: suffix
-					})
-				});
-			});
+			for (var i in options.width) {
+				addToQueue(_.extend({}, imageOptions, {
+					width: options.width[i],
+					suffix: i
+				}));
+			}
 		}
 	});
+
+	// attach drain after adding all tasks
+	if (queue.length() > 0) {
+		queue.drain = function () {
+			if (options.drain) {
+				options.drain();
+			}
+			console.log('Converted ' + thumbCount);
+		};
+	}
 };
 
 var thumb = function (options) {
@@ -113,9 +126,10 @@ module.exports = function (grunt) {
 	grunt.registerMultiTask('saillog-thumbs', 'Generate thumbs from originals.', function () {
 		var done = this.async();
 
+		var force = grunt.option('force');
+
 		if (this.files !== null) {
 			this.filesSrc.filter(hasOrig).forEach(function (filepath) {
-
 				thumb({
 					source: filepath + '/orig',
 					destination: filepath,
@@ -123,6 +137,7 @@ module.exports = function (grunt) {
 						'.thumb': 200,
 						'': 1000
 					},
+					force: force,
 					drain: function () {
 						done();
 					}
