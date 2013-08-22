@@ -237,7 +237,8 @@ table td.meta {
 	#map: {
 		border: 1px solid black;
 	}
-	#index, #explanation, .leaflet-control-layers {
+	#index, #explanation, .leaflet-control-layers,
+	.leaflet-marker, .leaflet-marker-shadow {
 		display: none;
 	}
 	#story {
@@ -245,5 +246,13 @@ table td.meta {
 		page-break-before: always;
 		width: 440px;
 		color: black;
+		border: 0;
+	}
+
+	#story img.thumb {
+		 width: 200px;
+		 margin-left: -240px;
+		 border: 0;
+		 margin-bottom: 10px;
 	}
 }

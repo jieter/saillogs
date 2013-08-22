@@ -59,6 +59,7 @@ $.fn['mediaModal'] = function (options) {
 			'margin-left': -(modal.outerWidth() / 2) + 'px'
 		});
 	};
+
 	var closeModal = function () {
 		overlay.fadeOut(200, function () {
 			overlay.css('display', 'none');
