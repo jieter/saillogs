@@ -104,6 +104,9 @@
 			});
 		},
 
+
+
+
 		name2mmsi: function (name) {
 			var filename = 'data/mmsi.csv';
 			if (!name || name.length < 1 || !fs.existsSync(filename)) {
@@ -175,6 +178,10 @@
 				type: 'FeatureCollection',
 				features: features
 			};
+		},
+
+		stringify: function (obj) {
+			return JSON.stringify(obj, null, '\t');
 		}
 	};
 	module.exports = util;
