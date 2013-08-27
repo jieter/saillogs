@@ -60,6 +60,32 @@
 				});
 				return ret;
 			}
+		},
+
+		marinetraffic2json: function (xml, callback) {
+			require('xml2js').parseString(xml, function (err, result) {
+				if (err) {
+					callback(err, result);
+					return;
+				}
+				if (!result.TRACK || !result.TRACK.POS) {
+					callback(new Error('Unexpected xml contents'));
+					return;
+				}
+
+				var track = [];
+				result.TRACK.POS.forEach(function (point) {
+					point = point.$;
+					track.push({
+						latlng: [parseFloat(point.LAT), parseFloat(point.LON)],
+						speed: parseInt(point.SPEED, 10),
+						course: parseInt(point.COURSE, 10),
+						timestamp: point.TIMESTAMP
+					});
+				});
+
+				callback(null, track);
+			});
 		}
 	};
 	module.exports = util;

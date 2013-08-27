@@ -42,8 +42,6 @@ module.exports = function (grunt) {
 				src: ['data/*.geojson']
 			}
 		},
-		'geojson-swap': {},
-		'import-sailplanner': {},
 		'saillog-thumbs': {
 			files: {
 				src: ['data/*']
