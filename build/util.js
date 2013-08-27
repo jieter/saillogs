@@ -6,6 +6,8 @@
 (function () {
 	'use strict';
 
+	var fs = require('fs');
+
 	var util = {
 		decode: function (encoded) {
 			var len = encoded.length;
@@ -49,6 +51,12 @@
 			return Math.round(num * pow) / pow;
 		},
 
+		average: function (array) {
+			return array.reduce(function (a, b) {
+				return a + b;
+			}) / array.length;
+		},
+
 		// swap x/y for geojson
 		swap: function (array) {
 			if (array.length === 2 && typeof array[0] === 'number') {
@@ -62,6 +70,14 @@
 			}
 		},
 
+		/* Passes a minimal json representation of the marinetraffic XML to the callback.
+		 * [{
+		 *   latlng: [<>, <>],
+		 *   speed: <>, // knots,
+		 *   course: <>, // degrees
+		 *   timestamp: "<>"
+		 * }, {...}]
+		 */
 		marinetraffic2json: function (xml, callback) {
 			require('xml2js').parseString(xml, function (err, result) {
 				if (err) {
@@ -86,6 +102,79 @@
 
 				callback(null, track);
 			});
+		},
+
+		name2mmsi: function (name) {
+			var filename = 'data/mmsi.csv';
+			if (!name || name.length < 1 || !fs.existsSync(filename)) {
+				return name;
+			}
+			var list = fs.readFileSync(filename, 'utf8')
+				.split('\n')
+				.map(function (item) {
+					if (item[0] === '#') {
+						return;
+					} else {
+						return item.trim().split(',');
+					}
+				}).filter(function (item) { return item && item.length === 2; });
+
+			for (var i in list) {
+				var n = list[i][1];
+				if (name === n || name === n.toLowerCase()) {
+					return list[i][0];
+				}
+			}
+			return name;
+		},
+
+		toGeojson: function (json, points) {
+			if (points === undefined) {
+				points = false;
+			}
+
+			var features = [];
+			var lineCoords = [];
+
+			var sogs = [];
+			var cogs = [];
+
+			json.forEach(function (value) {
+				if (points) {
+					features.push({
+						type: 'Feature',
+						geometry: {
+							type: 'Point',
+							coordinates: util.swap(value.latlng)
+						},
+						properties: {
+							speed: Math.round(value.speed) / 10,
+							course: value.course,
+							timestamp: value.timestamp
+						}
+					});
+				}
+				lineCoords.push(util.swap(value.latlng));
+				sogs.push(value.speed);
+				cogs.push(value.course);
+			});
+
+			features.push({
+				type: 'Feature',
+				geometry: {
+					type: 'LineString',
+					coordinates: lineCoords,
+				},
+				properties: {
+					'avg_sog': Math.round(util.average(sogs)) / 10,
+					'avg_cog': Math.round(util.average(cogs))
+				}
+			});
+
+			return {
+				type: 'FeatureCollection',
+				features: features
+			};
 		}
 	};
 	module.exports = util;
