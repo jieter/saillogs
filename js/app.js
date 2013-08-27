@@ -379,7 +379,7 @@
 			var drawControl = new L.Control.Draw({
 				draw: {
 					polygon: false,
-					marker: false,
+					marker: true,
 					rectangle: false,
 					circle: false
 				}
