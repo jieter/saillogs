@@ -57,12 +57,12 @@ module.exports = function (grunt) {
 
 
 				grunt.file.write(filename,
-					JSON.stringify({
+					util.stringify({
 						type: 'FeatureCollection',
 						title: json.data.options.comment,
 						originalURL: json.url,
 						features: features
-					}, null, '\t')
+					})
 				);
 
 				grunt.log.writeln('...saved to geoJSON in ' + filename);

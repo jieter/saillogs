@@ -94,7 +94,7 @@
 					point = point.$;
 					track.push({
 						latlng: [parseFloat(point.LAT), parseFloat(point.LON)],
-						speed: parseInt(point.SPEED, 10),
+						speed: parseInt(point.SPEED, 10) / 10,
 						course: parseInt(point.COURSE, 10),
 						timestamp: point.TIMESTAMP
 					});
@@ -103,9 +103,6 @@
 				callback(null, track);
 			});
 		},
-
-
-
 
 		name2mmsi: function (name) {
 			var filename = 'data/mmsi.csv';
@@ -151,7 +148,7 @@
 							coordinates: util.swap(value.latlng)
 						},
 						properties: {
-							speed: Math.round(value.speed) / 10,
+							speed: util.formatNum(value.speed, 2),
 							course: value.course,
 							timestamp: value.timestamp
 						}
@@ -169,7 +166,7 @@
 					coordinates: lineCoords,
 				},
 				properties: {
-					'avg_sog': Math.round(util.average(sogs)) / 10,
+					'avg_sog': Math.round(util.average(sogs)),
 					'avg_cog': Math.round(util.average(cogs))
 				}
 			});

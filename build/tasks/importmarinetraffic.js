@@ -11,14 +11,14 @@ module.exports = function (grunt) {
 
 	var unix = Math.round(+new Date() / 1000);
 
-	grunt.registerTask('import-marinetraffic', 'Import track from marinetraffic.', function (mmsi) {
+	grunt.registerTask('dump-marinetraffic', 'Dump track from marinetraffic.', function (mmsi) {
 		if (!mmsi || mmsi.length === 0) {
-			grunt.fail.fatal('Supply MMSI to import (grunt import-marinetraffic:<mmsi>)');
+			grunt.fail.fatal('Supply MMSI to dump (grunt dump-marinetraffic:<mmsi>)');
 		}
 		mmsi = util.name2mmsi(mmsi);
 
 		var url = 'http://www.marinetraffic.com/ais/gettrackxml.aspx?mmsi=' + mmsi + '&date=&id=null';
-		var filename = 'data/' + mmsi + '-' + unix + '.trk';
+		var filename = 'data/dump/' + mmsi + '-' + unix + '.trk';
 
 		grunt.log.writeln('Importing from ' + url + '...');
 
@@ -32,12 +32,13 @@ module.exports = function (grunt) {
 			});
 			res.on('end', function () {
 				grunt.file.write(filename, data);
-
-				util.marinetraffic2json(data, function (err, result) {
-					grunt.file.write('test.json', util.stringify(result));
-					grunt.file.write('test.geojson', util.stringify(util.toGeojson(result)));
-					done();
-				});
+				grunt.log.writeln('Dumped to ' + filename);
+				done();
+				// util.marinetraffic2json(data, function (err, result) {
+				// 	// grunt.file.write('test.json', util.stringify(result));
+				// 	// grunt.file.write('test.geojson', util.stringify(util.toGeojson(result)));
+				// 	done();
+				// });
 			});
 		}).on('error', function (event) {
 			grunt.fail.fatal('HTTP error: ' + event.message);
@@ -45,41 +46,54 @@ module.exports = function (grunt) {
 		});
 	});
 
-	grunt.registerTask('merge-marinetraffic', 'Merge marinetraffic files dumped by import-marinetraffic', function (mmsi) {
+	grunt.registerTask('merge-marinetraffic', 'Merge marinetraffic files dumped by dump-marinetraffic', function (mmsi) {
 		if (!mmsi || mmsi.length === 0) {
-			grunt.fail.fatal('Supply MMSI to import (grunt import-marinetraffic:<mmsi>)');
+			grunt.fail.fatal('Supply MMSI to merge (grunt merge-marinetraffic:<mmsi>)');
 		}
-		mmsi = util.name2mmsi(mmsi) + "";
+		mmsi = util.name2mmsi(mmsi) + '';
 
+		// only save moving points
+		var threshold = grunt.option('threshold') || 0.2;
 
+		var path = 'data/dump/';
 		var done = this.async();
 		var data = {};
 
-		var files = fs.readdirSync('data/').filter(function (item) {
+		var files = fs.readdirSync(path).filter(function (item) {
 			return item.substring(0, mmsi.length) === mmsi && item.substr(-3) === 'trk';
 		});
-		grunt.log.writeln('Merging ' + files.join(', ') + '...');
+		grunt.log.writeln('Merging with threshold ' + threshold + 'kts ' + files.join(', ') + '...');
 
-		files.forEach(function (filename) {
-			util.marinetraffic2json(fs.readFileSync('data/' + filename, 'utf8'), function (err, result) {
+		grunt.util.async.forEach(files, function (filename, callback) {
+			util.marinetraffic2json(fs.readFileSync(path + filename, 'utf8'), function (err, result) {
 				console.log(filename, result.length);
 				result.forEach(function (value) {
 					data[value.timestamp] = value;
 				});
+				callback();
 			});
+		}, function (error) {
+			if (error) {
+				return done(error);
+			}
+
+			var ret = [];
+			for (var i in data) {
+				if (data[i].speed < threshold) {
+					continue;
+				}
+				ret.push(data[i]);
+			}
+
+			var filename = path + mmsi + unix + '-combined';
+			grunt.file.write(filename + '.json', util.stringify(ret));
+			grunt.file.write(filename + '.geojson', util.stringify(util.toGeojson(ret)));
+
+			console.log('Wrote to ' + filename + '.(geo)json with ' + ret.length + ' trkpts');
+
+			done();
 		});
 
-		var ret = [];
-		for (var i in data) {
-			ret.push(data[i]);
-		}
-
-
-		var filename = 'data/' + mmsi + unix + '-combined';
-		grunt.file.write(filename + '.json', util.stringify(ret));
-		grunt.file.write(filename + '.geojson', util.stringify(util.toGeojson(ret)));
-
-		console.log(filename, ret.length);
 	});
 
 };

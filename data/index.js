@@ -5,6 +5,12 @@ var logIndex = {
 	text: '![Jieter](jieter.jpg) Op deze site is een aantal verhalen te vinden van zeiltochten die ik heb gemaakt. Sommigen zijn compleet met beeldmateriaal en een opgenomen tracklog uit de GPS, anderen zijn slechts voorzien van marginaal commentaar...',
 	logs: [
 		{
+			'name': '2013-eendracht-papa',
+			'title': 'Eendrachttocht 2013',
+			'date': '2013-08-26',
+			'disable': true
+		},
+		{
 			'name': '2013-zomerzeilen',
 			'title': 'Zomerzeilen 2013',
 			'date': '2013-07-19'

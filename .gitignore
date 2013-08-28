@@ -1,4 +1,5 @@
 node_modules
 orig
 data/*/orig
+data/dump
 *.docx
