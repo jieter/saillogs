@@ -166,7 +166,7 @@
 					coordinates: lineCoords,
 				},
 				properties: {
-					'avg_sog': Math.round(util.average(sogs)),
+					'avg_sog': util.formatNum(util.average(sogs), 2),
 					'avg_cog': Math.round(util.average(cogs))
 				}
 			});

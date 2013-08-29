@@ -8,6 +8,7 @@ module.exports = function (grunt) {
 	var fs = require('fs');
 	var http = require('http');
 	var util = require('../util');
+	var async = grunt.util.async;
 
 	var unix = Math.round(+new Date() / 1000);
 
@@ -33,12 +34,8 @@ module.exports = function (grunt) {
 			res.on('end', function () {
 				grunt.file.write(filename, data);
 				grunt.log.writeln('Dumped to ' + filename);
+
 				done();
-				// util.marinetraffic2json(data, function (err, result) {
-				// 	// grunt.file.write('test.json', util.stringify(result));
-				// 	// grunt.file.write('test.geojson', util.stringify(util.toGeojson(result)));
-				// 	done();
-				// });
 			});
 		}).on('error', function (event) {
 			grunt.fail.fatal('HTTP error: ' + event.message);
@@ -56,15 +53,16 @@ module.exports = function (grunt) {
 		var threshold = grunt.option('threshold') || 0.2;
 
 		var path = 'data/dump/';
-		var done = this.async();
 		var data = {};
+
+		var done = this.async();
 
 		var files = fs.readdirSync(path).filter(function (item) {
 			return item.substring(0, mmsi.length) === mmsi && item.substr(-3) === 'trk';
 		});
-		grunt.log.writeln('Merging with threshold ' + threshold + 'kts ' + files.join(', ') + '...');
+		grunt.log.writeln('Merging ' + files.length + 'files with threshold ' + threshold + 'kts...');
 
-		grunt.util.async.forEach(files, function (filename, callback) {
+		async.forEach(files, function (filename, callback) {
 			util.marinetraffic2json(fs.readFileSync(path + filename, 'utf8'), function (err, result) {
 				console.log(filename, result.length);
 				result.forEach(function (value) {
