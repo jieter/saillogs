@@ -159,6 +159,10 @@
 				cogs.push(value.course);
 			});
 
+			var startTime = json[0].timestamp;
+			var endTime = json[json.length - 1].timestamp;
+			var duration = (new Date(endTime) - new Date(startTime)) / 1000;
+
 			features.push({
 				type: 'Feature',
 				geometry: {
@@ -167,7 +171,10 @@
 				},
 				properties: {
 					'avg_sog': util.formatNum(util.average(sogs), 2),
-					'avg_cog': Math.round(util.average(cogs))
+					'avg_cog': Math.round(util.average(cogs)),
+					'start_timestamp': startTime,
+					'end_timestamp': endTime,
+					'duration': duration
 				}
 			});
 
