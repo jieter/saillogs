@@ -108,7 +108,8 @@ module.exports = function (grunt) {
 		var targetFile = 'data/' + util.mmsi2datafile(mmsi);
 
 		if (!fs.existsSync(targetFile)) {
-			src.title = '';
+			src.title = util.mmsi2name(mmsi);
+
 			src.features.forEach(function (value, key) {
 				var d = new Date(value.properties.startTime);
 				_.extend(src.features[key].properties, {
