@@ -58,7 +58,7 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('server', 'connect:server:keepalive');
 
-	var ships = ['eendracht', 'lutgerdina'];
+	var ships = ['eendracht', 'lutgerdina', 'beatrix'];
 	ships.forEach(function (ship) {
 		grunt.registerTask(ship, [
 			'dump-marinetraffic:' + ship,

@@ -77,8 +77,8 @@
 			});
 		},
 
-		mmsiList: function () {
-			return fs.readFileSync('data/mmsi.csv', 'utf8')
+		mmsiList: function (mmsi) {
+			var list = fs.readFileSync('data/mmsi.csv', 'utf8')
 				.split('\n')
 				.map(function (item) {
 					if (item[0] === '#') {
@@ -87,36 +87,44 @@
 						return item.trim().split(',');
 					}
 				}).filter(function (item) { return item && item.length >= 2; });
+
+			if (mmsi) {
+				return list.filter(function (item) {
+					return item[0] === mmsi;
+				})[0];
+			} else {
+				return list;
+			}
 		},
 
 		name2mmsi: function (name) {
 			if (!name || name.length < 1) {
 				return name;
 			}
-			var list = util.mmsiList();
 
-			for (var i in list) {
-				var n = list[i][1];
-				if (name === n || name === n.toLowerCase()) {
-					return list[i][0];
-				}
+			var vessel = util.mmsiList().filter(function (item) {
+				return item[1] == name || item[1].toLowerCase() == name;
+			})[0];
+
+			if (vessel) {
+				return vessel[0];
+			} else {
+				return name;
 			}
-			return name;
+		},
+
+		mmsi2name: function (mssi) {
+			return util.mmsiList(mmsi)[1];
 		},
 
 		mmsi2datafile: function (mmsi) {
-			var list = util.mmsiList();
+			var vessel = util.mmsiList(mmsi);
 
-			for (var i in list) {
-				if (list[i][0] === mmsi) {
-					if (list[i][2]) {
-						return list[i][2];
-					} else {
-						return list[i][1] + '.geojson';
-					}
-				}
+			if (vessel) {
+				return vessel[2] ? vessel[2] : vessel[1] + '.geojson';
+			} else {
+				return mmsi + '.geojson';
 			}
-			return mmsi + '.geojson';
 		},
 
 		gjPoint: function (latlng, properties) {

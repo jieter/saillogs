@@ -65,6 +65,10 @@ module.exports = function (grunt) {
 		var data = {};
 		async.forEach(files, function (filename, callback) {
 			util.marinetraffic2json(fs.readFileSync(dumpPath + filename, 'utf8'), function (err, result) {
+				if (err) {
+					// skip file with error
+					return;
+				}
 				console.log(filename, result.length);
 				result.forEach(function (value) {
 					data[value.timestamp] = value;
@@ -104,6 +108,7 @@ module.exports = function (grunt) {
 		var targetFile = 'data/' + util.mmsi2datafile(mmsi);
 
 		if (!fs.existsSync(targetFile)) {
+			src.title = ''
 			src.features.forEach(function (value, key) {
 				var d = new Date(value.properties.startTime);
 				_.extend(src.features[key].properties, {
