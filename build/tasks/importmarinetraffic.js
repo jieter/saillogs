@@ -109,13 +109,27 @@ module.exports = function (grunt) {
 		}
 		var json = JSON.parse(fs.readFileSync(targetFile));
 
+		var within = function (x, lower, upper) {
+			return (x && lower && upper) && x > lower && x < upper;
+		};
+
 		var matched;
 		src.features.forEach(function (source) {
 			// try to find a matching startTime in target
 			matched = false;
 			json.features.forEach(function (target, key) {
 				if (source.properties.startTime === target.properties.startTime) {
+					// leg startsTimes are equal, replace coords
 					json.features[key].geometry.coordinates = source.geometry.coordinates;
+
+					// update leg statistics
+					_.extend(json.features[key].properties, source.properties);
+
+					matched = true;
+				}
+				if (within(source.properties.startTime, target.properties.startTime, target.properties.endTime)) {
+					// starts within an existing leg.
+					// TODO: merge, skiping for now.
 					matched = true;
 				}
 			});
