@@ -5,12 +5,15 @@
 module.exports = function (grunt) {
 	'use strict';
 
+	var _ = require('underscore');
 	var fs = require('fs');
 	var http = require('http');
 	var util = require('../util');
 	var async = grunt.util.async;
 
 	var unix = Math.round(+new Date() / 1000);
+
+	var dumpPath = 'data/dump/';
 
 	grunt.registerTask('dump-marinetraffic', 'Dump track from marinetraffic.', function (mmsi) {
 		if (!mmsi || mmsi.length === 0) {
@@ -19,7 +22,7 @@ module.exports = function (grunt) {
 		mmsi = util.name2mmsi(mmsi);
 
 		var url = 'http://www.marinetraffic.com/ais/gettrackxml.aspx?mmsi=' + mmsi + '&date=&id=null';
-		var filename = 'data/dump/' + mmsi + '-' + unix + '.trk';
+		var filename = dumpPath + mmsi + '-' + unix + '.trk';
 
 		grunt.log.writeln('Importing from ' + url + '...');
 
@@ -50,20 +53,18 @@ module.exports = function (grunt) {
 		mmsi = util.name2mmsi(mmsi) + '';
 
 		// only save moving points
-		var threshold = grunt.option('threshold') || 0.2;
-
-		var path = 'data/dump/';
-		var data = {};
+		var threshold = grunt.option('threshold') || 0.51;
 
 		var done = this.async();
 
-		var files = fs.readdirSync(path).filter(function (item) {
+		var files = fs.readdirSync(dumpPath).filter(function (item) {
 			return item.substring(0, mmsi.length) === mmsi && item.substr(-3) === 'trk';
 		});
-		grunt.log.writeln('Merging ' + files.length + 'files with threshold ' + threshold + 'kts...');
+		grunt.log.writeln('Merging ' + files.length + ' files with threshold ' + threshold + 'kts...');
 
+		var data = {};
 		async.forEach(files, function (filename, callback) {
-			util.marinetraffic2json(fs.readFileSync(path + filename, 'utf8'), function (err, result) {
+			util.marinetraffic2json(fs.readFileSync(dumpPath + filename, 'utf8'), function (err, result) {
 				console.log(filename, result.length);
 				result.forEach(function (value) {
 					data[value.timestamp] = value;
@@ -83,15 +84,57 @@ module.exports = function (grunt) {
 				ret.push(data[i]);
 			}
 
-			var filename = path + mmsi + unix + '-combined';
+			var filename = dumpPath + mmsi + '-' + unix + '-combined';
 			grunt.file.write(filename + '.json', util.stringify(ret));
-			grunt.file.write(filename + '.geojson', util.stringify(util.toGeojson(ret)));
+			grunt.file.write(dumpPath + mmsi + '.geojson', util.stringify(util.toGeojson(ret)));
 
-			console.log('Wrote to ' + filename + '.(geo)json with ' + ret.length + ' trkpts');
+			console.log('Wrote to ' + filename + '.json / ' + dumpPath + mmsi + '.geojson with ' + ret.length + ' trkpts');
 
 			done();
 		});
+	});
 
+	grunt.registerTask('import-marinetraffic', 'import marinetraffic into geojson file', function (mmsi) {
+		if (!mmsi || mmsi.length === 0) {
+			grunt.fail.fatal('Supply MMSI to merge (grunt merge-marinetraffic:<mmsi>)');
+		}
+		mmsi = util.name2mmsi(mmsi) + '';
+
+		var src = JSON.parse(fs.readFileSync(dumpPath + mmsi + '.geojson', 'utf8'));
+		var targetFile = 'data/2013-eendracht-papa.geojson';
+
+		if (!fs.existsSync(targetFile)) {
+			grunt.write(targetFile, util.stringify(src));
+			return;
+		}
+		var json = JSON.parse(fs.readFileSync(targetFile));
+
+		var matched;
+		src.features.forEach(function (source) {
+			// try to find a matching startTime in target
+			matched = false;
+			json.features.forEach(function (target, key) {
+				if (source.properties.startTime === target.properties.startTime) {
+					json.features[key].geometry.coordinates = source.geometry.coordinates;
+					matched = true;
+				}
+			});
+
+			if (!matched) {
+				var d = new Date(source.properties.startTime);
+				_.extend(source.properties, {
+					title: 'marinetraffic imported',
+					text: '',
+					date: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+				});
+
+				json.features.push(source);
+			}
+			matched = false;
+		});
+
+		grunt.file.write(targetFile, util.stringify(json));
+		grunt.log.writeln('Updated ' + targetFile);
 	});
 
 };

@@ -56,8 +56,15 @@ module.exports = function (grunt) {
 	// saillog specific tasks
 	grunt.loadTasks('build/tasks');
 
-	// Default
 	grunt.registerTask('server', 'connect:server:keepalive');
+
+	['eendracht'].forEach(function (ship) {
+		grunt.registerTask(ship, [
+			'dump-marinetraffic:' + ship,
+			'merge-marinetraffic:' + ship,
+			'import-marinetraffic:' + ship
+		]);
+	});
 
 	grunt.registerTask('default', ['jshint', 'jsonlint', 'uglify']);
 };

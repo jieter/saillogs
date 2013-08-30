@@ -6,6 +6,7 @@ module.exports = function (grunt) {
 	'use strict';
 
 	var util = require('../util');
+	var polyUtil = require('polyline-encoded');
 	var http = require('http');
 
 	grunt.registerTask('import-sailplanner', 'Import sailplanner url.', function (key) {
@@ -49,7 +50,7 @@ module.exports = function (grunt) {
 						type: 'Feature',
 						geometry: {
 							type: 'LineString',
-							coordinates: util.swap(util.decode(leg.path))
+							coordinates: util.swap(polyUtil.decode(leg.path))
 						},
 						properties: leg.options
 					});

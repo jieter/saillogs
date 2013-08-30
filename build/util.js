@@ -9,52 +9,25 @@
 	var fs = require('fs');
 
 	var util = {
-		decode: function (encoded) {
-			var len = encoded.length;
-			var index = 0;
-			var latlngs = [];
-			var lat = 0;
-			var lng = 0;
-
-			/*jshint bitwise:false */
-			while (index < len) {
-				var b;
-				var shift = 0;
-				var result = 0;
-				do {
-					b = encoded.charCodeAt(index++) - 63;
-					result |= (b & 0x1f) << shift;
-					shift += 5;
-				} while (b >= 0x20);
-				var dlat = ((result & 1) ? ~(result >> 1) : (result >> 1));
-				lat += dlat;
-
-				shift = 0;
-				result = 0;
-				do {
-					b = encoded.charCodeAt(index++) - 63;
-					result |= (b & 0x1f) << shift;
-					shift += 5;
-				} while (b >= 0x20);
-				var dlng = ((result & 1) ? ~(result >> 1) : (result >> 1));
-				lng += dlng;
-
-				latlngs.push([lat * 1e-5, lng * 1e-5]);
-			}
-			/*jshint bitwise:true */
-
-			return latlngs;
-		},
-
 		formatNum: function (num, digits) {
 			var pow = Math.pow(10, digits || 5);
 			return Math.round(num * pow) / pow;
 		},
 
-		average: function (array) {
+		// return average for array of numbers,
+		// or, if key is defined, for key in array of objects.
+		average: function (array, key) {
 			return array.reduce(function (a, b) {
-				return a + b;
-			}) / array.length;
+				if (key) {
+					return a + b[key];
+				} else {
+					return a + b;
+				}
+			}, 0) / array.length;
+		},
+
+		timeDiff: function (a, b) {
+			return Math.abs((new Date(a) - new Date(b)) / 1000);
 		},
 
 		// swap x/y for geojson
@@ -128,54 +101,68 @@
 			return name;
 		},
 
-		toGeojson: function (json, points) {
-			if (points === undefined) {
-				points = false;
-			}
+		gjPoint: function (latlng, properties) {
+			return {
+				type: 'Feature',
+				geometry: {
+					type: 'Point',
+					coordinates: util.swap(latlng)
+				},
+				properties: properties || {}
+			};
+		},
 
-			var features = [];
-			var lineCoords = [];
-
-			var sogs = [];
-			var cogs = [];
-
-			json.forEach(function (value) {
-				if (points) {
-					features.push({
-						type: 'Feature',
-						geometry: {
-							type: 'Point',
-							coordinates: util.swap(value.latlng)
-						},
-						properties: {
-							speed: util.formatNum(value.speed, 2),
-							course: value.course,
-							timestamp: value.timestamp
-						}
-					});
-				}
-				lineCoords.push(util.swap(value.latlng));
-				sogs.push(value.speed);
-				cogs.push(value.course);
-			});
-
-			var startTime = json[0].timestamp;
-			var endTime = json[json.length - 1].timestamp;
-			var duration = (new Date(endTime) - new Date(startTime)) / 1000;
-
-			features.push({
+		gjLineString: function (latlngs, properties) {
+			return {
 				type: 'Feature',
 				geometry: {
 					type: 'LineString',
-					coordinates: lineCoords,
+					coordinates: util.swap(latlngs),
 				},
-				properties: {
-					'avg_sog': util.formatNum(util.average(sogs), 2),
-					'avg_cog': Math.round(util.average(cogs)),
-					'start_timestamp': startTime,
-					'end_timestamp': endTime,
-					'duration': duration
+				properties: properties || {}
+			};
+		},
+
+		points2lineString: function (points) {
+			var latlngs = points.map(function (v) {
+				return v.latlng;
+			});
+
+			var startTime = points[0].timestamp;
+			var endTime = points[points.length - 1].timestamp;
+
+			return util.gjLineString(latlngs, {
+				'avg_sog': util.formatNum(util.average(points, 'speed'), 2),
+				'avg_cog': Math.round(util.average(points, 'course')),
+				'startTime': startTime,
+				'endTime': endTime,
+				'duration': util.timeDiff(endTime, startTime)
+			});
+		},
+
+
+		toGeojson: function (json) {
+			var options = {
+				points: false,
+				timeThreshold: 2 * 60 * 60 // 2h split = new leg.
+			};
+			var features = [];
+
+			var prev, splitHere, lastPt;
+			var line = [];
+
+			json.forEach(function (value, key) {
+				line.push(value);
+
+				splitHere = prev ? util.timeDiff(prev.timestamp, value.timestamp) > options.timeThreshold : false;
+				lastPt = (key === json.length - 1);
+
+				if (line.length > 0 && (splitHere || lastPt)) {
+					features.push(util.points2lineString(line));
+					line = [];
 				}
+
+				prev = value;
 			});
 
 			return {
