@@ -122,6 +122,8 @@ module.exports = function (grunt) {
 			grunt.log.writeln('Created ' + targetFile);
 			return;
 		}
+
+		// target file exists, extend it with the new tracks.
 		var json = JSON.parse(fs.readFileSync(targetFile));
 
 		var within = function (x, lower, upper) {

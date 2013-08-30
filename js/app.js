@@ -181,8 +181,7 @@
 
 			document.title = data.title;
 			story.find('.selector').remove();
-			story.find('h1').html(data.title);
-			story.find('#explanation').show();
+			story.find('h1').html(data.title);;
 			story.find('.leg').remove();
 
 			// refresh selector.
