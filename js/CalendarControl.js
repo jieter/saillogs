@@ -53,6 +53,9 @@
 			if (diff !== 0) {
 				item.appendTo(container);
 			}
+		},
+		clear: function () {
+			this._container.innerHTML = '';
 		}
 	});
 })(L);

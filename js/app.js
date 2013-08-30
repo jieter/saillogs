@@ -128,6 +128,9 @@
 			map.setView(logIndex.center, logIndex.zoom, {
 				animate: true
 			});
+
+			this.calendar.clear();
+			return this;
 		},
 
 		renderStorylist: function () {
@@ -136,7 +139,7 @@
 			var story = this.story;
 
 			document.title = 'Jieters zeilverslagen';
-			this.index.html('');
+			this.calendar.clear();
 
 			story.find('h1').html('Jieters zeilverslagen');
 			story.find('.leg').remove();
@@ -169,6 +172,8 @@
 
 		renderStory: function (data) {
 			var self = this;
+			self.clearMap();
+
 			var story = this.story;
 
 			data.styles = $.extend(data.styles, this.defaultStyles);
