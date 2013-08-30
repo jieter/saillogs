@@ -101,10 +101,19 @@ module.exports = function (grunt) {
 		mmsi = util.name2mmsi(mmsi) + '';
 
 		var src = JSON.parse(fs.readFileSync(dumpPath + mmsi + '.geojson', 'utf8'));
-		var targetFile = 'data/2013-eendracht-papa.geojson';
+		var targetFile = 'data/' + util.mmsi2datafile(mmsi);
 
 		if (!fs.existsSync(targetFile)) {
-			grunt.write(targetFile, util.stringify(src));
+			src.features.forEach(function (value, key) {
+				var d = new Date(value.properties.startTime);
+				_.extend(src.features[key].properties, {
+					title: 'marinetraffic imported',
+					text: '',
+					date: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+				});
+			});
+			grunt.file.write(targetFile, util.stringify(src));
+			grunt.log.writeln('Created ' + targetFile);
 			return;
 		}
 		var json = JSON.parse(fs.readFileSync(targetFile));

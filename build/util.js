@@ -77,12 +77,8 @@
 			});
 		},
 
-		name2mmsi: function (name) {
-			var filename = 'data/mmsi.csv';
-			if (!name || name.length < 1 || !fs.existsSync(filename)) {
-				return name;
-			}
-			var list = fs.readFileSync(filename, 'utf8')
+		mmsiList: function () {
+			return fs.readFileSync('data/mmsi.csv', 'utf8')
 				.split('\n')
 				.map(function (item) {
 					if (item[0] === '#') {
@@ -90,7 +86,14 @@
 					} else {
 						return item.trim().split(',');
 					}
-				}).filter(function (item) { return item && item.length === 2; });
+				}).filter(function (item) { return item && item.length >= 2; });
+		},
+
+		name2mmsi: function (name) {
+			if (!name || name.length < 1) {
+				return name;
+			}
+			var list = util.mmsiList();
 
 			for (var i in list) {
 				var n = list[i][1];
@@ -99,6 +102,21 @@
 				}
 			}
 			return name;
+		},
+
+		mmsi2datafile: function (mmsi) {
+			var list = util.mmsiList();
+
+			for (var i in list) {
+				if (list[i][0] === mmsi) {
+					if (list[i][2]) {
+						return list[i][2];
+					} else {
+						return list[i][1] + '.geojson';
+					}
+				}
+			}
+			return mmsi + '.geojson';
 		},
 
 		gjPoint: function (latlng, properties) {
