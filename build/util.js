@@ -103,7 +103,7 @@
 			}
 
 			var vessel = util.mmsiList().filter(function (item) {
-				return item[1] == name || item[1].toLowerCase() == name;
+				return item[1] === name || item[1].toLowerCase() === name;
 			})[0];
 
 			if (vessel) {
@@ -113,7 +113,7 @@
 			}
 		},
 
-		mmsi2name: function (mssi) {
+		mmsi2name: function (mmsi) {
 			return util.mmsiList(mmsi)[1];
 		},
 
