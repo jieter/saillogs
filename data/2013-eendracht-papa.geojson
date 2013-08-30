@@ -4163,6 +4163,8 @@
 			"properties": {
 				"avg_sog": 5.86,
 				"avg_cog": 83,
+				"startTime": "2013-08-28T18:10:00",
+				"endTime": "2013-08-29T05:23:00",
 
 				"color": "#ff0000",
 				"date": "2013-08-28",
