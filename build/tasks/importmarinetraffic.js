@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 	var _ = require('underscore');
 
 	var util = require('../util');
-	var marinetraffic = require('../../marinetraffic/index.js');
+	var marinetraffic = require('marinetraffic');
 	var mmsi = require('../mmsi');
 
 	var name2mmsi = function (name) {
