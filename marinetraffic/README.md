@@ -41,7 +41,7 @@ Example of a result object:
 ```
 
 ### `result.raw`
-The `raw` member contains a JSON representation of all the points, the `toGeoJson` contains a function
+The `raw` member contains a JSON representation of all the points.
 
 ### `result.union(otherResult)`
 Returns the union of `result` and `otherResult` by looking at the timestamps of each trackpoint, keeping the reference to `result`.
@@ -51,9 +51,9 @@ Returns a [GeoJSON](http://geojson.org/) representation of the track. It takes a
 
 ```JavaScript
 {
-	points: false, 							// output Point features for each track point
-	speedThreshold: 0.51,				// ignore points with speeds below threshold,
-	timeThreshold: 2 * 60 * 60	// create new linestring if diff exeeds 2h
+	points: false,              // output Point features for each track point
+	speedThreshold: 0.51,       // ignore points with speeds below threshold,
+	timeThreshold: 2 * 60 * 60  // create new linestring if diff exeeds 2h
 }
 ```
 
