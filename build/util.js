@@ -6,7 +6,7 @@
 
 // swap an [lat, lng]-array, or an array of [lat, lng]-arrays.
 var swap = function (array) {
-	if (array.length === 2 && typeof array[0] === 'number') {
+	if (typeof array[0] === 'number' && typeof array[1] === 'number') {
 		return [array[1], array[0]];
 	} else {
 		var ret = [];
