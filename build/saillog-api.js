@@ -4,6 +4,7 @@ var fs = require('fs');
 var util = require('./util.js');
 var connectRoute = require('connect-route');
 
+/*jshint unused:false */
 module.exports = function (dataPath) {
 	console.log('Saillog API started with dataPath: ' + dataPath);
 
@@ -20,8 +21,8 @@ module.exports = function (dataPath) {
 			});
 		},
 		saveIndex: function (index, callback) {
-			fs.writeFile(indexFile, util.stringify(index), function (err, result) {
-				callback();
+			fs.writeFile(indexFile, util.stringify(index), function (err) {
+				callback(err);
 			});
 		},
 		setVisibility: function (id, visibility, callback) {
@@ -43,7 +44,7 @@ module.exports = function (dataPath) {
 	function reply(res, err, json) {
 		if (err) {
 			res.writeHead(500);
-			req.end(err);
+			res.end(err);
 		} else {
 			res.writeHead(200, {'Content-Type': 'application/json'});
 			res.end(util.stringify(json));
@@ -70,5 +71,5 @@ module.exports = function (dataPath) {
 				reply(res, err, {success: true, message: 'succesfully set visible'});
 			});
 		});
-	})
+	});
 };

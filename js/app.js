@@ -250,7 +250,7 @@
 				if (leg.title) {
 					var title = $('<h3>' + leg.title + '</h3>');
 					if (leg.distance) {
-						title.append('<span class="distance" title="Distance over ground">' + leg.distance + ' NM</span>')
+						title.append('<span class="distance" title="Distance over ground">' + leg.distance + ' NM</span>');
 					}
 					title.prependTo(legStory);
 				}

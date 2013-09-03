@@ -1,8 +1,6 @@
 (function () {
 	'use strict';
 
-	var geoUtil = {};
-
 	if (L) {
 		L.Polyline.include({
 			_distanceMeters: function () {
@@ -23,9 +21,14 @@
 				var meters = this._distanceMeters();
 
 				switch (metricSystem || 'nautical') {
-					case 'nautical': return meters / 1852; break;
-					case 'imperial': return meters / 1609; break;
-					default:         return meters;
+				case 'nautical':
+					return meters / 1852;
+
+				case 'imperial':
+					return meters / 1609;
+
+				default:
+					return meters;
 				}
 			}
 		});

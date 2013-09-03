@@ -12,5 +12,5 @@ connect()
 	.use(saillogAPI(__dirname + '/../data'))
 	.listen(port);
 
-console.log('Started Saillog server on port ' + port + '...' +root);
+console.log('Started Saillog server on port ' + port + '...');
 console.log('Press Ctrl + C to stop.');
