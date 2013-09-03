@@ -1,6 +1,6 @@
 (function () {
 	'use strict';
-	/* global console:true, logIndex:true */
+	/* global console:true */
 
 	// From http://stackoverflow.com/a/5624139
 	function hexToRgb(hex) {
@@ -45,7 +45,9 @@
 			}
 		},
 
-		initialize: function () {
+		initialize: function (logIndex) {
+			this._index = logIndex;
+
 			this.story = $('#story');
 			this.index = $('#index');
 
@@ -82,8 +84,8 @@
 			});
 
 			var map = L.map('map', {
-				center: logIndex.center,
-				zoom: logIndex.zoom,
+				center: this._index.center,
+				zoom: this._index.zoom,
 				zoomControl: false,
 				layers: layer
 			});
@@ -134,7 +136,7 @@
 				this.layerControl.removeLayer(this.trackLayer);
 				map.removeLayer(this.trackLayer);
 			}
-			map.setView(logIndex.center, logIndex.zoom, {
+			map.setView(this._index.center, this._index.zoom, {
 				animate: true
 			});
 
@@ -154,21 +156,21 @@
 			story.find('.leg').remove();
 			story.find('#explanation').hide();
 
-			if (logIndex.text !== undefined) {
+			if (this._index.text !== undefined) {
 				this.imagePrefix = 'data/';
 
 				var preface = $('<div class="leg"></div>');
-				preface.html(this._markup(logIndex.text));
+				preface.html(this._markup(this._index.text));
 				preface.appendTo(story);
 			}
 
 			var list = $('<ul class="selector"></ul>').appendTo(story);
-			$.each(logIndex.logs, function (key, log) {
-				if (log.disable && location.port !== '9999') {
+			$.each(this._index.logs, function (key, log) {
+				if (!log.visible && location.port !== '9999') {
 					return;
 				}
 				var item = $('<li data-name="' + log.name + '">' + log.title + '</li>').appendTo(list);
-				if (log.disable) {
+				if (!log.visible) {
 					item.addClass('disabled');
 				}
 
@@ -433,6 +435,7 @@
 		}
 
 	});
-
-	window.saillog = new Saillog();
+	$.getJSON('/data/index.json', function (index) {
+		window.saillog = new Saillog(index);
+	});
 })();
