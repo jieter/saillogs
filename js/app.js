@@ -12,13 +12,20 @@
 		] : null;
 	}
 
+	function formatDistance(distance) {
+		distance = L.Util.formatNum(distance, 1).toString().split('.');
+		if (!distance[1]) {
+			distance[1] = 0;
+		}
+		return distance.join('.');
+	}
+
 	// make sure console exists
 	if (!('console' in window)) {
 		window.console = {
 			log: function () {}
 		};
 	}
-
 
 	var Saillog = L.Class.extend({
 		defaultStyles: {
@@ -105,7 +112,7 @@
 				},
 				onEachFeature: function (feature, layer) {
 					feature.properties['id'] = L.stamp(layer);
-
+					feature.properties['distance'] = formatDistance(layer.getDistance());
 					self.renderLegStory(feature.properties);
 				}
 			});
@@ -237,7 +244,11 @@
 				legStory.data('leg', leg);
 
 				if (leg.title) {
-					legStory.prepend('<h3>' + leg.title + '</h3>');
+					var title = $('<h3>' + leg.title + '</h3>');
+					if (leg.distance) {
+						title.append('<span class="distance">' + leg.distance + ' NM</span>')
+					}
+					title.prependTo(legStory);
 				}
 
 				if (leg.date) {

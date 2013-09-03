@@ -125,6 +125,11 @@ ul.selector li:hover {
 	margin-bottom: 2px;
 	text-align: left;
 }
+#story .leg h3 .distance {
+	float: right;
+	color: #ccc;
+	font-size: 12px;
+}
 a { border: 0px; }
 
 #story img.thumb {
