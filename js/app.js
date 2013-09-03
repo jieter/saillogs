@@ -112,7 +112,9 @@
 				},
 				onEachFeature: function (feature, layer) {
 					feature.properties['id'] = L.stamp(layer);
-					feature.properties['distance'] = formatDistance(layer.getDistance());
+					if (layer instanceof L.Polyline) {
+						feature.properties['distance'] = formatDistance(layer.getDistance());
+					}
 					self.renderLegStory(feature.properties);
 				}
 			});
@@ -246,7 +248,7 @@
 				if (leg.title) {
 					var title = $('<h3>' + leg.title + '</h3>');
 					if (leg.distance) {
-						title.append('<span class="distance">' + leg.distance + ' NM</span>')
+						title.append('<span class="distance" title="Distance over ground">' + leg.distance + ' NM</span>')
 					}
 					title.prependTo(legStory);
 				}
