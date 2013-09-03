@@ -3,3 +3,4 @@ orig
 data/*/orig
 data/dump
 *.docx
+npm-debug.log
