@@ -17,10 +17,11 @@
 
 				return distance;
 			},
-			getDistance: function (metricSystem) {
+
+			getDistance: function (type) {
 				var meters = this._distanceMeters();
 
-				switch (metricSystem || 'nautical') {
+				switch (type || 'nautical') {
 				case 'nautical':
 					return meters / 1852;
 

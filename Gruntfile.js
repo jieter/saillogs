@@ -29,10 +29,11 @@ module.exports = function (grunt) {
 				jshintrc: '.jshintrc'
 			}
 		},
-		'jsonlint': {
-			data: {
-				src: ['data/*.geojson']
-			}
+		'geojsonhint': {
+			data: [
+				'data/*.geojson',
+				'data/**/*.geojson'
+			]
 		},
 		'saillog-thumbs': {
 			files: {
@@ -42,7 +43,7 @@ module.exports = function (grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-jsonlint');
+	grunt.loadNpmTasks('grunt-geojsonhint');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 
 	// saillog specific tasks
@@ -57,6 +58,7 @@ module.exports = function (grunt) {
 		]);
 	});
 	grunt.registerTask('all-ships', ships);
+	grunt.registerTask('hint', ['jshint', 'geojsonhint']);
 
 	grunt.registerTask('default', ['jshint', 'jsonlint', 'uglify']);
 };

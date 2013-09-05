@@ -20,7 +20,8 @@
     "polyline-encoded": "0.0.3",
     "marinetraffic": "0.0.1",
     "expect.js": "~0.2.0",
-    "mocha": "~1.12.0"
+    "mocha": "~1.12.0",
+    "grunt-geojsonhint": "0.0.3"
   },
   "scripts": {
     "test": "mocha -R spec",
@@ -37,6 +38,5 @@
   ],
   "author": "Jan Pieter Waagmeester <jieter@jieter.nl>",
   "license": "BSD",
-  "readmeFilename": "README.md",
-  "gitHead": "4e12f8daa3be1903460a771685f76c2c12c022eb"
+  "readmeFilename": "README.md"
 }
