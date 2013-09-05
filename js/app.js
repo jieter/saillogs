@@ -72,14 +72,14 @@
 		},
 
 		renderMap: function () {
-			var layer = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+			this.baselayer = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 				attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 				subdomains: '0123',
 				minZoom: 2,
 				maxZoom: 18
 			});
 
-			var OpenSeaMap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+			this.openseamap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
 				attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
 			});
 
@@ -87,11 +87,11 @@
 				center: this._index.center,
 				zoom: this._index.zoom,
 				zoomControl: false,
-				layers: layer
+				layers: this.baselayer
 			});
 
 			this.layerControl = L.control.layers({}, {
-				OpenSeaMap: OpenSeaMap//.addTo(map),
+				OpenSeaMap: this.openseamap
 			}, {
 				position: 'bottomleft',
 				collapsed: false
@@ -186,6 +186,11 @@
 			self.clearMap();
 
 			var story = this.story;
+
+			if (data.showOpenseamap) {
+				console.log('bla');
+				this.openseamap.addTo(this.map);
+			}
 
 			data.styles = $.extend(data.styles, this.defaultStyles);
 			this.imagePrefix = 'data/' + data.name + '/';

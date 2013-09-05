@@ -49,7 +49,11 @@ module.exports = function (grunt) {
 	// saillog specific tasks
 	grunt.loadTasks('build/tasks');
 
-	var ships = ['eendracht', 'lutgerdina', 'beatrix'];
+	var ships = [
+		'eendracht',
+		'lutgerdina', 'beatrix',
+		'toxiq', 'xquise'
+	];
 	ships.forEach(function (ship) {
 		grunt.registerTask(ship, [
 			'dump-marinetraffic:' + ship,
