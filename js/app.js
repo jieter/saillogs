@@ -435,7 +435,7 @@
 		}
 
 	});
-	$.getJSON('/data/index.json', function (index) {
+	$.getJSON('data/index.json', function (index) {
 		window.saillog = new Saillog(index);
 	});
 })();
