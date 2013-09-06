@@ -972,9 +972,23 @@
 				"endTime": "2013-09-06T03:04:00",
 				"duration": 40980,
 				"title": "Naar TG",
-				"color": "#ffaa00",
+				"color": "#ffcc00",
 				"text": "",
 				"date": "2013-09-05"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					5.03843,
+					53.40278
+				]
+			},
+			"properties": {
+				"title": "TG, de startboei",
+				"text": "Hier begint het pas"
 			}
 		},
 		{
@@ -1334,8 +1348,8 @@
 				"startTime": "2013-09-06T03:09:00",
 				"endTime": "2013-09-06T08:19:00",
 				"duration": 18600,
-				"title": "Naar de rode rots",
-				"color": "#ff3333",
+				"title": "Op naar de rode rots",
+				"color": "#ff0000",
 				"text": "",
 				"date": "2013-09-06"
 			}

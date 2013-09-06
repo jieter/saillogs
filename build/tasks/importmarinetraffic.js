@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 	var _ = require('underscore');
 
 	var util = require('../util');
-	var marinetraffic = require('marinetraffic');
+	var marinetraffic = require('../../../marinetraffic');
 	var mmsi = require('../mmsi');
 
 	var name2mmsi = function (name) {
@@ -62,7 +62,10 @@ module.exports = function (grunt) {
 		});
 
 		var geojson = result.toGeoJson({
-			speedThreshold: grunt.option('threshold') || 0.51
+			speedThreshold: grunt.option('threshold') || 0.51,
+			splitLocations: [
+				[53.40278, 5.03843, 0.5], // TG tot 200m
+			]
 		});
 
 		var prefix = cachePath + vessel + '-combined';
