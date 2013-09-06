@@ -187,11 +187,6 @@
 
 			var story = this.story;
 
-			if (data.showOpenseamap) {
-				console.log('bla');
-				this.openseamap.addTo(this.map);
-			}
-
 			data.styles = $.extend(data.styles, this.defaultStyles);
 			this.imagePrefix = 'data/' + data.name + '/';
 
@@ -227,6 +222,10 @@
 				});
 			}
 
+			if (data.showOpenseamap) {
+				this.openseamap.addTo(this.map);
+			}
+
 			// Move map to newly loaded area.
 			if (this.features.getLayers().length > 0) {
 				this.fitBounds(this.features.getBounds());
@@ -255,7 +254,17 @@
 				if (leg.title) {
 					var title = $('<h3>' + leg.title + '</h3>');
 					if (leg.distance) {
-						title.append('<span class="distance" title="Distance over ground">' + leg.distance + ' NM</span>');
+						var tooltip = 'gevaren ';
+						if (leg.duration) {
+							var hour = 60 * 60;
+							var hours = Math.floor(leg.duration / hour);
+							var duration = hours + ':' + Math.floor((leg.duration - hours * hour) / 60);
+							tooltip += 'in ' + duration + ' uur, ';
+						}
+						if (leg.avg_sog) {
+							tooltip += 'met een gemiddelde snelheid van ' + leg.avg_sog + 'kts'
+						}
+						title.append('<span class="distance" title="' + tooltip + '">' + leg.distance + ' NM</span>');
 					}
 					title.prependTo(legStory);
 				}
