@@ -5,10 +5,11 @@ var util = require('./util.js');
 var connectRoute = require('connect-route');
 
 /*jshint unused:false */
-module.exports = function (dataPath) {
+module.exports = function (connect) {
+	var dataPath = __dirname + '/../data';
+	var indexFile = dataPath + '/index.json';
 	console.log('Saillog API started with dataPath: ' + dataPath);
 
-	var indexFile = dataPath + '/index.json';
 
 	var actions = {
 		updateIndex: function (callback) {
@@ -51,25 +52,33 @@ module.exports = function (dataPath) {
 		}
 	}
 
-	return connectRoute(function (router) {
-		router.get('/api/get/:id', function (req, res, next) {
+	console.log(__dirname + '/../');
+	return [
+		connect.logger('dev'),
+		connect.static(__dirname + '/../'),
+		connectRoute(function (router) {
+			router.get('/api/get/:id', function (req, res, next) {
 
-		});
-
-		router.get('/api/create/', function (req, res, next) {
-			res.end('api create');
-		});
-
-		router.get('/api/save/:id', function (req, res, next) {
-			res.end('api save ' + req.params.id);
-		});
-
-		router.get('/api/setVisible/:id', function (req, res, next) {
-			var id = req.params.id;
-
-			actions.setVisibility(id, true, function (err) {
-				reply(res, err, {success: true, message: 'succesfully set visible'});
 			});
-		});
-	});
+
+			router.get('/api/create/', function (req, res, next) {
+				res.end('api create');
+			});
+
+			router.get('/api/save/:id', function (req, res, next) {
+				res.end('api save ' + req.params.id);
+			});
+
+			router.get('/api/setVisible/:id', function (req, res, next) {
+				var id = req.params.id;
+
+				actions.setVisibility(id, true, function (err) {
+					reply(res, err, {
+						success: true,
+						message: 'succesfully set visible'
+					});
+				});
+			});
+		})
+	];
 };

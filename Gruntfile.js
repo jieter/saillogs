@@ -44,14 +44,8 @@ module.exports = function (grunt) {
 			server: {
 				options: {
 					port: 9999,
-					middleware: function (connect, options) {
-						return [
-							connect.logger('dev'),
-							connect.static(__dirname),
-							require('./build/saillog-api.js')('./data')
-						]
-					},
-					open: true
+					open: true,
+					middleware: require('./build/saillog-api.js')
 				}
 			}
 		}

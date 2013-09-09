@@ -1,15 +1,10 @@
 'use strict';
 
 var connect = require('connect');
-var saillogAPI = require(__dirname + '/saillog-api.js');
-
-var root = __dirname + '/../';
 var port = 9999;
 
-connect()
-	.use(connect.logger('dev'))
-	.use(connect.static(root))
-	.use(saillogAPI(__dirname + '/../data'))
+connect
+	.apply(null, require('./saillog-api.js')(connect))
 	.listen(port);
 
 console.log('Started Saillog server on port ' + port + '...');
