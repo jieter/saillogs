@@ -34,13 +34,6 @@
 				console.log(JSON.stringify(layer.toGeoJSON(), null, '\t'));
 			});
 
-			// map.on('click', function (event) {
-			// 	console.log({
-			// 		click: event.latlng.toString(),
-			// 		center: map.getCenter().toString(),
-			// 		zoom: map.getZoom()
-			// 	});
-			// });
 		}
 	});
 })();

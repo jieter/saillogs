@@ -20,6 +20,13 @@
 		return distance.join('.');
 	}
 
+	function loadScript(src, callback) {
+		$('<script></script>')
+			.appendTo('body')
+			.attr('src', src)
+			.on('load', callback);
+	}
+
 	// make sure console exists
 	if (!('console' in window)) {
 		window.console = {
@@ -412,16 +419,15 @@
 			// require edit script and start.
 			var self = this;
 
-			$('<script></script>')
-				.appendTo('body')
-				.on('load', function () {
+			loadScript('js/lib/Leaflet.draw/leaflet.draw.js', function () {
+				loadScript('js/editor.js', function () {
 					console.log('loading editor');
 					self.editor = new SaillogEditor(self);
-				})
-				.attr('src', 'js/editor.js');
+				});
+			});
 		}
-
 	});
+
 	$.getJSON('data/index.json', function (index) {
 		window.saillog = new Saillog(index);
 	});

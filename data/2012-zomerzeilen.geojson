@@ -80,6 +80,7 @@
 			"properties": {
 				"date": "2012-07-27",
 				"title": "Shotley",
+				"color": "#ff7777",
 				"text": "Achterlijk van genua blijft bij overstag haken achter zaling en scheurt bijna helemaal los..."
 			}
 		},
@@ -133,6 +134,7 @@
 			"properties": {
 				"date": "2012-07-30",
 				"title": "Ipswitch",
+				"color": "#ff0000",
 				"text": ""
 			}
 		},
@@ -162,6 +164,7 @@
 			"properties": {
 				"date": "2012-07-31",
 				"title": "Pin Mill",
+				"color": "#00ff00",
 				"text": ""
 			}
 		},
@@ -263,6 +266,7 @@
 			"properties": {
 				"date": "2012-08-01",
 				"title": "Ramsgate",
+				"color": "#aaff00",
 				"text": ""
 			}
 		},
@@ -316,6 +320,7 @@
 			"properties": {
 				"date": "2012-08-03",
 				"title": "Stellendam",
+				"color": "#aa00ff",
 				"text": ""
 			}
 		},
@@ -345,6 +350,7 @@
 			"properties": {
 				"date": "2012-08-04",
 				"title": "Hellevoetsluis",
+				"color": "#a0000f",
 				"text": ""
 			}
 		}
