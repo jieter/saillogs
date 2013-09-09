@@ -409,45 +409,16 @@
 		},
 
 		startEdit: function () {
-			var drawControl = new L.Control.Draw({
-				draw: {
-					polygon: false,
-					marker: true,
-					rectangle: false,
-					circle: false
-				}
-			});
+			// require edit script and start.
+			var self = this;
 
-			var map = this.map;
-
-			drawControl.addTo(map);
-			map.on('draw:created', function (event) {
-				var layer = event.layer;
-				if (layer.setStyle) {
-					layer.setStyle({
-						color: '#000000'
-					});
-				}
-				layer.addTo(map);
-
-				var dump = [];
-				var latLngs = layer.getLatLngs();
-				for (var i in latLngs) {
-					dump.push([
-						L.Util.formatNum(latLngs[i].lat, 5),
-						L.Util.formatNum(latLngs[i].lng, 5)
-					]);
-				}
-				console.log(JSON.stringify(dump));
-			});
-
-			map.on('click', function (event) {
-				console.log({
-					click: event.latlng.toString(),
-					center: map.getCenter().toString(),
-					zoom: map.getZoom()
-				});
-			});
+			$('<script></script>')
+				.appendTo('body')
+				.on('load', function () {
+					console.log('loading editor');
+					self.editor = new SaillogEditor(self);
+				})
+				.attr('src', 'js/editor.js');
 		}
 
 	});
