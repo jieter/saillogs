@@ -39,12 +39,28 @@ module.exports = function (grunt) {
 			files: {
 				src: ['data/*']
 			}
+		},
+		'connect': {
+			server: {
+				options: {
+					port: 9999,
+					middleware: function (connect, options) {
+						return [
+							connect.logger('dev'),
+							connect.static(__dirname),
+							require('./build/saillog-api.js')('./data')
+						]
+					},
+					open: true
+				}
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-geojsonhint');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-connect');
 
 	// saillog specific tasks
 	grunt.loadTasks('build/tasks');
@@ -65,4 +81,6 @@ module.exports = function (grunt) {
 	grunt.registerTask('hint', ['jshint', 'geojsonhint']);
 
 	grunt.registerTask('default', ['jshint', 'jsonlint', 'uglify']);
+
+	grunt.registerTask('server', ['connect:server:keepalive'])
 };
