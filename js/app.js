@@ -423,10 +423,12 @@
 			drawControl.addTo(map);
 			map.on('draw:created', function (event) {
 				var layer = event.layer;
-				layer.setStyle({
-					color: '#000000'
-				});
-				map.addLayer(layer);
+				if (layer.setStyle) {
+					layer.setStyle({
+						color: '#000000'
+					});
+				}
+				layer.addTo(map);
 
 				var dump = [];
 				var latLngs = layer.getLatLngs();
