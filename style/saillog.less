@@ -83,7 +83,7 @@ ul.selector {
 	}
 }
 
-#story {
+#sidebar {
 	z-index: 1000;
 	position:absolute;
 	right: 20px;
@@ -159,12 +159,37 @@ ul.selector {
 		border-radius: 3px;
 		padding: 0 4px;
 		transition: background-color 0.4s;
+
+		&:hover {
+			background-color: #bbb;
+		}
+		img {
+			margin-bottom: -3px;
+		}
 	}
-	.youtube:hover {
-		background-color: #bbb;
-	}
-	.youtube img {
-		margin-bottom: -3px;
+
+	#editor {
+		padding: 10px;
+		display: none;
+
+		.group {
+			padding: 0px 5px;
+			label {
+				color: #aaa;
+			}
+			input, textarea {
+				width: 100%;
+				border: 1px solid #bbb;
+			}
+
+			textarea {
+				height: 500px;
+				font-size: 12px;
+			}
+			button {
+				margin-left: 6px;
+			}
+		}
 	}
 }
 

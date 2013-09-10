@@ -97,22 +97,21 @@ Saillog.App = L.Class.extend({
 	},
 
 	renderMap: function () {
+		var map = this.map = L.map('map', {
+			center: this._index.center,
+			zoom: this._index.zoom,
+			zoomControl: false,
+		});
+
 		this.baselayer = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 			attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 			subdomains: '0123',
 			minZoom: 2,
 			maxZoom: 18
-		});
+		}).addTo(map);
 
 		this.openseamap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
 			attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
-		});
-
-		var map = L.map('map', {
-			center: this._index.center,
-			zoom: this._index.zoom,
-			zoomControl: false,
-			layers: this.baselayer
 		});
 
 		this.layerControl = L.control.layers({}, {
@@ -204,6 +203,7 @@ Saillog.App = L.Class.extend({
 			var name = $(this).data('name');
 			location.hash = name;
 		});
+		this.fire('loaded');
 		this.fire('loaded-index');
 	},
 
@@ -261,6 +261,7 @@ Saillog.App = L.Class.extend({
 		}
 		this.features.addTo(this.map);
 
+		this.fire('loaded');
 		this.fire('loaded-story');
 	},
 
@@ -449,10 +450,17 @@ Saillog.App = L.Class.extend({
 	}
 });
 
+if (Saillog.util.isDev()) {
+	Saillog.util.loadScript('js/lib/Leaflet.draw/leaflet.draw.js');
+}
 $.getJSON('data/index.json', function (index) {
 	var saillog = window.saillog = new Saillog.App(index);
 	if (Saillog.util.isDev()) {
-		saillog.startEdit();
+		saillog.on('loaded', function () {
+			console.log('loaded');
+			saillog.off('loaded');
+			saillog.startEdit();
+		});
 	}
 });
 
