@@ -4,7 +4,7 @@ module.exports = function (grunt) {
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		'uglify': {
+		uglify: {
 			options: {
 				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
 				report: 'min'
@@ -23,13 +23,13 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		'jshint': {
+		jshint: {
 			files: ['js/*.js', 'build/**/*.js'],
 			options: {
 				jshintrc: '.jshintrc'
 			}
 		},
-		'geojsonhint': {
+		geojsonhint: {
 			data: [
 				'data/*.geojson',
 				'data/**/*.geojson'
@@ -40,13 +40,26 @@ module.exports = function (grunt) {
 				src: ['data/*']
 			}
 		},
-		'connect': {
+		connect: {
 			server: {
 				options: {
 					port: 9999,
 					open: true,
 					middleware: require('./build/saillog-api.js')
 				}
+			}
+		},
+		less: {
+			development: {
+				files: {
+					"style/saillog.css": "style/saillog.less"
+				}
+			}
+		},
+		watch: {
+			less: {
+				files: ['css/*.less'],
+				tasks: ['less']
 			}
 		}
 	});
@@ -55,6 +68,9 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-geojsonhint');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+
 
 	// saillog specific tasks
 	grunt.loadTasks('build/tasks');
@@ -76,5 +92,8 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('default', ['jshint', 'jsonlint', 'uglify']);
 
-	grunt.registerTask('server', ['connect:server:keepalive'])
+	grunt.registerTask('dev', [
+		'watch',
+		'connect:server:keepalive'
+	]);
 };

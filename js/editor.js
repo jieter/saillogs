@@ -12,15 +12,9 @@ Saillog.Editor = L.Class.extend({
 	initControls: function () {
 		var map = this.map;
 
-		// var drawControl = new L.Control.Draw({
-		// 	draw: {
-		// 		polygon: false,
-		// 		marker: true,
-		// 		rectangle: false,
-		// 		circle: false
-		// 	}
-		// }).addTo(map);
-
+		$('#story h3').each(function (k, v) {
+			console.log(this);
+		});
 		map.on('draw:created', function (event) {
 			var layer = event.layer;
 			if (layer.setStyle) {

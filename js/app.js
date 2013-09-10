@@ -29,6 +29,16 @@ Saillog.util = {
 		return distance.join('.');
 	},
 
+	loadScripts: function loadScripts(srcs, callback) {
+		if (srcs.length === 1) {
+			Saillog.util.loadScript(srcs[0], callback);
+		} else {
+			Saillog.util.loadScript(srcs.shift(), function () {
+				Saillog.util.loadScripts(srcs, callback);
+			});
+		}
+	},
+
 	loadScript: function loadScript(src, callback) {
 		$('<script></script>')
 			.appendTo('body')
@@ -49,14 +59,14 @@ Saillog.App = L.Class.extend({
 			weight: 5
 		},
 		track: {
-			color: '#000',
+			color: '#000000',
 			weight: 1,
 			dashArray: [4, 4]
 		}
 	},
 
-	initialize: function (logIndex) {
-		this._index = logIndex;
+	initialize: function (index) {
+		this._index = index;
 
 		this.story = $('#story');
 		this.index = $('#index');
@@ -76,7 +86,7 @@ Saillog.App = L.Class.extend({
 				self.renderStory(response);
 			},
 			error: function (e) {
-				console.log('Error in AJAX/parsing JSON, use `node helper.js lint to check', e);
+				console.log('Error in AJAX/parsing JSON, use `grunt geojsonhint to check geojson files.', e);
 			}
 		});
 	},
@@ -409,7 +419,7 @@ Saillog.App = L.Class.extend({
 		string = string.replace(/!\[([^\]]*)\]\(([^)]*)\)/g, function (match, alt, src) {
 			alt = alt.trim();
 			if (src.substr(0, 15) === 'http://youtu.be') {
-				return '<span class="youtube" data-youtube-url="' + src + '" title="' + alt + '"><img src="style/youtube-play.png" /> ' + alt + '</span>';
+				return '<span class="youtube" data-youtube-url="' + src + '" title="' + alt + '"><i class="icon-youtube-play"></i> ' + alt + '</span>';
 			} else {
 				return '<img src="' + prefix + src + '" class="thumb" title="' + alt + '"/>';
 			}
@@ -419,19 +429,21 @@ Saillog.App = L.Class.extend({
 	},
 
 	startEdit: function () {
-		// require edit script and start.
 		var self = this;
 
-		Saillog.util.loadScript('js/lib/Leaflet.draw/leaflet.draw.js', function () {
-			Saillog.util.loadScript('js/editor.js', function () {
-				console.log('loading editor');
-				self.editor = new Saillog.Editor(self);
-			});
+		Saillog.util.loadScripts([
+			'js/lib/Leaflet.draw/leaflet.draw.js',
+			'js/editor.js'
+		], function () {
+			console.log('Loading editor...');
+			self.editor = new Saillog.Editor(self);
 		});
+;
 	}
 });
 
 $.getJSON('data/index.json', function (index) {
-	window.saillog = new Saillog.App(index);
+	var saillog = window.saillog = new Saillog.App(index);
+	saillog.startEdit();
 });
 

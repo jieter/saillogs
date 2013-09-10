@@ -1,4 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Serif);
+@import 'font-awesome/font-awesome.less';
+
 * {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -31,53 +33,55 @@ h1 {
 	font-size: 1.5em;
 	padding: 0 14px;
 }
+a { border: 0px; }
 
 ul.selector {
 	list-style-type: none;
 	padding: 10px;
-}
-ul.selector li {
-	cursor: pointer;
-	margin: 2px;
-	padding: 4px 8px;
 
-	background-color: #fafafa;
-}
-ul.selector li.disabled:after {
-	content: 'disabled';
-	float: right;
-	color: white;
-	background-color: #999;
-	padding: 1px 3px;
-	border-radius: 4px;
-}
-ul.selector li:hover {
-	background-color: #eee;
+	li {
+		cursor: pointer;
+		margin: 2px;
+		padding: 4px 8px;
+
+		background-color: #fafafa;
+	}
+	li.disabled:after {
+		content: 'disabled';
+		float: right;
+		color: white;
+		background-color: #999;
+		padding: 1px 3px;
+		border-radius: 4px;
+	}
+	li:hover {
+		background-color: #eee;
+	}
 }
 
 #index {
-	width: 147px;
-}
-#index .leg, #index .filler {
-	width: 20px;
-	height: 23px;
-	float: left;
-	margin: 0 1px 1px 0;
-}
-#index .leg {
-	background-color: white;
-	padding: 1px 3px;
-	cursor: pointer;
-	text-align: center;
-	transition: background-color .2s;
-}
-#index .leg:hover, #index .leg.hover {
-	background-color: #e0eeee;
+	.leg, .filler {
+		width: 20px;
+		height: 23px;
+		float: left;
+		margin: 0 1px 1px 0;
+	}
+	.leg {
+		background-color: white;
+		padding: 1px 3px;
+		cursor: pointer;
+		text-align: center;
+		transition: background-color .2s;
+	}
+	.leg:hover, .leg.hover {
+		background-color: #e0eeee;
+	}
+
+	.leg.active {
+		background-color: #efefef;
+	}
 }
 
-#index .leg.active {
-	background-color: #efefef;
-}
 #story {
 	z-index: 1000;
 	position:absolute;
@@ -94,66 +98,66 @@ ul.selector li:hover {
 	background-color: white;
 	border-left: 4px solid rgba(100, 100, 100, 0.2);
 	border-right: 4px solid rgba(100, 100, 100, 0.2);
+
+	.leg {
+		border-left: 4px solid white;
+		border-right: 2px solid white;
+		padding: 0 10px 0 10px;
+		cursor: pointer;
+		margin-bottom: 10px;
+		clear: both;
+	}
+
+	.leg.active {
+		border-left: 4px solid white;
+		border-right: 2px solid white;
+		background-color: rgba(100, 100, 100, 0.05);
+	}
+	.leg .date {
+		width: 43px;
+		height: 22px;
+		text-align: center;
+		float: left;
+		background-color: whiteSmoke;
+		padding: 0px 2px;
+		margin: 0 4px 0 0;
+		border: 1px solid #EEE;
+		font-family: Helvetica, Arial, sans-serif;
+	}
+	.leg h3 {
+		margin-bottom: 2px;
+		text-align: left;
+	}
+	.leg h3 .distance {
+		float: right;
+		color: #ccc;
+		font-size: 12px;
+	}
+
+	img.thumb {
+		position: relative;
+		float: left;
+		clear: both;
+
+		width: 200px;
+		margin-left: -230px;
+		border: 4px solid rgba(100, 100, 100, 0.2);
+	}
+	.youtube {
+		white-space: nowrap;
+		background-color: #ddd;
+		border-radius: 3px;
+		padding: 0 4px;
+		transition: background-color 0.4s;
+	}
+	.youtube:hover {
+		background-color: #bbb;
+	}
+	.youtube img {
+		margin-bottom: -3px;
+	}
 }
 
-#story .leg {
-	border-left: 4px solid white;
-	border-right: 2px solid white;
-	padding: 0 10px 0 10px;
-	cursor: pointer;
-	margin-bottom: 10px;
-	clear: both;
-}
-
-#story .leg.active {
-	border-left: 4px solid white;
-	border-right: 2px solid white;
-	background-color: rgba(100, 100, 100, 0.05);
-}
-#story .leg .date {
-	width: 43px;
-	height: 22px;
-	text-align: center;
-	float: left;
-	background-color: whiteSmoke;
-	padding: 0px 2px;
-	margin: 0 4px 0 0;
-	border: 1px solid #EEE;
-	font-family: Helvetica, Arial, sans-serif;
-}
-#story .leg h3 {
-	margin-bottom: 2px;
-	text-align: left;
-}
-#story .leg h3 .distance {
-	float: right;
-	color: #ccc;
-	font-size: 12px;
-}
-a { border: 0px; }
-
-#story img.thumb {
-	position: relative;
-	float: left;
-	clear: both;
-
-	width: 200px;
-	margin-left: -230px;
-	border: 4px solid rgba(100, 100, 100, 0.2);
-}
-#story .youtube {
-	white-space: nowrap;
-	background-color: #ddd;
-	border-radius: 3px;
-	padding: 0 4px;
-	transition: background-color 0.4s;
-}
-#story .youtube:hover {
-	background-color: #bbb;
-}
-#story .youtube img {
-	margin-bottom: -3px;
-}
 
 table {
 	margin: 10px;
@@ -231,7 +235,7 @@ table td.meta {
 		width: 800px;
 		height: 800px;
 	}
-	#map: {
+	#map {
 		border: 1px solid black;
 	}
 	#index, #explanation, .leaflet-control-layers,
