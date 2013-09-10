@@ -1558,7 +1558,7 @@ ul.selector li:hover {
 #index .leg.active {
   background-color: #efefef;
 }
-#story {
+#sidebar {
   z-index: 1000;
   position: absolute;
   right: 20px;
@@ -1573,7 +1573,7 @@ ul.selector li:hover {
   border-left: 4px solid rgba(100, 100, 100, 0.2);
   border-right: 4px solid rgba(100, 100, 100, 0.2);
 }
-#story .leg {
+#sidebar .leg {
   border-left: 4px solid white;
   border-right: 2px solid white;
   padding: 0 10px 0 10px;
@@ -1581,12 +1581,12 @@ ul.selector li:hover {
   margin-bottom: 10px;
   clear: both;
 }
-#story .leg.active {
+#sidebar .leg.active {
   border-left: 4px solid white;
   border-right: 2px solid white;
   background-color: rgba(100, 100, 100, 0.05);
 }
-#story .leg .date {
+#sidebar .leg .date {
   width: 43px;
   height: 22px;
   text-align: center;
@@ -1597,24 +1597,24 @@ ul.selector li:hover {
   border: 1px solid #EEE;
   font-family: Helvetica, Arial, sans-serif;
 }
-#story .leg h3 {
+#sidebar .leg h3 {
   margin-bottom: 2px;
   text-align: left;
 }
-#story .leg h3 .edit {
+#sidebar .leg h3 .edit {
   display: none;
   color: #aaa;
   margin-left: 4px;
 }
-#story .leg h3:hover .edit {
+#sidebar .leg h3:hover .edit {
   display: inline;
 }
-#story .leg h3 .distance {
+#sidebar .leg h3 .distance {
   float: right;
   color: #ccc;
   font-size: 12px;
 }
-#story img.thumb {
+#sidebar img.thumb {
   position: relative;
   float: left;
   clear: both;
@@ -1622,18 +1622,40 @@ ul.selector li:hover {
   margin-left: -230px;
   border: 4px solid rgba(100, 100, 100, 0.2);
 }
-#story .youtube {
+#sidebar .youtube {
   white-space: nowrap;
   background-color: #ddd;
   border-radius: 3px;
   padding: 0 4px;
   transition: background-color 0.4s;
 }
-#story .youtube:hover {
+#sidebar .youtube:hover {
   background-color: #bbb;
 }
-#story .youtube img {
+#sidebar .youtube img {
   margin-bottom: -3px;
+}
+#sidebar #editor {
+  padding: 10px;
+  display: none;
+}
+#sidebar #editor .group {
+  padding: 0px 5px;
+}
+#sidebar #editor .group label {
+  color: #aaa;
+}
+#sidebar #editor .group input,
+#sidebar #editor .group textarea {
+  width: 100%;
+  border: 1px solid #bbb;
+}
+#sidebar #editor .group textarea {
+  height: 500px;
+  font-size: 12px;
+}
+#sidebar #editor .group button {
+  margin-left: 6px;
 }
 table {
   margin: 10px;
