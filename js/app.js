@@ -44,6 +44,10 @@ Saillog.util = {
 			.appendTo('body')
 			.attr('src', src)
 			.on('load', callback);
+	},
+
+	isDev: function () {
+		return location.port === '9999';
 	}
 };
 
@@ -187,7 +191,7 @@ Saillog.App = L.Class.extend({
 
 		var list = $('<ul class="selector"></ul>').appendTo(story);
 		$.each(this._index.logs, function (key, log) {
-			if (!log.visible && location.port !== '9999') {
+			if (!log.visible && !Saillog.util.isDev()) {
 				return;
 			}
 			var item = $('<li data-name="' + log.name + '">' + log.title + '</li>').appendTo(list);
@@ -447,6 +451,8 @@ Saillog.App = L.Class.extend({
 
 $.getJSON('data/index.json', function (index) {
 	var saillog = window.saillog = new Saillog.App(index);
-	saillog.startEdit();
+	if (Saillog.util.isDev()) {
+		saillog.startEdit();
+	}
 });
 
