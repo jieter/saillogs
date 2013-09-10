@@ -57,20 +57,22 @@ module.exports = function (grunt) {
 			}
 		},
 		watch: {
+			js: {
+				files: ['js/*.js'],
+				tasks: ['jshint']
+			},
 			less: {
-				files: ['css/*.less'],
-				tasks: ['less']
+				files: ['style/*.less'],
+				tasks: ['less'],
+				options: {
+					spawn: false,
+					livereload: true
+				}
 			}
 		}
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-geojsonhint');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-connect');
-	grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-
+	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	// saillog specific tasks
 	grunt.loadTasks('build/tasks');
@@ -88,12 +90,11 @@ module.exports = function (grunt) {
 		]);
 	});
 	grunt.registerTask('all-ships', ships);
-	grunt.registerTask('hint', ['jshint', 'geojsonhint']);
 
-	grunt.registerTask('default', ['jshint', 'jsonlint', 'uglify']);
-
+	grunt.registerTask('default', ['less', 'jshint']);
 	grunt.registerTask('dev', [
-		'watch',
-		'connect:server:keepalive'
+		'default',
+		'connect:server',
+		'watch'
 	]);
 };

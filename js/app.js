@@ -48,6 +48,7 @@ Saillog.util = {
 };
 
 Saillog.App = L.Class.extend({
+	includes: L.Mixin.Events,
 	defaultStyles: {
 		leg: {
 			color: '#0000ff',
@@ -199,6 +200,7 @@ Saillog.App = L.Class.extend({
 			var name = $(this).data('name');
 			location.hash = name;
 		});
+		this.fire('loaded-index');
 	},
 
 	renderStory: function (data) {
@@ -254,6 +256,8 @@ Saillog.App = L.Class.extend({
 			}
 		}
 		this.features.addTo(this.map);
+
+		this.fire('loaded-story');
 	},
 
 	fitBounds: function (bounds) {
@@ -438,7 +442,6 @@ Saillog.App = L.Class.extend({
 			console.log('Loading editor...');
 			self.editor = new Saillog.Editor(self);
 		});
-;
 	}
 });
 
