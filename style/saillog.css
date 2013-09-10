@@ -1534,6 +1534,9 @@ ul.selector li.disabled:after {
 ul.selector li:hover {
   background-color: #eee;
 }
+#index {
+  width: 147px;
+}
 #index .leg,
 #index .filler {
   width: 20px;
@@ -1597,6 +1600,14 @@ ul.selector li:hover {
 #story .leg h3 {
   margin-bottom: 2px;
   text-align: left;
+}
+#story .leg h3 .edit {
+  display: none;
+  color: #aaa;
+  margin-left: 4px;
+}
+#story .leg h3:hover .edit {
+  display: inline;
 }
 #story .leg h3 .distance {
   float: right;
@@ -1710,6 +1721,7 @@ table td.meta {
     display: none;
   }
   #story {
+    foo: bar;
     position: relative;
     page-break-before: always;
     width: 445px;
