@@ -29,23 +29,6 @@ Saillog.util = {
 		return distance.join('.');
 	},
 
-	loadScripts: function loadScripts(srcs, callback) {
-		if (srcs.length === 1) {
-			Saillog.util.loadScript(srcs[0], callback);
-		} else {
-			Saillog.util.loadScript(srcs.shift(), function () {
-				Saillog.util.loadScripts(srcs, callback);
-			});
-		}
-	},
-
-	loadScript: function loadScript(src, callback) {
-		$('<script></script>')
-			.appendTo('body')
-			.attr('src', src)
-			.on('load', callback);
-	},
-
 	isDev: function () {
 		return location.port === '9999';
 	}
@@ -76,7 +59,7 @@ Saillog.App = L.Class.extend({
 		this.story = $('#story');
 		this.index = $('#index');
 
-		this.map = this.renderMap();
+		this.renderMap();
 
 		this.attachListeners();
 	},
@@ -144,7 +127,7 @@ Saillog.App = L.Class.extend({
 				self.renderLegStory(feature.properties);
 			}
 		});
-		return map;
+		return this;
 	},
 
 	// Remove all stuff for the stories from the map and pan to original state.
@@ -203,7 +186,6 @@ Saillog.App = L.Class.extend({
 			var name = $(this).data('name');
 			location.hash = name;
 		});
-		this.fire('loaded');
 		this.fire('loaded-index');
 	},
 
@@ -261,7 +243,7 @@ Saillog.App = L.Class.extend({
 		}
 		this.features.addTo(this.map);
 
-		this.fire('loaded');
+		console.log('fire loaded-story');
 		this.fire('loaded-story');
 	},
 
@@ -438,29 +420,21 @@ Saillog.App = L.Class.extend({
 	},
 
 	startEdit: function () {
-		var self = this;
-
-		Saillog.util.loadScripts([
-			'js/lib/Leaflet.draw/leaflet.draw.js',
-			'js/editor.js'
-		], function () {
-			console.log('Loading editor...');
-			self.editor = new Saillog.Editor(self);
-		});
+		this.editor = new Saillog.Editor(this);
+		return this.editor;
 	}
 });
 
-if (Saillog.util.isDev()) {
-	Saillog.util.loadScript('js/lib/Leaflet.draw/leaflet.draw.js');
-}
 $.getJSON('data/index.json', function (index) {
 	var saillog = window.saillog = new Saillog.App(index);
+
 	if (Saillog.util.isDev()) {
-		saillog.on('loaded', function () {
-			console.log('loaded');
-			saillog.off('loaded');
-			saillog.startEdit();
-		});
+		saillog.startEdit();
+
+		// after 0,5s click on an
+		setTimeout(function () {
+			$('#story .edit').eq(3).click();
+		}, 500);
 	}
 });
 
