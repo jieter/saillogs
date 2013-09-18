@@ -125,7 +125,6 @@ module.exports = function (grunt) {
 	});
 	grunt.registerTask('all-ships', ships);
 
-	grunt.registerTask('default', ['less:development', 'jshint']);
 
 	grunt.registerTask('dist', [
 		'uglify',
@@ -134,8 +133,10 @@ module.exports = function (grunt) {
 	]);
 
 	grunt.registerTask('dev', [
-		'default',
+		'less:development',
+		'jshint',
 		'connect:server',
 		'watch'
 	]);
+	grunt.registerTask('default', ['dev']);
 };

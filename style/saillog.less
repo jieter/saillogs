@@ -1,6 +1,53 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Serif);
 @import 'font-awesome/font-awesome.less';
 
+/* Mixins
+ */
+.transition(@what, @how, @delay: 0s) {
+	-webkit-transition: @what @how @delay;
+	-moz-transition: @what @how @delay;
+	-o-transition: @what @how @delay;
+	transition: @what @how @delay;
+}
+.transition-linear(@what, @time: 0s) {
+	.transition(@what, linear, @time);
+}
+.inner-shadow(@horizontal:0, @vertical:1px, @blur:2px, @alpha: 0.4) {
+	-webkit-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+	-moz-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+	box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+}
+.inner-glow(@horizontal:0, @vertical:1px, @blur:2px, @alpha: 0.4) {
+	-webkit-box-shadow: inset @horizontal @vertical @blur rgba(255, 255, 255, @alpha);
+	-moz-box-shadow: inset @horizontal @vertical @blur rgba(255, 255, 255, @alpha);
+	box-shadow: inset @horizontal @vertical @blur rgba(255, 255, 255, @alpha);
+}
+.gradient-vertical(@grStart, @grStop) {
+	background-color: @grStop;
+	background-image: -webkit-gradient(linear, top, bottom, from(@grStart), to(@grStop)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, @grStart, @grStop); /* Chrome 10+, Saf5.1+, iOS 5+ */
+	background-image: -moz-linear-gradient(top, @grStart, @grStop); /* FF3.6 */
+	background-image: -ms-linear-gradient(top, @grStart, @grStop); /* IE10 */
+	background-image: -o-linear-gradient(top, @grStart, @grStop); /* Opera 11.10+ */
+	background-image: linear-gradient(to bottom, @grStart, @grStop);
+}
+.box-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @color: rgb(0, 0, 0)) {
+	-webkit-box-shadow: @x-axis @y-axis @blur @color;
+	-moz-box-shadow: @x-axis @y-axis @blur @color;
+	box-shadow: @x-axis @y-axis @blur @color;
+}
+.drop-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1) {
+	.box-shadow(@x-axis, @y-axis, @blur, rgba(0, 0, 0, @alpha));
+}
+
+.rounded(@radius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+/* Basic style
+ */
 * {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -84,6 +131,8 @@ ul.selector {
 }
 
 #sidebar {
+	@borderStyle: 4px solid rgba(100, 100, 100, 0.2);
+
 	z-index: 1000;
 	position:absolute;
 	right: 20px;
@@ -91,8 +140,9 @@ ul.selector {
 	min-width: 300px;
 	max-width: 500px;
 	margin-left: 400px;
+
 	&.wide {
-		width: 42%;
+		width: 44%;
 	}
 
 	padding: 0 0 10px 0;
@@ -100,8 +150,9 @@ ul.selector {
 	text-align: justify;
 	line-height: 1.6em;
 	background-color: white;
-	border-left: 4px solid rgba(100, 100, 100, 0.2);
-	border-right: 4px solid rgba(100, 100, 100, 0.2);
+
+	border-left: @borderStyle;
+	border-right: @borderStyle;
 
 	.leg {
 		border-left: 4px solid white;
@@ -154,7 +205,7 @@ ul.selector {
 
 		width: 200px;
 		margin-left: -230px;
-		border: 4px solid rgba(100, 100, 100, 0.2);
+		border: @borderStyle;
 	}
 	.youtube {
 		white-space: nowrap;
@@ -209,6 +260,13 @@ ul.selector {
 
 			button {
 				margin-left: 6px;
+			}
+			.epiceditor {
+				height: 400px;
+				&.active {
+					margin: 2px -35px 2px -65px;
+					.box-shadow(0, 0, 6px, #00f);
+				}
 			}
 		}
 	}

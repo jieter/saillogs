@@ -51,15 +51,23 @@ Saillog.Editor = L.Class.extend({
 		});
 
 		$('#editor').find('button').on('click', function () {
+			var button = $(this);
+			if (button.hasClass('save')) {
+				self.saveEdits();
+			}
+
 			self.stopEditing();
 		});
+	},
+
+	editor: function () {
+		return $('#editor');
 	},
 
 	editStory: function (story) {
 		this._story = story;
 		var layer = this._layer = this.saillog.features.getLayer(story.id);
-
-		var editor = $('#editor');
+		var editor = this.editor();
 
 		for (var key in story) {
 			editor.find('[name=' + key + ']').val(story[key]);
@@ -80,6 +88,7 @@ Saillog.Editor = L.Class.extend({
 					layer.editing.enable();
 				}
 			}
+			this.saillog.panToFeature(layer);
 		}
 
 		$('#sidebar').addClass('wide');
@@ -87,16 +96,36 @@ Saillog.Editor = L.Class.extend({
 		editor.show();
 
 		/* globals EpicEditor:true */
-		var textEditor = new EpicEditor({
-			basePath: '/js/lib/epiceditor'
-		}).load();
+		if (!this._textEditor) {
+			this._textEditor = new EpicEditor({
+				basePath: '/js/lib/epiceditor',
+				button: {
+					fullscreen: false
+				}
+			}).load();
+		}
 		if (story.text) {
-			textEditor.importFile('story', story.text);
+			this._textEditor.importFile('story-' + story.id, story.text);
 		}
 	},
 
 	saveEdits: function () {
+		var feature = this._layer.toGeoJSON();
 
+		var editor = this.editor();
+		var value;
+		for (var key in feature.properties) {
+
+			if (key == 'text') {
+				value = this._textEditor.exportFile();
+			} else {
+				value = editor.find('[name=' + key + ']').val();
+			}
+			if (value) {
+				feature.properties[key] = value;
+			}
+		}
+		console.log(feature);
 	},
 
 	stopEditing: function () {
@@ -105,8 +134,14 @@ Saillog.Editor = L.Class.extend({
 		$('#editor').hide();
 
 		if (this._layer) {
-			this._layer.editing.disable();
+			if (this._layer.dragging) {
+				this._layer.dragging.disable();
+			} else {
+				this._layer.editing.disable();
+			}
 		}
+
+		this._story = null;
 
 	}
 

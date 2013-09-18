@@ -56,6 +56,7 @@ Saillog.App = L.Class.extend({
 	initialize: function (index) {
 		this._index = index;
 
+		this.sidebar = $('#sidebar');
 		this.story = $('#story');
 		this.index = $('#index');
 
@@ -234,23 +235,31 @@ Saillog.App = L.Class.extend({
 			this.openseamap.addTo(this.map);
 		}
 
-		// Move map to newly loaded area.
+		// Add features to map, and move to newly loaded area.
+		this.features.addTo(this.map);
 		if (this.features.getLayers().length > 0) {
-			this.fitBounds(this.features.getBounds());
+			this.panToFeature(this.features);
 			if (this.map.getZoom() > 14) {
 				this.map.setZoom(14);
 			}
 		}
-		this.features.addTo(this.map);
 
-		console.log('fire loaded-story');
 		this.fire('loaded-story');
 	},
 
 	fitBounds: function (bounds) {
 		this.map.fitBounds(bounds, {
-			paddingBottomRight: [this.story.width() * 1.11, 0]
+			paddingBottomRight: [this.sidebar.width() * 1.11, 0]
 		});
+	},
+
+	panToFeature: function (feature) {
+		feature.bringToFront();
+		if (feature.getBounds) {
+			this.fitBounds(feature.getBounds());
+		} else if (feature.getLatLng) {
+			this.map.panTo(feature.getLatLng());
+		}
 	},
 
 	renderLegStory: function (leg) {
@@ -357,12 +366,7 @@ Saillog.App = L.Class.extend({
 						current.setStyle(self.defaultStyles.highlight);
 					}
 
-					if (current.getBounds) {
-						self.fitBounds(current.getBounds());
-						self.features.bringToFront(current);
-					} else if (current.getLatLng) {
-						self.map.panTo(current.getLatLng());
-					}
+					self.panToFeature(current);
 				}
 			}
 
