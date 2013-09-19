@@ -11,9 +11,9 @@ if (!('console' in window)) {
 
 // amend Marked to do some custom things:
 /* globals marked:true */
-marked.InlineLexer.prototype.outputLink = function(cap, link) {
-	var href = escape(link.href);
-	var title = link.title ? ' title="' + escape(link.title) + '"'	: '';
+marked.InlineLexer.prototype.outputLink = function (cap, link) {
+	var href = link.href;
+	var title = link.title ? ' title="' + link.title + '"'	: '';
 	var body = cap[1];
 
 	if (link.href.substr(0, 15) === 'http://youtu.be') {
@@ -22,7 +22,7 @@ marked.InlineLexer.prototype.outputLink = function(cap, link) {
 	} else if (cap[0].charAt(0) !== '!') {
 		return '<a href="' + href + title + '>'	+ this.output(body) + '</a>';
 	} else {
-		return '<img src="' + href + '" alt="' + escape(body)	+ '"' + title + ' />';
+		return '<img src="' + href + '" alt="' + body	+ '"' + title + ' />';
 	}
 };
 
@@ -412,6 +412,7 @@ Saillog.App = L.Class.extend({
 		// listen to hash changes.
 		$(window).on('hashchange', function () {
 			var hash = window.location.hash.slice(1);
+			$(window).trigger('modal-close');
 			if (hash === '') {
 				self.renderStorylist();
 			} else {

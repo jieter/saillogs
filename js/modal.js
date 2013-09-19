@@ -118,20 +118,27 @@ $.fn['mediaModal'] = function (options) {
 				}
 			});
 
-			// some keyboard controls
-			$(window).on('keyup', function (event) {
-				if (event.keyCode === 27) { // 27 = Escape
-					closeModal();
-					$(window).off('keyup');
-				} else {
-					event.preventDefault();
+			$(window).on({
+				'modal-close': function () {
+					overlay.hide();
+					$('.modal').hide();
+				},
 
-					if (event.keyCode === 39) { // 39 = Right arrow
-						el = jumpFrom(el, 1);
-					} else if (event.keyCode === 37) { // 37 = Left arrow
-						el = jumpFrom(el, -1);
+				// some keyboard controls
+				keyup: function (event) {
+					if (event.keyCode === 27) { // 27 = Escape
+						closeModal();
+						$(window).off('keyup');
+					} else {
+						event.preventDefault();
+
+						if (event.keyCode === 39) { // 39 = Right arrow
+							el = jumpFrom(el, 1);
+						} else if (event.keyCode === 37) { // 37 = Left arrow
+							el = jumpFrom(el, -1);
+						}
+
 					}
-
 				}
 			});
 		});

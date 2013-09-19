@@ -118,7 +118,7 @@ Saillog.Editor = L.Class.extend({
 		var value;
 		for (var key in feature.properties) {
 
-			if (key == 'text') {
+			if (key === 'text') {
 				value = this._textEditor.exportFile();
 			} else {
 				value = editor.find('[name=' + key + ']').val();
@@ -144,8 +144,6 @@ Saillog.Editor = L.Class.extend({
 		}
 
 		this._story = null;
-
 	}
-
 });
 
