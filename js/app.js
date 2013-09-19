@@ -429,19 +429,9 @@ Saillog.App = L.Class.extend({
 	_markup: function (string) {
 		string = marked(string);
 
-		// // prefix path with path to image dir.
+		// prefix path with path to image dir + img class
+		// TODO: find a nice way to do this with Marked
 		string = string.replace(/src="/g, 'class="thumb" src="' + this.imagePrefix);
-
-		// // Markdown img/youtube syntax: ![Alt](src), also prefixed
-		// var prefix = this.imagePrefix;
-		// string = string.replace(/!\[([^\]]*)\]\(([^)]*)\)/g, function (match, alt, src) {
-		// 	alt = alt.trim();
-		// 	if (src.substr(0, 15) === 'http://youtu.be') {
-		// 		return '<span class="youtube" data-youtube-url="' + src + '" title="' + alt + '"><i class="icon-youtube-play"></i> ' + alt + '</span>';
-		// 	} else {
-		// 		return '<img src="' + prefix + src + '" class="thumb" title="' + alt + '"/>';
-		// 	}
-		// });
 
 		return string;
 	},
@@ -458,10 +448,10 @@ $.getJSON('data/index.json', function (index) {
 	if (Saillog.util.isDev()) {
 		saillog.startEdit();
 
-		// after 0,5s click on an
-		setTimeout(function () {
-			$('#story .edit').eq(3).click();
-		}, 500);
+		// // for debugging: after 0,5s click on an
+		// setTimeout(function () {
+		// 	$('#story .edit').eq(3).click();
+		// }, 500);
 	}
 });
 
