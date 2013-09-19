@@ -18,6 +18,16 @@ Saillog.Editor = L.Class.extend({
 			'loaded-index': this.stopEditing
 		}, this);
 		this.attachListeners();
+
+		/* globals EpicEditor:true */
+		if (!this._textEditor) {
+			this._textEditor = new EpicEditor({
+				basePath: '/js/lib/epiceditor',
+				button: {
+					fullscreen: false
+				}
+			});
+		}
 	},
 
 	initStoryControls: function () {
@@ -95,16 +105,8 @@ Saillog.Editor = L.Class.extend({
 		$('#story').hide();
 		editor.show();
 
-		/* globals EpicEditor:true */
-		if (!this._textEditor) {
-			this._textEditor = new EpicEditor({
-				basePath: '/js/lib/epiceditor',
-				button: {
-					fullscreen: false
-				}
-			}).load();
-		}
 		if (story.text) {
+			this._textEditor.load();
 			this._textEditor.importFile('story-' + story.id, story.text);
 		}
 	},

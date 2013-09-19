@@ -8,6 +8,25 @@ if (!('console' in window)) {
 		log: function () {}
 	};
 }
+
+// amend Marked to do some custom things:
+/* globals marked:true */
+marked.InlineLexer.prototype.outputLink = function(cap, link) {
+	var href = escape(link.href);
+	var title = link.title ? ' title="' + escape(link.title) + '"'	: '';
+	var body = cap[1];
+
+	if (link.href.substr(0, 15) === 'http://youtu.be') {
+		return '<span class="youtube" data-youtube-url="' + href + '" ' + title + '>' +
+			'<i class="icon-youtube-play"></i> ' + body + '</span>';
+	} else if (cap[0].charAt(0) !== '!') {
+		return '<a href="' + href + title + '>'	+ this.output(body) + '</a>';
+	} else {
+		return '<img src="' + href + '" alt="' + escape(body)	+ '"' + title + ' />';
+	}
+};
+
+
 var Saillog = Saillog || {};
 
 Saillog.util = {
@@ -254,7 +273,9 @@ Saillog.App = L.Class.extend({
 	},
 
 	panToFeature: function (feature) {
-		feature.bringToFront();
+		if (feature.bringToFront) {
+			feature.bringToFront();
+		}
 		if (feature.getBounds) {
 			this.fitBounds(feature.getBounds());
 		} else if (feature.getLatLng) {
@@ -406,19 +427,21 @@ Saillog.App = L.Class.extend({
 
 	// All text fields are processed by this method.
 	_markup: function (string) {
-		// prefix path with path to image dir.
+		string = marked(string);
+
+		// // prefix path with path to image dir.
 		string = string.replace(/src="/g, 'class="thumb" src="' + this.imagePrefix);
 
-		// Markdown img/youtube syntax: ![Alt](src), also prefixed
-		var prefix = this.imagePrefix;
-		string = string.replace(/!\[([^\]]*)\]\(([^)]*)\)/g, function (match, alt, src) {
-			alt = alt.trim();
-			if (src.substr(0, 15) === 'http://youtu.be') {
-				return '<span class="youtube" data-youtube-url="' + src + '" title="' + alt + '"><i class="icon-youtube-play"></i> ' + alt + '</span>';
-			} else {
-				return '<img src="' + prefix + src + '" class="thumb" title="' + alt + '"/>';
-			}
-		});
+		// // Markdown img/youtube syntax: ![Alt](src), also prefixed
+		// var prefix = this.imagePrefix;
+		// string = string.replace(/!\[([^\]]*)\]\(([^)]*)\)/g, function (match, alt, src) {
+		// 	alt = alt.trim();
+		// 	if (src.substr(0, 15) === 'http://youtu.be') {
+		// 		return '<span class="youtube" data-youtube-url="' + src + '" title="' + alt + '"><i class="icon-youtube-play"></i> ' + alt + '</span>';
+		// 	} else {
+		// 		return '<img src="' + prefix + src + '" class="thumb" title="' + alt + '"/>';
+		// 	}
+		// });
 
 		return string;
 	},
