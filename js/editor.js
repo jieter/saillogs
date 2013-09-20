@@ -63,7 +63,7 @@ Saillog.Editor = L.Class.extend({
 		$('#editor').find('button').on('click', function () {
 			var button = $(this);
 			if (button.hasClass('save')) {
-				self.saveEdits();
+				self.save();
 			}
 
 			self.stopEditing();
@@ -82,7 +82,6 @@ Saillog.Editor = L.Class.extend({
 		for (var key in story) {
 			editor.find('[name=' + key + ']').val(story[key]);
 		}
-
 
 		if (layer) {
 			var type = editor.find('.type').removeClass('marker polyline');
@@ -111,7 +110,7 @@ Saillog.Editor = L.Class.extend({
 		}
 	},
 
-	saveEdits: function () {
+	save: function () {
 		var feature = this._layer.toGeoJSON();
 
 		var editor = this.editor();
@@ -127,7 +126,8 @@ Saillog.Editor = L.Class.extend({
 				feature.properties[key] = value;
 			}
 		}
-		console.log(feature);
+		this._layer.properties = feature.properties;
+		this.saillog.updateFeature(feature);
 	},
 
 	stopEditing: function () {

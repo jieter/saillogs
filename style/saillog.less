@@ -130,8 +130,10 @@ ul.selector {
 	}
 }
 
+
 #sidebar {
 	@borderStyle: 1px solid #aaa;
+
 	z-index: 1000;
 	position:absolute;
 	right: 20px;
@@ -152,6 +154,17 @@ ul.selector {
 
 	border-left: @borderStyle;
 	border-right: @borderStyle;
+
+	.thumb {
+		position: relative;
+		float: left;
+		clear: both;
+
+		width: 200px;
+		margin-left: -230px;
+		margin-bottom: 8px;
+		border: @borderStyle;
+	}
 
 	.leg {
 		border-left: 4px solid white;
@@ -174,7 +187,7 @@ ul.selector {
 			background-color: whiteSmoke;
 			padding: 0px 2px;
 			margin: 0 4px 0 0;
-			border: 1px solid #EEE;
+			border: 1px solid #eee;
 			font-family: Helvetica, Arial, sans-serif;
 		}
 		h3 {
@@ -201,16 +214,6 @@ ul.selector {
 		}
 	}
 
-	img.thumb {
-		position: relative;
-		float: left;
-		clear: both;
-
-		width: 200px;
-		margin-left: -230px;
-		margin-bottom: 8px;
-		border: @borderStyle;
-	}
 	.youtube {
 		white-space: nowrap;
 		background-color: #ddd;
@@ -269,7 +272,7 @@ ul.selector {
 				height: 600px;
 
 				margin: 2px -35px 2px -75px;
-				border: 4px solid #eee;
+				border: @borderStyle;
 			}
 		}
 	}

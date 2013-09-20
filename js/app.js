@@ -1,6 +1,6 @@
 
 'use strict';
-/* global console:true */
+/* global console:true*/
 
 // make sure console exists
 if (!('console' in window)) {
@@ -22,7 +22,13 @@ marked.InlineLexer.prototype.outputLink = function (cap, link) {
 	} else if (cap[0].charAt(0) !== '!') {
 		return '<a href="' + href + title + '>'	+ this.output(body) + '</a>';
 	} else {
-		return '<img src="' + href + '" alt="' + body	+ '"' + title + ' />';
+		if (window.saillog) {
+			href = window.saillog.imagePrefix + href;
+		} else {
+			href = '/data/' + href;
+		}
+		var alt = body ? ' alt="' + body	+ '"' : '';
+		return '<img src="' + href + '"' + alt + ' class="thumb"' + title + ' />';
 	}
 };
 
@@ -210,6 +216,7 @@ Saillog.App = L.Class.extend({
 	},
 
 	renderStory: function (data) {
+		this._data = data;
 		var self = this;
 		self.clearMap();
 
@@ -237,19 +244,8 @@ Saillog.App = L.Class.extend({
 		});
 
 		if (data.trackGeojson) {
-			$.ajax({
-				url: 'data/' + data.name + '/track.geojson',
-				dataType: 'json',
-				success: function (geojson) {
-					self.trackLayer = L.geoJson(geojson, {
-						style: data.styles.track
-					}).addTo(self.map);
-
-					self.layerControl.addOverlay(self.trackLayer, 'Opgeslagen track');
-				}
-			});
+			this.renderTrack(data.name, data.styles.track);
 		}
-
 		if (data.showOpenseamap) {
 			this.openseamap.addTo(this.map);
 		}
@@ -283,14 +279,14 @@ Saillog.App = L.Class.extend({
 		}
 	},
 
-	renderLegStory: function (leg) {
+	renderLegStory: function (leg, target) {
+		var element = $('<div class="leg">');
+
+		element.data('leg', leg);
+		element.attr('id', 'leg-story-' + leg.id);
+
 		if (leg.text !== undefined) {
-			var storyText = this._markup(leg.text);
-
-			// story for this leg.
-			var legStory = $('<div class="leg">').html(storyText);
-
-			legStory.data('leg', leg);
+			element.html(this._markup(leg.text));
 
 			if (leg.title) {
 				var title = $('<h3>' + leg.title + '</h3>');
@@ -307,7 +303,7 @@ Saillog.App = L.Class.extend({
 					}
 					title.append('<span class="distance" title="' + tooltip + '">' + leg.distance + ' NM</span>');
 				}
-				title.prependTo(legStory);
+				title.prependTo(element);
 			}
 
 			if (leg.date) {
@@ -316,17 +312,37 @@ Saillog.App = L.Class.extend({
 				var parts = leg.date.split('-');
 				var date = parseInt(parts[2], 10) + '-' + parseInt(parts[1], 10);
 
-				legStory.prepend('<div class="date">' + date + '</div>');
+				element.prepend('<div class="date">' + date + '</div>');
 			}
 
 			if (leg.color) {
 				var rgb = Saillog.util.hexToRgb(leg.color);
 				var color = 'rgba(' + rgb[0] + ', ' + rgb[1] + ', ' + rgb[2] + ', 0.5)';
-				legStory.css('border-left', '4px solid ' + color);
+				element.css('border-left', '4px solid ' + color);
 			}
-
-			legStory.appendTo(this.story);
+			if (!target) {
+				element.appendTo(this.story);
+			} else {
+				target.replaceWith(element);
+			}
 		}
+		return element;
+	},
+
+	//TODO remove style from args
+	renderTrack: function (name, style) {
+		var self = this;
+		$.ajax({
+			url: 'data/' + name + '/track.geojson',
+			dataType: 'json',
+			success: function (geojson) {
+				self.trackLayer = L.geoJson(geojson, {
+					style: style
+				}).addTo(self.map);
+
+				self.layerControl.addOverlay(self.trackLayer, 'Opgeslagen track');
+			}
+		});
 	},
 
 	attachListeners: function () {
@@ -428,13 +444,25 @@ Saillog.App = L.Class.extend({
 
 	// All text fields are processed by this method.
 	_markup: function (string) {
-		string = marked(string);
+		return marked(string);
+	},
 
-		// prefix path with path to image dir + img class
-		// TODO: find a nice way to do this with Marked
-		string = string.replace(/src="/g, 'class="thumb" src="' + this.imagePrefix);
+	updateFeature: function (feature) {
+		var id = feature.properties.id;
 
-		return string;
+		this.renderLegStory(feature.properties, $('#leg-story-' + id));
+
+		var orig = this._data;
+
+		var json = this.features.toGeoJSON();
+
+		json.title = orig.title;
+
+		$.post('/api/save/' + orig.name, {
+			data: JSON.stringify(json)
+		}).success(function (response) {
+			console.log(response);
+		});
 	},
 
 	startEdit: function () {

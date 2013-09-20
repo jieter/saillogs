@@ -4,12 +4,17 @@ var fs = require('fs');
 var util = require('./util.js');
 var connectRoute = require('connect-route');
 
+var geojsonhint = require('geojsonhint');
+
 /*jshint unused:false */
 module.exports = function (connect) {
 	var dataPath = __dirname + '/../data';
 	var indexFile = dataPath + '/index.json';
 	console.log('Saillog API started with dataPath: ' + dataPath);
 
+	function filename(id) {
+		return dataPath + '/' + id + '.geojson';
+	}
 
 	var actions = {
 		updateIndex: function (callback) {
@@ -26,6 +31,7 @@ module.exports = function (connect) {
 				callback(err);
 			});
 		},
+
 		setVisibility: function (id, visibility, callback) {
 			actions.updateIndex(function (err, result) {
 				if (err) {
@@ -39,6 +45,27 @@ module.exports = function (connect) {
 				});
 				actions.saveIndex(result, callback);
 			});
+		},
+
+		load: function (id, callback) {
+			fs.readFile(filename(id), 'utf8', function (err, result) {
+				callback(err, JSON.parse(result));
+			});
+		},
+
+		save: function (id, json, callback) {
+			json.features.forEach(function (feature, key) {
+				delete feature.properties.id;
+				delete feature.properties.distance;
+
+				json.features[key] = feature;
+			});
+
+			fs.writeFile(filename(id), util.stringify(json), callback);
+		},
+
+		exists: function (id) {
+			return fs.existsSync(filename(id));
 		}
 	};
 
@@ -56,17 +83,37 @@ module.exports = function (connect) {
 	return [
 		connect.logger('dev'),
 		connect.static(__dirname + '/../'),
+		connect.bodyParser(),
 		connectRoute(function (router) {
 			router.get('/api/get/:id', function (req, res, next) {
+				var id = req.params.id;
 
+				if (!actions.exists(id)) {
+					reply(res, null, {
+						success: false,
+						message: 'No such story'
+					});
+				} else {
+					actions.load(id, function (err, result) {
+						reply(res, null, result);
+					});
+				}
 			});
 
-			router.get('/api/create/', function (req, res, next) {
+			router.post('/api/create/', function (req, res, next) {
+				console.log('API create');
 				res.end('api create');
 			});
 
-			router.get('/api/save/:id', function (req, res, next) {
-				res.end('api save ' + req.params.id);
+			router.post('/api/save/:id', function (req, res, next) {
+				console.log('API save ' + req.params.id);
+
+				var id = req.params.id;
+				var json = JSON.parse(req.body.data);
+
+				actions.save(id, json, function (err) {
+					reply(res, err, {success: true});
+				});
 			});
 
 			router.get('/api/setVisible/:id', function (req, res, next) {

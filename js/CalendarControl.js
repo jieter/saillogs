@@ -10,6 +10,7 @@
 		onAdd: function () {
 			this._container = L.DomUtil.create('div', '');
 			this._container.id = 'index';
+			this._stories = {};
 
 			return this._container;
 		},
@@ -19,6 +20,12 @@
 		},
 
 		addStory: function (story) {
+			// TODO allow out-of-order adding
+			if (this._stories[story.id]) {
+				return;
+			}
+			this._stories[story.id] = story;
+
 			var container = this.container();
 
 			var parts = story.date.split('-');
