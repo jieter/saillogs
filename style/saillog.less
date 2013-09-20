@@ -22,15 +22,6 @@
 	-moz-box-shadow: inset @horizontal @vertical @blur rgba(255, 255, 255, @alpha);
 	box-shadow: inset @horizontal @vertical @blur rgba(255, 255, 255, @alpha);
 }
-.gradient-vertical(@grStart, @grStop) {
-	background-color: @grStop;
-	background-image: -webkit-gradient(linear, top, bottom, from(@grStart), to(@grStop)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient(top, @grStart, @grStop); /* Chrome 10+, Saf5.1+, iOS 5+ */
-	background-image: -moz-linear-gradient(top, @grStart, @grStop); /* FF3.6 */
-	background-image: -ms-linear-gradient(top, @grStart, @grStop); /* IE10 */
-	background-image: -o-linear-gradient(top, @grStart, @grStop); /* Opera 11.10+ */
-	background-image: linear-gradient(to bottom, @grStart, @grStop);
-}
 .box-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @color: rgb(0, 0, 0)) {
 	-webkit-box-shadow: @x-axis @y-axis @blur @color;
 	-moz-box-shadow: @x-axis @y-axis @blur @color;
@@ -58,7 +49,7 @@ html, body, #map {
 	padding: 0;
 
 	font-size: 14px;
-	font-family: "PT Serif", Georgia,serif;
+	font-family: "PT Serif", Georgia, serif;
 }
 
 #map_wrapper {
@@ -160,10 +151,12 @@ ul.selector {
 		float: left;
 		clear: both;
 
-		width: 200px;
+		width: 202px;
+		min-height: 142px;
 		margin-left: -230px;
 		margin-bottom: 8px;
 		border: @borderStyle;
+		background-color: #eee;
 	}
 
 	.leg {

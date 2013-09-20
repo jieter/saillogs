@@ -181,13 +181,12 @@ Saillog.App = L.Class.extend({
 		this.clearMap();
 
 		var story = this.story;
+		story.empty();
 
 		document.title = 'Jieters zeilverslagen';
 		this.calendar.clear();
 
-		story.find('h1').html('Jieters zeilverslagen');
-		story.find('.leg').remove();
-		story.find('#explanation').hide();
+		story.append($('<h1></h1>').html('Jieters zeilverslagen'));
 
 		if (this._index.text !== undefined) {
 			this.imagePrefix = 'data/';
@@ -226,9 +225,9 @@ Saillog.App = L.Class.extend({
 		this.imagePrefix = 'data/' + data.name + '/';
 
 		document.title = data.title;
-		story.find('.selector').remove();
-		story.find('h1').html(data.title);
-		story.find('.leg').remove();
+
+		story.empty();
+		story.append($('<h1>').html(data.title));
 
 		// refresh selector.
 		this.index = $(this.index.selector);
@@ -290,6 +289,7 @@ Saillog.App = L.Class.extend({
 
 			if (leg.title) {
 				var title = $('<h3>' + leg.title + '</h3>');
+				title.append('<span class="edit hidden"><i class="icon-edit-sign"></i></span>');
 				if (leg.distance) {
 					var tooltip = 'gevaren ';
 					if (leg.duration) {
@@ -455,6 +455,17 @@ Saillog.App = L.Class.extend({
 		var orig = this._data;
 
 		var json = this.features.toGeoJSON();
+
+		for (var key in orig) {
+			switch (key) {
+			case 'type':
+			case 'features':
+			case 'styles':
+				break;
+			default:
+				json[key] = orig[key];
+			}
+		}
 
 		json.title = orig.title;
 

@@ -14,7 +14,6 @@ Saillog.Editor = L.Class.extend({
 		}
 		saillog.off('loaded-story loaded-index');
 		saillog.on({
-			'loaded-story': this.initStoryControls,
 			'loaded-index': this.stopEditing
 		}, this);
 		this.attachListeners();
@@ -28,14 +27,6 @@ Saillog.Editor = L.Class.extend({
 				}
 			});
 		}
-	},
-
-	initStoryControls: function () {
-		$('#story h3').each(function () {
-			$('<span class="edit"></span>')
-				.append('<i class="icon-edit-sign"></i></span>')
-				.appendTo(this);
-		});
 	},
 
 	attachListeners: function () {
