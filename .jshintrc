@@ -5,7 +5,9 @@
 
 	"globals": {
 		"L": true,
-		"$": true
+		"$": true,
+		"Saillog": true,
+		"console": true
 	},
 
 	"bitwise": true,
