@@ -64,7 +64,10 @@ module.exports = function (grunt) {
 				}
 			},
 			js: {
-				files: ['js/*.js'],
+				files: [
+					'.jshintrc',
+					'js/*.js'
+				],
 				tasks: ['jshint'],
 				options: {
 					livereload: true
