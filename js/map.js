@@ -13,7 +13,6 @@ Saillog.Map = L.Class.extend({
 		this.initLayers();
 	},
 
-
 	initControls: function () {
 		this.layerControl = L.control.layers({}, {
 			OpenSeaMap: this.layers.openseamap
@@ -48,15 +47,29 @@ Saillog.Map = L.Class.extend({
 		});
 	},
 
-	panTo: function (feature) {
-		if (feature.bringToFront) {
-			feature.bringToFront();
+	panTo: function (thing, zoom) {
+		if (Saillog.util.isArray(thing)) {
+			this._map.panTo(thing);
+			if (zoom) {
+				this._map.setZoom(zoom);
+			}
+			return;
 		}
-		if (feature.getBounds) {
-			this.fitBounds(feature.getBounds());
-		} else if (feature.getLatLng) {
-			this.map.panTo(feature.getLatLng());
+		if (thing.bringToFront) {
+			thing.bringToFront();
 		}
+		if (thing.getBounds) {
+			this.fitBounds(thing.getBounds());
+		} else if (thing.getLatLng) {
+			this._map.panTo(thing.getLatLng());
+		}
+	},
+
+	maxZoom: function (zoom) {
+		if (this._map.getZoom() > zoom) {
+			this._map.setZoom(zoom);
+		}
+		return this;
 	},
 
 	clear: function () {
