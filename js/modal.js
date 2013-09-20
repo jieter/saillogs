@@ -37,12 +37,12 @@ $.fn['mediaModal'] = function (options) {
 		}
 
 		// add caption
-		if (el.attr('title') && el.attr('title') !== '') {
+		if (el.attr('alt') && el.attr('alt') !== '') {
 			var caption = modal.find('.caption');
 			if (caption.length !== 1) {
 				caption = $('<span class="caption"></span>').prependTo(modal);
 			}
-			caption.html(el.attr('title'));
+			caption.html(el.attr('alt'));
 		}
 		return content;
 	};
