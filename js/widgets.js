@@ -91,7 +91,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 				.attr('id', 'leg-story-' + leg.properties.id)
 				.appendTo(container);
 		});
-		container.on('click', '.leg', function (event) {
+		container.on('click', '.leg', function () {
 			widget.fire('click-leg', {
 				legId: $(this).attr('id').substr(10)
 			});

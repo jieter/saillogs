@@ -12,7 +12,7 @@ Saillog.Story = L.Class.extend({
 		this.features = {};
 
 
-		var id, layer;
+		var id;
 		var self = this;
 		story.features.forEach(function (feature) {
 			if (feature.geometry) {
@@ -23,7 +23,6 @@ Saillog.Story = L.Class.extend({
 			}
 
 			feature.properties.id = id;
-			console.log(feature);
 			self.features[id] = feature;
 		});
 	},
@@ -32,6 +31,12 @@ Saillog.Story = L.Class.extend({
 		context = context || this;
 		for (var key in this.features) {
 			fn.call(context, this.features[key]);
+		}
+	},
+
+	highlight: function (id) {
+		if (this.features[id].layer) {
+			this.features[id].layer.bringToFront();
 		}
 	},
 

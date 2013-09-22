@@ -73,7 +73,7 @@ Saillog.Map = L.Class.extend({
 	},
 
 	clear: function () {
-		var map = this._map;
+		// var map = this._map;
 		// if (this.features instanceof L.FeatureGroup) {
 		// 	this.features.clearLayers();
 		// 	if (map.hasLayer(this.features)) {
