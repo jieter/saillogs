@@ -61,7 +61,7 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 			}
 		});
 		var widget = this;
-		list.one('click', '[data-id]', function () {
+		list.on('click', '[data-id]', function () {
 			widget.fire('click-story', {
 				id: $(this).data('id')
 			});
@@ -72,10 +72,13 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 });
 
 Saillog.Widget.Story = Saillog.Widget.extend({
-
 	update: function (story) {
 		this._story = story;
 		return this.render();
+	},
+
+	updateLeg: function (leg) {
+		throw "not implemented";
 	},
 
 	render: function () {
@@ -87,15 +90,33 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		$('<h1></h1>').html(story.title).appendTo(container);
 
 		story.each(function (leg) {
-			widget._renderLeg(leg.properties)
+			this._renderLeg(leg.properties)
 				.attr('id', 'leg-story-' + leg.properties.id)
 				.appendTo(container);
-		});
-		container.on('click', '.leg', function () {
-			widget.fire('click-leg', {
+		}, this);
+
+		container.on('click mouseover mouseout', '.leg', function (event) {
+			var target = $(event.target);
+			var type = target.is('.edit') || target.parent().is('.edit') ? 'edit' : event.type;
+
+			widget.fire(type + '-leg', {
 				legId: $(this).attr('id').substr(10)
 			});
 		});
+	},
+
+	highlight: function (id) {
+		var legs = this._container.find('.leg');
+		if (!id) {
+			legs.removeClass('active');
+		}
+		var current = legs.filter('#leg-story-' + id);
+
+		if (current.hasClass('active')) {
+			return;
+		}
+		legs.removeClass('active');
+		current.addClass('active');
 	},
 
 	_renderLeg: function (leg) {
@@ -140,5 +161,47 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		}
 
 		return element;
+	}
+});
+
+Saillog.Widget.Editor = Saillog.Widget.extend({
+
+	update: function (leg) {
+		this._leg = leg;
+		return this.render();
+	},
+
+	render: function () {
+		var container = this._container;
+
+		var editor = $('<div id="editor"></div>').appendTo(container);
+
+		$('<span class="type"></span>').appendTo(editor);
+		$('<h1>Bewerken</h1>').appendTo(editor);
+
+		function group (elems) {
+			return $('<div class="group"></div>').append(elems);
+		}
+		group([
+			'<label for="title">Titel</label>',
+			'<input type="text" name="title" />'
+		]).appendTo(editor);
+
+		group([
+			'<label for="date">Datum</label>',
+			'<input type="date" name="date" />'
+		]).appendTo(editor);
+
+		group([
+			'<label for="text">Verhaal</label>',
+			'<div id="epiceditor" class="epiceditor"></div>'
+		]).appendTo(editor);
+
+		$([
+			'<button class="save">Save</button>',
+			'<button class="cancel">Cancel</button>'
+		]).appendTo(editor);
+
+		return this;
 	}
 });

@@ -97,7 +97,7 @@ ul.selector {
 	}
 }
 
-#index {
+#calendar {
 	width: 147px;
 	.leg, .filler {
 		width: 20px;
@@ -110,7 +110,7 @@ ul.selector {
 		padding: 1px 3px;
 		cursor: pointer;
 		text-align: center;
-		transition: background-color .2s;
+
 	}
 	.leg:hover, .leg.hover {
 		background-color: #e0eeee;
@@ -172,6 +172,7 @@ ul.selector {
 		&.active {
 			border-left: 4px solid white;
 			border-right: 2px solid white;
+			transition: background-color .2s;
 			background-color: rgba(100, 100, 100, 0.05);
 		}
 		.date {

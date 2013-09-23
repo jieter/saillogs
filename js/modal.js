@@ -92,7 +92,9 @@ $.fn['mediaModal'] = function (options) {
 			return el;
 		};
 
-		container.on('click', options.selector, function () {
+		container.on('click', options.selector, function (event) {
+			event.preventDefault();
+			event.stopPropagation();
 			var el = $(this);
 			var content = load(el);
 

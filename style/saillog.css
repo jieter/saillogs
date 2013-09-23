@@ -1538,28 +1538,27 @@ ul.selector li.disabled:after {
 ul.selector li:hover {
   background-color: #eee;
 }
-#index {
+#calendar {
   width: 147px;
 }
-#index .leg,
-#index .filler {
+#calendar .leg,
+#calendar .filler {
   width: 20px;
   height: 23px;
   float: left;
   margin: 0 1px 1px 0;
 }
-#index .leg {
+#calendar .leg {
   background-color: white;
   padding: 1px 3px;
   cursor: pointer;
   text-align: center;
-  transition: background-color 0.2s;
 }
-#index .leg:hover,
-#index .leg.hover {
+#calendar .leg:hover,
+#calendar .leg.hover {
   background-color: #e0eeee;
 }
-#index .leg.active {
+#calendar .leg.active {
   background-color: #efefef;
 }
 #sidebar {
@@ -1605,6 +1604,7 @@ ul.selector li:hover {
 #sidebar .leg.active {
   border-left: 4px solid white;
   border-right: 2px solid white;
+  transition: background-color 0.2s;
   background-color: rgba(100, 100, 100, 0.05);
 }
 #sidebar .leg .date {
