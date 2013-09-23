@@ -40,8 +40,6 @@ Saillog.Map = L.Class.extend({
 			attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
 		});
 
-		layers.story = L.featureGroup();
-		layers.track = L.featureGroup();
 	},
 
 	map: function () {
@@ -84,24 +82,22 @@ Saillog.Map = L.Class.extend({
 	clear: function () {
 		var map = this._map;
 
-		// clear features.
-		map.removeLayer(this.storyFeatures);
-		this.storyFeatures.clearLayers();
-
 		if (map.hasLayer(this.layers.track)) {
 			this.layerControl.removeLayer(this.layers.track);
 			map.removeLayer(this.layers.track);
 		}
 
-		map.setView(this.options.center, this.options.zoom, {
-			animate: true
-		});
-
 		return this;
 	},
 
 	addLayer: function (name, layer) {
-		this.layers[name] = layer.addTo(this._map);
-	}
+		this.layers[name] = layer;
+		layer.addTo(this._map);
+	},
 
+	removeLayer: function (name) {
+		if (this.layers[name]) {
+			this.layers[name].onRemove(this._map);
+		}
+	}
 });

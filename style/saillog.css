@@ -1580,13 +1580,27 @@ ul.selector li:hover {
 #sidebar.wide {
   width: 44%;
 }
-#sidebar .leg {
+#sidebar .thumb {
+  position: relative;
+  float: left;
+  clear: both;
+  width: 202px;
+  min-height: 142px;
+  margin-left: -230px;
+  margin-bottom: 8px;
+  border: 1px solid #aaaaaa;
+  background-color: #eee;
+}
+#sidebar .leg,
+#sidebar .preface {
   border-left: 4px solid white;
   border-right: 2px solid white;
   padding: 0 10px 0 10px;
-  cursor: pointer;
   margin-bottom: 10px;
   clear: both;
+}
+#sidebar .leg {
+  cursor: pointer;
 }
 #sidebar .leg.active {
   border-left: 4px solid white;
@@ -1601,7 +1615,7 @@ ul.selector li:hover {
   background-color: whiteSmoke;
   padding: 0px 2px;
   margin: 0 4px 0 0;
-  border: 1px solid #EEE;
+  border: 1px solid #eee;
   font-family: Helvetica, Arial, sans-serif;
 }
 #sidebar .leg h3 {
@@ -1624,15 +1638,6 @@ ul.selector li:hover {
 #sidebar .leg p {
   margin-top: 5px;
   margin-bottom: 5px;
-}
-#sidebar img.thumb {
-  position: relative;
-  float: left;
-  clear: both;
-  width: 200px;
-  margin-left: -230px;
-  margin-bottom: 8px;
-  border: 1px solid #aaaaaa;
 }
 #sidebar .youtube {
   white-space: nowrap;
@@ -1687,7 +1692,7 @@ ul.selector li:hover {
 #sidebar #editor .group .epiceditor {
   height: 600px;
   margin: 2px -35px 2px -75px;
-  border: 4px solid #eee;
+  border: 1px solid #aaaaaa;
 }
 table {
   margin: 10px;

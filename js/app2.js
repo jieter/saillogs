@@ -211,8 +211,14 @@ Saillog.App = L.Class.extend({
 
 	showIndex: function () {
 		Saillog.util.imagePrefix = 'data/';
+
 		this._map.panTo(this._index.center, this._index.zoom);
 		this._map.maxZoom(14);
+
+		this._map.clear();
+		if (this._story) {
+			this._map.removeLayer('story');
+		}
 
 		this.indexWidget.update(this._index);
 	},
@@ -259,7 +265,7 @@ Saillog.App = L.Class.extend({
 	},
 
 	sidebarPadding: function () {
-		return this.sidebar.width() * 1.25;
+		return this.sidebar.width() + 200;
 	},
 
 	loadIndex: function (callback) {
