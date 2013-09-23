@@ -1,12 +1,16 @@
 'use strict';
 
 Saillog.Map = L.Class.extend({
+	options: {
+		center: [50, 2],
+		zoom: 12
+	},
 	initialize: function (app) {
 		this.app = app;
 
 		this._map = L.map('map', {
-			center: [50, 2],
-			zoom: 12,
+			center: this.options.center,
+			zoom: this.options.zoom,
 			zoomControl: false,
 		});
 
@@ -25,7 +29,7 @@ Saillog.Map = L.Class.extend({
 	initLayers: function () {
 		var layers = this.layers = {};
 
-		layers.baselayer = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+		layers.base = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 			attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 			subdomains: '0123',
 			minZoom: 2,
@@ -35,6 +39,9 @@ Saillog.Map = L.Class.extend({
 		layers.openseamap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
 			attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
 		});
+
+		layers.story = L.featureGroup();
+		layers.track = L.featureGroup();
 	},
 
 	map: function () {
@@ -61,7 +68,9 @@ Saillog.Map = L.Class.extend({
 		if (thing.getBounds) {
 			this.fitBounds(thing.getBounds());
 		} else if (thing.getLatLng) {
-			this._map.panTo(thing.getLatLng());
+			this._map.panTo(thing.getLatLng(), {
+				paddingBottomRight: [this.app.sidebarPadding(), 0]
+			});
 		}
 	},
 
@@ -73,22 +82,26 @@ Saillog.Map = L.Class.extend({
 	},
 
 	clear: function () {
-		// var map = this._map;
-		// if (this.features instanceof L.FeatureGroup) {
-		// 	this.features.clearLayers();
-		// 	if (map.hasLayer(this.features)) {
-		// 		map.removeLayer(this.features);
-		// 	}
-		// }
-		// if (map.hasLayer(this.trackLayer)) {
-		// 	this.layerControl.removeLayer(this.trackLayer);
-		// 	map.removeLayer(this.trackLayer);
-		// }
-		// map.setView(this._index.center, this._index.zoom, {
-		// 	animate: true
-		// });
+		var map = this._map;
 
-		// this.calendar.clear();
+		// clear features.
+		map.removeLayer(this.storyFeatures);
+		this.storyFeatures.clearLayers();
+
+		if (map.hasLayer(this.layers.track)) {
+			this.layerControl.removeLayer(this.layers.track);
+			map.removeLayer(this.layers.track);
+		}
+
+		map.setView(this.options.center, this.options.zoom, {
+			animate: true
+		});
+
 		return this;
+	},
+
+	addLayer: function (name, layer) {
+		this.layers[name] = layer.addTo(this._map);
 	}
+
 });
