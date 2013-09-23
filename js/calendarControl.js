@@ -16,7 +16,6 @@ Saillog.CalendarControl = L.Control.extend({
 
 		this.container().on({
 			'click mouseover mouseout': function (event) {
-				console.log(event.target);
 				control.fire(event.type + '-leg', {
 					legId: $(event.target).data('legId')
 				});
@@ -32,7 +31,6 @@ Saillog.CalendarControl = L.Control.extend({
 	update: function (story) {
 		this.container().empty();
 
-		var self = this;
 		story.each(function (leg) {
 			if (leg.properties.date) {
 				this.addStory(leg.properties);
@@ -45,7 +43,7 @@ Saillog.CalendarControl = L.Control.extend({
 		var legs = this.container().find('.leg');
 		legs.each(function (key, element) {
 			element = $(element);
-			if (id == element.data('legId')) {
+			if (id === element.data('legId')) {
 				element.addClass('active');
 			} else {
 				element.removeClass('active');

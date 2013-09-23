@@ -78,7 +78,8 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 	},
 
 	updateLeg: function (leg) {
-		throw "not implemented";
+		console.log(leg);
+		throw 'not implemented';
 	},
 
 	render: function () {
@@ -98,7 +99,11 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		container.on('click mouseover mouseout', '.leg', function (event) {
 			var target = $(event.target);
 			var type = target.is('.edit') || target.parent().is('.edit') ? 'edit' : event.type;
-
+			if (type === 'edit') {
+				if (event.type !== 'click') {
+					return;
+				}
+			}
 			widget.fire(type + '-leg', {
 				legId: $(this).attr('id').substr(10)
 			});
@@ -179,7 +184,7 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 		$('<span class="type"></span>').appendTo(editor);
 		$('<h1>Bewerken</h1>').appendTo(editor);
 
-		function group (elems) {
+		function group(elems) {
 			return $('<div class="group"></div>').append(elems);
 		}
 		group([

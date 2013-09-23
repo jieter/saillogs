@@ -20,6 +20,15 @@ Saillog.defaultStyles = {
 	}
 };
 
+Saillog.Editor = {
+	editor: function (leg) {
+		this.editorWidget = new Saillog.Widget.Editor(this.sidebar);
+
+		this.editorWidget.render(leg);
+	}
+
+};
+
 Saillog.App = L.Class.extend({
 	initialize: function () {
 		var app = this;
@@ -37,6 +46,12 @@ Saillog.App = L.Class.extend({
 		this.calendarControl = new Saillog.CalendarControl().addTo(this._map._map);
 
 		this._attachLegActions(this.storyWidget);
+		this.storyWidget.on({
+			'edit-leg': function (event) {
+				this.showEditor(event.legId);
+			}
+		}, this);
+
 		this._attachLegActions(this.calendarControl);
 
 		this.loadIndex(function () {
@@ -75,7 +90,6 @@ Saillog.App = L.Class.extend({
 
 	showStory: function () {
 		var story = this._story;
-		var app = this;
 		this._attachLegActions(story);
 
 		Saillog.util.imagePrefix = 'data/' + story.id + '/';
@@ -87,8 +101,12 @@ Saillog.App = L.Class.extend({
 		this.calendarControl.update(story);
 	},
 
-	showEditor: function () {
-
+	showEditor: function (leg) {
+		console.log('loading editor', leg);
+		if (!this.editor) {
+			L.extend(this, Saillog.Editor);
+		}
+		return this.editor(leg);
 	},
 
 	_attachLegActions: function (emitter) {
@@ -99,6 +117,7 @@ Saillog.App = L.Class.extend({
 				this._highlight();
 			}
 		}, this);
+		return emitter;
 	},
 
 	_legClick: function (event) {
