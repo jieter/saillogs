@@ -88,7 +88,12 @@ Saillog.CalendarControl = L.Control.extend({
 			item.appendTo(container);
 		}
 	},
+
 	clear: function () {
 		this._container.innerHTML = '';
+	},
+
+	hide: function () {
+		this.container().hide();
 	}
 });

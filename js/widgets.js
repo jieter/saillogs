@@ -177,36 +177,70 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 	},
 
 	render: function () {
-		var container = this._container;
+		var container = this._container.empty();
 
-		var editor = $('<div id="editor"></div>').appendTo(container);
+		var editor = $('<div id="editor"><h1>Bewerken</h1></div>');
 
-		$('<span class="type"></span>').appendTo(editor);
-		$('<h1>Bewerken</h1>').appendTo(editor);
+		//$('<span class="type"></span>').appendTo(editor);
 
-		function group(elems) {
-			return $('<div class="group"></div>').append(elems);
+		function inputGroup(name, label, type) {
+			label = label || name;
+			type = type || 'text';
+
+			return $('<div class="group"></div>').append(
+				$('<label for="' + name + '">' + label + '</label>'),
+				$('<input type="' + type + '" name="' + name + '" />')
+			);
 		}
-		group([
-			'<label for="title">Titel</label>',
-			'<input type="text" name="title" />'
-		]).appendTo(editor);
 
-		group([
-			'<label for="date">Datum</label>',
-			'<input type="date" name="date" />'
-		]).appendTo(editor);
+		inputGroup('title', 'Titel').appendTo(editor);
+		inputGroup('date', 'Datum', 'date').appendTo(editor);
 
-		group([
-			'<label for="text">Verhaal</label>',
-			'<div id="epiceditor" class="epiceditor"></div>'
-		]).appendTo(editor);
+		$('<div class="group"></div>').append(
+			$('<label for="text">Verhaal</label>'),
+			$('<div id="epiceditor" class="epiceditor"></div>')
+				.width($(window).width() * 0.44 + 80)
+		).appendTo(editor);
 
-		$([
-			'<button class="save">Save</button>',
-			'<button class="cancel">Cancel</button>'
-		]).appendTo(editor);
+		$('<button class="save">Save</button>').appendTo(editor);
+		$('<button class="cancel">Cancel</button>').appendTo(editor);
 
+		editor.appendTo(container);
+
+		/* globals EpicEditor:true */
+		this._textEditor = new EpicEditor({
+			basePath: '/js/lib/epiceditor',
+			button: false
+		}).load();
+
+
+		var widget = this;
+		container.on('click', 'button', function () {
+			var button = $(this);
+			if (button.hasClass('save')) {
+				widget.fire('save');
+			} else if (button.hasClass('cancel')) {
+				widget.fire('cancel');
+			}
+		});
 		return this;
+	},
+
+	loadLeg: function (leg) {
+		for (var key in leg) {
+			this._container.find('[name=' + key + ']').val(leg[key]);
+		}
+		this._textEditor.importFile('story-' + leg.id, leg.text);
+	},
+
+	values: function () {
+		var values = {};
+		this._container.find('input').each(function () {
+			var input = $(this);
+			values[input.prop('name')] = input.val();
+		});
+		values['text'] = this._textEditor.exportFile();
+
+		return values;
 	}
 });

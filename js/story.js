@@ -18,7 +18,6 @@ Saillog.Story = L.Class.extend({
 					self.fire(event.type + '-leg', {
 						legId: event.layer.feature.properties.id
 					});
-				//console.log(event.type)
 				}
 			}, this);
 
@@ -46,6 +45,10 @@ Saillog.Story = L.Class.extend({
 			});
 			this._loadTrack();
 		}
+	},
+
+	getProperties: function (id) {
+		this.features[id].properties;
 	},
 
 	getLayer: function (id) {

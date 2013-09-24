@@ -1577,6 +1577,10 @@ ul.selector li:hover {
   border-right: 1px solid #aaaaaa;
 }
 #sidebar.wide {
+  -webkit-transition: width linear 0.2s;
+  -moz-transition: width linear 0.2s;
+  -o-transition: width linear 0.2s;
+  transition: width linear 0.2s;
   width: 44%;
 }
 #sidebar .thumb {
@@ -1654,7 +1658,6 @@ ul.selector li:hover {
 }
 #sidebar #editor {
   padding: 15px;
-  display: none;
 }
 #sidebar #editor h1 {
   padding: 0;
