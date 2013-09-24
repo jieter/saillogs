@@ -22,11 +22,14 @@ Saillog.defaultStyles = {
 
 Saillog.Editor = {
 	editor: function (legId) {
+		console.log('editing', legId);
+
 		this._editLegId = legId;
+		var layer = this._editLayer = this._story.getLayer(legId);
+
 
 		this.sidebar.addClass('wide');
 		this.editorWidget = new Saillog.Widget.Editor(this.sidebar);
-
 
 		this.editorWidget.on({
 			'save': function () {
@@ -36,12 +39,20 @@ Saillog.Editor = {
 			'cancel': this._stopEditing
 		}, this);
 
-		console.log('editor', legId);
-
 		this.editorWidget
 			.render()
-			.loadLeg(this._story.features[legId].properties);
+			.loadLeg(this._story.getProperties(legId));
 
+		if (layer) {
+			if (layer instanceof L.Marker) {
+				layer.dragging.enable();
+			} else {
+				if (layer.getLatLngs && layer.getLatLngs().length < 150) {
+					layer.editing.enable();
+				}
+			}
+			this._map.panTo(layer);
+		}
 
 	},
 
@@ -53,12 +64,19 @@ Saillog.Editor = {
 	_stopEditing: function () {
 		this.sidebar.removeClass('wide');
 		this.showStory();
+
 		this._scrollTo(this._editLegId, 0);
 		delete this._editLegId;
+
+		if (this._editLayer) {
+			if (this._editLayer.dragging) {
+				this._editLayer.dragging.disable();
+			} else {
+				this._editLayer.editing.disable();
+			}
+		}
+		delete this._editLayer;
 	}
-
-
-
 };
 
 Saillog.App = L.Class.extend({
@@ -157,7 +175,7 @@ Saillog.App = L.Class.extend({
 		this._highlight(legId);
 		this._map.panTo(this._story.getLayer(legId));
 
-		this._scrollTo(legId, 500);
+		this._scrollTo(legId);
 	},
 
 	_legHover: function (event) {
@@ -171,9 +189,11 @@ Saillog.App = L.Class.extend({
 		this.calendarControl.highlight(id);
 	},
 
-	_scrollTo: function (id, delay) {
-		delay = delay || 500;
-		$.scrollTo($('#leg-story-' + id), delay, {
+	_scrollTo: function (id, duration) {
+		duration = duration || 500;
+
+		$.scrollTo('#leg-story-' + id, {
+			duration: duration,
 			offset: {
 				top: -20
 			}
