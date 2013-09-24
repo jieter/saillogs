@@ -22,6 +22,9 @@ Saillog.defaultStyles = {
 
 Saillog.Editor = {
 	editor: function (legId) {
+		if (!this._story) {
+			return;
+		}
 		console.log('editing', legId);
 
 		this._editLegId = legId;

@@ -7,6 +7,8 @@ Saillog.Widget = L.Class.extend({
 		this._container = container;
 	},
 
+	isAuthorized: Saillog.util.isDev(),
+
 	show: function () {
 		this._container.show();
 		return this;
@@ -66,6 +68,10 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 				id: $(this).data('id')
 			});
 		});
+
+		if (this.isAuthorized) {
+			list.prepend('<li class="create-new"><i class="icon-plus"></i> New story</li>');
+		}
 
 		return this;
 	}
@@ -131,8 +137,9 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		if (leg.title) {
 			title.append(leg.title);
 		}
-
-		title.append('<span class="edit hidden"><i class="icon-edit-sign"></i></span>');
+		if (this.isAuthorized) {
+			title.append('<span class="edit hidden"><i class="icon-edit-sign"></i></span>');
+		}
 
 		if (leg.distance) {
 			var tooltip = 'gevaren ';

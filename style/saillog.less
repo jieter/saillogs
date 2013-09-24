@@ -65,6 +65,11 @@ html, body, #map {
 	left: 0;
 	right: 0;
 	height: 100%;
+
+	svg path {
+		.transition-linear(stroke-opacity, 0.8s);
+		.transition-linear(stroke-width, 0.8s);
+	}
 }
 
 h1 {
@@ -110,7 +115,7 @@ ul.selector {
 		padding: 1px 3px;
 		cursor: pointer;
 		text-align: center;
-
+		.transition-linear(background-color, 0.2s);
 	}
 	.leg:hover, .leg.hover {
 		background-color: #e0eeee;
@@ -170,10 +175,11 @@ ul.selector {
 
 	.leg {
 		cursor: pointer;
+		transition: background-color .2s;
+
 		&.active {
 			border-left: 4px solid white;
 			border-right: 2px solid white;
-			transition: background-color .2s;
 			background-color: rgba(100, 100, 100, 0.05);
 		}
 		.date {

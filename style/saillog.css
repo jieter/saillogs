@@ -1510,6 +1510,16 @@ body,
   right: 0;
   height: 100%;
 }
+#map svg path {
+  -webkit-transition: stroke-opacity linear 0.8s;
+  -moz-transition: stroke-opacity linear 0.8s;
+  -o-transition: stroke-opacity linear 0.8s;
+  transition: stroke-opacity linear 0.8s;
+  -webkit-transition: stroke-width linear 0.8s;
+  -moz-transition: stroke-width linear 0.8s;
+  -o-transition: stroke-width linear 0.8s;
+  transition: stroke-width linear 0.8s;
+}
 h1 {
   font-size: 1.5em;
   padding: 0 14px;
@@ -1553,6 +1563,10 @@ ul.selector li:hover {
   padding: 1px 3px;
   cursor: pointer;
   text-align: center;
+  -webkit-transition: background-color linear 0.2s;
+  -moz-transition: background-color linear 0.2s;
+  -o-transition: background-color linear 0.2s;
+  transition: background-color linear 0.2s;
 }
 #calendar .leg:hover,
 #calendar .leg.hover {
@@ -1604,11 +1618,11 @@ ul.selector li:hover {
 }
 #sidebar .leg {
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 #sidebar .leg.active {
   border-left: 4px solid white;
   border-right: 2px solid white;
-  transition: background-color 0.2s;
   background-color: rgba(100, 100, 100, 0.05);
 }
 #sidebar .leg .date {
