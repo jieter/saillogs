@@ -211,4 +211,4 @@ window.saillog = new Saillog.App();
 
 window.setTimeout(function () {
 	window.saillog.showEditor(24);
-}, 500)
+}, 500);

@@ -48,7 +48,7 @@ Saillog.Story = L.Class.extend({
 	},
 
 	getProperties: function (id) {
-		this.features[id].properties;
+		return this.features[id].properties;
 	},
 
 	getLayer: function (id) {

@@ -199,6 +199,8 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 		$('<div class="group"></div>').append(
 			$('<label for="text">Verhaal</label>'),
 			$('<div id="epiceditor" class="epiceditor"></div>')
+				// dirty hack to make editor as wide as the container
+				// TODO: $(window).on('resize') to update this.
 				.width($(window).width() * 0.44 + 80)
 		).appendTo(editor);
 
@@ -207,12 +209,10 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 
 		editor.appendTo(container);
 
-		/* globals EpicEditor:true */
 		this._textEditor = new EpicEditor({
 			basePath: '/js/lib/epiceditor',
 			button: false
 		}).load();
-
 
 		var widget = this;
 		container.on('click', 'button', function () {

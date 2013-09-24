@@ -8,6 +8,7 @@
 		"$": true,
 		"Saillog": true,
 		"console": true,
+		"EpicEditor": true,
 		"marked": true
 	},
 
@@ -27,11 +28,9 @@
 	"quotmark": "single",
 	"sub": true,
 
-
 	"indent": 4,
 	"trailing": true,
 	"white": true,
 	"smarttabs": true,
 	"maxlen": false
-
 }
