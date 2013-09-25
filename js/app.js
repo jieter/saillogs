@@ -89,7 +89,7 @@ Saillog.App = L.Class.extend({
 
 		this._map = new Saillog.Map(this);
 		this.indexWidget = new Saillog.Widget.Index(this.sidebar).on({
-			'click-story': function (e) {
+			'click-story create-story': function (e) {
 				var id = e.id;
 				window.location.hash = '#' + id;
 			}
@@ -220,11 +220,25 @@ Saillog.App = L.Class.extend({
 	loadStory: function (id, callback) {
 		var app = this;
 
-		$.getJSON('data/' + id + '.geojson', function (response) {
-			response.id = id; // TODO: put this in json response.
+		$.ajax({
+			url: 'data/' + id + '.geojson',
+			method: 'get',
+			dataType: 'json',
+			success: function (response) {
+				response.id = id; // TODO: put this in json response.
 
-			app._story = new Saillog.Story(response);
-			callback();
+				app._story = new Saillog.Story(response);
+				callback();
+			},
+			error: function () {
+				app._story = new Saillog.Story({
+					id: id,
+					title: id,
+					type: 'FeatureGroup',
+					features: []
+				});
+				callback();
+			}
 		});
 	}
 });
@@ -233,5 +247,7 @@ Saillog.App = L.Class.extend({
 window.saillog = new Saillog.App();
 
 window.setTimeout(function () {
-	window.saillog.showEditor(24);
+	if (window.location.hash === '#2013-zomerzeilen') {
+		window.saillog.showEditor(24);
+	}
 }, 500);

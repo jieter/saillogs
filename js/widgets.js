@@ -70,7 +70,14 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 		});
 
 		if (this.isAuthorized) {
-			list.prepend('<li class="create-new"><i class="icon-plus"></i> New story</li>');
+			$('<li class="create-new"><i class="icon-plus"></i> New story</li>')
+				.on('click', function () {
+
+					widget.fire('create-story', {
+						id: window.prompt('Name?')
+					});
+				})
+				.prependTo(list);
 		}
 
 		return this;
@@ -94,7 +101,15 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 
 		var widget = this;
 
-		$('<h1></h1>').html(story.title).appendTo(container);
+		var title = $('<h1></h1>').html(story.title).appendTo(container);
+
+		if (this.isAuthorized) {
+			$('<button><i class="icon-plus"></i></button>')
+				.on('click', function () {
+					widget.fire('create-leg');
+				})
+				.appendTo(title);
+		}
 
 		story.each(function (leg) {
 			this._renderLeg(leg.properties)

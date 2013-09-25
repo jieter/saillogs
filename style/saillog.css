@@ -1486,6 +1486,7 @@ a .icon-flip-vertical:before {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  vertical-align: baseline;
 }
 html,
 body,
@@ -1589,6 +1590,9 @@ ul.selector li:hover {
   background-color: white;
   border-left: 1px solid #aaaaaa;
   border-right: 1px solid #aaaaaa;
+}
+#sidebar h1 button {
+  float: right;
 }
 #sidebar.wide {
   -webkit-transition: width linear 0.2s;

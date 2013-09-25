@@ -2,8 +2,8 @@
 
 Saillog.Map = L.Class.extend({
 	options: {
-		center: [50, 2],
-		zoom: 12
+		center: [52, 3],
+		zoom: 7
 	},
 	initialize: function (app) {
 		this.app = app;
@@ -47,16 +47,19 @@ Saillog.Map = L.Class.extend({
 	},
 
 	fitBounds: function (bounds) {
-		this._map.fitBounds(bounds, {
-			paddingBottomRight: [this.app.sidebarPadding(), 0]
-		});
+		if (bounds) {
+			this._map.fitBounds(bounds, {
+				paddingBottomRight: [this.app.sidebarPadding(), 0]
+			});
+		}
 	},
 
 	panTo: function (thing, zoom) {
 		if (!thing) {
 			return;
 		}
-		if (Saillog.util.isArray(thing)) {
+		console.log(thing);
+		if (Saillog.util.isArray(thing) && thing.length > 0) {
 			this._map.panTo(thing);
 			if (zoom) {
 				this._map.setZoom(zoom);

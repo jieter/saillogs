@@ -19,11 +19,14 @@ marked.InlineLexer.prototype.outputLink = function (cap, link) {
 	var body = cap[1];
 
 	if (link.href.substr(0, 15) === 'http://youtu.be') {
+		// special case for youtube links.
 		return '<span class="youtube" data-youtube-url="' + href + '" ' + title + '>' +
 			'<i class="icon-youtube-play"></i> ' + body + '</span>';
 	} else if (cap[0].charAt(0) !== '!') {
+		// normal behaviour
 		return '<a href="' + href + title + '>'	+ this.output(body) + '</a>';
 	} else {
+		// images get prefixed.
 		href = Saillog.util.imagePrefix + href;
 		var alt = body ? ' alt="' + body	+ '"' : '';
 		return '<img src="' + href + '"' + alt + ' class="thumb"' + title + ' />';
