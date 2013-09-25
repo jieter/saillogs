@@ -28,6 +28,9 @@
 				case 'imperial':
 					return meters / 1609;
 
+				case 'kilometer':
+					return meters / 1000;
+
 				default:
 					return meters;
 				}

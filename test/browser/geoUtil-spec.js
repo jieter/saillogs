@@ -6,7 +6,6 @@ describe('geoUtil', function () {
 
 	describe('getDistance()', function () {
 
-
 		var distanceTests = [
 			{
 				// London - Paris
@@ -23,7 +22,7 @@ describe('geoUtil', function () {
 
 			// Londom - Amsterdam
 			{ 	latlngs: [[51.5000, -0.1167], [52.3500, 4.9167]],
-				expected:
+				expected: 358
 			}
 		];
 
@@ -31,7 +30,7 @@ describe('geoUtil', function () {
 			distanceTests.forEach(function (test) {
 
 				expect(
-					L.polyline(test.latlngs).getDistance()
+					L.polyline(test.latlngs).getDistance('kilometer')
 				).to.be.within(
 					test.expected - delta,
 					test.expected + delta
