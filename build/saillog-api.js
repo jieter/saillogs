@@ -81,7 +81,7 @@ module.exports = function (connect) {
 
 	console.log(__dirname + '/../');
 	return [
-		connect.logger('dev'),
+		//connect.logger('dev'),
 		connect.static(__dirname + '/../'),
 		connect.bodyParser(),
 		connectRoute(function (router) {
