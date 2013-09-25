@@ -3,23 +3,6 @@
  */
 'use strict';
 
-Saillog.defaultStyles = {
-	leg: {
-		color: '#0000ff',
-		opacity: 0.4,
-		weight: 3
-	},
-	highlight: {
-		opacity: 0.7,
-		weight: 5
-	},
-	track: {
-		color: '#000000',
-		weight: 1,
-		dashArray: [4, 4]
-	}
-};
-
 Saillog.Editor = {
 	editor: function (legId) {
 		if (!this._story) {

@@ -1,8 +1,22 @@
 'use strict';
 
 describe('util', function () {
-	describe('hexToRgb', function () {
+	describe('marked monkeypatch', function () {
+		it('converts youtube links', function () {
+			expect(marked('[foo](http://youtu.be/JIA_D_ZJ1dU)')).to.eql(
+				'<p><span class="youtube" data-youtube-url="http://youtu.be/JIA_D_ZJ1dU">' +
+				'<i class="icon-youtube-play"></i> foo</span></p>\n'
+			);
+		});
 
+		it('prefixes image urls', function () {
+			expect(marked('![](image.jpg)')).to.eql(
+				'<p><img src="data/image.jpg" class="thumb" /></p>\n'
+			);
+		});
+	});
+
+	describe('hexToRgb', function () {
 		it('translates colors', function () {
 			var colors = {
 				'#000000': [0, 0, 0],

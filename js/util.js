@@ -20,7 +20,7 @@ marked.InlineLexer.prototype.outputLink = function (cap, link) {
 
 	if (link.href.substr(0, 15) === 'http://youtu.be') {
 		// special case for youtube links.
-		return '<span class="youtube" data-youtube-url="' + href + '" ' + title + '>' +
+		return '<span class="youtube" data-youtube-url="' + href + '"' + title + '>' +
 			'<i class="icon-youtube-play"></i> ' + body + '</span>';
 	} else if (cap[0].charAt(0) !== '!') {
 		// normal behaviour
@@ -67,3 +67,19 @@ Saillog.util = {
 	}
 };
 
+Saillog.defaultStyles = {
+	leg: {
+		color: '#0000ff',
+		opacity: 0.4,
+		weight: 3
+	},
+	highlight: {
+		opacity: 0.7,
+		weight: 5
+	},
+	track: {
+		color: '#000000',
+		weight: 1,
+		dashArray: [4, 4]
+	}
+};
