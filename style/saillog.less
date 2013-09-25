@@ -156,6 +156,17 @@ ul.selector {
 	border-left: @borderStyle;
 	border-right: @borderStyle;
 
+	h1, h3 {
+		.edit {
+			display: none;
+			color: #aaa;
+			margin-left: 4px;
+		}
+		&:hover .edit {
+			display: inline;
+		}
+	}
+
 	.thumb {
 		position: relative;
 		float: left;
@@ -201,14 +212,6 @@ ul.selector {
 			margin-bottom: 2px;
 			text-align: left;
 
-			.edit {
-				display: none;
-				color: #aaa;
-				margin-left: 4px;
-			}
-			&:hover .edit {
-				display: inline;
-			}
 			.distance {
 				float: right;
 				color: #ccc;

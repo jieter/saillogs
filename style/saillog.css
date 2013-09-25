@@ -1601,6 +1601,16 @@ ul.selector li:hover {
   transition: width linear 0.2s;
   width: 44%;
 }
+#sidebar h1 .edit,
+#sidebar h3 .edit {
+  display: none;
+  color: #aaa;
+  margin-left: 4px;
+}
+#sidebar h1:hover .edit,
+#sidebar h3:hover .edit {
+  display: inline;
+}
 #sidebar .thumb {
   position: relative;
   float: left;
@@ -1643,14 +1653,6 @@ ul.selector li:hover {
 #sidebar .leg h3 {
   margin-bottom: 2px;
   text-align: left;
-}
-#sidebar .leg h3 .edit {
-  display: none;
-  color: #aaa;
-  margin-left: 4px;
-}
-#sidebar .leg h3:hover .edit {
-  display: inline;
 }
 #sidebar .leg h3 .distance {
   float: right;
