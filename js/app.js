@@ -100,7 +100,10 @@ Saillog.App = L.Class.extend({
 
 		this._attachLegActions(this.storyWidget);
 		this.storyWidget.on({
-			'edit-leg': function (event) {
+			'edit-metadata': function (event) {
+				console.log(event.type);
+			},
+			'create-leg edit-leg': function (event) {
 				this.showEditor(event.legId);
 			}
 		}, this);

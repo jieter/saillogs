@@ -58,7 +58,7 @@ Saillog.Map = L.Class.extend({
 		if (!thing) {
 			return;
 		}
-		console.log(thing);
+
 		if (Saillog.util.isArray(thing) && thing.length > 0) {
 			this._map.panTo(thing);
 			if (zoom) {

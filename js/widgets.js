@@ -70,7 +70,7 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 		});
 
 		if (this.isAuthorized) {
-			$('<li class="create-new"><i class="icon-plus"></i> New story</li>')
+			$('<li class="button create"><i class="icon-plus"></i> New story</li>')
 				.on('click', function () {
 
 					widget.fire('create-story', {
@@ -109,7 +109,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 					widget.fire('edit-metadata');
 				})
 				.appendTo(title);
-			$('<button><i class="icon-plus"></i></button>')
+			$('<button class="create"><i class="icon-plus"></i></button>')
 				.on('click', function () {
 					widget.fire('create-leg');
 				})
