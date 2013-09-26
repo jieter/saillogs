@@ -208,8 +208,9 @@ Saillog.Widget.LegEditor = Saillog.Widget.extend({
 	},
 
 	render: function () {
-		var container = this._container.empty();
+		var widget = this;
 
+		var container = this._container.empty();
 		var editor = $('<div id="editor"><h1>Bewerken</h1></div>');
 
 		//$('<span class="type"></span>').appendTo(editor);
@@ -227,12 +228,22 @@ Saillog.Widget.LegEditor = Saillog.Widget.extend({
 		inputGroup('title', 'Titel').appendTo(editor);
 		inputGroup('date', 'Datum', 'date').appendTo(editor);
 
+		var epicContainer = $('<div id="epiceditor" class="epiceditor"></div>');
+		var resizeFn = function () {
+			epicContainer.width($('#sidebar').width() + 80);
+			if (widget._textEditor) {
+				widget._textEditor.reflow();
+			}
+		}
+		var resizeInterval = setInterval(resizeFn, 10);
+		setTimeout(function () {
+			clearInterval(resizeInterval);
+		}, 2000);
+		$(window).resize(resizeFn);
+
 		$('<div class="group"></div>').append(
 			$('<label for="text">Verhaal</label>'),
-			$('<div id="epiceditor" class="epiceditor"></div>')
-				// dirty hack to make editor as wide as the container
-				// TODO: $(window).on('resize') to update this.
-				.width($(window).width() * 0.44 + 80)
+			epicContainer
 		).appendTo(editor);
 
 		$('<button class="save">Save</button>').appendTo(editor);
