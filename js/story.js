@@ -51,12 +51,57 @@ Saillog.Story = L.Class.extend({
 		}
 	},
 
+	save: function (callback) {
+		var data = L.extend({}, this._story);
+		data.features = [];
+
+		var json;
+		this.each(function (feature) {
+			if (feature.layer) {
+				json = feature.layer.toGeoJSON();
+			} else {
+				json = {
+					type: 'Feature'
+				};
+			}
+			delete json.layer;
+			json.properties = L.extend({}, feature.properties);
+			delete json.properties.distance;
+
+			data.features.push(json);
+		});
+
+		console.log(data);
+
+		$.ajax({
+			url: '/api/save/' + data.id,
+			method: 'post',
+			dataType: 'json',
+			data: {
+				data: JSON.stringify(data)
+			}
+		}).success(function (response) {
+			if (callback) {
+				callback(response);
+			}
+		});
+		return this;
+	},
+
 	getFeatures: function () {
 		return this.features;
 	},
 
 	getProperties: function (id) {
 		return this.features[id].properties;
+	},
+
+	setProperties: function (id, properties) {
+		if (!this.features[id]) {
+			throw 'No such feature id:' + id;
+		}
+		this.features[id].properties = properties;
+		return this;
 	},
 
 	getLayer: function (id) {
@@ -68,6 +113,7 @@ Saillog.Story = L.Class.extend({
 		for (var key in this.features) {
 			fn.call(context, this.features[key]);
 		}
+		return this;
 	},
 
 	highlight: function (id) {

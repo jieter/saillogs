@@ -1537,15 +1537,28 @@ button.disabled:hover {
 .button.success,
 button.success,
 .button.create,
-button.create {
+button.create,
+.button.save,
+button.save {
   background-color: #5cb85c;
   color: white;
 }
 .button.success:hover,
 button.success:hover,
 .button.create:hover,
-button.create:hover {
+button.create:hover,
+.button.save:hover,
+button.save:hover {
   background-color: #4cae4c;
+}
+.button.cancel,
+button.cancel {
+  background-color: #d9534f;
+  color: white;
+}
+.button.cancel:hover,
+button.cancel:hover {
+  background-color: #d43f3a;
 }
 a.button {
   text-decoration: none;

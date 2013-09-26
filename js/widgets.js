@@ -158,6 +158,9 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 			title.append(leg.title);
 		}
 		if (this.isAuthorized) {
+			if (title.html() === '') {
+				title.append('untitled');
+			}
 			title.append('<span class="edit hidden"><i class="icon-edit-sign"></i></span>');
 		}
 
@@ -172,7 +175,8 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 			if (leg['avg_sog']) {
 				tooltip += 'met een gemiddelde snelheid van ' + leg['avg_sog'] + 'kts';
 			}
-			title.append('<span class="distance" title="' + tooltip + '">' + leg.distance + ' NM</span>');
+			title.append('<span class="distance" title="' + tooltip + '">' +
+				Saillog.util.formatDistance(leg.distance) + ' NM</span>');
 		}
 
 		if (leg.date) {
@@ -196,7 +200,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 	}
 });
 
-Saillog.Widget.Editor = Saillog.Widget.extend({
+Saillog.Widget.LegEditor = Saillog.Widget.extend({
 
 	update: function (leg) {
 		this._leg = leg;

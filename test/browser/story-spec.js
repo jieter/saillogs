@@ -59,6 +59,26 @@ describe('Saillog.Story', function () {
 				}
 			}
 		})
+	});
 
+	describe('Saving it', function () {
+		before(function () {
+			sinon.spy($, 'ajax');
+		});
+		after(function () {
+			$.ajax.restore();
+		});
+
+		it('should save the story to the API', function (done) {
+			var story = new Saillog.Story(json);
+			story.save(function () {
+				expect($.ajax.calledOnce).to.be.ok();
+
+				done();
+
+			});
+
+
+		});
 	});
 });

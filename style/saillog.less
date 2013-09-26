@@ -89,13 +89,21 @@ html, body, #map {
 			background-color: lighten(@defaultButtonColor, 10%);
 		}
 	}
-	&.success, &.create {
+	&.success, &.create, &.save {
 		background-color: @successButtonColor;
 		color: white;
 		&:hover {
 			background-color: darken(@successButtonColor, 5%);
 		}
 	}
+	&.cancel {
+		background-color: @dangerButtonColor;
+		color: white;
+		&:hover {
+			background-color: darken(@dangerButtonColor, 5%);
+		}
+	}
+
 }
 a.button {
 	text-decoration: none;

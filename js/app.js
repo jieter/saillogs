@@ -15,7 +15,7 @@ Saillog.Editor = {
 
 
 		this.sidebar.addClass('wide');
-		this.editorWidget = new Saillog.Widget.Editor(this.sidebar);
+		this.editorWidget = new Saillog.Widget.LegEditor(this.sidebar);
 
 		this.editorWidget.on({
 			'save': function () {
@@ -43,8 +43,19 @@ Saillog.Editor = {
 	},
 
 	_save: function () {
-		console.log(this.editorWidget.values());
+		var id = this._editLegId;
+		var story = this._story;
 
+		console.log(id, this._editLegId);
+		var oldProperties = story.getProperties(id);
+
+		var newProperties = L.extend({}, oldProperties, this.editorWidget.values());
+
+		story.setProperties(id, newProperties);
+
+		story.save(function () {
+			console.log('saved');
+		});
 	},
 
 	_stopEditing: function () {
