@@ -12,6 +12,7 @@ function countObj(obj) {
 
 describe('Saillog.Story', function () {
 	var json = {
+		id: 'test-story',
 		type: 'FeatureCollection',
 		title: 'Test title',
 		features: [
