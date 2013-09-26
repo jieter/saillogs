@@ -42,11 +42,18 @@ Saillog.util = {
 	// From http://stackoverflow.com/a/5624139
 	hexToRgb: function hexToRgb(hex) {
 		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-		return result ? [
+		if (!result) {
+			return null;
+		}
+		var rgb = [
 			parseInt(result[1], 16),
 			parseInt(result[2], 16),
 			parseInt(result[3], 16)
-		] : null;
+		];
+		rgb.toString = function () {
+			return this[0] + ',' + this[1] + ',' + this[2];
+		}
+		return rgb;
 	},
 
 	formatDistance: function formatDistance(distance) {

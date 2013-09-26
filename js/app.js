@@ -13,7 +13,6 @@ Saillog.Editor = {
 		this._editLegId = legId;
 		var layer = this._editLayer = this._story.getLayer(legId);
 
-
 		this.sidebar.addClass('wide');
 		this.editorWidget = new Saillog.Widget.LegEditor(this.sidebar);
 
@@ -90,7 +89,10 @@ Saillog.App = L.Class.extend({
 		});
 
 		this.storyWidget = new Saillog.Widget.Story(this.sidebar);
-		this.calendarControl = new Saillog.CalendarControl().addTo(this._map._map);
+
+		// TODO refactor this addTo(this._map._map);
+		this.calendarControl = new Saillog.Control.Calendar().addTo(this._map._map);
+		this.timelineControl = new Saillog.Control.Timeline().addTo(this._map._map);
 
 		this._attachLegActions(this.storyWidget);
 		this.storyWidget.on({
@@ -103,6 +105,7 @@ Saillog.App = L.Class.extend({
 		}, this);
 
 		this._attachLegActions(this.calendarControl);
+		this._attachLegActions(this.timelineControl);
 
 		this.loadIndex(function () {
 			$(window).on('hashchange', function () {
@@ -135,7 +138,9 @@ Saillog.App = L.Class.extend({
 		}
 
 		this.indexWidget.update(this._index);
+
 		this.calendarControl.hide();
+		this.timelineControl.hide();
 	},
 
 	showStory: function () {
@@ -148,7 +153,9 @@ Saillog.App = L.Class.extend({
 		this._map.panTo(story);
 
 		this.storyWidget.update(story);
-		this.calendarControl.update(story);
+
+		this.calendarControl.update(story).show();
+		this.timelineControl.update(story).show();
 	},
 
 	showEditor: function (leg) {
@@ -187,6 +194,7 @@ Saillog.App = L.Class.extend({
 		this._story.highlight(id);
 		this.storyWidget.highlight(id);
 		this.calendarControl.highlight(id);
+		this.timelineControl.highlight(id);
 	},
 
 	_scrollTo: function (id, duration) {
@@ -245,6 +253,6 @@ window.saillog = new Saillog.App();
 
 window.setTimeout(function () {
 	if (window.location.hash === '#2013-zomerzeilen') {
-		window.saillog.showEditor(24);
+		window.saillog.showEditor(25);
 	}
 }, 500);

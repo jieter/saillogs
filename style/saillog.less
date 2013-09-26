@@ -175,12 +175,35 @@ ul.selector {
 		text-align: center;
 		.transition-linear(background-color, 0.2s);
 	}
+	.weekend {
+		font-weight: bold;
+	}
 	.leg:hover, .leg.hover {
 		background-color: #e0eeee;
 	}
 
 	.leg.active {
 		background-color: #efefef;
+	}
+}
+#timeline {
+	position: relative;
+	.leg {
+		position: absolute;
+		padding: 1px 2px;
+		font-size: 10px;
+		bottom: 10px;
+		color: #444;
+
+		white-space: nowrap;
+		overflow: hidden;
+
+		cursor: pointer;
+
+		border: 1px solid transparent;
+		&:hover, &.active {
+			border: 1px solid #444;
+		}
 	}
 }
 
@@ -214,6 +237,7 @@ ul.selector {
 	border-right: @borderStyle;
 
 	h1, h3 {
+		text-align: left;
 		.edit {
 			cursor: pointer;
 			display: none;

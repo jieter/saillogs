@@ -229,12 +229,14 @@ Saillog.Widget.LegEditor = Saillog.Widget.extend({
 		inputGroup('date', 'Datum', 'date').appendTo(editor);
 
 		var epicContainer = $('<div id="epiceditor" class="epiceditor"></div>');
+
 		var resizeFn = function () {
-			epicContainer.width($('#sidebar').width() + 80);
+			epicContainer.width($('#sidebar').width() + 78);
 			if (widget._textEditor) {
 				widget._textEditor.reflow();
 			}
-		}
+		};
+
 		var resizeInterval = setInterval(resizeFn, 10);
 		setTimeout(function () {
 			clearInterval(resizeInterval);
@@ -256,7 +258,6 @@ Saillog.Widget.LegEditor = Saillog.Widget.extend({
 			button: false
 		}).load();
 
-		var widget = this;
 		container.on('click', 'button', function () {
 			var button = $(this);
 			if (button.hasClass('save')) {
