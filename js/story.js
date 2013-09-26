@@ -30,6 +30,10 @@ Saillog.Story = L.Class.extend({
 
 				self.layer.addLayer(feature.layer);
 
+				if (feature.geometry.type === 'LineString') {
+					feature.properties.distance = feature.layer.getDistance('nautical');
+				}
+
 				id = L.stamp(feature.layer);
 			} else {
 				id = L.stamp({});

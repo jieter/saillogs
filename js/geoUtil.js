@@ -1,18 +1,17 @@
 (function () {
 	'use strict';
 
-	function bearing (a, b) {
+	function bearing(a, b) {
 		var d2r = Math.PI / 180;
 		var dLon = (b.lng - a.lng) * d2r;
 		var lat1 = a.lat * d2r;
 		var lat2 = b.lat * d2r;
 
 		var y = Math.sin(dLon) * Math.cos(lat2);
- 		var x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) *
- 				Math.cos(lat2) * Math.cos(dLon);
+		var x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) *
+				Math.cos(lat2) * Math.cos(dLon);
 
-		var bearing = Math.atan2(y, x) * 180 / Math.PI;
-		return (bearing + 360) % 360;
+		return ((Math.atan2(y, x) * 180 / Math.PI) + 360) % 360;
 	}
 
 	if (L) {
@@ -57,5 +56,4 @@
 		});
 
 	}
-
 })();
