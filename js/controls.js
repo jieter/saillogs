@@ -113,6 +113,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		containerId: 'timeline',
 		left: 4
 	},
+
 	update: function (story) {
 		this.options.left = 4;
 		Saillog.Control.prototype.update.call(this, story);
@@ -125,11 +126,11 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		}
 		var container = this.container();
 		var speed = 5;
-
+		var duration = leg.duration || speed * leg.distance;
 		var color = Saillog.util.hexToRgb(leg.color);
 
 		var left = this.options.left;
-		var width = speed * leg.distance / 5;
+		var width = duration / 5;
 
 		this.options.left += width + 3;
 

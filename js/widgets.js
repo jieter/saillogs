@@ -192,8 +192,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 
 		if (leg.color) {
 			var rgb = Saillog.util.hexToRgb(leg.color);
-			var color = 'rgba(' + rgb[0] + ', ' + rgb[1] + ', ' + rgb[2] + ', 0.5)';
-			element.css('border-left', '4px solid ' + color);
+			element.css('border-left', '4px solid ' + rgb.toRgba(0.5));
 		}
 
 		return element;

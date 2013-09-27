@@ -17,22 +17,42 @@ describe('util', function () {
 	});
 
 	describe('hexToRgb', function () {
+		var colors = {
+			'#000000': [0, 0, 0],
+			'000000': [0, 0, 0],
+			'ff0000': [255, 0, 0],
+			'00ff00': [0, 255, 0],
+			'ff0011': [255, 0, 17],
+			'ffffff': [255, 255, 255],
+			'#ffffff': [255, 255, 255]
+		};
 		it('translates colors', function () {
-			var colors = {
-				'#000000': [0, 0, 0],
-				'000000': [0, 0, 0],
-				'ff0000': [255, 0, 0],
-				'00ff00': [0, 255, 0],
-				'ff0011': [255, 0, 17],
-				'ffffff': [255, 255, 255],
-				'#ffffff': [255, 255, 255],
-
-				'00ff0000': null
-			};
 			for (var hex in colors) {
-				expect(Saillog.util.hexToRgb(hex)).to.eql(colors[hex]);
+				expect(Saillog.util.hexToRgb(hex).toArray()).to.eql(colors[hex]);
 			}
-		})
+		});
+		it('converts to string', function () {
+			for (var hex in colors) {
+				var testFn = function () {
+					return Saillog.util.hexToRgb(hex).toString();
+				}
+				if (colors[hex] === null) {
+					expect(testFn).to.throwError();
+				} else {
+					expect(testFn()).to.eql(colors[hex].join(','));
+				}
+			}
+		});
+		it('converts to rgba-string', function () {
+			for (var hex in colors) {
+				if (colors[hex] === null) {
+					continue;
+				}
+
+				expect(Saillog.util.hexToRgb(hex).toRgba(0.4))
+					.to.eql('rgba(' + colors[hex].join(',') + ',0.4)');
+			}
+		});
 	});
 
 	describe('formatDistance', function () {

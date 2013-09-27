@@ -45,15 +45,26 @@ Saillog.util = {
 		if (!result) {
 			return null;
 		}
-		var rgb = [
+		var RGB = function (r, g, b) {
+			this.r = r;
+			this.g = g;
+			this.b = b;
+		};
+		RGB.prototype.toArray = function () {
+			return [this.r, this.g, this.b];
+		};
+		RGB.prototype.toString = function () {
+			return this.toArray().join(',');
+		};
+
+		RGB.prototype.toRgba = function (alpha) {
+			return 'rgba(' + this.toString() + ',' + alpha + ')';
+		};
+		return new RGB(
 			parseInt(result[1], 16),
 			parseInt(result[2], 16),
 			parseInt(result[3], 16)
-		];
-		rgb.toString = function () {
-			return this[0] + ',' + this[1] + ',' + this[2];
-		}
-		return rgb;
+		);
 	},
 
 	formatDistance: function formatDistance(distance) {
