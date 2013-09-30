@@ -156,21 +156,25 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 				left: offset(label) + 'px'
 			};
 
+			var el = $('<div class="marker"></div>');
+
 			var html = '';
 			if (label.getHours() === 0) {
 				html += label.getDate() + '-' + (label.getMonth() + 1) + '<br />';
+				el.addClass('major');
+			} else {
+				el.addClass('minor');
+				html += label.getHours() + ':00';
 			}
-			html += label.getHours() + ':00';
 
-
-
-			$('<div class="marker"></div>')
-				.html(html)
+			el.html(html)
 				.css(css)
 				.appendTo(container);
 
 
-			$('<div class="mark"></div>').appendTo(container).css(css);
+			$('<div class="mark"></div>')
+				.addClass(label.getHours() === 0 ? 'major' : 'minor')
+				.appendTo(container).css(css);
 		});
 	},
 

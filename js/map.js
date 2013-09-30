@@ -12,6 +12,7 @@ Saillog.Map = L.Class.extend({
 			center: this.options.center,
 			zoom: this.options.zoom,
 			zoomControl: false,
+			attributionControl: false
 		});
 
 		this.initLayers();

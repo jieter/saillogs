@@ -201,21 +201,35 @@ ul.selector {
 			position: absolute;
 			height: 30px;
 			bottom: -10px;
-			border-left: 1px solid #444;
+			border-left: 1px solid #999;
 			width: 0px;
-			.drop-shadow(0, 0, 5px, 0.6);
+			.drop-shadow(0, 0, 5px, 0.4);
 		}
 		.marker {
 			position: absolute;
 			width: 50px;
 			bottom: 22px;
 			font-size: 12px;
-			text-align: center;
-			margin-left: -25px;
-			color: #444;
+			color: #888;
 			.text-shadow (0 1px 3px rgba(0, 0, 0, 0.6));
 
 			line-height: 1.1em;
+		}
+		.major {
+			color: #444;
+			border-color: #444;
+		}
+		.marker.major {
+			padding-left: 4px;
+			bottom: 19px;
+		}
+		.mark.major {
+			height: 40px;
+		}
+		.marker.minor {
+			text-align: center;
+			margin-left: -25px;
+
 		}
 
 	}
