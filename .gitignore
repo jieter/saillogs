@@ -2,6 +2,7 @@ node_modules
 orig
 data/*/orig
 data/dump
+data/test-story.geojson
 *.docx
 npm-debug.log
 tmp
