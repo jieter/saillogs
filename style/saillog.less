@@ -186,25 +186,31 @@ ul.selector {
 		background-color: #efefef;
 	}
 }
+
 #timeline {
 	position: relative;
-	.leg {
+	bottom: 6px;
+	height: 10px;
+	.reel {
 		position: absolute;
-		padding: 1px 2px;
-		font-size: 10px;
-		bottom: 10px;
-		color: #444;
+		.leg {
+			position: absolute;
+			height: 8px;
+			font-size: 10px;
+			color: #444;
 
-		white-space: nowrap;
-		overflow: hidden;
+			white-space: nowrap;
+			overflow: hidden;
 
-		cursor: pointer;
+			cursor: pointer;
 
-		border: 1px solid transparent;
-		.drop-shadow(0, 0, 5px, 0.6);
-		&:hover, &.active {
-			border: 1px solid #444;
+			border: 1px solid transparent;
+			.drop-shadow(0, 0, 5px, 0.6);
+			&:hover, &.active {
+				.drop-shadow(0, 0, 6px, 0.8);
+			}
 		}
+
 	}
 }
 

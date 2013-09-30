@@ -9,7 +9,16 @@
 		"Saillog": true,
 		"console": true,
 		"EpicEditor": true,
-		"marked": true
+		"marked": true,
+
+		"describe": true,
+		"expect": true,
+		"it": true,
+		"beforeEach": true,
+		"before": true,
+		"afterEach": true,
+		"after": true,
+		"sinon": true
 	},
 
 	"bitwise": true,

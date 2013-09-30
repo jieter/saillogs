@@ -155,7 +155,9 @@ Saillog.App = L.Class.extend({
 		this.storyWidget.update(story);
 
 		this.calendarControl.update(story).show();
-		this.timelineControl.update(story).show();
+		if (story.showTimeline) {
+			this.timelineControl.update(story).show();
+		}
 	},
 
 	showEditor: function (leg) {

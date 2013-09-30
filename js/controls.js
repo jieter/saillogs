@@ -26,8 +26,7 @@ Saillog.Control = L.Control.extend({
 	},
 
 	update: function (story) {
-		this.container().empty();
-
+		this.clear();
 		story.each(function (leg) {
 			if (leg.properties.date) {
 				var type = leg.geometry ? leg.geometry.type : null;
@@ -111,12 +110,28 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	options: {
 		position: 'bottomleft',
 		containerId: 'timeline',
-		left: 4
 	},
 
 	update: function (story) {
-		this.options.left = 4;
+		this._left = 0;
+		this._time = story.getTimes();
+
 		Saillog.Control.prototype.update.call(this, story);
+		return this;
+	},
+
+	onAdd: function (map) {
+		var container = Saillog.Control.prototype.onAdd.call(this, map);
+
+		// TODO: left + right button,
+		// date labels, etc.
+		this._reel = L.DomUtil.create('div', 'reel', container);
+		return container;
+	},
+
+	clear: function () {
+		// we clean the reel here, to not loose the control and label stuff
+		this._reel.innerHTML = '';
 		return this;
 	},
 
@@ -124,26 +139,26 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		if (!type || type === 'Point') {
 			return;
 		}
-		var container = this.container();
+		var reel = $(this._reel);
 		var speed = 5;
 		var duration = leg.duration || speed * leg.distance;
 		var color = Saillog.util.hexToRgb(leg.color);
 
-		var left = this.options.left;
+		var left = this._left;
 		var width = duration / 5;
 
-		this.options.left += width + 3;
+		this._left += width + 3;
 
 		var item = $('<div class="leg"></div>')
 			.data({legId: leg.id})
-			.html(leg.title)
+			.attr('title', leg.title)
 			.css({
-				'background-color': 'rgba(' + color.toString() + ', 0.5)',
+				'background-color': color.toRgba(0.6),
 				left: left + 'px',
 				width: width + 'px'
 			});
 
-		item.appendTo(container);
+		item.appendTo(reel);
 	}
 });
 

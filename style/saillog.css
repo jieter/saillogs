@@ -1648,12 +1648,16 @@ ul.selector li:hover {
 }
 #timeline {
   position: relative;
+  bottom: 6px;
+  height: 10px;
 }
-#timeline .leg {
+#timeline .reel {
   position: absolute;
-  padding: 1px 2px;
+}
+#timeline .reel .leg {
+  position: absolute;
+  height: 8px;
   font-size: 10px;
-  bottom: 10px;
   color: #444;
   white-space: nowrap;
   overflow: hidden;
@@ -1663,9 +1667,11 @@ ul.selector li:hover {
   -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }
-#timeline .leg:hover,
-#timeline .leg.active {
-  border: 1px solid #444;
+#timeline .reel .leg:hover,
+#timeline .reel .leg.active {
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
 }
 #sidebar {
   z-index: 1000;

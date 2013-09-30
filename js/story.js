@@ -9,7 +9,11 @@ Saillog.Story = L.Class.extend({
 		this._story = story;
 
 		this.id = story.id;
+		// TODO refactor these properties to do it automagically,
+		// options property or something
+		this.showTimeline = story.showTimeline;
 		this.title = story.title;
+
 		this.features = {};
 
 		this.layer = L.featureGroup()
@@ -71,8 +75,6 @@ Saillog.Story = L.Class.extend({
 			data.features.push(json);
 		});
 
-		console.log(data);
-
 		$.ajax({
 			url: '/api/save/' + data.id,
 			method: 'post',
@@ -106,6 +108,24 @@ Saillog.Story = L.Class.extend({
 
 	getLayer: function (id) {
 		return this.features[id].layer;
+	},
+
+	getTimes: function () {
+		var first, last;
+		this.each(function (leg) {
+			if (leg.properties.startTime && !first) {
+				first = leg.properties.startTime;
+			}
+			if (leg.properties.endTime) {
+				last = leg.properties.endTime;
+			}
+		});
+
+		return {
+			start: first,
+			end: last,
+			span: (new Date(last) - new Date(first)) / 1000
+		};
 	},
 
 	each: function (fn, context) {

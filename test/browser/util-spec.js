@@ -32,10 +32,14 @@ describe('util', function () {
 			}
 		});
 		it('converts to string', function () {
-			for (var hex in colors) {
-				var testFn = function () {
+			var tester = function (hex) {
+				return function () {
 					return Saillog.util.hexToRgb(hex).toString();
-				}
+				};
+			};
+
+			for (var hex in colors) {
+				var testFn = tester(hex);
 				if (colors[hex] === null) {
 					expect(testFn).to.throwError();
 				} else {
