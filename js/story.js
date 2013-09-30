@@ -121,10 +121,17 @@ Saillog.Story = L.Class.extend({
 			}
 		});
 
+		function timeDiff(a, b) {
+			return Math.abs(new Date(a) - new Date(b)) / 1000;
+		}
+
 		return {
+			offset: function (timestamp) {
+				return timeDiff(timestamp, first);
+			},
 			start: first,
 			end: last,
-			span: (new Date(last) - new Date(first)) / 1000
+			span: timeDiff(last, first)
 		};
 	},
 

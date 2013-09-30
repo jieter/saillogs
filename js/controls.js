@@ -110,15 +110,19 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	options: {
 		position: 'bottomleft',
 		containerId: 'timeline',
+		speed: 5,
+		opacity: 0.6,
+		width: $(window).innerWidth() - 100
 	},
 
 	update: function (story) {
-		this._left = 0;
-		this._time = story.getTimes();
+		this._times = story.getTimes();
+		this._times.pps = this.options.width / this._times.span;
 
 		Saillog.Control.prototype.update.call(this, story);
 		return this;
 	},
+
 
 	onAdd: function (map) {
 		var container = Saillog.Control.prototype.onAdd.call(this, map);
@@ -135,28 +139,31 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		return this;
 	},
 
+	_legCss: function (leg) {
+		var color = Saillog.util.hexToRgb(leg.color);
+
+		var duration = leg.duration || this.options.speed * leg.distance;
+
+		var left = this._times.offset(leg.startTime) * this._times.pps;
+		var width = duration * this._times.pps;
+
+		return {
+			'background-color': color.toRgba(this.options.opacity),
+			left: Math.round(left) + 'px',
+			width: Math.round(width) + 'px'
+		};
+	},
+
 	addLeg: function (leg, type) {
 		if (!type || type === 'Point') {
 			return;
 		}
 		var reel = $(this._reel);
-		var speed = 5;
-		var duration = leg.duration || speed * leg.distance;
-		var color = Saillog.util.hexToRgb(leg.color);
-
-		var left = this._left;
-		var width = duration / 5;
-
-		this._left += width + 3;
 
 		var item = $('<div class="leg"></div>')
 			.data({legId: leg.id})
 			.attr('title', leg.title)
-			.css({
-				'background-color': color.toRgba(0.6),
-				left: left + 'px',
-				width: width + 'px'
-			});
+			.css(this._legCss(leg));
 
 		item.appendTo(reel);
 	}
