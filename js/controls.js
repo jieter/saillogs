@@ -128,32 +128,50 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	},
 
 	_updateLabels: function () {
-		var container = this.container();
 
 		function addDays(date, days) {
-			var date = new Date(date + 'T00:00:00');
+			date = new Date(date + 'T00:00:00');
 			var DAY = 24 * 60 * 60 * 1000; //ms
-			return date.setTime(date.getTime() + days * DAY);
+			var TH = 2 * 60 * 60 * 1000; // correct for timezone
+			date.setTime(date.getTime() + days * DAY - TH);
+			return date;
 		}
 
-		var labels = [
-			addDays(this._times.start.substr(0, 10), 1),
-			addDays(this._times.end.substr(0, 10), -1)
-		];
-
 		var times = this._times;
+		var spanDays = times.span / (24 * 60 * 60);
+		var labels = [];
+		for (var i = 1; i < spanDays + 0.5; i = i + 0.5) {
+			labels.push(
+				addDays(times.start.substr(0, 10), i)
+			);
+		}
+
 		var offset = function (time) {
 			return Saillog.util.timeDiff(time, times.start) * times.pps;
 		};
+		var container = $('<div class="labels"></div>').appendTo(this.container());
 
 		labels.forEach(function (label) {
-			console.log(label);
-			var el = $('<div class="mark"></div>').appendTo(container);
-			el.css({
-				left: offset(label)
-			});
-		})
+			var css = {
+				left: offset(label) + 'px'
+			};
 
+			var html = '';
+			if (label.getHours() === 0) {
+				html += label.getDate() + '-' + (label.getMonth() + 1) + '<br />';
+			}
+			html += label.getHours() + ':00';
+
+
+
+			$('<div class="marker"></div>')
+				.html(html)
+				.css(css)
+				.appendTo(container);
+
+
+			$('<div class="mark"></div>').appendTo(container).css(css);
+		});
 	},
 
 	onAdd: function (map) {

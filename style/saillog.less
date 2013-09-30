@@ -39,6 +39,9 @@
 	-moz-border-radius: @radius;
 	border-radius: @radius;
 }
+.text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+	text-shadow: @string;
+}
 
 
 /* Basic style
@@ -192,31 +195,45 @@ ul.selector {
 	bottom: 20px;
 	height: 10px;
 
-	.mark {
-		position: absolute;
-		height: 30px;
-		bottom: -10px;
-		border-left: 1px solid black;
-		width: 0px;
+	.labels {
+		z-index: 10;
+		.mark {
+			position: absolute;
+			height: 30px;
+			bottom: -10px;
+			border-left: 1px solid #444;
+			width: 0px;
+			.drop-shadow(0, 0, 5px, 0.6);
+		}
+		.marker {
+			position: absolute;
+			width: 50px;
+			bottom: 22px;
+			font-size: 12px;
+			text-align: center;
+			margin-left: -25px;
+			color: #444;
+			.text-shadow (0 1px 3px rgba(0, 0, 0, 0.6));
+
+			line-height: 1.1em;
+		}
+
 	}
 	.reel {
 		position: absolute;
+		z-index: 100;
 		.leg {
 			position: absolute;
 			height: 8px;
-
 			white-space: nowrap;
 			overflow: hidden;
-
 			cursor: pointer;
-
 			border: 1px solid transparent;
 			.drop-shadow(0, 0, 5px, 0.6);
 			&:hover, &.active {
 				.drop-shadow(0, 0, 6px, 0.8);
 			}
 		}
-
 	}
 }
 

@@ -1651,15 +1651,33 @@ ul.selector li:hover {
   bottom: 20px;
   height: 10px;
 }
-#timeline .mark {
+#timeline .labels {
+  z-index: 10;
+}
+#timeline .labels .mark {
   position: absolute;
   height: 30px;
   bottom: -10px;
-  border-left: 1px solid black;
+  border-left: 1px solid #444;
   width: 0px;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+#timeline .labels .marker {
+  position: absolute;
+  width: 50px;
+  bottom: 22px;
+  font-size: 12px;
+  text-align: center;
+  margin-left: -25px;
+  color: #444;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  line-height: 1.1em;
 }
 #timeline .reel {
   position: absolute;
+  z-index: 100;
 }
 #timeline .reel .leg {
   position: absolute;
