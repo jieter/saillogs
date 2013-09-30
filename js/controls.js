@@ -140,7 +140,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		var times = this._times;
 		var spanDays = times.span / (24 * 60 * 60);
 		var labels = [];
-		for (var i = 1; i < spanDays + 0.5; i = i + 0.5) {
+		for (var i = 0.75; i < spanDays + 0.75; i = i + 0.25) {
 			labels.push(
 				addDays(times.start.substr(0, 10), i)
 			);

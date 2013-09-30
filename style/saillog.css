@@ -1656,7 +1656,7 @@ ul.selector li:hover {
 }
 #timeline .labels .mark {
   position: absolute;
-  height: 30px;
+  height: 26px;
   bottom: -10px;
   border-left: 1px solid #999;
   width: 0px;
@@ -1667,7 +1667,7 @@ ul.selector li:hover {
 #timeline .labels .marker {
   position: absolute;
   width: 50px;
-  bottom: 22px;
+  bottom: 19px;
   font-size: 12px;
   color: #888;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
@@ -1679,7 +1679,6 @@ ul.selector li:hover {
 }
 #timeline .labels .marker.major {
   padding-left: 4px;
-  bottom: 19px;
 }
 #timeline .labels .mark.major {
   height: 40px;
