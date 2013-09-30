@@ -119,17 +119,49 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		this._times = story.getTimes();
 		this._times.pps = this.options.width / this._times.span;
 
+		this._reel.width = this.options.width + 'px';
+
+		this._updateLabels();
+
 		Saillog.Control.prototype.update.call(this, story);
 		return this;
 	},
 
+	_updateLabels: function () {
+		var container = this.container();
+
+		function addDays(date, days) {
+			var date = new Date(date + 'T00:00:00');
+			var DAY = 24 * 60 * 60 * 1000; //ms
+			return date.setTime(date.getTime() + days * DAY);
+		}
+
+		var labels = [
+			addDays(this._times.start.substr(0, 10), 1),
+			addDays(this._times.end.substr(0, 10), -1)
+		];
+
+		var times = this._times;
+		var offset = function (time) {
+			return Saillog.util.timeDiff(time, times.start) * times.pps;
+		};
+
+		labels.forEach(function (label) {
+			console.log(label);
+			var el = $('<div class="mark"></div>').appendTo(container);
+			el.css({
+				left: offset(label)
+			});
+		})
+
+	},
 
 	onAdd: function (map) {
 		var container = Saillog.Control.prototype.onAdd.call(this, map);
 
-		// TODO: left + right button,
-		// date labels, etc.
+
 		this._reel = L.DomUtil.create('div', 'reel', container);
+
 		return container;
 	},
 

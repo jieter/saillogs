@@ -189,15 +189,21 @@ ul.selector {
 
 #timeline {
 	position: relative;
-	bottom: 6px;
+	bottom: 20px;
 	height: 10px;
+
+	.mark {
+		position: absolute;
+		height: 30px;
+		bottom: -10px;
+		border-left: 1px solid black;
+		width: 0px;
+	}
 	.reel {
 		position: absolute;
 		.leg {
 			position: absolute;
 			height: 8px;
-			font-size: 10px;
-			color: #444;
 
 			white-space: nowrap;
 			overflow: hidden;

@@ -1648,8 +1648,15 @@ ul.selector li:hover {
 }
 #timeline {
   position: relative;
-  bottom: 6px;
+  bottom: 20px;
   height: 10px;
+}
+#timeline .mark {
+  position: absolute;
+  height: 30px;
+  bottom: -10px;
+  border-left: 1px solid black;
+  width: 0px;
 }
 #timeline .reel {
   position: absolute;
@@ -1657,8 +1664,6 @@ ul.selector li:hover {
 #timeline .reel .leg {
   position: absolute;
   height: 8px;
-  font-size: 10px;
-  color: #444;
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;

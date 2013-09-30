@@ -75,6 +75,10 @@ Saillog.util = {
 		return distance.join('.');
 	},
 
+	timeDiff: function timeDiff(a, b) {
+		return Math.abs(new Date(a) - new Date(b)) / 1000;
+	},
+
 	isDev: function isDev() {
 		return location.port === '9999';
 	},
