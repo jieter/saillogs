@@ -121,14 +121,12 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 		this._reel.width = this.options.width + 'px';
 
-		this._updateLabels();
-
 		Saillog.Control.prototype.update.call(this, story);
+		this._updateLabels();
 		return this;
 	},
 
 	_updateLabels: function () {
-
 		function addDays(date, days) {
 			date = new Date(date + 'T00:00:00');
 			var DAY = 24 * 60 * 60 * 1000; //ms
@@ -149,7 +147,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		var offset = function (time) {
 			return Saillog.util.timeDiff(time, times.start) * times.pps;
 		};
-		var container = $('<div class="labels"></div>').appendTo(this.container());
+		var container = $(this._labels);
 
 		labels.forEach(function (label) {
 			var css = {
@@ -158,38 +156,30 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 			var el = $('<div class="marker"></div>');
 
-			var html = '';
 			if (label.getHours() === 0) {
-				html += label.getDate() + '-' + (label.getMonth() + 1) + '<br />';
-				el.addClass('major');
+				el.html(label.getDate() + '-' + (label.getMonth() + 1));
 			} else {
-				el.addClass('minor');
-				html += label.getHours() + ':00';
+				el.html(label.getHours() + ':00');
 			}
 
-			el.html(html)
+			$(el).add('<div class="mark"></div>')
+				.addClass(label.getHours() === 0 ? 'major' : 'minor')
 				.css(css)
 				.appendTo(container);
-
-
-			$('<div class="mark"></div>')
-				.addClass(label.getHours() === 0 ? 'major' : 'minor')
-				.appendTo(container).css(css);
 		});
 	},
 
 	onAdd: function (map) {
 		var container = Saillog.Control.prototype.onAdd.call(this, map);
 
-
 		this._reel = L.DomUtil.create('div', 'reel', container);
-
+		this._labels = L.DomUtil.create('div', 'labels', container);
 		return container;
 	},
 
 	clear: function () {
-		// we clean the reel here, to not loose the control and label stuff
 		this._reel.innerHTML = '';
+		this._labels.innerHTML = '';
 		return this;
 	},
 
