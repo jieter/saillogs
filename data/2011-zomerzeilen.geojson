@@ -1326,5 +1326,6 @@
 			}
 		}
 	],
-	"trackGeojson": true
+	"trackGeojson": true,
+	"showTimeline": true
 }
