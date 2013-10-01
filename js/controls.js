@@ -26,8 +26,17 @@ Saillog.Control = L.Control.extend({
 	},
 
 	update: function (story) {
+		this._story = story;
+		return this.render();
+	},
+
+	render: function () {
 		this.clear();
-		story.each(function (leg) {
+		if (!this._story) {
+			return;
+		}
+
+		this._story.each(function (leg) {
 			if (leg.properties.date) {
 				var type = leg.geometry ? leg.geometry.type : null;
 				this.addLeg(leg.properties, type);
@@ -115,15 +124,17 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		width: $(window).innerWidth() - 100
 	},
 
-	update: function (story) {
-		this._times = story.getTimes();
+	render: function () {
+		if (!this._story) {
+			return this;
+		}
+
+		this._times = this._story.getTimes();
 		this._times.pps = this.options.width / this._times.span;
 
-		this._reel.width = this.options.width + 'px';
+		Saillog.Control.prototype.render.call(this);
 
-		Saillog.Control.prototype.update.call(this, story);
-		this._updateLabels();
-		return this;
+		return this._updateLabels();
 	},
 
 	_updateLabels: function () {
@@ -170,6 +181,8 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 				.css(css)
 				.appendTo(container);
 		});
+
+		return this;
 	},
 
 	onAdd: function (map) {
@@ -177,6 +190,12 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 		this._reel = L.DomUtil.create('div', 'reel', container);
 		this._labels = L.DomUtil.create('div', 'labels', container);
+
+		var control = this;
+		$(window).resize(function () {
+			control.options.width = $(window).innerWidth() - 100;
+			control.render();
+		});
 		return container;
 	},
 
