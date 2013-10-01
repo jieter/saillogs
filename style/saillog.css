@@ -1691,7 +1691,7 @@ ul.selector li:hover {
 #timeline .reel {
   position: absolute;
   z-index: 100;
-  bottom: 10px;
+  bottom: 6px;
   height: 8px;
 }
 #timeline .reel .leg {
