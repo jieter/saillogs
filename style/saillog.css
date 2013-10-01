@@ -1648,8 +1648,9 @@ ul.selector li:hover {
 }
 #timeline {
   position: relative;
-  bottom: 20px;
-  height: 10px;
+  background-color: rgba(177, 184, 184, 0.3);
+  height: 40px;
+  width: 1000px;
 }
 #timeline .labels {
   z-index: 10;
@@ -1657,17 +1658,17 @@ ul.selector li:hover {
 #timeline .labels .mark {
   position: absolute;
   height: 22px;
-  bottom: -5px;
+  bottom: 0;
   border-left: 1px solid #999;
   width: 0px;
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 #timeline .labels .marker {
   position: absolute;
   width: 50px;
-  bottom: 19px;
+  bottom: 26px;
   font-size: 12px;
   color: #888;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
@@ -1681,7 +1682,7 @@ ul.selector li:hover {
   padding-left: 4px;
 }
 #timeline .labels .mark.major {
-  height: 35px;
+  height: 40px;
 }
 #timeline .labels .marker.minor {
   text-align: center;
@@ -1690,6 +1691,8 @@ ul.selector li:hover {
 #timeline .reel {
   position: absolute;
   z-index: 100;
+  bottom: 10px;
+  height: 8px;
 }
 #timeline .reel .leg {
   position: absolute;

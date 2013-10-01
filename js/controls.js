@@ -120,21 +120,26 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		position: 'bottomleft',
 		containerId: 'timeline',
 		speed: 5,
-		opacity: 0.6,
-		width: $(window).innerWidth() - 100
+		opacity: 0.6
 	},
 
 	render: function () {
 		if (!this._story) {
 			return this;
 		}
+		this._recalculateWidth();
 
 		this._times = this._story.getTimes();
-		this._times.pps = this.options.width / this._times.span;
+		this._times.pps = this._width / this._times.span;
 
 		Saillog.Control.prototype.render.call(this);
 
 		return this._updateLabels();
+	},
+
+	_recalculateWidth: function () {
+		this._width = $(window).innerWidth() - ($('#sidebar').width() + 40);
+		this.container().css('width', (this._width + 60) + 'px');
 	},
 
 	_updateLabels: function () {
@@ -195,7 +200,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 		var control = this;
 		$(window).resize(function () {
-			control.options.width = $(window).innerWidth() - 100;
+			control._recalculateWidth();
 			control.render();
 		});
 		return container;
