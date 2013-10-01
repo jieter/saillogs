@@ -34,8 +34,21 @@ Saillog.Story = L.Class.extend({
 
 				self.layer.addLayer(feature.layer);
 
+				// do some augmenting on LineString properties
 				if (feature.geometry.type === 'LineString') {
 					feature.properties.distance = feature.layer.getDistance('nautical');
+
+					if (!feature.properties.startTime && feature.properties.date) {
+						feature.properties.startTime = feature.properties.date + 'T08:00:00';
+					}
+					if (!feature.properties.duration) {
+						feature.properties.duration = (feature.properties.distance / 5) * 60 * 60;
+					}
+					if (!feature.properties.endTime && feature.properties.distance) {
+						var d = new Date(feature.properties.startTime);
+						d.setTime(d.getTime() + feature.properties.duration * 1000);
+						feature.properties.endTime = d.toJSON();
+					}
 				}
 
 				id = L.stamp(feature.layer);
@@ -113,7 +126,7 @@ Saillog.Story = L.Class.extend({
 	getTimes: function () {
 		var first, last;
 		this.each(function (leg) {
-			if (leg.properties.startTime && !first) {
+			if (!first && leg.properties.startTime) {
 				first = leg.properties.startTime;
 			}
 			if (leg.properties.endTime) {

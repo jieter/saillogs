@@ -75,12 +75,18 @@ Saillog.util = {
 		return distance.join('.');
 	},
 
+	formatDuration: function formatDuration(seconds) {
+		var HOUR = 60 * 60;
+		var hours = Math.floor(seconds / HOUR);
+		return hours + ':' + Math.floor((seconds - hours * HOUR) / 60);
+	},
+
 	timeDiff: function timeDiff(a, b) {
 		return Math.abs(new Date(a) - new Date(b)) / 1000;
 	},
 
 	isDev: function isDev() {
-		return location.port === '9999';
+		return location.port === '9999' || location.pathname === '/saillog-refactor/';
 	},
 
 	// http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/

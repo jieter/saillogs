@@ -254,7 +254,7 @@ Saillog.App = L.Class.extend({
 window.saillog = new Saillog.App();
 
 window.setTimeout(function () {
-	if (window.location.hash === '#2013-zomerzeilen') {
-		window.saillog.showEditor(25);
-	}
+	// if (window.location.hash === '#2013-zomerzeilen') {
+	// 	window.saillog.showEditor(25);
+	// }
 }, 500);

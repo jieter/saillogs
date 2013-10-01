@@ -130,8 +130,8 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		function addDays(date, days) {
 			date = new Date(date + 'T00:00:00');
 			var DAY = 24 * 60 * 60 * 1000; //ms
-			var TH = 2 * 60 * 60 * 1000; // correct for timezone
-			date.setTime(date.getTime() + days * DAY - TH);
+			var UTC2CEST = 2 * 60 * 60 * 1000; // correct for timezone
+			date.setTime(date.getTime() + days * DAY - UTC2CEST);
 			return date;
 		}
 
@@ -151,7 +151,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 		labels.forEach(function (label) {
 			var css = {
-				left: offset(label) + 'px'
+				left: (Math.round(offset(label) * 100) / 100) + 'px'
 			};
 
 			var el = $('<div class="marker"></div>');
@@ -159,7 +159,10 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 			if (label.getHours() === 0) {
 				el.html(label.getDate() + '-' + (label.getMonth() + 1));
 			} else {
-				el.html(label.getHours() + ':00');
+				// TODO this parameter needs tuning.
+				if (times.pps > 0.003) {
+					el.html(label.getHours() + ':00');
+				}
 			}
 
 			$(el).add('<div class="mark"></div>')
@@ -186,7 +189,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	_legCss: function (leg) {
 		var color = Saillog.util.hexToRgb(leg.color);
 
-		var duration = leg.duration || this.options.speed * leg.distance;
+		var duration = leg.duration || this.options.speed * leg.distance * (60);
 
 		var left = this._times.offset(leg.startTime) * this._times.pps;
 		var width = duration * this._times.pps;

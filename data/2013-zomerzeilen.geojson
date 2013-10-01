@@ -670,5 +670,6 @@
 		}
 	],
 	"trackGeojson": true,
+	"showTimeline": true,
 	"id": "2013-zomerzeilen"
 }

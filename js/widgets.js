@@ -167,13 +167,10 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		if (leg.distance) {
 			var tooltip = 'gevaren ';
 			if (leg.duration) {
-				var hour = 60 * 60;
-				var hours = Math.floor(leg.duration / hour);
-				var duration = hours + ':' + Math.floor((leg.duration - hours * hour) / 60);
-				tooltip += 'in ' + duration + ' uur, ';
+				tooltip += 'in ' + Saillog.util.formatDuration(leg.duration) + ' uur';
 			}
 			if (leg['avg_sog']) {
-				tooltip += 'met een gemiddelde snelheid van ' + leg['avg_sog'] + 'kts';
+				tooltip += ', met een gemiddelde snelheid van ' + leg['avg_sog'] + 'kts';
 			}
 			title.append('<span class="distance" title="' + tooltip + '">' +
 				Saillog.util.formatDistance(leg.distance) + ' NM</span>');
