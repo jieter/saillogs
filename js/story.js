@@ -1,6 +1,9 @@
 'use strict';
 
 Saillog.Story = L.Class.extend({
+	options: {
+		AVG_SOG: 5
+	},
 	includes: L.Mixin.Events,
 
 	initialize: function (story) {
@@ -42,7 +45,7 @@ Saillog.Story = L.Class.extend({
 						feature.properties.startTime = feature.properties.date + 'T08:00:00';
 					}
 					if (!feature.properties.duration) {
-						feature.properties.duration = (feature.properties.distance / 5) * 60 * 60;
+						feature.properties.duration = (feature.properties.distance / this.options.AVG_SOG) * 60 * 60;
 					}
 					if (!feature.properties.endTime && feature.properties.distance) {
 						var d = new Date(feature.properties.startTime);
