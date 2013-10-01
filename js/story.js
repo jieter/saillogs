@@ -31,26 +31,7 @@ Saillog.Story = L.Class.extend({
 
 				self.layer.addLayer(feature.layer);
 
-				// do some augmenting on LineString properties
-				if (feature.geometry.type === 'LineString') {
-					feature.properties.distance = feature.layer.getDistance('nautical');
-
-					if (!feature.properties.startTime && feature.properties.date) {
-						feature.properties.startTime = feature.properties.date + 'T08:00:00';
-					}
-					if (!feature.properties.endTime) {
-						var d = new Date(feature.properties.startTime);
-						var duration = feature.properties.distance / self.AVG_SOG;
-						d.setTime(d.getTime() + duration * 1000);
-						feature.properties.endTime = d.toJSON().substr(0, 19);
-					}
-					if (!feature.properties.duration) {
-						feature.properties.duration = Saillog.util.timeDiff(
-							feature.properties.endTime,
-							feature.properties.startTime
-						);
-					}
-				}
+				self._augmentProperties(feature);
 
 				id = L.stamp(feature.layer);
 			} else {
@@ -61,11 +42,34 @@ Saillog.Story = L.Class.extend({
 			self.features[id] = feature;
 		});
 
-		if (story.trackGeojson) {
+		if (story.properties.trackGeojson) {
 			this.track = L.geoJson(null, {
 				style: Saillog.defaultStyles.track
 			});
 			this._loadTrack();
+		}
+	},
+
+	_augmentProperties: function (feature) {
+		if (feature.geometry.type === 'LineString') {
+			feature.properties.distance = feature.layer.getDistance('nautical');
+
+			if (!feature.properties.startTime && feature.properties.date) {
+				feature.properties.startTime = feature.properties.date + 'T08:00:00';
+			}
+			if (!feature.properties.endTime) {
+				var d = new Date(feature.properties.startTime);
+				var duration = feature.properties.distance / this.AVG_SOG;
+				d.setTime(d.getTime() + duration * 1000);
+
+				feature.properties.endTime = d.toJSON().substr(0, 19);
+			}
+			if (!feature.properties.duration) {
+				feature.properties.duration = Saillog.util.timeDiff(
+					feature.properties.endTime,
+					feature.properties.startTime
+				);
+			}
 		}
 	},
 

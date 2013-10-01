@@ -82,7 +82,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		var container = this._container.empty();
 		var story = this._data;
 
-		var title = $('<h1></h1>').html(story.title).appendTo(container);
+		var title = $('<h1></h1>').html(story.properties.title).appendTo(container);
 
 		if (this.isAuthorized) {
 			$('<span class="edit hidden"><i class="icon-edit-sign"></i></span>')
