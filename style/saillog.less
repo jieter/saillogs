@@ -43,7 +43,6 @@
 	text-shadow: @string;
 }
 
-
 /* Basic style
  */
 * {
@@ -99,12 +98,18 @@ html, body, #map {
 			background-color: darken(@successButtonColor, 5%);
 		}
 	}
-	&.cancel {
+	&.cancel, &.danger {
 		background-color: @dangerButtonColor;
 		color: white;
 		&:hover {
 			background-color: darken(@dangerButtonColor, 5%);
 		}
+		a {
+			color: white;
+		}
+	}
+	a {
+		text-decoration: none;
 	}
 
 }

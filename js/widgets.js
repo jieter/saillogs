@@ -19,28 +19,22 @@ Saillog.Widget = L.Class.extend({
 		return this;
 	},
 
-	update: function () {
-		return this;
-	},
-
-	render: function () {
-		return this;
-	}
-});
-
-Saillog.Widget.Index = Saillog.Widget.extend({
-	update: function (index) {
-		this._index = index;
+	update: function (data) {
+		this._data = data;
 		return this.render();
 	},
 
 	render: function () {
+		throw 'Not implemented';
+	}
+});
+
+Saillog.Widget.Index = Saillog.Widget.extend({
+
+	render: function () {
+		var widget = this;
 		var container = this._container.empty();
-		if (!this._index) {
-			container.html('No index loaded');
-			return;
-		}
-		var index = this._index;
+		var index = this._data;
 
 		$('<h1></h1>')
 			.html(index.title)
@@ -62,44 +56,31 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 				item.addClass('disabled');
 			}
 		});
-		var widget = this;
+
+		if (this.isAuthorized) {
+			$('<li class="button create"><i class="icon-plus"></i> New story</li>')
+				.on('click', function () {
+					widget.fire('create-story');
+				})
+				.prependTo(list);
+			$('<li class="button danger"><a href="test/index.html">Mocha tests</a></li>').appendTo(list);
+		}
+
 		list.on('click', '[data-id]', function () {
 			widget.fire('click-story', {
 				id: $(this).data('id')
 			});
 		});
-
-		if (this.isAuthorized) {
-			$('<li class="button create"><i class="icon-plus"></i> New story</li>')
-				.on('click', function () {
-
-					widget.fire('create-story', {
-						id: window.prompt('Name?')
-					});
-				})
-				.prependTo(list);
-		}
-
 		return this;
 	}
 });
 
 Saillog.Widget.Story = Saillog.Widget.extend({
-	update: function (story) {
-		this._story = story;
-		return this.render();
-	},
-
-	updateLeg: function (leg) {
-		console.log(leg);
-		throw 'not implemented';
-	},
 
 	render: function () {
-		var container = this._container.empty();
-		var story = this._story;
-
 		var widget = this;
+		var container = this._container.empty();
+		var story = this._data;
 
 		var title = $('<h1></h1>').html(story.title).appendTo(container);
 
@@ -196,12 +177,13 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 	}
 });
 
-Saillog.Widget.LegEditor = Saillog.Widget.extend({
+Saillog.Widget.StoryMetadataEditor = Saillog.Widget.extend({
 
-	update: function (leg) {
-		this._leg = leg;
-		return this.render();
-	},
+
+});
+
+// TODO: inline editor in Widget.Story?
+Saillog.Widget.LegEditor = Saillog.Widget.extend({
 
 	render: function () {
 		var widget = this;
@@ -209,6 +191,7 @@ Saillog.Widget.LegEditor = Saillog.Widget.extend({
 		var container = this._container.empty();
 		var editor = $('<div id="editor"><h1>Bewerken</h1></div>');
 
+		// TODO: choose type of geometry.
 		//$('<span class="type"></span>').appendTo(editor);
 
 		function inputGroup(name, label, type) {

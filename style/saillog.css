@@ -1552,13 +1552,27 @@ button.save:hover {
   background-color: #4cae4c;
 }
 .button.cancel,
-button.cancel {
+button.cancel,
+.button.danger,
+button.danger {
   background-color: #d9534f;
   color: white;
 }
 .button.cancel:hover,
-button.cancel:hover {
+button.cancel:hover,
+.button.danger:hover,
+button.danger:hover {
   background-color: #d43f3a;
+}
+.button.cancel a,
+button.cancel a,
+.button.danger a,
+button.danger a {
+  color: white;
+}
+.button a,
+button a {
+  text-decoration: none;
 }
 a.button {
   text-decoration: none;
