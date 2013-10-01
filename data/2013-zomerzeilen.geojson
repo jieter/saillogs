@@ -1,6 +1,11 @@
 {
+	"id": "2013-zomerzeilen",
 	"type": "FeatureCollection",
-	"title": "Zomerzeilen 2013",
+	"properties": {
+		"title": "Zomerzeilen 2013",
+		"trackGeojson": true,
+		"showTimeline": true
+	},
 	"features": [
 		{
 			"type": "Feature",
@@ -690,8 +695,5 @@
 				"text": "Helaas dus de kanaaleilanden niet gehaald. Het zou ook wel een verrassing zijn als we nu ineens wel de bedachte bestemming zouden halen. Maar wel kostelijk weer gehad en prachtige plekken gezien.<table><tr><td class=\"meta\">Boot:</td><td>Spirit 36 'Equilibre'</td></tr><tr><td class=\"meta\">Gevaren: </td><td>&plusmn; 680NM</td></tr><tr><td class=\"meta\">Bemanning</td><td>Abraham, Haap, Henk, Jieter, Margriet, Pauli</td></tr></table>"
 			}
 		}
-	],
-	"trackGeojson": true,
-	"showTimeline": true,
-	"id": "2013-zomerzeilen"
+	]
 }

@@ -1,9 +1,7 @@
 'use strict';
 
 Saillog.Story = L.Class.extend({
-	options: {
-		AVG_SOG: 5
-	},
+	AVG_SOG: 5,
 	includes: L.Mixin.Events,
 
 	initialize: function (story) {
@@ -12,10 +10,9 @@ Saillog.Story = L.Class.extend({
 		this._story = story;
 
 		this.id = story.id;
-		// TODO refactor these properties to do it automagically,
-		// options property or something
-		this.showTimeline = story.showTimeline;
-		this.title = story.title;
+		for (var key in story.properties) {
+			this[key] = story.properties[key];
+		}
 
 		this.features = {};
 
@@ -46,7 +43,7 @@ Saillog.Story = L.Class.extend({
 					}
 					if (!feature.properties.endTime) {
 						var d = new Date(feature.properties.startTime);
-						var duration = feature.properties.distance / self.options.AVG_SOG;
+						var duration = feature.properties.distance / self.AVG_SOG;
 						d.setTime(d.getTime() + duration * 1000);
 						feature.properties.endTime = d.toJSON().substr(0, 19);
 					}

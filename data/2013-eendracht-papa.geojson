@@ -1,8 +1,10 @@
 {
 	"id": "2013-eendracht-papa",
-	"title": "Eendrachttocht 2013",
+	"properties": {
+		"title": "Eendrachttocht 2013",
+		"showTimeline": true
+	},
 	"type": "FeatureCollection",
-	"showTimeline": true,
 	"features": [
 		{
 			"type": "Feature",

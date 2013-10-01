@@ -1,7 +1,11 @@
 {
 	"id": "2012-zomerzeilen",
 	"type": "FeatureCollection",
-	"title": "Zomerzeilen 2012",
+	"properties": {
+		"title": "Zomerzeilen 2012",
+		"trackGeojson": true,
+		"showTimeline": true
+	},
 	"features": [
 		{
 			"type": "Feature",
@@ -355,6 +359,5 @@
 				"text": ""
 			}
 		}
-	],
-	"trackGeojson": true
+	]
 }

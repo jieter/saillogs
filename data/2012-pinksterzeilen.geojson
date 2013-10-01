@@ -1,7 +1,10 @@
 {
 	"id": "2012-pinksterzeilen",
 	"type": "FeatureCollection",
-	"title": "Pinksterzeilen 2012.",
+	"properties": {
+		"title": "Pinksterzeilen 2012.",
+		"showTimeline": true
+	},
 	"features": [
 		{
 			"type": "Feature",

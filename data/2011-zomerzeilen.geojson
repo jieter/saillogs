@@ -1,7 +1,11 @@
 {
 	"id": "2011-zomerzeilen",
 	"type": "FeatureCollection",
-	"title": "Zomerzeilen 2011.",
+	"properties": {
+		"title": "Zomerzeilen 2011.",
+		"trackGeojson": true,
+		"showTimeline": true
+	},
 	"features": [
 		{
 			"type": "Feature",
@@ -1325,7 +1329,5 @@
 				"text": "<table><tr><td class=\"meta\">Boot:</td><td>Spirit 36 'Equilibre'</td></tr><tr><td class=\"meta\">Gevaren: </td><td>&plusmn; 1400NM</td></tr></table>"
 			}
 		}
-	],
-	"trackGeojson": true,
-	"showTimeline": true
+	]
 }

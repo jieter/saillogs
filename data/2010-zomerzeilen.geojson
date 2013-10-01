@@ -1,7 +1,10 @@
 {
 	"id": "2010-zomerzeilen",
 	"type": "FeatureCollection",
-	"title": "Vakantie zomer 2010",
+	"properties": {
+		"title": "Vakantie zomer 2010",
+		"showTimeline": true
+	},
 	"features": [
 		{
 			"type": "Feature",
