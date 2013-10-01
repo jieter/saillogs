@@ -250,7 +250,7 @@ Saillog.Widget.LegEditor = Saillog.Widget.extend({
 		editor.appendTo(container);
 
 		this._textEditor = new EpicEditor({
-			basePath: '/js/lib/epiceditor',
+			basePath: 'js/lib/epiceditor',
 			button: false
 		}).load();
 
