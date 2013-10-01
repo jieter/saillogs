@@ -165,14 +165,13 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 				left: (Math.round(offset(label) * 100) / 100) + 'px'
 			};
 
-			var el = $('<div class="marker"></div>')
-				.attr('title', label.toGMTString());
+			var el = $('<div class="marker"></div>');
 
 			if (label.getHours() === 0) {
 				el.html(label.getDate() + '-' + (label.getMonth() + 1));
 			} else {
 				// TODO this parameter needs tuning.
-				// add times if we have enough horzontal space
+				// add time labels if we have enough horzontal space
 				if (times.pps > 0.003) {
 					el.html(label.getHours() + ':00');
 				}
@@ -181,6 +180,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 			$(el).add('<div class="mark"></div>')
 				.addClass(label.getHours() === 0 ? 'major' : 'minor')
 				.css(css)
+				.attr('title', label.toGMTString())
 				.appendTo(container);
 		});
 

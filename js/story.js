@@ -44,13 +44,17 @@ Saillog.Story = L.Class.extend({
 					if (!feature.properties.startTime && feature.properties.date) {
 						feature.properties.startTime = feature.properties.date + 'T08:00:00';
 					}
-					if (!feature.properties.duration) {
-						feature.properties.duration = (feature.properties.distance / this.options.AVG_SOG) * 60 * 60;
-					}
-					if (!feature.properties.endTime && feature.properties.distance) {
+					if (!feature.properties.endTime) {
 						var d = new Date(feature.properties.startTime);
-						d.setTime(d.getTime() + feature.properties.duration * 1000);
-						feature.properties.endTime = d.toJSON();
+						var duration = feature.properties.distance / self.options.AVG_SOG;
+						d.setTime(d.getTime() + duration * 1000);
+						feature.properties.endTime = d.toJSON().substr(0, 19);
+					}
+					if (!feature.properties.duration) {
+						feature.properties.duration = Saillog.util.timeDiff(
+							feature.properties.endTime,
+							feature.properties.startTime
+						);
 					}
 				}
 
