@@ -1,16 +1,18 @@
 'use strict';
 
 describe('util', function () {
+	chai.should();
+
 	describe('marked monkeypatch', function () {
 		it('converts youtube links', function () {
-			expect(marked('[foo](http://youtu.be/JIA_D_ZJ1dU)')).to.eql(
+			marked('[foo](http://youtu.be/JIA_D_ZJ1dU)').should.eql(
 				'<p><span class="youtube" data-youtube-url="http://youtu.be/JIA_D_ZJ1dU">' +
 				'<i class="icon-youtube-play"></i> foo</span></p>\n'
 			);
 		});
 
 		it('prefixes image urls', function () {
-			expect(marked('![](image.jpg)')).to.eql(
+			marked('![](image.jpg)').should.eql(
 				'<p><img src="data/image.jpg" class="thumb" /></p>\n'
 			);
 		});
@@ -28,7 +30,7 @@ describe('util', function () {
 		};
 		it('translates colors', function () {
 			for (var hex in colors) {
-				expect(Saillog.util.hexToRgb(hex).toArray()).to.eql(colors[hex]);
+				Saillog.util.hexToRgb(hex).toArray().should.eql(colors[hex]);
 			}
 		});
 		it('converts to string', function () {
@@ -41,9 +43,9 @@ describe('util', function () {
 			for (var hex in colors) {
 				var testFn = tester(hex);
 				if (colors[hex] === null) {
-					expect(testFn).to.throwError();
+					testFn.should.throw();
 				} else {
-					expect(testFn()).to.eql(colors[hex].join(','));
+					testFn().should.eql(colors[hex].join(','));
 				}
 			}
 		});
@@ -53,23 +55,27 @@ describe('util', function () {
 					continue;
 				}
 
-				expect(Saillog.util.hexToRgb(hex).toRgba(0.4))
-					.to.eql('rgba(' + colors[hex].join(',') + ',0.4)');
+				Saillog.util.hexToRgb(hex).toRgba(0.4)
+					.should.eql('rgba(' + colors[hex].join(',') + ',0.4)');
 			}
 		});
 	});
 
 	describe('formatDistance', function () {
 		it('formats numbers with one decimal', function () {
-			expect(Saillog.util.formatDistance(4.1234)).to.be('4.1');
-			expect(Saillog.util.formatDistance(0.8)).to.be('0.8');
-			expect(Saillog.util.formatDistance(1.004)).to.be('1.0');
+			Saillog.util.formatDistance(4.1234).should.eql('4.1');
+			Saillog.util.formatDistance(0.8).should.eql('0.8');
+			Saillog.util.formatDistance(1.004).should.eql('1.0');
 		});
+	});
+
+	describe('formatDuration', function () {
+		it('formats seconds to hours:minutes');
 	});
 
 	describe('isArray', function () {
 		it('tests correctly for arrays', function () {
-			expect(Saillog.util.isArray([])).to.be.ok();
+			Saillog.util.isArray([]).should.be.ok;
 		});
 	});
 

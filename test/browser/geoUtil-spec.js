@@ -5,6 +5,7 @@ var bearingDelta = 1;
 var NM_TO_METER = 1.852;
 
 describe('geoUtil', function () {
+	chai.should();
 
 	var tests = [
 		{
@@ -51,27 +52,22 @@ describe('geoUtil', function () {
 		}
 	];
 
+
 	describe('L.PolyLine.getDistance()', function () {
 		tests.forEach(function (testcase) {
 			it('Approximate distance for: ' + testcase.name, function () {
-				expect(
-					L.polyline(testcase.latlngs).getDistance('kilometer')
-				).to.be.within(
-					testcase.distance - distanceDelta,
-					testcase.distance + distanceDelta
-				);
+				var kilometer = L.polyline(testcase.latlngs).getDistance('kilometer');
+
+				kilometer.should.be.closeTo(testcase.distance, distanceDelta);
 			});
 		});
 	});
 	describe('L.LatLng().bearingTo()', function () {
 		tests.forEach(function (testcase) {
 			it('Approximate bearing for: ' + testcase.name, function () {
-				expect(
-					L.latLng(testcase.latlngs[0]).bearingTo(testcase.latlngs[1])
-				).to.be.within(
-					testcase.bearing - bearingDelta,
-					testcase.bearing + bearingDelta
-				);
+				var bearing = L.latLng(testcase.latlngs[0]).bearingTo(testcase.latlngs[1]);
+
+				bearing.should.be.closeTo(testcase.bearing, bearingDelta);
 			});
 		});
 	});

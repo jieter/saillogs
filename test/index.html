@@ -18,7 +18,7 @@
 
 
 	<script src="../node_modules/sinon/pkg/sinon.js"></script>
-	<script src="../node_modules/expect.js/expect.js"></script>
+	<script src="../node_modules/chai/chai.js"></script>
 	<script src="../node_modules/mocha/mocha.js"></script>
 	<script>
 		mocha.setup('bdd');
@@ -30,7 +30,7 @@
 
 	<script>
 		mocha.checkLeaks();
-		mocha.globals(['L', '$']);
+		mocha.globals(['L', '$', 'LiveReload']);
 		mocha.run();
 	</script>
 </body>

@@ -11,6 +11,8 @@ function countObj(obj) {
 }
 
 describe('Saillog.Story', function () {
+	chai.should();
+
 	var json = {
 		id: 'test-story',
 		type: 'FeatureCollection',
@@ -34,7 +36,6 @@ describe('Saillog.Story', function () {
 					]
 				},
 				properties: {
-					foo: 'bar',
 					startTime: '2013-08-29T17:45:00',
 					endTime: '2013-08-30T13:39:00'
 				}
@@ -61,8 +62,8 @@ describe('Saillog.Story', function () {
 		it('can be constructed with json', function () {
 			var story = new Saillog.Story(json);
 
-			expect(story).to.be.a(Saillog.Story);
-			expect(countObj(story.getFeatures())).to.be(3);
+			story.should.be.an.instanceof(Saillog.Story);
+			countObj(story.getFeatures()).should.eql(3);
 		});
 
 		it('adds distance to the properties of LineStrings', function () {
@@ -71,9 +72,10 @@ describe('Saillog.Story', function () {
 			var legs = story.getFeatures();
 			for (var id in legs) {
 				if (legs[id].geometry && legs[id].geometry.type === 'LineString') {
-					expect(story.getProperties(id)).to.have.key('distance');
+					console.log(story.getProperties(id));
+					story.getProperties(id).should.contain.keys('distance', 'duration');
 				} else {
-					expect(story.getProperties(id)).to.not.have.key('distance');
+					story.getProperties(id).should.not.contain.key('distance', 'duration');
 				}
 			}
 		});
@@ -84,9 +86,9 @@ describe('Saillog.Story', function () {
 
 		it('should report the correct timespan', function () {
 			var times = story.getTimes();
-			expect(times.start).to.be('2013-08-29T17:45:00');
-			expect(times.end).to.be('2013-09-02T13:39:00');
-			expect(times.span).to.be(330840);
+			times.start.should.eql('2013-08-29T17:45:00');
+			times.end.should.eql('2013-09-02T13:39:00');
+			times.span.should.eql(330840);
 		});
 	});
 
@@ -101,7 +103,7 @@ describe('Saillog.Story', function () {
 		it('should save the story to the API', function (done) {
 			var story = new Saillog.Story(json);
 			story.save(function () {
-				expect($.ajax.calledOnce).to.be.ok();
+				$.ajax.calledOnce.should.be.true;
 
 				done();
 
