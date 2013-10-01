@@ -1662,7 +1662,7 @@ ul.selector li:hover {
 }
 #timeline {
   position: relative;
-  background-color: rgba(177, 184, 184, 0.3);
+  background-color: rgba(177, 184, 184, 0.35);
   height: 40px;
   width: 1000px;
 }

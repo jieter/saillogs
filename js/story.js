@@ -10,10 +10,7 @@ Saillog.Story = L.Class.extend({
 		this._story = story;
 
 		this.id = story.id;
-		for (var key in story.properties) {
-			this[key] = story.properties[key];
-		}
-
+		this.properties = story.properties;
 		this.features = {};
 
 		this.layer = L.featureGroup()
@@ -76,20 +73,20 @@ Saillog.Story = L.Class.extend({
 		var data = L.extend({}, this._story);
 		data.features = [];
 
-		var json;
+		var legJson;
 		this.each(function (feature) {
 			if (feature.layer) {
-				json = feature.layer.toGeoJSON();
+				legJson = feature.layer.toGeoJSON();
 			} else {
-				json = {
+				legJson = {
 					type: 'Feature'
 				};
 			}
-			delete json.layer;
-			json.properties = L.extend({}, feature.properties);
-			delete json.properties.distance;
+			delete legJson.layer;
+			legJson.properties = L.extend({}, feature.properties);
+			delete legJson.properties.distance;
 
-			data.features.push(json);
+			data.features.push(legJson);
 		});
 
 		$.ajax({
