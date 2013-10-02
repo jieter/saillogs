@@ -406,11 +406,19 @@ ul.selector {
 			padding: 0px;
 			label {
 				color: #888;
+				display: block;
 			}
-			input {
+			input[type="text"] {
 				width: 100%;
 				border: 1px solid #bbb;
 				padding: 4px 6px;
+			}
+			&.group-checkbox {
+				padding: 5px 0;
+				label {
+					display: inline-block;
+					width: 160px;
+				}
 			}
 
 			button {

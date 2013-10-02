@@ -186,7 +186,16 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 		var values = {};
 		this._container.find('input').each(function () {
 			var input = $(this);
-			values[input.prop('name')] = input.val();
+			var value;
+
+			switch (input.prop('type')) {
+			case 'checkbox':
+				value = input.prop('checked');
+				break;
+			default:
+				value = input.val();
+			}
+			values[input.prop('name')] = value;
 		});
 
 		if (this._textEditor) {
@@ -197,8 +206,20 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 	},
 
 	load: function (data) {
+		var input;
 		for (var key in data) {
-			this._container.find('[name=' + key + ']').val(data[key]);
+			input = this._container.find('[name=' + key + ']');
+
+			if (!input) {
+				continue;
+			}
+			switch (input.prop('type')) {
+			case 'checkbox':
+				input.prop('checked', data[key]);
+				break;
+			default:
+				input.val(data[key]);
+			}
 		}
 		if (data.text && this._textEditor) {
 			this._textEditor.importFile('story-' + data.id, data.text);
@@ -206,53 +227,29 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 		return this;
 	},
 
-	_inputGroup: function (name, label, type) {
+	_input: function (name, label, type) {
 		label = label || name;
 		type = type || 'text';
 
 		var input = $('<input type="' + type + '" name="' + name + '" />');
 
-		return $('<div class="group"></div>').append(
+		return $('<div class="group group-' + type + '"></div>').append(
 			$('<label for="' + name + '">' + label + '</label>'),
 			input
 		);
-	}
-});
+	},
 
-Saillog.Widget.StoryMetadataEditor = Saillog.Widget.Editor.extend({
-
-	render: function () {
-		var widget = this;
-		var container = this._container.empty();
-		var fields = this._data;
-
-		var editor = $('<div id="editor"><h1>Metadata</h1></div>');
-
-		this._input('title', 'Titel').appendTo(editor);
-		this._input('showTimeline', 'Timeline')
-
-		editor.appendTo(container);
-		return this.load(this._data);
-	}
-});
-
-// TODO: inline editor in Widget.Story?
-Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
-
-	render: function () {
-		var widget = this;
-		var container = this._container.empty();
-
-		var editor = $('<div id="editor"><h1>Bewerken</h1></div>');
-
-		// TODO: choose type of geometry.
-		//$('<span class="type"></span>').appendTo(editor);
-
-		this._inputGroup('title', 'Titel').appendTo(editor);
-		this._inputGroup('date', 'Datum', 'date').appendTo(editor);
+	_initEpicEditor: function (name, label, container) {
+		label = label || name;
 
 		var epicContainer = $('<div id="epiceditor" class="epiceditor"></div>');
 
+		$('<div class="group"></div>').append(
+			$('<label for="' + name + '">' + label + '</label>'),
+			epicContainer
+		).appendTo(container);
+
+		var widget = this;
 		var resizeFn = function () {
 			epicContainer.width($('#sidebar').width() + 78);
 			if (widget._textEditor) {
@@ -266,22 +263,20 @@ Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
 		}, 2000);
 		$(window).resize(resizeFn);
 
-		$('<div class="group"></div>').append(
-			$('<label for="text">Verhaal</label>'),
-			epicContainer
-		).appendTo(editor);
-
-		$('<button class="save">Save</button>').appendTo(editor);
-		$('<button class="cancel">Cancel</button>').appendTo(editor);
-
-		editor.appendTo(container);
-
 		this._textEditor = new EpicEditor({
+			container: epicContainer[0],
 			basePath: 'js/lib/epiceditor',
 			button: false
 		}).load();
+	},
 
-		container.on('click', 'button', function () {
+	_buttons: function () {
+		var widget = this;
+		var buttons = $('<div class="buttons"></div>')
+			.append('<button class="save">Save</button>')
+			.append(' <button class="cancel">Cancel</button>');
+
+		buttons.on('click', 'button', function () {
 			var button = $(this);
 			if (button.hasClass('save')) {
 				widget.fire('save');
@@ -289,6 +284,46 @@ Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
 				widget.fire('cancel');
 			}
 		});
+		return buttons;
+	}
+});
+
+Saillog.Widget.StoryMetadataEditor = Saillog.Widget.Editor.extend({
+
+	render: function () {
+		var container = this._container.empty();
+		var editor = $('<div id="editor"><h1>Metadata</h1></div>');
+
+		this._input('title', 'Titel').appendTo(editor);
+		this._input('showTimeline', 'Timeline visible', 'checkbox').appendTo(editor);
+		this._input('showTrack', 'Recorded track visible', 'checkbox').appendTo(editor);
+
+		this._buttons().appendTo(editor);
+
+		editor.appendTo(container);
 		return this.load(this._data);
 	}
+});
+
+// TODO: inline editor in Widget.Story?
+Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
+
+	render: function () {
+		var container = this._container.empty();
+
+		var editor = $('<div id="editor"><h1>Bewerken</h1></div>').appendTo(container);
+
+		// TODO: choose type of geometry.
+		//$('<span class="type"></span>').appendTo(editor);
+
+		this._input('title', 'Titel').appendTo(editor);
+		this._input('date', 'Datum', 'date').appendTo(editor);
+		this._initEpicEditor('text', 'Verhaal', editor);
+
+		this._buttons().appendTo(editor);
+
+
+		return this.load(this._data);
+	},
+
 });
