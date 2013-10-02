@@ -38,17 +38,13 @@ Saillog.Editor = {
 			}
 			this._map.panTo(layer);
 		}
-
 	},
 
 	_save: function () {
 		var id = this._editLegId;
 		var story = this._story;
 
-		console.log(id, this._editLegId);
-		var oldProperties = story.getProperties(id);
-
-		var newProperties = L.extend({}, oldProperties, this.editorWidget.values());
+		var newProperties = L.extend({}, story.getProperties(id), this.editorWidget.values());
 
 		story.setProperties(id, newProperties);
 

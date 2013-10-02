@@ -63,7 +63,7 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 					widget.fire('create-story');
 				})
 				.prependTo(list);
-			$('<li class="button danger"><a href="test/index.html">Mocha tests</a></li>').appendTo(list);
+			$('<li class="button primary"><a href="test/index.html">Mocha tests</a></li>').appendTo(list);
 		}
 
 		list.on('click', '[data-id]', function () {

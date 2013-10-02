@@ -87,6 +87,7 @@ Saillog.Story = L.Class.extend({
 				};
 			}
 			delete legJson.layer;
+
 			legJson.properties = L.extend({}, feature.properties);
 			delete legJson.properties.distance;
 
@@ -120,7 +121,11 @@ Saillog.Story = L.Class.extend({
 		if (!this.features[id]) {
 			throw 'No such feature id:' + id;
 		}
+
+		// Geometry might be changed, remove distance and recalculate
+		delete properties.distance;
 		this.features[id].properties = properties;
+		this._augmentProperties(this.features[id]);
 		return this;
 	},
 

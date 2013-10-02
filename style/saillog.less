@@ -2,6 +2,7 @@
 @import 'font-awesome/font-awesome.less';
 
 @defaultButtonColor: #f5f5f5;
+@primaryButtonColor: #428bca;
 @successButtonColor: #5cb85c;
 @dangerButtonColor: #d9534f;
 
@@ -62,9 +63,14 @@ html, body, #map {
 /**
  * Buttons
  */
+.btn-painter(@color){
+	background-color: @color;
+	&:hover {
+		background-color: darken(@color, 5%);
+	}
+}
 .button, button {
 	display: inline-block;
-	background-color: @defaultButtonColor;
 	vertical-align: middle;
 	margin-bottom: 2px;
 	color: #444;
@@ -75,10 +81,7 @@ html, body, #map {
 	font-family: Helvetica, arial, freesans, clean, sans-serif;
 
 	.rounded(3px);
-
-	&:hover {
-		background-position: 0 -15px;
-	}
+	.btn-painter(@defaultButtonColor);
 
 	[class^="icon-"], [class*=" icon-"] {
 		text-decoration: none;
@@ -91,22 +94,21 @@ html, body, #map {
 			background-color: lighten(@defaultButtonColor, 10%);
 		}
 	}
-	&.success, &.create, &.save {
-		background-color: @successButtonColor;
+	&.success, &.create, &.save,
+	&.cancel, &.danger, &.primary {
 		color: white;
-		&:hover {
-			background-color: darken(@successButtonColor, 5%);
-		}
-	}
-	&.cancel, &.danger {
-		background-color: @dangerButtonColor;
-		color: white;
-		&:hover {
-			background-color: darken(@dangerButtonColor, 5%);
-		}
 		a {
 			color: white;
 		}
+	}
+	&.success, &.create, &.save {
+		.btn-painter(@successButtonColor);
+	}
+	&.cancel, &.danger {
+		.btn-painter(@dangerButtonColor);
+	}
+	&.primary, {
+		.btn-painter(@primaryButtonColor);
 	}
 	a {
 		text-decoration: none;

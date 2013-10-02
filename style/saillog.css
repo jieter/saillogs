@@ -1502,7 +1502,6 @@ body,
 .button,
 button {
   display: inline-block;
-  background-color: #f5f5f5;
   vertical-align: middle;
   margin-bottom: 2px;
   color: #444;
@@ -1514,10 +1513,11 @@ button {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  background-color: #f5f5f5;
 }
 .button:hover,
 button:hover {
-  background-position: 0 -15px;
+  background-color: #e8e8e8;
 }
 .button [class^="icon-"],
 button [class^="icon-"],
@@ -1539,9 +1539,36 @@ button.success,
 .button.create,
 button.create,
 .button.save,
+button.save,
+.button.cancel,
+button.cancel,
+.button.danger,
+button.danger,
+.button.primary,
+button.primary {
+  color: white;
+}
+.button.success a,
+button.success a,
+.button.create a,
+button.create a,
+.button.save a,
+button.save a,
+.button.cancel a,
+button.cancel a,
+.button.danger a,
+button.danger a,
+.button.primary a,
+button.primary a {
+  color: white;
+}
+.button.success,
+button.success,
+.button.create,
+button.create,
+.button.save,
 button.save {
   background-color: #5cb85c;
-  color: white;
 }
 .button.success:hover,
 button.success:hover,
@@ -1556,7 +1583,6 @@ button.cancel,
 .button.danger,
 button.danger {
   background-color: #d9534f;
-  color: white;
 }
 .button.cancel:hover,
 button.cancel:hover,
@@ -1564,11 +1590,13 @@ button.cancel:hover,
 button.danger:hover {
   background-color: #d43f3a;
 }
-.button.cancel a,
-button.cancel a,
-.button.danger a,
-button.danger a {
-  color: white;
+.button.primary,
+button.primary {
+  background-color: #428bca;
+}
+.button.primary:hover,
+button.primary:hover {
+  background-color: #357ebd;
 }
 .button a,
 button a {
