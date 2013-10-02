@@ -4,26 +4,25 @@
 'use strict';
 
 Saillog.Editor = {
-	editor: function (editObj) {
+	editor: function (id) {
 		if (!this._story) {
 			return;
 		}
-		console.log('editing', editObj);
+		console.log('editing', id);
 
-		this._editObj = editObj;
+		this._edit = id;
 
-		if (editObj === 'metadata') {
+		if (id === 'metadata') {
 			this._editorWidget =
 				new Saillog.Widget.StoryMetadataEditor(this.sidebar)
 					.update(this._story.getProperties());
 		} else {
-			var legId = editObj;
-			this._editLayer = this._story.getLayer(legId);
+			this._editLayer = this._story.getLayer(id);
 
 			this.sidebar.addClass('wide');
 			this._editorWidget =
 				new Saillog.Widget.LegMetadataEditor(this.sidebar)
-					.update(this._story.getProperties(legId));
+					.update(this._story.getProperties(id));
 
 			this._startMapEditor();
 		}
@@ -38,19 +37,19 @@ Saillog.Editor = {
 	},
 
 	_save: function () {
-		var editObj = this._editObj;
+		var id = this._edit;
 		var story = this._story;
 
-		if (editObj === 'metadata') {
+		if (id === 'metadata') {
 			story.setProperties(L.extend(
 				{},
 				story.getProperties(),
 				this._editorWidget.values()
 			));
 		} else {
-			story.setProperties(editObj, L.extend(
+			story.setProperties(id, L.extend(
 				{},
-				story.getProperties(editObj),
+				story.getProperties(id),
 				this._editorWidget.values()
 			));
 		}
@@ -66,9 +65,9 @@ Saillog.Editor = {
 		this.sidebar.removeClass('wide');
 		this.showStory();
 
-		if (this._editObj !== 'metadata') {
-			this._scrollTo(this._editObj, 0);
-			delete this._editObj;
+		if (this._edit !== 'metadata') {
+			this._scrollTo(this._edit, 0);
+			delete this._edit;
 
 			this._stopMapEditor(this._editLayer);
 			delete this._editLayer;
