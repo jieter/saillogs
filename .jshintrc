@@ -12,7 +12,7 @@
 		"marked": true,
 
 		"describe": true,
-		"expect": true,
+		"chai": true,
 		"it": true,
 		"beforeEach": true,
 		"before": true,

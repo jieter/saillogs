@@ -3,7 +3,7 @@
 	"type": "FeatureCollection",
 	"properties": {
 		"title": "Zomerzeilen 2012",
-		"trackGeojson": true,
+		"showTrack": true,
 		"showTimeline": true
 	},
 	"features": [
