@@ -75,7 +75,7 @@ describe('util', function () {
 
 	describe('isArray', function () {
 		it('tests correctly for arrays', function () {
-			Saillog.util.isArray([]).should.be.ok;
+			Saillog.util.isArray([]).should.be.eql(true);
 		});
 	});
 

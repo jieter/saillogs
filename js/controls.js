@@ -172,6 +172,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 			var el = $('<div class="marker"></div>');
 
+			// TODO fix timezone assumption here
 			if (label.getHours() === 0) {
 				el.html(label.getDate() + '-' + (label.getMonth() + 1));
 			} else {
@@ -183,6 +184,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 			}
 
 			$(el).add('<div class="mark"></div>')
+				// TODO fix timezone assumption here
 				.addClass(label.getHours() === 0 ? 'major' : 'minor')
 				.css(css)
 				.attr('title', label.toGMTString())

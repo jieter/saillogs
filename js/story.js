@@ -31,7 +31,7 @@ Saillog.Story = L.Class.extend({
 
 				self.layer.addLayer(feature.layer);
 
-				self._augmentProperties(feature);
+				self._augmentLegProperties(feature);
 
 				id = L.stamp(feature.layer);
 			} else {
@@ -42,7 +42,7 @@ Saillog.Story = L.Class.extend({
 			self.features[id] = feature;
 		});
 
-		if (story.properties.trackGeojson) {
+		if (story.properties.showTrack) {
 			this.track = L.geoJson(null, {
 				style: Saillog.defaultStyles.track
 			});
@@ -50,7 +50,7 @@ Saillog.Story = L.Class.extend({
 		}
 	},
 
-	_augmentProperties: function (feature) {
+	_augmentLegProperties: function (feature) {
 		if (feature.geometry.type === 'LineString') {
 			feature.properties.distance = feature.layer.getDistance('nautical');
 
@@ -114,18 +114,26 @@ Saillog.Story = L.Class.extend({
 	},
 
 	getProperties: function (id) {
-		return this.features[id].properties;
+		if (id) {
+			return this.features[id].properties;
+		} else {
+			return this.properties;
+		}
 	},
 
 	setProperties: function (id, properties) {
-		if (!this.features[id]) {
-			throw 'No such feature id:' + id;
-		}
+		if (!properties) {
+			this.properties = id;
+		} else {
+			if (!this.features[id]) {
+				throw 'No such feature id:' + id;
+			}
 
-		// Geometry might be changed, remove distance and recalculate
-		delete properties.distance;
-		this.features[id].properties = properties;
-		this._augmentProperties(this.features[id]);
+			// Geometry might be changed, remove distance and recalculate
+			delete properties.distance;
+			this.features[id].properties = properties;
+			this._augmentLegProperties(this.features[id]);
+		}
 		return this;
 	},
 

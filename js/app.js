@@ -4,51 +4,56 @@
 'use strict';
 
 Saillog.Editor = {
-	editor: function (legId) {
+	editor: function (editObj) {
 		if (!this._story) {
 			return;
 		}
-		console.log('editing', legId);
+		console.log('editing', editObj);
 
-		this._editLegId = legId;
-		var layer = this._editLayer = this._story.getLayer(legId);
+		this._editObj = editObj;
 
-		this.sidebar.addClass('wide');
-		this.editorWidget = new Saillog.Widget.LegEditor(this.sidebar);
+		if (editObj === 'metadata') {
+			this._editorWidget =
+				new Saillog.Widget.StoryMetadataEditor(this.sidebar)
+					.update(this._story.getProperties());
+		} else {
+			var legId = editObj;
+			var layer = this._editLayer = this._story.getLayer(legId);
 
-		this.editorWidget.on({
+			this.sidebar.addClass('wide');
+			this._editorWidget =
+				new Saillog.Widget.LegMetadataEditor(this.sidebar)
+					.update(this._story.getProperties(legId));
+
+			this._startMapEditor();
+		}
+
+		this._editorWidget.on({
 			'save': function () {
 				this._save();
 				this._stopEditing();
 			},
 			'cancel': this._stopEditing
 		}, this);
-
-		this.editorWidget
-			.render()
-			.loadLeg(this._story.getProperties(legId));
-
-		if (layer) {
-			if (layer instanceof L.Marker) {
-				layer.dragging.enable();
-			} else {
-				if (layer.getLatLngs && layer.getLatLngs().length < 150) {
-					layer.editing.enable();
-				}
-			}
-			this._map.panTo(layer);
-		}
 	},
 
 	_save: function () {
-		var id = this._editLegId;
+		var obj = this._editObj;
 		var story = this._story;
 
-		var newProperties = L.extend({}, story.getProperties(id), this.editorWidget.values());
+		if (obj === 'metadata') {
 
-		story.setProperties(id, newProperties);
+		} else {
+			story.setProperties(id, L.extend(
+				{},
+				story.getProperties(id),
+				this._editorWidget.values()
+			));
+		}
+
 
 		story.save(function () {
+			// TODO: notify user
 			console.log('saved');
 		});
 	},
@@ -57,17 +62,38 @@ Saillog.Editor = {
 		this.sidebar.removeClass('wide');
 		this.showStory();
 
-		this._scrollTo(this._editLegId, 0);
-		delete this._editLegId;
+		if (this._editObj !== 'metadata') {
+			this._scrollTo(this._editObj, 0);
+			delete this._editObj;
 
-		if (this._editLayer) {
-			if (this._editLayer.dragging) {
-				this._editLayer.dragging.disable();
-			} else {
-				this._editLayer.editing.disable();
+			this._stopMapEditor(this._editLayer);
+			delete this._editLayer;
+		}
+	},
+
+	_startMapEditor: function (layer) {
+		if (!layer) {
+			return;
+		}
+		if (layer instanceof L.Marker) {
+			layer.dragging.enable();
+		} else {
+			if (layer.getLatLngs && layer.getLatLngs().length < 150) {
+				layer.editing.enable();
 			}
 		}
-		delete this._editLayer;
+		this._map.panTo(layer);
+	},
+
+	_stopMapEditor: function (layer) {
+		if (!layer) {
+			return;
+		}
+		if (layer.dragging) {
+			layer.dragging.disable();
+		} else {
+			layer.editing.disable();
+		}
 	}
 };
 
@@ -93,7 +119,7 @@ Saillog.App = L.Class.extend({
 		this._attachLegActions(this.storyWidget);
 		this.storyWidget.on({
 			'edit-metadata': function (event) {
-				console.log(event.type);
+				this.showEditor('metadata');
 			},
 			'create-leg edit-leg': function (event) {
 				this.showEditor(event.legId);
@@ -156,11 +182,11 @@ Saillog.App = L.Class.extend({
 		}
 	},
 
-	showEditor: function (leg) {
+	showEditor: function (what) {
 		if (!this.editor) {
 			L.extend(this, Saillog.Editor);
 		}
-		return this.editor(leg);
+		return this.editor(what);
 	},
 
 	_attachLegActions: function (emitter) {
