@@ -32,7 +32,7 @@ marked.InlineLexer.prototype.outputLink = function (cap, link) {
 		return '<img src="' + href + '"' + alt + ' class="thumb"' + title + ' />';
 	}
 };
-
+L.Icon.Default.imagePath = '/js/lib/Leaflet/images';
 
 var Saillog = {};
 

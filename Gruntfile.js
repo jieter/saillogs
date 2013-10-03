@@ -92,16 +92,23 @@ module.exports = function (grunt) {
 						}
 						return content
 							.replace(/(<script(.*)? src="(.*)"><\/script>(\n)?)/g, '')
-							.replace('</body>', '\t<script src="' +'dist/saillogs.min.js' + '"></script>\n</body>');
-					}
+							.replace('</body>', '\t<script src="saillogs.min.js' + '"></script>\n</body>');
+					},
+					processContentExclude: ['**/*.{png,gif,jpg,ico,psd,JPG,ttf,woff}']
 				},
 				files: [
 					{
+						expand: true,
 						src: [
 							'index.html',
+							'js/lib/**/*.{css,png}',
+							'style/**/*',
+							'data/jieter.jpg',
 							'data/*.geojson',
 							'data/index.json',
-							'data/*/*.*'
+							'data/**/*.*',
+							'!data/dump/**',
+							'!data/_old_format/**'
 						],
 						dest: 'dist/'
 					}
@@ -131,6 +138,7 @@ module.exports = function (grunt) {
 
 
 	grunt.registerTask('dist', [
+		'jshint',
 		'uglify',
 		'less:dist',
 		'copy'

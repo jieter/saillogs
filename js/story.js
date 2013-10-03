@@ -258,3 +258,15 @@ Saillog.Story = L.Class.extend({
 		this.onAdd(map);
 	}
 });
+
+Saillog.Story.emptyStory = function () {
+	return new Saillog.Story({
+		id: null,
+		properties: {
+			title: '',
+			showTimeline: true
+		},
+		type: 'FeatureGroup',
+		features: []
+	});
+};
