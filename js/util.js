@@ -78,7 +78,8 @@ Saillog.util = {
 	formatDuration: function formatDuration(seconds) {
 		var HOUR = 60 * 60;
 		var hours = Math.floor(seconds / HOUR);
-		return hours + ':' + Math.floor((seconds - hours * HOUR) / 60);
+		var minutes = Math.floor((seconds - hours * HOUR) / 60);
+		return hours + ':' + (minutes < 10 ? '0' : '') + minutes;
 	},
 
 	timeDiff: function timeDiff(a, b) {

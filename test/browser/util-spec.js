@@ -70,7 +70,15 @@ describe('util', function () {
 	});
 
 	describe('formatDuration', function () {
-		it('formats seconds to hours:minutes');
+		var HOUR = 60 * 60;
+		it('formats seconds to hours:minutes', function () {
+			Saillog.util.formatDuration(1).should.eql('0:00');
+			Saillog.util.formatDuration(60).should.eql('0:01');
+			Saillog.util.formatDuration(HOUR).should.eql('1:00');
+			Saillog.util.formatDuration(HOUR * 3.5).should.eql('3:30');
+			Saillog.util.formatDuration(HOUR * 46.25).should.eql('46:15');
+
+		});
 	});
 
 	describe('isArray', function () {
