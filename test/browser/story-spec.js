@@ -10,69 +10,79 @@ function countObj(obj) {
 	return count;
 }
 
+var json = {
+	id: 'test-story',
+	type: 'FeatureCollection',
+	properties: {
+		title: 'Test title',
+		showTimeline: true
+	},
+	features: [
+		{
+			type: 'Feature',
+			properties: {
+				text: 'Without geometry'
+			}
+		},
+		{
+			type: 'Feature',
+			geometry: {
+				type: 'LineString',
+				coordinates: [
+					[0, 1],
+					[1, 1],
+					[1, 0],
+					[0, 1]
+				]
+			},
+			properties: {
+				startTime: '2013-08-29T17:45:00',
+				endTime: '2013-08-30T13:39:00'
+			}
+		},
+		{
+			type: 'Feature',
+			geometry: {
+				type: 'LineString',
+				coordinates: [
+					[2, 2],
+					[3, 4],
+					[5, 6]
+				]
+			},
+			properties: {
+				startTime: '2013-09-01T17:45:00',
+				endTime: '2013-09-02T13:39:00'
+			}
+		}
+	]
+};
+
+var story;
+beforeEach(function () {
+	story = new Saillog.Story(json);
+});
+afterEach(function () {
+	story = null;
+});
+
 describe('Saillog.Story', function () {
 	chai.should();
 
-	var json = {
-		id: 'test-story',
-		type: 'FeatureCollection',
-		properties: {
-			title: 'Test title',
-			showTimeline: true
-		},
-		features: [
-			{
-				type: 'Feature',
-				properties: {
-					text: 'Without geometry'
-				}
-			},
-			{
-				type: 'Feature',
-				geometry: {
-					type: 'LineString',
-					coordinates: [
-						[0, 1],
-						[1, 1],
-						[1, 0],
-						[0, 1]
-					]
-				},
-				properties: {
-					startTime: '2013-08-29T17:45:00',
-					endTime: '2013-08-30T13:39:00'
-				}
-			},
-			{
-				type: 'Feature',
-				geometry: {
-					type: 'LineString',
-					coordinates: [
-						[2, 2],
-						[3, 4],
-						[5, 6]
-					]
-				},
-				properties: {
-					startTime: '2013-09-01T17:45:00',
-					endTime: '2013-09-02T13:39:00'
-				}
-			}
-		]
-	};
 
 	describe('Constructing it', function () {
 		it('can be constructed with json', function () {
-			var story = new Saillog.Story(json);
-
 			story.should.be.an.instanceof(Saillog.Story);
-			countObj(story.getFeatures()).should.eql(3);
+			countObj(story.getLegs()).should.eql(3);
+		});
+
+		it('gets default properties', function () {
+
+			story.properties.should.contain.key('description', 'title', 'average');
 		});
 
 		it('adds distance to the properties of LineStrings', function () {
-			var story = new Saillog.Story(json);
-
-			var legs = story.getFeatures();
+			var legs = story.getLegs();
 			for (var id in legs) {
 				if (legs[id].geometry && legs[id].geometry.type === 'LineString') {
 					story.getProperties(id).should.contain.keys('distance', 'duration');
@@ -83,9 +93,8 @@ describe('Saillog.Story', function () {
 		});
 	});
 
-	describe('some methods', function () {
-		var story = new Saillog.Story(json);
 
+	describe('getTimes()', function () {
 		it('should report the correct timespan', function () {
 			var times = story.getTimes();
 			times.start.should.eql('2013-08-29T17:45:00');
@@ -93,6 +102,26 @@ describe('Saillog.Story', function () {
 			times.span.should.eql(330840);
 		});
 	});
+
+	describe('addLeg()', function () {
+		it('should add a leg', function () {
+			var id = story.addLeg();
+
+			var leg = story.getLegs()[id];
+			leg.should.contain.keys('type', 'properties');
+			leg.properties.should.contain.keys('title', 'color');
+		});
+	});
+
+	describe('removeLeg()', function () {
+		it('should remove the leg correctly', function () {
+			var id = story.addLeg();
+			story.removeLeg(id);
+
+			countObj(story.legs).should.eql(3);
+		});
+	});
+
 
 	// describe('Saving it', function () {
 	//  // TODO: fix fakeXHR stuff

@@ -182,6 +182,29 @@ Saillog.Widget.Story = Saillog.Widget.extend({
  */
 Saillog.Widget.Editor = Saillog.Widget.extend({
 
+	load: function (data) {
+		var input;
+		for (var key in data) {
+			input = this._container.find('[name=' + key + ']');
+
+			if (!input) {
+				continue;
+			}
+			switch (input.prop('type')) {
+			case 'checkbox':
+				input.prop('checked', data[key]);
+				break;
+			default:
+				input.val(data[key]);
+			}
+		}
+		if (data.text !== undefined && this._textEditor) {
+
+			this._textEditor.importFile('story-' + data.id, data.text);
+		}
+		return this;
+	},
+
 	values: function () {
 		var values = {};
 		this._container.find('input').each(function () {
@@ -205,28 +228,6 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 		return values;
 	},
 
-	load: function (data) {
-		var input;
-		for (var key in data) {
-			input = this._container.find('[name=' + key + ']');
-
-			if (!input) {
-				continue;
-			}
-			switch (input.prop('type')) {
-			case 'checkbox':
-				input.prop('checked', data[key]);
-				break;
-			default:
-				input.val(data[key]);
-			}
-		}
-		if (data.text && this._textEditor) {
-			this._textEditor.importFile('story-' + data.id, data.text);
-		}
-		return this;
-	},
-
 	_input: function (name, label, type) {
 		label = label || name;
 		type = type || 'text';
@@ -244,7 +245,7 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 
 		var epicContainer = $('<div id="epiceditor" class="epiceditor"></div>');
 
-		$('<div class="group"></div>').append(
+		$('<div class="group group-epic"></div>').append(
 			$('<label for="' + name + '">' + label + '</label>'),
 			epicContainer
 		).appendTo(container);
@@ -272,7 +273,7 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 
 	_buttons: function () {
 		var widget = this;
-		var buttons = $('<div class="buttons"></div>')
+		var buttons = $('<div class="group group-buttons"></div>')
 			.append('<button class="save">Save</button>')
 			.append(' <button class="cancel">Cancel</button>');
 
@@ -318,6 +319,7 @@ Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
 
 		this._input('title', 'Titel').appendTo(editor);
 		this._input('date', 'Datum', 'date').appendTo(editor);
+		this._input('color', 'Color', 'color').appendTo(editor);
 		this._initEpicEditor('text', 'Verhaal', editor);
 
 		this._buttons().appendTo(editor);

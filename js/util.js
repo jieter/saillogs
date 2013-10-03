@@ -32,6 +32,8 @@ marked.InlineLexer.prototype.outputLink = function (cap, link) {
 		return '<img src="' + href + '"' + alt + ' class="thumb"' + title + ' />';
 	}
 };
+
+// explicit imagePath for Leaflet, needed when uglified with the rest.
 L.Icon.Default.imagePath = '/js/lib/Leaflet/images';
 
 var Saillog = {};

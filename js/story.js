@@ -1,7 +1,16 @@
 'use strict';
 
 Saillog.Story = L.Class.extend({
-	AVG_SOG: 5,
+	defaultProperties: {
+		title: '',
+		description: '',
+		average: 5,
+		showTimeline: true
+	},
+	defaultLegProperties: {
+		title: '',
+		color: '#00bbff'
+	},
 	includes: L.Mixin.Events,
 
 	initialize: function (story) {
@@ -10,8 +19,8 @@ Saillog.Story = L.Class.extend({
 		this._story = story;
 
 		this.id = story.id;
-		this.properties = story.properties;
-		this.features = {};
+		this.properties = L.extend({}, this.defaultProperties, story.properties);
+		this.legs = {};
 
 		this.layer = L.featureGroup()
 			.on({
@@ -22,25 +31,7 @@ Saillog.Story = L.Class.extend({
 				}
 			}, this);
 
-		var id;
-		story.features.forEach(function (feature) {
-			if (feature.geometry) {
-				feature.layer = L.geoJson(feature, {
-					style: self._featureStyle
-				}).getLayers()[0];
-
-				self.layer.addLayer(feature.layer);
-
-				self._augmentLegProperties(feature);
-
-				id = L.stamp(feature.layer);
-			} else {
-				id = L.stamp({});
-			}
-
-			feature.properties.id = id;
-			self.features[id] = feature;
-		});
+		story.features.forEach(this.addLeg, this);
 
 		if (story.properties.showTrack) {
 			this.track = L.geoJson(null, {
@@ -50,37 +41,79 @@ Saillog.Story = L.Class.extend({
 		}
 	},
 
-	_augmentLegProperties: function (feature) {
-		if (feature.geometry.type === 'LineString') {
-			feature.properties.distance = feature.layer.getDistance('nautical');
+	addLeg: function (leg) {
+		var id;
+		if (!leg) {
+			leg = {
+				type: 'Feature',
+				properties: {}
+			};
+		}
 
-			if (!feature.properties.startTime && feature.properties.date) {
-				feature.properties.startTime = feature.properties.date + 'T08:00:00';
+		if (leg.geometry) {
+			leg.layer = L.geoJson(leg, {
+				style: this._legStyle
+			}).getLayers()[0];
+
+			this.layer.addLayer(leg.layer);
+
+			id = L.stamp(leg.layer);
+		} else {
+			id = L.stamp({});
+		}
+		this._augmentLegProperties(leg);
+
+		leg.properties.id = id;
+
+		this.legs[id] = leg;
+		return id;
+	},
+
+	_augmentLegProperties: function (leg) {
+		// copy from default is not present.
+		for (var key in leg.properties) {
+			if (key in this.defaultLegProperties && !(key in leg.properties)) {
+				leg.properties[key] = this.defaultLegProperties[key];
 			}
-			if (!feature.properties.endTime) {
-				var d = new Date(feature.properties.startTime);
-				var duration = feature.properties.distance / this.AVG_SOG;
+		}
+
+		if (leg.geometry && leg.geometry.type === 'LineString') {
+			leg.properties.distance = leg.layer.getDistance('nautical');
+
+			if (!leg.properties.startTime && leg.properties.date) {
+				leg.properties.startTime = leg.properties.date + 'T08:00:00';
+				leg.properties._startTimeIsApprox = true;
+			}
+
+			if (!leg.properties.endTime) {
+				var d = new Date(leg.properties.startTime);
+				var duration = leg.properties.distance / this.properties.average;
+				if (isNaN(duration)) {
+					throw 'error in duration calculation';
+				}
 				d.setTime(d.getTime() + duration * 1000);
-
-				feature.properties.endTime = d.toJSON().substr(0, 19);
+				leg.properties.endTime = d.toJSON().substr(0, 19);
+				leg.properties._endTimeIsApprox = true;
 			}
-			if (!feature.properties.duration) {
-				feature.properties.duration = Saillog.util.timeDiff(
-					feature.properties.endTime,
-					feature.properties.startTime
+			if (!leg.properties.duration) {
+				leg.properties.duration = Saillog.util.timeDiff(
+					leg.properties.endTime,
+					leg.properties.startTime
 				);
+				leg.properties._durationIsApprox = true;
 			}
 		}
 	},
+
 
 	save: function (callback) {
 		var data = L.extend({}, this._story);
 		data.features = [];
 
 		var legJson;
-		this.each(function (feature) {
-			if (feature.layer) {
-				legJson = feature.layer.toGeoJSON();
+		this.each(function (leg) {
+			if (leg.layer) {
+				legJson = leg.layer.toGeoJSON();
 			} else {
 				legJson = {
 					type: 'Feature'
@@ -88,7 +121,7 @@ Saillog.Story = L.Class.extend({
 			}
 			delete legJson.layer;
 
-			legJson.properties = L.extend({}, feature.properties);
+			legJson.properties = L.extend({}, leg.properties);
 			delete legJson.properties.distance;
 
 			data.features.push(legJson);
@@ -109,13 +142,29 @@ Saillog.Story = L.Class.extend({
 		return this;
 	},
 
-	getFeatures: function () {
-		return this.features;
+	getLegs: function () {
+		return this.legs;
+	},
+
+
+	removeLeg: function (id) {
+		if (!this.legs[id]) {
+			return this;
+		}
+
+		var leg = this.legs[id];
+
+		if (this.layer.hasLayer(leg.layer)) {
+			this.layer.removeLayer(leg.layer);
+		}
+
+		delete this.legs[id];
+		return this;
 	},
 
 	getProperties: function (id) {
 		if (id) {
-			return this.features[id].properties;
+			return this.legs[id].properties;
 		} else {
 			return this.properties;
 		}
@@ -125,20 +174,20 @@ Saillog.Story = L.Class.extend({
 		if (!properties) {
 			this.properties = id;
 		} else {
-			if (!this.features[id]) {
+			if (!this.legs[id]) {
 				throw 'No such feature id:' + id;
 			}
 
 			// Geometry might be changed, remove distance and recalculate
 			delete properties.distance;
-			this.features[id].properties = properties;
-			this._augmentLegProperties(this.features[id]);
+			this.legs[id].properties = properties;
+			this._augmentLegProperties(this.legs[id]);
 		}
 		return this;
 	},
 
 	getLayer: function (id) {
-		return this.features[id].layer;
+		return this.legs[id].layer;
 	},
 
 	getTimes: function () {
@@ -164,8 +213,8 @@ Saillog.Story = L.Class.extend({
 
 	each: function (fn, context) {
 		context = context || this;
-		for (var key in this.features) {
-			fn.call(context, this.features[key]);
+		for (var key in this.legs) {
+			fn.call(context, this.legs[key]);
 		}
 		return this;
 	},
@@ -175,15 +224,15 @@ Saillog.Story = L.Class.extend({
 		// clear highlights
 		this.each(function (feature) {
 			if (feature.layer && feature.layer.setStyle) {
-				feature.layer.setStyle(self._featureStyle(feature));
+				feature.layer.setStyle(self._legStyle(feature));
 			}
 		});
 
-		if (!id || !this.features[id] || !this.features[id].layer) {
+		if (!id || !this.legs[id] || !this.legs[id].layer) {
 			return this;
 		}
 
-		var current = this.features[id].layer;
+		var current = this.legs[id].layer;
 		if (current.setStyle) {
 			current.setStyle(Saillog.defaultStyles.highlight);
 		}
@@ -194,12 +243,12 @@ Saillog.Story = L.Class.extend({
 		return this;
 	},
 
-	_featureStyle: function (feature) {
+	_legStyle: function (leg) {
 		var style = L.extend({}, Saillog.defaultStyles.leg);
 
-		if (feature.properties.color) {
+		if (leg.properties.color) {
 			L.extend(style, {
-				color: feature.properties.color
+				color: leg.properties.color
 			});
 		}
 
@@ -222,12 +271,12 @@ Saillog.Story = L.Class.extend({
 
 	getBounds: function () {
 		var bounds;
-		this.each(function (feature) {
-			if (feature.layer && feature.layer.getBounds) {
+		this.each(function (leg) {
+			if (leg.layer && leg.layer.getBounds) {
 				if (bounds) {
-					bounds.extend(feature.layer.getBounds());
+					bounds.extend(leg.layer.getBounds());
 				} else {
-					bounds = L.latLngBounds(feature.layer.getBounds());
+					bounds = L.latLngBounds(leg.layer.getBounds());
 				}
 			}
 		});
@@ -236,6 +285,7 @@ Saillog.Story = L.Class.extend({
 	},
 
 	onAdd: function (map) {
+		this._map = map;
 		if (this.track) {
 			this.track.addTo(map);
 		}
@@ -251,6 +301,7 @@ Saillog.Story = L.Class.extend({
 		if (map.hasLayer(this.track)) {
 			map.removeLayer(this.track);
 		}
+		this._map = null;
 		return this;
 	},
 
@@ -259,12 +310,11 @@ Saillog.Story = L.Class.extend({
 	}
 });
 
-Saillog.Story.emptyStory = function () {
+Saillog.Story.emptyStory = function (id) {
 	return new Saillog.Story({
-		id: null,
+		id: id,
 		properties: {
-			title: '',
-			showTimeline: true
+			title: id
 		},
 		type: 'FeatureGroup',
 		features: []

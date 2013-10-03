@@ -30,7 +30,9 @@ describe('util', function () {
 		};
 		it('translates colors', function () {
 			for (var hex in colors) {
-				Saillog.util.hexToRgb(hex).toArray().should.eql(colors[hex]);
+				var rgb = Saillog.util.hexToRgb(hex);
+
+				rgb.toArray().should.eql(colors[hex]);
 			}
 		});
 		it('converts to string', function () {
@@ -71,6 +73,7 @@ describe('util', function () {
 
 	describe('formatDuration', function () {
 		var HOUR = 60 * 60;
+
 		it('formats seconds to hours:minutes', function () {
 			Saillog.util.formatDuration(1).should.eql('0:00');
 			Saillog.util.formatDuration(60).should.eql('0:01');

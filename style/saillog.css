@@ -1881,23 +1881,26 @@ ul.selector li:hover {
   border: 3px solid transparent;
 }
 #sidebar #editor .group {
-  padding: 0px;
+  padding: 4px 0;
+  border-bottom: 1px solid #ddd;
 }
 #sidebar #editor .group label {
   color: #888;
-  display: block;
+  display: inline-block;
+  width: 40%;
 }
 #sidebar #editor .group input[type="text"] {
-  width: 100%;
+  width: 60%;
   border: 1px solid #bbb;
   padding: 4px 6px;
 }
-#sidebar #editor .group.group-checkbox {
+#sidebar #editor .group.group-checkbox,
+#sidebar #editor .group.group-color,
+#sidebar #editor .group.group-date {
   padding: 5px 0;
 }
-#sidebar #editor .group.group-checkbox label {
-  display: inline-block;
-  width: 160px;
+#sidebar #editor .group.group-buttons {
+  border-bottom: 0;
 }
 #sidebar #editor .group button {
   margin-left: 6px;

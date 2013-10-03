@@ -95,13 +95,14 @@ Saillog.App = L.Class.extend({
 	},
 
 	_attachLegActions: function (emitter) {
-		emitter.on({
+		var actions = {
 			'click-leg': this._legClick,
 			'mouseover-leg': this._legHover,
 			'mouseout-leg': function () {
 				this._highlight();
 			}
-		}, this);
+		};
+		emitter.off(actions).on(actions, this);
 		return emitter;
 	},
 

@@ -403,22 +403,24 @@ ul.selector {
 			}
 		}
 		.group {
-			padding: 0px;
+			padding: 4px 0;
+			border-bottom: 1px solid #ddd;
+
 			label {
 				color: #888;
-				display: block;
+				display: inline-block;
+				width: 40%;
 			}
 			input[type="text"] {
-				width: 100%;
+				width: 60%;
 				border: 1px solid #bbb;
 				padding: 4px 6px;
 			}
-			&.group-checkbox {
+			&.group-checkbox, &.group-color, &.group-date {
 				padding: 5px 0;
-				label {
-					display: inline-block;
-					width: 160px;
-				}
+			}
+			&.group-buttons {
+				border-bottom: 0;
 			}
 
 			button {
