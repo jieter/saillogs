@@ -73,13 +73,19 @@ Saillog.Story = L.Class.extend({
 		Saillog.util.default(leg.properties, this.defaultLegProperties);
 
 		if (leg.geometry && leg.geometry.type === 'LineString') {
-			leg.properties._isApprox = ['distance'];
+			// remove approximated stuff first
+			if (leg.properties._isApprox) {
+				leg.properties._isApprox.forEach(function (key) {
+					delete leg.properties[key];
+				});
+			}
 
 			leg.properties.distance = leg.layer.getDistance('nautical');
+			leg.properties._isApprox = ['distance'];
 
 			if (!leg.properties.startTime && leg.properties.date) {
 				leg.properties.startTime = leg.properties.date + 'T08:00:00';
-				leg.properties._isApprox.push('startTime')
+				leg.properties._isApprox.push('startTime');
 			}
 
 			if (!leg.properties.endTime) {
@@ -102,7 +108,6 @@ Saillog.Story = L.Class.extend({
 		}
 	},
 
-
 	save: function (callback) {
 		var data = {
 			id: this.id,
@@ -111,25 +116,25 @@ Saillog.Story = L.Class.extend({
 		};
 
 		this.each(function (leg) {
-			var legJson;
+			var legData;
 			if (leg.layer) {
-				legJson = leg.layer.toGeoJSON();
+				legData = leg.layer.toGeoJSON();
 			} else {
-				legJson = {
+				legData = {
 					type: 'Feature'
 				};
 			}
-			delete legJson.layer;
+			delete legData.layer;
 
-			legJson.properties = L.extend({}, leg.properties);
-			if (legJson.properties._isApprox) {
-				legJson.properties._isApprox.forEach(function (key) {
-					delete legJson.properties[key];
+			legData.properties = L.extend({}, leg.properties);
+			if (legData.properties._isApprox) {
+				legData.properties._isApprox.forEach(function (key) {
+					delete legData.properties[key];
 				});
-				delete legJson.properties._isApprox;
+				delete legData.properties._isApprox;
 			}
 
-			data.features.push(legJson);
+			data.features.push(legData);
 		});
 
 		$.ajax({
@@ -183,9 +188,8 @@ Saillog.Story = L.Class.extend({
 				throw 'No such feature id:' + id;
 			}
 
-			// Geometry might be changed, remove distance and recalculate
-			delete properties.distance;
 			this.legs[id].properties = properties;
+			// geometry is changed, sodate approximated values
 			this._augmentLegProperties(this.legs[id]);
 		}
 		return this;
