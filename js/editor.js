@@ -9,6 +9,7 @@ Saillog.Editor = {
 
 		this._edit = id;
 
+		this.sidebar.addClass('wide');
 		if (id === 'metadata') {
 			this._editorWidget =
 				new Saillog.Widget.StoryMetadataEditor(this.sidebar)
@@ -16,7 +17,6 @@ Saillog.Editor = {
 		} else {
 			this._editLayer = this._story.getLayer(id);
 
-			this.sidebar.addClass('wide');
 			this._editorWidget =
 				new Saillog.Widget.LegMetadataEditor(this.sidebar)
 					.update(this._story.getProperties(id));
@@ -29,7 +29,13 @@ Saillog.Editor = {
 				this._save();
 				this._stopEditing();
 			},
-			'cancel': this._stopEditing,
+			'cancel': function () {
+
+				// this._story.removeLeg(id);
+				// delete this._edit;
+
+				this._stopEditing();
+			},
 			'delete': function () {
 				console.log('delete');
 				this._story.removeLeg(id);
@@ -38,7 +44,7 @@ Saillog.Editor = {
 				this._story.save(function () {
 
 				});
-				this.showStory();
+				this._stopEditing();
 			}
 		}, this);
 	},
@@ -73,8 +79,10 @@ Saillog.Editor = {
 		this.showStory();
 
 		if (this._edit !== 'metadata') {
-			this._scrollTo(this._edit, 0);
-			delete this._edit;
+			if (this._edit !== undefined) {
+				this._scrollTo(this._edit, 0);
+				delete this._edit;
+			}
 
 			this._stopMapEditor(this._editLayer);
 			delete this._editLayer;

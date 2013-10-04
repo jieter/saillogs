@@ -90,10 +90,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 					widget.fire('edit-metadata');
 				})
 				.appendTo(title);
-			$('<button class="create"><i class="icon-plus"></i></button>')
-				.on('click', function () {
-					widget.fire('create-leg');
-				})
+			$('<button class="create create-leg"><i class="icon-plus"></i></button>')
 				.appendTo(title);
 		}
 
@@ -103,6 +100,15 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 				.appendTo(container);
 		}, this);
 
+		if (this.isAuthorized) {
+			$('<h1></h1>')
+				.append('<button class="create create-leg float-right"><i class="icon-plus"></i></button>')
+				.appendTo(container);
+		}
+
+		container.on('click', '.create-leg', function () {
+			widget.fire('create-leg');
+		});
 		container.on('click mouseover mouseout', '.leg', function (event) {
 			var target = $(event.target);
 			var type = target.is('.edit') || target.parent().is('.edit') ? 'edit' : event.type;
@@ -185,12 +191,9 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 Saillog.Widget.Editor = Saillog.Widget.extend({
 
 	load: function (data) {
-		console.log(data);
 		var input;
 		for (var key in data) {
 			input = this._container.find('[name=' + key + ']');
-
-			console.log(input, data[key]);
 
 			if (!input) {
 				continue;

@@ -11,17 +11,15 @@ Saillog.Story = L.Class.extend({
 		title: '',
 		text: '',
 		date: '',
-		color: '#00bbff'
+		color: '#ffffff'
 	},
 	includes: L.Mixin.Events,
 
 	initialize: function (story) {
 		var self = this;
 
-		this._story = story;
-
 		this.id = story.id;
-		this.properties = L.extend({}, this.defaultProperties, story.properties);
+		this.properties = Saillog.util.default(story.properties, this.defaultProperties);
 		this.legs = {};
 
 		this.layer = L.featureGroup()
@@ -75,40 +73,45 @@ Saillog.Story = L.Class.extend({
 		Saillog.util.default(leg.properties, this.defaultLegProperties);
 
 		if (leg.geometry && leg.geometry.type === 'LineString') {
+			leg.properties._isApprox = ['distance'];
+
 			leg.properties.distance = leg.layer.getDistance('nautical');
 
 			if (!leg.properties.startTime && leg.properties.date) {
 				leg.properties.startTime = leg.properties.date + 'T08:00:00';
-				leg.properties._startTimeIsApprox = true;
+				leg.properties._isApprox.push('startTime')
 			}
 
 			if (!leg.properties.endTime) {
 				var d = new Date(leg.properties.startTime);
-				var duration = leg.properties.distance / this.properties.average;
+				var duration = (leg.properties.distance / this.properties.average) * 60 * 60;
 				if (isNaN(duration)) {
 					throw 'error in duration calculation';
 				}
 				d.setTime(d.getTime() + duration * 1000);
 				leg.properties.endTime = d.toJSON().substr(0, 19);
-				leg.properties._endTimeIsApprox = true;
+				leg.properties._isApprox.push('endTime');
 			}
 			if (!leg.properties.duration) {
 				leg.properties.duration = Saillog.util.timeDiff(
 					leg.properties.endTime,
 					leg.properties.startTime
 				);
-				leg.properties._durationIsApprox = true;
+				leg.properties._isApprox.push('duration');
 			}
 		}
 	},
 
 
 	save: function (callback) {
-		var data = L.extend({}, this._story);
-		data.features = [];
+		var data = {
+			id: this.id,
+			properties: this.properties,
+			features: []
+		};
 
-		var legJson;
 		this.each(function (leg) {
+			var legJson;
 			if (leg.layer) {
 				legJson = leg.layer.toGeoJSON();
 			} else {
@@ -119,7 +122,12 @@ Saillog.Story = L.Class.extend({
 			delete legJson.layer;
 
 			legJson.properties = L.extend({}, leg.properties);
-			delete legJson.properties.distance;
+			if (legJson.properties._isApprox) {
+				legJson.properties._isApprox.forEach(function (key) {
+					delete legJson.properties[key];
+				});
+				delete legJson.properties._isApprox;
+			}
 
 			data.features.push(legJson);
 		});
@@ -253,12 +261,12 @@ Saillog.Story = L.Class.extend({
 	},
 
 	_loadTrack: function () {
-		var self = this;
+		var story = this;
 		$.ajax({
-			url: 'data/' + this._story.id + '/track.geojson',
+			url: 'data/' + story.id + '/track.geojson',
 			dataType: 'json',
 			success: function (geojson) {
-				self.track.addData(geojson);
+				story.track.addData(geojson);
 
 				// TODO add to layerControl
 				// self.layerControl.addOverlay(self.trackLayer, 'Opgeslagen track');
