@@ -9,6 +9,8 @@ Saillog.Story = L.Class.extend({
 	},
 	defaultLegProperties: {
 		title: '',
+		text: '',
+		date: '',
 		color: '#00bbff'
 	},
 	includes: L.Mixin.Events,
@@ -70,12 +72,7 @@ Saillog.Story = L.Class.extend({
 	},
 
 	_augmentLegProperties: function (leg) {
-		// copy from default is not present.
-		for (var key in leg.properties) {
-			if (key in this.defaultLegProperties && !(key in leg.properties)) {
-				leg.properties[key] = this.defaultLegProperties[key];
-			}
-		}
+		Saillog.util.default(leg.properties, this.defaultLegProperties);
 
 		if (leg.geometry && leg.geometry.type === 'LineString') {
 			leg.properties.distance = leg.layer.getDistance('nautical');

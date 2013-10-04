@@ -95,6 +95,15 @@ Saillog.util = {
 	// http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
 	isArray: function isArray(o) {
 		return Object.prototype.toString.call(o) === '[object Array]';
+	},
+
+	'default': function (dest, defaults) {
+		for (var key in defaults) {
+			if (defaults[key] !== undefined && dest[key] === undefined) {
+				dest[key] = defaults[key];
+			}
+		}
+		return dest;
 	}
 };
 

@@ -24,12 +24,22 @@ Saillog.Editor = {
 			this._startMapEditor();
 		}
 
-		this._editorWidget.on({
+		this._editorWidget.once({
 			'save': function () {
 				this._save();
 				this._stopEditing();
 			},
-			'cancel': this._stopEditing
+			'cancel': this._stopEditing,
+			'delete': function () {
+				console.log('delete');
+				this._story.removeLeg(id);
+				delete this._edit;
+				// todo refactor into _save
+				this._story.save(function () {
+
+				});
+				this.showStory();
+			}
 		}, this);
 	},
 

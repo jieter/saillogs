@@ -90,4 +90,35 @@ describe('util', function () {
 		});
 	});
 
+	describe('default', function () {
+
+		it('does copy defaults', function () {
+			var obj = {};
+			var defaults = {
+				foo: '',
+				bar: 'foo'
+			};
+
+			Saillog.util.default(obj, defaults)
+				.should.contain.keys('foo', 'bar');
+		});
+		it('does not overwrite values already in dest', function () {
+			var obj = {
+				foo: 'bar',
+				bar: ''
+			};
+			var defaults = {
+				foo: 'baz',
+				bar: 'foo'
+			};
+
+			Saillog.util.default(obj, defaults);
+
+			obj.should.contain.keys('foo', 'bar');
+			obj.foo.should.eql('bar');
+			obj.bar.should.eql('');
+		});
+
+	});
+
 });

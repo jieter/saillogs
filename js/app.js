@@ -34,7 +34,12 @@ Saillog.App = L.Class.extend({
 				this.showEditor('metadata');
 			},
 			'create-leg edit-leg': function (event) {
-				this.showEditor(event.legId);
+				var legId = event.legId;
+				if (!legId) {
+					legId = this._story.addLeg();
+				}
+
+				this.showEditor(legId);
 			}
 		}, this);
 

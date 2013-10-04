@@ -60,6 +60,9 @@ html, body, #map {
 	font-family: "PT Serif", Georgia, serif;
 }
 
+.float-right {
+	float: right;
+}
 /**
  * Buttons
  */
@@ -95,7 +98,7 @@ html, body, #map {
 		}
 	}
 	&.success, &.create, &.save,
-	&.cancel, &.danger, &.primary {
+	&.cancel, &.danger, &.primary, &.delete {
 		color: white;
 		a {
 			color: white;
@@ -104,7 +107,7 @@ html, body, #map {
 	&.success, &.create, &.save {
 		.btn-painter(@successButtonColor);
 	}
-	&.cancel, &.danger {
+	&.cancel, &.danger, &.delete {
 		.btn-painter(@dangerButtonColor);
 	}
 	&.primary, {
@@ -295,10 +298,13 @@ ul.selector {
 
 	h1, h3 {
 		text-align: left;
+
+		.edit, &.untitled {
+			color: #aaa;
+		}
 		.edit {
 			cursor: pointer;
 			display: none;
-			color: #aaa;
 			margin-left: 4px;
 		}
 		&:hover .edit {

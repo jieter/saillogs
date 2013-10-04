@@ -140,7 +140,9 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		}
 		if (this.isAuthorized) {
 			if (title.html() === '') {
-				title.append('untitled');
+				title
+					.addClass('untitled')
+					.append('untitled');
 			}
 			title.append('<span class="edit hidden"><i class="icon-edit-sign"></i></span>');
 		}
@@ -183,9 +185,12 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 Saillog.Widget.Editor = Saillog.Widget.extend({
 
 	load: function (data) {
+		console.log(data);
 		var input;
 		for (var key in data) {
 			input = this._container.find('[name=' + key + ']');
+
+			console.log(input, data[key]);
 
 			if (!input) {
 				continue;
@@ -199,7 +204,6 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 			}
 		}
 		if (data.text !== undefined && this._textEditor) {
-
 			this._textEditor.importFile('story-' + data.id, data.text);
 		}
 		return this;
@@ -274,16 +278,15 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 	_buttons: function () {
 		var widget = this;
 		var buttons = $('<div class="group group-buttons"></div>')
-			.append('<button class="save">Save</button>')
-			.append(' <button class="cancel">Cancel</button>');
+			.append('<button class="save" data-event="save">Save</button>')
+			.append(' <button class="cancel" data-event="cancel">Cancel</button>');
 
 		buttons.on('click', 'button', function () {
-			var button = $(this);
-			if (button.hasClass('save')) {
-				widget.fire('save');
-			} else if (button.hasClass('cancel')) {
-				widget.fire('cancel');
+			var action = $(this).data('event');
+			if (action === 'delete' && !confirm('Are you sure?')) {
+				return;
 			}
+			widget.fire(action);
 		});
 		return buttons;
 	}
@@ -293,7 +296,7 @@ Saillog.Widget.StoryMetadataEditor = Saillog.Widget.Editor.extend({
 
 	render: function () {
 		var container = this._container.empty();
-		var editor = $('<div id="editor"><h1>Metadata</h1></div>');
+		var editor = $('<div id="editor"><h1>Edit metadata</h1></div>');
 
 		this._input('title', 'Titel').appendTo(editor);
 		this._input('showTimeline', 'Timeline visible', 'checkbox').appendTo(editor);
@@ -312,7 +315,7 @@ Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
 	render: function () {
 		var container = this._container.empty();
 
-		var editor = $('<div id="editor"><h1>Bewerken</h1></div>').appendTo(container);
+		var editor = $('<div id="editor"><h1>Edit Leg</h1></div>').appendTo(container);
 
 		// TODO: choose type of geometry.
 		//$('<span class="type"></span>').appendTo(editor);
@@ -322,7 +325,9 @@ Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
 		this._input('color', 'Color', 'color').appendTo(editor);
 		this._initEpicEditor('text', 'Verhaal', editor);
 
-		this._buttons().appendTo(editor);
+		this._buttons().append(
+			'<button data-event="delete" class="delete float-right">Delete</button>'
+		).appendTo(editor);
 
 
 		return this.load(this._data);

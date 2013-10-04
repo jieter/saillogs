@@ -109,7 +109,7 @@ describe('Saillog.Story', function () {
 
 			var leg = story.getLegs()[id];
 			leg.should.contain.keys('type', 'properties');
-			leg.properties.should.contain.keys('title', 'color');
+			leg.properties.should.contain.keys('title', 'date', 'text', 'color');
 		});
 	});
 

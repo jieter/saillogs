@@ -1496,6 +1496,9 @@ body,
   font-size: 14px;
   font-family: "PT Serif", Georgia, serif;
 }
+.float-right {
+  float: right;
+}
 /**
  * Buttons
  */
@@ -1545,7 +1548,9 @@ button.cancel,
 .button.danger,
 button.danger,
 .button.primary,
-button.primary {
+button.primary,
+.button.delete,
+button.delete {
   color: white;
 }
 .button.success a,
@@ -1559,7 +1564,9 @@ button.cancel a,
 .button.danger a,
 button.danger a,
 .button.primary a,
-button.primary a {
+button.primary a,
+.button.delete a,
+button.delete a {
   color: white;
 }
 .button.success,
@@ -1581,13 +1588,17 @@ button.save:hover {
 .button.cancel,
 button.cancel,
 .button.danger,
-button.danger {
+button.danger,
+.button.delete,
+button.delete {
   background-color: #d9534f;
 }
 .button.cancel:hover,
 button.cancel:hover,
 .button.danger:hover,
-button.danger:hover {
+button.danger:hover,
+.button.delete:hover,
+button.delete:hover {
   background-color: #d43f3a;
 }
 .button.primary,
@@ -1783,10 +1794,15 @@ ul.selector li:hover {
   text-align: left;
 }
 #sidebar h1 .edit,
+#sidebar h3 .edit,
+#sidebar h1.untitled,
+#sidebar h3.untitled {
+  color: #aaa;
+}
+#sidebar h1 .edit,
 #sidebar h3 .edit {
   cursor: pointer;
   display: none;
-  color: #aaa;
   margin-left: 4px;
 }
 #sidebar h1:hover .edit,
