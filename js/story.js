@@ -42,11 +42,12 @@ Saillog.Story = L.Class.extend({
 	},
 
 	addLeg: function (leg) {
-		var id;
 		if (!leg) {
 			leg = {
 				type: 'Feature',
-				properties: {}
+				properties: {
+					id: L.stamp({})
+				}
 			};
 		}
 
@@ -57,16 +58,13 @@ Saillog.Story = L.Class.extend({
 
 			this.layer.addLayer(leg.layer);
 
-			id = L.stamp(leg.layer);
-		} else {
-			id = L.stamp({});
+			leg.properties.id = L.stamp(leg.layer);
 		}
+
 		this._augmentLegProperties(leg);
 
-		leg.properties.id = id;
-
-		this.legs[id] = leg;
-		return id;
+		this.legs[leg.properties.id] = leg;
+		return leg.properties.id;
 	},
 
 	_augmentLegProperties: function (leg) {
