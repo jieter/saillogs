@@ -223,7 +223,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		var width = duration * this._times.pps;
 
 		return {
-			'background-color': color.toRgba(this.options.opacity),
+			'border': '4px solid ' + color.toRgba(this.options.opacity),
 			left: Math.round(left) + 'px',
 			width: Math.round(width) + 'px'
 		};
