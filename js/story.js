@@ -114,15 +114,9 @@ Saillog.Story = L.Class.extend({
 		};
 
 		this.each(function (leg) {
-			var legData;
-			if (leg.layer) {
-				legData = leg.layer.toGeoJSON();
-			} else {
-				legData = {
-					type: 'Feature'
-				};
-			}
-			delete legData.layer;
+			var legData = leg.layer ?
+				leg.layer.toGeoJSON() :
+				{ type: 'Feature' };
 
 			legData.properties = L.extend({}, leg.properties);
 			if (legData.properties._isApprox) {

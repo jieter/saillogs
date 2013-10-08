@@ -1,10 +1,11 @@
 {
 	"id": "2013-zomerzeilen",
-	"type": "FeatureCollection",
 	"properties": {
 		"title": "Zomerzeilen 2013",
 		"showTrack": true,
-		"showTimeline": true
+		"showTimeline": true,
+		"description": "",
+		"average": 5
 	},
 	"features": [
 		{
@@ -19,7 +20,8 @@
 			"properties": {
 				"date": "2013-07-17",
 				"text": "Voor het vierde jaar op rij op weg met de Equilibre. Na tochten naar Londen, Schotland, Denemarken en Ipswitch is het nu toch echt eens tijd om de kanaaleilanden met een bezoekje te vereren...",
-				"title": ""
+				"title": "",
+				"color": "#ffffff"
 			}
 		},
 		{
@@ -176,7 +178,8 @@
 			"properties": {
 				"date": "2013-07-23",
 				"title": "Vijf 16-jarigen",
-				"text": "Na een goede nacht blijven we een dagje extra aan wal in Weymouth. De verschrikkingen van de fog patches zitten er bij iedereen nog goed in, dus wordt er ontbeten met een full English breakfast. ![Nothe Fort](P1050385_nothe.JPG) Met bloedworst in de buik wordt er een wandeltocht ingezet naar het Nothe Forth op de kop van de landtong. Hier blijkt dat we, als we ons maar gedragen als 16-jarigen, ook voor die toegangsprijs naar binnen mogen. De eerste 30 pond is al weer bespaard.\n\nVervolgens lopen we op de terugweg langs de RNLI-post van Weymouth, waar we een rondleiding proberen te ritselen. Dit blijkt moeilijker dan gedacht, dus moeten we een uurtje later nog maar eens terugkomen. Dat doen we dus maar, en dan worden onze KNRM-polo's ineens herkend, en krijgen we de uitgebreide rondleiding. Wel moeten we de Coxswain een beetje teleurstellen als die vraagt op welk station wij dienen...\n\n0 NM in 24 uur."
+				"text": "Na een goede nacht blijven we een dagje extra aan wal in Weymouth. De verschrikkingen van de fog patches zitten er bij iedereen nog goed in, dus wordt er ontbeten met een full English breakfast. ![Nothe Fort](P1050385_nothe.JPG) Met bloedworst in de buik wordt er een wandeltocht ingezet naar het Nothe Forth op de kop van de landtong. Hier blijkt dat we, als we ons maar gedragen als 16-jarigen, ook voor die toegangsprijs naar binnen mogen. De eerste 30 pond is al weer bespaard.\n\nVervolgens lopen we op de terugweg langs de RNLI-post van Weymouth, waar we een rondleiding proberen te ritselen. Dit blijkt moeilijker dan gedacht, dus moeten we een uurtje later nog maar eens terugkomen. Dat doen we dus maar, en dan worden onze KNRM-polo's ineens herkend, en krijgen we de uitgebreide rondleiding. Wel moeten we de Coxswain een beetje teleurstellen als die vraagt op welk station wij dienen...\n\n0 NM in 24 uur.",
+				"color": "#ffffff"
 			}
 		},
 		{
@@ -455,7 +458,8 @@
 			"properties": {
 				"date": "2013-07-28",
 				"title": "Jazz in Brighton",
-				"text": "In Brighton houden we weer een waldagje. Gelukkig blijkt de buurvrouw ook een aardige kant te hebben: ze biedt haar excuses aan voor haar nachtelijke opmerking en we hebben wat gezellige gesprekjes. ![De pier met allerlei vermaek](IMG_7621_brightonpier.thumb.JPG) Ze geeft ons wat folders van Brighton en advies: we moeten eigenlijk wel in het reuzenrad voor 8 pond de man en het is een eind lopen, dus we kunnen beter met het oude treintje of met de bus gaan. Omdat we wel zin hebben in een goede wandeling lopen we langs de kust richting de stad. ![Zandsculpturen in Brighton](IMG_7656_zandkastelen.thumb.JPG) We bekijken de pier, eten fish and chips onder het genot van straatmuziekant-jazz (met verzoeknummers) en wandelen langs het aparte <a href=\"http://en.wikipedia.org/wiki/Royal_Pavilion\">Royal Pavilion</a>, brengen een kort bezoek aan een kerk en  op de terugweg sparen we nog wat ponden uit door vanaf de boulevard de zandsculpturen te bekijken in plaats van te toegansprijs te dokken."
+				"text": "In Brighton houden we weer een waldagje. Gelukkig blijkt de buurvrouw ook een aardige kant te hebben: ze biedt haar excuses aan voor haar nachtelijke opmerking en we hebben wat gezellige gesprekjes. ![De pier met allerlei vermaek](IMG_7621_brightonpier.thumb.JPG) Ze geeft ons wat folders van Brighton en advies: we moeten eigenlijk wel in het reuzenrad voor 8 pond de man en het is een eind lopen, dus we kunnen beter met het oude treintje of met de bus gaan. Omdat we wel zin hebben in een goede wandeling lopen we langs de kust richting de stad. ![Zandsculpturen in Brighton](IMG_7656_zandkastelen.thumb.JPG) We bekijken de pier, eten fish and chips onder het genot van straatmuziekant-jazz (met verzoeknummers) en wandelen langs het aparte <a href=\"http://en.wikipedia.org/wiki/Royal_Pavilion\">Royal Pavilion</a>, brengen een kort bezoek aan een kerk en  op de terugweg sparen we nog wat ponden uit door vanaf de boulevard de zandsculpturen te bekijken in plaats van te toegansprijs te dokken.",
+				"color": "#ffffff"
 			}
 		},
 		{
@@ -535,7 +539,8 @@
 			"properties": {
 				"date": "2013-07-30",
 				"title": "Wandelwaldagje in Frankrijk",
-				"text": "![Spuisluis vlak bij de jachthaven van Boulogne.](2013-07-30 13.22.12_spuien.thumb.jpg) Na een slechte nacht aan de onrustige kant van de haven is het tijd om de boot in een mooi vrijgekomen plekje te parkeren voor de komende nacht. Eigenlijk hebben we er nog niet zo'n zin in, maar het vooruitzicht van een goede nacht zonder al te veel geschommel spreekt wel aan.\n\nOndanks de regen maken we wandelingen. Boulogne is een stad met geschiedenis: het was in de tijd van de Romeinen de plek van waaruit de invasie van het Verenigd Koninkrijk werd geregeld, wat later door Napoleon nog eens gepoogd is. Er staat een prachtige maar verpauperde baseliek die men lokaal nog 'cathedral' noemt. Boven op de heuvel is een herinneringszuil voor Napoleon opgericht, om aan zijn heroïsche veldtocht naar het Verenigd Koninkrijk te herinneren. Ho, wacht, welke veldtocht?"
+				"text": "![Spuisluis vlak bij de jachthaven van Boulogne.](2013-07-30 13.22.12_spuien.thumb.jpg) Na een slechte nacht aan de onrustige kant van de haven is het tijd om de boot in een mooi vrijgekomen plekje te parkeren voor de komende nacht. Eigenlijk hebben we er nog niet zo'n zin in, maar het vooruitzicht van een goede nacht zonder al te veel geschommel spreekt wel aan.\n\nOndanks de regen maken we wandelingen. Boulogne is een stad met geschiedenis: het was in de tijd van de Romeinen de plek van waaruit de invasie van het Verenigd Koninkrijk werd geregeld, wat later door Napoleon nog eens gepoogd is. Er staat een prachtige maar verpauperde baseliek die men lokaal nog 'cathedral' noemt. Boven op de heuvel is een herinneringszuil voor Napoleon opgericht, om aan zijn heroïsche veldtocht naar het Verenigd Koninkrijk te herinneren. Ho, wacht, welke veldtocht?",
+				"color": "#ffffff"
 			}
 		},
 		{
@@ -693,14 +698,16 @@
 				"title": "Heet!",
 				"text": "Na een brakke nacht opgeleukt met kriebelvliegen en het geluid van Neerlands visindustrie is het tijd voor de kortste etappe tot nu toe: we moeten nog helemaal naar Hellevoetsluis. Omdat we zien dat de brug opengaat voor een schutting naar buiten maken we ook maar klaar om de sluis in te kunnen. Na de sluis maken we de pruttel nog even blij met wat nieuwe diesel.\n\nOp het Haringvliet blijkt een blik open zeilbootjes te zijn opengetrokken: er komen er steeds meer uit de haven. Achteraf blijkt het om het 50<sup>e</sup> EK Sharpie te gaan.\n\nWe hebben kennelijk de warmste dag van de zomer uitgekozen om op te ruimen en schoon te maken, dus het moet maar op tropentempo...\n\n3 mijl",
 				"startTime": "2013-08-02T08:00:00",
-				"endTime": "2013-08-02T08:00:00",
-				"duration": 0
+				"endTime": "2013-08-02T08:00:00"
 			}
 		},
 		{
 			"type": "Feature",
 			"properties": {
-				"text": "Helaas dus de kanaaleilanden niet gehaald. Het zou ook wel een verrassing zijn als we nu ineens wel de bedachte bestemming zouden halen. Maar wel kostelijk weer gehad en prachtige plekken gezien.<table><tr><td class=\"meta\">Boot:</td><td>Spirit 36 'Equilibre'</td></tr><tr><td class=\"meta\">Gevaren: </td><td>&plusmn; 680NM</td></tr><tr><td class=\"meta\">Bemanning</td><td>Abraham, Haap, Henk, Jieter, Margriet, Pauli</td></tr></table>"
+				"text": "Helaas dus de kanaaleilanden niet gehaald. Het zou ook wel een verrassing zijn als we nu ineens wel de bedachte bestemming zouden halen. Maar wel kostelijk weer gehad en prachtige plekken gezien.<table><tr><td class=\"meta\">Boot:</td><td>Spirit 36 'Equilibre'</td></tr><tr><td class=\"meta\">Gevaren: </td><td>&plusmn; 680NM</td></tr><tr><td class=\"meta\">Bemanning</td><td>Abraham, Haap, Henk, Jieter, Margriet, Pauli</td></tr></table>",
+				"title": "",
+				"date": "",
+				"color": "#ffffff"
 			}
 		}
 	]
