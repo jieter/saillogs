@@ -58,9 +58,34 @@ Saillog.util = {
 		RGB.prototype.toString = function () {
 			return this.toArray().join(',');
 		};
-
 		RGB.prototype.toRgba = function (alpha) {
 			return 'rgba(' + this.toString() + ',' + alpha + ')';
+		};
+		RGB.prototype.hue = function () {
+			var r = this.r / 255;
+			var g = this.g / 255;
+			var b = this.b / 255;
+
+			var max = Math.max(r, g, b);
+			var min = Math.min(r, g, b);
+			if (max === min) {
+				return 0;
+			}
+
+			var d = max - min;
+			var h;
+			switch (max) {
+			case r:
+				h = (g - b) / d + (g < b ? 6 : 0);
+				break;
+			case g:
+				h = (b - r) / d + 2;
+				break;
+			case b:
+				h = (r - g) / d + 4;
+				break;
+			}
+			return h * 60;
 		};
 		return new RGB(
 			parseInt(result[1], 16),

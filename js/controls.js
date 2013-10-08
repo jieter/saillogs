@@ -91,6 +91,7 @@ Saillog.Control.Calendar = Saillog.Control.extend({
 			.html(day);
 
 		var diff = null;
+		// TODO: use absolute positioning to place legs
 		if (container.children().length < 1) {
 			item.css('margin-left', (date.getDay() * 21) + 'px');
 		} else {
