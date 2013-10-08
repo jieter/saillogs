@@ -2004,22 +2004,22 @@ table td.meta {
   #map {
     border: 1px solid black;
   }
-  #index,
-  #explanation,
+  #calendar,
   .leaflet-control-layers,
-  .leaflet-marker,
-  .leaflet-marker-shadow {
+  .leaflet-marker-pane,
+  .leaflet-shadow-pane button,
+  .button,
+  .untitled {
     display: none;
   }
-  #story {
-    foo: bar;
+  #sidebar {
     position: relative;
     page-break-before: always;
     width: 445px;
     color: black;
     border: 0;
   }
-  #story img.thumb {
+  #sidebar img.thumb {
     width: 200px;
     margin-left: -240px;
     border: 0;
