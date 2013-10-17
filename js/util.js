@@ -84,7 +84,7 @@ Saillog.util = {
 	},
 
 	formatTime: function formatTime(time) {
-		var time = new Date(time);
+		time = new Date(time);
 		var minutes = time.getMinutes();
 		return time.getHours() + ':' + (minutes < 10 ? '0' : '') + minutes;
 	},
