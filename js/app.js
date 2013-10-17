@@ -180,9 +180,13 @@ $(function () {
 	window.saillog = saillog;
 
 	L.extend(saillog, Saillog.Editor);
-	window.setTimeout(function () {
-		if (window.location.hash === '#2013-zomerzeilen') {
-			window.saillog.showEditor('metadata');
-		}
-	}, 500);
+	if (Saillog.util.isDev()) {
+		L.Util.liveReload();
+
+		window.setTimeout(function () {
+			if (window.location.hash === '#2013-zomerzeilen') {
+				window.saillog.showEditor('metadata');
+			}
+		}, 500);
+	}
 });

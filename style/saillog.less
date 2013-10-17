@@ -1,3 +1,4 @@
+@import 'mixins.less';
 @import url(http://fonts.googleapis.com/css?family=PT+Serif);
 @import 'font-awesome/font-awesome.less';
 
@@ -6,43 +7,7 @@
 @successButtonColor: #5cb85c;
 @dangerButtonColor: #d9534f;
 
-/* Mixins
- */
-.transition(@what, @how, @delay: 0s) {
-	-webkit-transition: @what @how @delay;
-	-moz-transition: @what @how @delay;
-	-o-transition: @what @how @delay;
-	transition: @what @how @delay;
-}
-.transition-linear(@what, @time: 0s) {
-	.transition(@what, linear, @time);
-}
-.inner-shadow(@horizontal:0, @vertical:1px, @blur:2px, @alpha: 0.4) {
-	-webkit-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
-	-moz-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
-	box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
-}
-.inner-glow(@horizontal:0, @vertical:1px, @blur:2px, @alpha: 0.4) {
-	-webkit-box-shadow: inset @horizontal @vertical @blur rgba(255, 255, 255, @alpha);
-	-moz-box-shadow: inset @horizontal @vertical @blur rgba(255, 255, 255, @alpha);
-	box-shadow: inset @horizontal @vertical @blur rgba(255, 255, 255, @alpha);
-}
-.box-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @color: rgb(0, 0, 0)) {
-	-webkit-box-shadow: @x-axis @y-axis @blur @color;
-	-moz-box-shadow: @x-axis @y-axis @blur @color;
-	box-shadow: @x-axis @y-axis @blur @color;
-}
-.drop-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1) {
-	.box-shadow(@x-axis, @y-axis, @blur, rgba(0, 0, 0, @alpha));
-}
-.rounded(@radius) {
-	-webkit-border-radius: @radius;
-	-moz-border-radius: @radius;
-	border-radius: @radius;
-}
-.text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
-	text-shadow: @string;
-}
+
 
 /* Basic style
  */
