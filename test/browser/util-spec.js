@@ -63,26 +63,42 @@ describe('util', function () {
 		});
 	});
 
-	describe('formatDistance', function () {
-		it('formats numbers with one decimal', function () {
-			Saillog.util.formatDistance(4.1234).should.eql('4.1');
-			Saillog.util.formatDistance(0.8).should.eql('0.8');
-			Saillog.util.formatDistance(1.004).should.eql('1.0');
+	describe('formatters', function () {
+		describe('formatDistance', function () {
+			var formatDistance = Saillog.util.formatDistance;
+
+			it('formats numbers with one decimal', function () {
+				formatDistance(4.1234).should.eql('4.1');
+				formatDistance(0.8).should.eql('0.8');
+				formatDistance(1.004).should.eql('1.0');
+			});
+		});
+
+		describe('formatDuration', function () {
+			var HOUR = 60 * 60;
+			var formatDuration = Saillog.util.formatDuration;
+
+			it('formats seconds to hours:minutes', function () {
+				formatDuration(1).should.eql('0:00');
+				formatDuration(60).should.eql('0:01');
+				formatDuration(HOUR).should.eql('1:00');
+				formatDuration(HOUR * 3.5).should.eql('3:30');
+				formatDuration(HOUR * 46.25).should.eql('46:15');
+
+			});
+		});
+
+		describe('formatTime', function () {
+			var formatTime = Saillog.util.formatTime;
+
+			it('formats hh:mm for from dates', function () {
+				formatTime(0).should.equal('1:00');
+				formatTime('2011-10-21T18:00:00').should.equal('20:00');
+				formatTime('2011-10-21T18:12:00').should.equal('20:12');
+			});
 		});
 	});
 
-	describe('formatDuration', function () {
-		var HOUR = 60 * 60;
-
-		it('formats seconds to hours:minutes', function () {
-			Saillog.util.formatDuration(1).should.eql('0:00');
-			Saillog.util.formatDuration(60).should.eql('0:01');
-			Saillog.util.formatDuration(HOUR).should.eql('1:00');
-			Saillog.util.formatDuration(HOUR * 3.5).should.eql('3:30');
-			Saillog.util.formatDuration(HOUR * 46.25).should.eql('46:15');
-
-		});
-	});
 
 	describe('isArray', function () {
 		it('tests correctly for arrays', function () {
