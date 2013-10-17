@@ -61,32 +61,6 @@ Saillog.util = {
 		RGB.prototype.toRgba = function (alpha) {
 			return 'rgba(' + this.toString() + ',' + alpha + ')';
 		};
-		RGB.prototype.hue = function () {
-			var r = this.r / 255;
-			var g = this.g / 255;
-			var b = this.b / 255;
-
-			var max = Math.max(r, g, b);
-			var min = Math.min(r, g, b);
-			if (max === min) {
-				return 0;
-			}
-
-			var d = max - min;
-			var h;
-			switch (max) {
-			case r:
-				h = (g - b) / d + (g < b ? 6 : 0);
-				break;
-			case g:
-				h = (b - r) / d + 2;
-				break;
-			case b:
-				h = (r - g) / d + 4;
-				break;
-			}
-			return h * 60;
-		};
 		return new RGB(
 			parseInt(result[1], 16),
 			parseInt(result[2], 16),
@@ -107,6 +81,12 @@ Saillog.util = {
 		var hours = Math.floor(seconds / HOUR);
 		var minutes = Math.floor((seconds - hours * HOUR) / 60);
 		return hours + ':' + (minutes < 10 ? '0' : '') + minutes;
+	},
+
+	formatTime: function formatTime(time) {
+		var time = new Date(time);
+		var minutes = time.getMinutes();
+		return time.getHours() + ':' + (minutes < 10 ? '0' : '') + minutes;
 	},
 
 	timeDiff: function timeDiff(a, b) {
@@ -133,7 +113,7 @@ Saillog.util = {
 
 	liveReload: function () {
 		var src = 'http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1';
-		L.DomUtil.create('script', '', document).src = src;
+		L.DomUtil.create('script', '', document.body).src = src;
 	}
 };
 

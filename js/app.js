@@ -181,7 +181,7 @@ $(function () {
 
 	L.extend(saillog, Saillog.Editor);
 	if (Saillog.util.isDev()) {
-		L.Util.liveReload();
+		Saillog.util.liveReload();
 
 		window.setTimeout(function () {
 			if (window.location.hash === '#2013-zomerzeilen') {
