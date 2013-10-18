@@ -8,7 +8,6 @@ Saillog.App = L.Class.extend({
 		var app = this;
 		this.sidebar = $('#sidebar');
 
-
 		this._map = new Saillog.Map(this);
 		this.indexWidget = new Saillog.Widget.Index(this.sidebar).on({
 			'click-story create-story': function (e) {

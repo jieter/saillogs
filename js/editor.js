@@ -67,7 +67,6 @@ Saillog.Editor = {
 			));
 		}
 
-
 		story.save(function () {
 			// TODO: notify user
 			console.log('saved');
