@@ -1478,8 +1478,6 @@ a .icon-flip-vertical:before {
 .icon-renren:before {
   content: "\f18b";
 }
-/* Basic style
- */
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -1497,9 +1495,6 @@ body,
 .float-right {
   float: right;
 }
-/**
- * Buttons
- */
 .button,
 button {
   display: inline-block;
@@ -1762,6 +1757,37 @@ ul.selector li:hover {
   -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
 }
+#sidebar-handle {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  padding: 4px;
+  vertical-align: middle;
+  -webkit-transition: background-color linear 0.5s;
+  -moz-transition: background-color linear 0.5s;
+  -o-transition: background-color linear 0.5s;
+  transition: background-color linear 0.5s;
+}
+#sidebar-handle i {
+  display: none;
+  position: absolute;
+}
+#sidebar-handle i:first-child {
+  top: 30%;
+}
+#sidebar-handle i:last-child {
+  bottom: 30%;
+}
+#sidebar-handle:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+#sidebar-handle:hover i {
+  display: block;
+  color: rgba(0, 0, 0, 0.8);
+}
 #sidebar {
   z-index: 1000;
   position: absolute;
@@ -1776,15 +1802,15 @@ ul.selector li:hover {
   background-color: white;
   border-left: 1px solid #aaaaaa;
   border-right: 1px solid #aaaaaa;
+  -webkit-transition: width linear 0.5s;
+  -moz-transition: width linear 0.5s;
+  -o-transition: width linear 0.5s;
+  transition: width linear 0.5s;
 }
 #sidebar h1 button {
   float: right;
 }
 #sidebar.wide {
-  -webkit-transition: width linear 0.2s;
-  -moz-transition: width linear 0.2s;
-  -o-transition: width linear 0.2s;
-  transition: width linear 0.2s;
   width: 44%;
 }
 #sidebar h1,

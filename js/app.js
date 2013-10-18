@@ -8,6 +8,7 @@ Saillog.App = L.Class.extend({
 		var app = this;
 		this.sidebar = $('#sidebar');
 
+
 		this._map = new Saillog.Map(this);
 		this.indexWidget = new Saillog.Widget.Index(this.sidebar).on({
 			'click-story create-story': function (e) {
@@ -63,6 +64,21 @@ Saillog.App = L.Class.extend({
 		$('body').mediaModal({
 			selector: '.thumb, .youtube'
 		});
+
+		// sidebar toggle
+		$('<div id="sidebar-handle">')
+			.append('<i class="icon-circle-arrow-right"></i>')
+			.append('<i class="icon-circle-arrow-right"></i>')
+			.insertAfter(this.sidebar)
+			.on('click', function (e) {
+				if (app.sidebar.is(':visible')) {
+					app.sidebar.hide(500);
+				} else {
+					app.sidebar.show(500);
+				}
+				$(this).children('i')
+					.toggleClass('icon-circle-arrow-right icon-circle-arrow-left');
+			});
 	},
 
 	showIndex: function () {

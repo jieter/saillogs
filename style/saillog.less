@@ -7,10 +7,8 @@
 @successButtonColor: #5cb85c;
 @dangerButtonColor: #d9534f;
 
-
-
-/* Basic style
- */
+// Basic style
+//
 * {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -28,9 +26,9 @@ html, body, #map {
 .float-right {
 	float: right;
 }
-/**
- * Buttons
- */
+
+// Buttons
+//
 .btn-painter(@color){
 	background-color: @color;
 	&:hover {
@@ -232,7 +230,35 @@ ul.selector {
 	}
 }
 
+#sidebar-handle {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 20px;
+	padding: 4px;
+	vertical-align: middle;
 
+	i {
+		display: none;
+		position: absolute;
+	}
+	.transition-linear(background-color, 0.5s);
+	i:first-child {
+		top: 30%;
+	}
+	i:last-child {
+		bottom: 30%;
+	}
+	&:hover {
+		i {
+			display: block;
+			color: rgba(0, 0, 0, 0.8);
+		}
+		background-color: rgba(255, 255, 255, 0.5);
+		cursor: pointer;
+	}
+}
 #sidebar {
 	@borderStyle: 1px solid #aaa;
 
@@ -244,22 +270,22 @@ ul.selector {
 	max-width: 500px;
 	margin-left: 400px;
 
-	h1 button {
-		float: right;
-	}
-	&.wide {
-		.transition-linear(width, 0.2s);
-		width: 44%;
-	}
-
 	padding: 0 0 10px 0;
-
 	text-align: justify;
 	line-height: 1.6em;
 	background-color: white;
 
 	border-left: @borderStyle;
 	border-right: @borderStyle;
+	.transition-linear(width, 0.5s);
+
+	h1 button {
+		float: right;
+	}
+	&.wide {
+		width: 44%;
+	}
+
 
 	h1, h3 {
 		text-align: left;
