@@ -1763,7 +1763,7 @@ ul.selector li:hover {
   right: 0;
   bottom: 0;
   width: 20px;
-  padding: 4px;
+  padding: 20% 4px 0 4px;
   vertical-align: middle;
   -webkit-transition: background-color linear 0.5s;
   -moz-transition: background-color linear 0.5s;
@@ -1772,13 +1772,8 @@ ul.selector li:hover {
 }
 #sidebar-handle i {
   display: none;
-  position: absolute;
-}
-#sidebar-handle i:first-child {
-  top: 30%;
-}
-#sidebar-handle i:last-child {
-  bottom: 30%;
+  height: 33%;
+  vertical-align: middle;
 }
 #sidebar-handle:hover {
   background-color: rgba(255, 255, 255, 0.5);

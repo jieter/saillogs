@@ -69,6 +69,7 @@ Saillog.App = L.Class.extend({
 			.prop('title', 'Toggle sidebar')
 			.append('<i class="icon-circle-arrow-right"></i>')
 			.append('<i class="icon-circle-arrow-right"></i>')
+			.append('<i class="icon-circle-arrow-right"></i>')
 			.insertAfter(this.sidebar)
 			.on('click', function (e) {
 				if (app.sidebar.is(':visible')) {

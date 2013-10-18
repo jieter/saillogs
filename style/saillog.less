@@ -236,20 +236,17 @@ ul.selector {
 	right: 0;
 	bottom: 0;
 	width: 20px;
-	padding: 4px;
+	padding: 20% 4px 0 4px;
 	vertical-align: middle;
 
+	.transition-linear(background-color, 0.5s);
 	i {
 		display: none;
-		position: absolute;
+
+		height: 33%;
+		vertical-align: middle;
 	}
-	.transition-linear(background-color, 0.5s);
-	i:first-child {
-		top: 30%;
-	}
-	i:last-child {
-		bottom: 30%;
-	}
+
 	&:hover {
 		i {
 			display: block;
@@ -285,8 +282,6 @@ ul.selector {
 	&.wide {
 		width: 44%;
 	}
-
-
 	h1, h3 {
 		text-align: left;
 
