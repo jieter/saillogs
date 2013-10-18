@@ -33,7 +33,7 @@ Saillog.Control = L.Control.extend({
 	render: function () {
 		this.clear();
 		if (!this._story) {
-			return;
+			return this;
 		}
 
 		this._story.each(function (leg) {
@@ -212,6 +212,13 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	clear: function () {
 		this._reel.innerHTML = '';
 		this._labels.innerHTML = '';
+		return this;
+	},
+
+	show: function () {
+		if (this._story.properties.showTimeline) {
+			return Saillog.Control.prototype.show.call(this);
+		}
 		return this;
 	},
 

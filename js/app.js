@@ -24,7 +24,6 @@ Saillog.App = L.Class.extend({
 
 		this.storyWidget = new Saillog.Widget.Story(this.sidebar);
 
-		// TODO refactor this addTo(this._map._map);
 		this.calendarControl = new Saillog.Control.Calendar().addTo(map);
 		this.timelineControl = new Saillog.Control.Timeline().addTo(map);
 
@@ -71,7 +70,7 @@ Saillog.App = L.Class.extend({
 			.append('<i class="icon-circle-arrow-right"></i>')
 			.append('<i class="icon-circle-arrow-right"></i>')
 			.insertAfter(this.sidebar)
-			.on('click', function (e) {
+			.on('click', function () {
 				if (app.sidebar.is(':visible')) {
 					app.sidebar.hide(500);
 				} else {
@@ -95,13 +94,16 @@ Saillog.App = L.Class.extend({
 
 		this.indexWidget.update(this._index);
 
-		this.calendarControl.hide();
-		this.timelineControl.hide();
+		[
+			this.calendarControl,
+			this.timelineControl
+		].forEach(function (it) {
+			it.hide();
+		});
 	},
 
 	showStory: function () {
-		var story = this._story;
-		this._attachLegActions(story);
+		var story = this._attachLegActions(this._story);
 
 		Saillog.util.imagePrefix = 'data/' + story.id + '/';
 
@@ -109,12 +111,13 @@ Saillog.App = L.Class.extend({
 			.addLayer(story)
 			.panTo(story);
 
-		this.storyWidget.update(story);
-
-		this.calendarControl.update(story).show();
-		if (story.properties.showTimeline) {
-			this.timelineControl.update(story).show();
-		}
+		[
+			this.storyWidget,
+			this.calendarControl,
+			this.timelineControl
+		].forEach(function (it) {
+			it.update(story).show();
+		});
 	},
 
 	_attachLegActions: function (emitter) {
@@ -125,8 +128,9 @@ Saillog.App = L.Class.extend({
 				this._highlight();
 			}
 		};
-		emitter.off(actions).on(actions, this);
-		return emitter;
+		return emitter
+			.off(actions)
+			.on(actions, this);
 	},
 
 	_legClick: function (event) {

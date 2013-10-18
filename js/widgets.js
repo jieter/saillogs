@@ -49,7 +49,7 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 		var list = $('<ul class="selector"></ul>').appendTo(container);
 		$.each(index.logs, function (key, log) {
 			if (!log.visible && !Saillog.util.isDev()) {
-				return;
+				return this;
 			}
 			var item = $('<li data-id="' + log.id + '">' + log.title + '</li>').appendTo(list);
 			if (!log.visible) {
@@ -121,6 +121,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 				legId: $(this).attr('id').substr(10)
 			});
 		});
+		return this;
 	},
 
 	highlight: function (id) {
