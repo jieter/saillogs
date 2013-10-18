@@ -8,7 +8,7 @@ Saillog.App = L.Class.extend({
 		var app = this;
 		this.sidebar = $('#sidebar');
 
-		this._map = new Saillog.Map(this);
+		var map = this._map = new Saillog.Map(this);
 		this.indexWidget = new Saillog.Widget.Index(this.sidebar).on({
 			'click-story create-story': function (e) {
 				var id = e.id;
@@ -25,8 +25,8 @@ Saillog.App = L.Class.extend({
 		this.storyWidget = new Saillog.Widget.Story(this.sidebar);
 
 		// TODO refactor this addTo(this._map._map);
-		this.calendarControl = new Saillog.Control.Calendar().addTo(this._map._map);
-		this.timelineControl = new Saillog.Control.Timeline().addTo(this._map._map);
+		this.calendarControl = new Saillog.Control.Calendar().addTo(map);
+		this.timelineControl = new Saillog.Control.Timeline().addTo(map);
 
 		this._attachLegActions(this.storyWidget);
 		this.storyWidget.on({
@@ -85,12 +85,12 @@ Saillog.App = L.Class.extend({
 	showIndex: function () {
 		Saillog.util.imagePrefix = 'data/';
 
-		this._map.panTo(this._index.center, this._index.zoom);
-		this._map.maxZoom(14);
+		this._map
+			.setView(this._index.center, this._index.zoom)
+			.maxZoom(14);
 
-		this._map.clear();
 		if (this._story) {
-			this._map.removeLayer('story');
+			this._map.removeLayer(this._story);
 		}
 
 		this.indexWidget.update(this._index);
@@ -105,8 +105,9 @@ Saillog.App = L.Class.extend({
 
 		Saillog.util.imagePrefix = 'data/' + story.id + '/';
 
-		this._map.addLayer('story', story);
-		this._map.panTo(story);
+		this._map
+			.addLayer(story)
+			.panTo(story);
 
 		this.storyWidget.update(story);
 
@@ -143,10 +144,14 @@ Saillog.App = L.Class.extend({
 	},
 
 	_highlight: function (id) {
-		this._story.highlight(id);
-		this.storyWidget.highlight(id);
-		this.calendarControl.highlight(id);
-		this.timelineControl.highlight(id);
+		[
+			this._story,
+			this.storyWidget,
+			this.calendarControl,
+			this.timelineControl
+		].forEach(function (it) {
+			it.highlight(id);
+		});
 	},
 
 	_scrollTo: function (id, duration) {

@@ -1,19 +1,16 @@
 'use strict';
 
-Saillog.Map = L.Class.extend({
+Saillog.Map = L.Map.extend({
 	options: {
+		zoomControl: false,
+		attributionControl: false,
 		center: [52, 3],
 		zoom: 7
 	},
 	initialize: function (app) {
 		this.app = app;
 
-		this._map = L.map('map', {
-			center: this.options.center,
-			zoom: this.options.zoom,
-			zoomControl: false,
-			attributionControl: false
-		});
+		L.Map.prototype.initialize.call(this, 'map');
 
 		this.initLayers();
 	},
@@ -35,21 +32,16 @@ Saillog.Map = L.Class.extend({
 			subdomains: '0123',
 			minZoom: 2,
 			maxZoom: 18
-		}).addTo(this._map);
+		}).addTo(this);
 
 		layers.openseamap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
 			attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
 		});
-
-	},
-
-	map: function () {
-		return this._map;
 	},
 
 	fitBounds: function (bounds) {
 		if (bounds) {
-			this._map.fitBounds(bounds, {
+			L.Map.prototype.fitBounds.call(this, bounds, {
 				paddingBottomRight: [this.app.sidebarPadding(), 0]
 			});
 		}
@@ -57,15 +49,11 @@ Saillog.Map = L.Class.extend({
 
 	panTo: function (thing, zoom) {
 		if (!thing) {
-			return;
+			return this;
 		}
 
 		if (Saillog.util.isArray(thing) && thing.length > 0) {
-			this._map.panTo(thing);
-			if (zoom) {
-				this._map.setZoom(zoom);
-			}
-			return;
+			return this.setView(thing, zoom);
 		}
 		if (thing.bringToFront) {
 			thing.bringToFront();
@@ -73,38 +61,17 @@ Saillog.Map = L.Class.extend({
 		if (thing.getBounds) {
 			this.fitBounds(thing.getBounds());
 		} else if (thing.getLatLng) {
-			this._map.panTo(thing.getLatLng(), {
+			L.Map.prototype.panTo.call(this, thing.getLatLng(), {
 				paddingBottomRight: [this.app.sidebarPadding(), 0]
 			});
 		}
+		return this;
 	},
 
 	maxZoom: function (zoom) {
-		if (this._map.getZoom() > zoom) {
-			this._map.setZoom(zoom);
+		if (this.getZoom() > zoom) {
+			this.setZoom(zoom);
 		}
 		return this;
-	},
-
-	clear: function () {
-		var map = this._map;
-
-		if (map.hasLayer(this.layers.track)) {
-			this.layerControl.removeLayer(this.layers.track);
-			map.removeLayer(this.layers.track);
-		}
-
-		return this;
-	},
-
-	addLayer: function (name, layer) {
-		this.layers[name] = layer;
-		layer.addTo(this._map);
-	},
-
-	removeLayer: function (name) {
-		if (this.layers[name]) {
-			this.layers[name].onRemove(this._map);
-		}
 	}
 });
