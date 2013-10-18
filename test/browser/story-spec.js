@@ -69,7 +69,6 @@ afterEach(function () {
 describe('Saillog.Story', function () {
 	chai.should();
 
-
 	describe('Constructing it', function () {
 		it('can be constructed with json', function () {
 			story.should.be.an.instanceof(Saillog.Story);
@@ -116,10 +115,35 @@ describe('Saillog.Story', function () {
 	describe('removeLeg()', function () {
 		it('should remove the leg correctly', function () {
 			var id = story.addLeg();
-			story.removeLeg(id);
+			story.removeLeg(id).should.equal(story);
 
 			countObj(story.legs).should.eql(3);
 		});
+	});
+
+	describe('getProperties', function () {
+	 	it('returns story properties without arg', function () {
+	 		var props = story.getProperties();
+			props.should.contain.keys('description', 'title', 'average');
+	 	});
+	 	it('returns leg properties when called with id ', function () {
+	 		var legs = story.getLegs();
+	 		for (var id in legs) {
+	 			var props = story.getProperties(id);
+
+	 			props.should.equal(legs[id].properties);
+	 			props.should.contain.keys('id', 'title')
+	 			if (legs[id].geometry) {
+	 				props.should.contain.keys('startTime', 'duration', 'endTime');
+	 			}
+	 		}
+	 	});
+	});
+
+	describe('setProperties', function () {
+		it('sets properties for story');
+		it('sets properties for legs');
+		it('returns this');
 	});
 
 

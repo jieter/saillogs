@@ -45,9 +45,7 @@ Saillog.Story = L.Class.extend({
 		if (!leg) {
 			leg = {
 				type: 'Feature',
-				properties: {
-					id: L.stamp({})
-				}
+				properties: {}
 			};
 		}
 
@@ -59,6 +57,8 @@ Saillog.Story = L.Class.extend({
 			this.layer.addLayer(leg.layer);
 
 			leg.properties.id = L.stamp(leg.layer);
+		} else {
+			leg.properties.id = L.stamp({});
 		}
 
 		this._augmentLegProperties(leg);
@@ -286,7 +286,6 @@ Saillog.Story = L.Class.extend({
 	},
 
 	onAdd: function (map) {
-		this._map = map;
 		if (this.track) {
 			this.track.addTo(map);
 		}
@@ -302,7 +301,6 @@ Saillog.Story = L.Class.extend({
 		if (map.hasLayer(this.track)) {
 			map.removeLayer(this.track);
 		}
-		this._map = null;
 		return this;
 	},
 
