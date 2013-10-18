@@ -66,6 +66,7 @@ Saillog.App = L.Class.extend({
 
 		// sidebar toggle
 		$('<div id="sidebar-handle">')
+			.prop('title', 'Toggle sidebar')
 			.append('<i class="icon-circle-arrow-right"></i>')
 			.append('<i class="icon-circle-arrow-right"></i>')
 			.insertAfter(this.sidebar)
