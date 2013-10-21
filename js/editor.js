@@ -117,7 +117,26 @@ Saillog.Editor = {
 };
 
 Saillog.Editor.InitializeStory = L.Class.extend({
-	initialize: {
+	initialize: function (callback) {
+		var id = window.prompt('Name for new story:');
+		if (!id) {
+			callback();
+			return;
+		}
+		id = this._cleanId(id);
 
+		var story = new Saillog.Story.emptyStory(id);
+		story.save(function (response) {
+			if (response.success) {
+				callback(response.id);
+			} else {
+				console.error(response);
+			}
+
+		});
+	},
+
+	_cleanId: function (str) {
+		return str.replace(' ', '-');
 	}
 });

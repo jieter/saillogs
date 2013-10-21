@@ -112,7 +112,10 @@ module.exports = function (connect) {
 				var json = JSON.parse(req.body.data);
 
 				actions.save(id, json, function (err) {
-					reply(res, err, {success: true});
+					reply(res, err, {
+						success: true,
+						id: id
+					});
 				});
 			});
 

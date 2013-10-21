@@ -12,8 +12,9 @@ Saillog.App = L.Class.extend({
 		this.indexWidget = new Saillog.Widget.Index(this.sidebar).on({
 			'click-story create-story': function (e) {
 				var id = e.id;
+
 				if (!id) {
-					Saillog.Editor.InitializeStory(function (id) {
+					return new Saillog.Editor.InitializeStory(function (id) {
 						window.location.hash = '#' + id;
 					});
 				} else {

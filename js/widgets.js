@@ -19,6 +19,13 @@ Saillog.Widget = L.Class.extend({
 		return this;
 	},
 
+	clear: function () {
+		this._container.empty();
+		this._container.off();
+
+		return this;
+	},
+
 	update: function (data) {
 		this._data = data;
 		return this.render();
@@ -32,8 +39,8 @@ Saillog.Widget = L.Class.extend({
 Saillog.Widget.Index = Saillog.Widget.extend({
 
 	render: function () {
-		var widget = this;
-		var container = this._container.empty();
+		var widget = this.clear();
+		var container = this._container;
 		var index = this._data;
 
 		$('<h1></h1>')
@@ -78,8 +85,8 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 Saillog.Widget.Story = Saillog.Widget.extend({
 
 	render: function () {
-		var widget = this;
-		var container = this._container.empty();
+		var widget = this.clear();
+		var container = this._container;
 		var story = this._data;
 
 		var title = $('<h1></h1>').html(story.properties.title).appendTo(container);
@@ -112,10 +119,9 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		container.on('click mouseover mouseout', '.leg', function (event) {
 			var target = $(event.target);
 			var type = target.is('.edit') || target.parent().is('.edit') ? 'edit' : event.type;
-			if (type === 'edit') {
-				if (event.type !== 'click') {
-					return;
-				}
+
+			if (type === 'edit' && event.type !== 'click') {
+				return;
 			}
 			widget.fire(type + '-leg', {
 				legId: $(this).attr('id').substr(10)
@@ -299,7 +305,8 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 Saillog.Widget.StoryMetadataEditor = Saillog.Widget.Editor.extend({
 
 	render: function () {
-		var container = this._container.empty();
+		this.clear();
+		var container = this._container;
 		var editor = $('<div id="editor"><h1>Edit metadata</h1></div>');
 
 		this._input('title', 'Titel').appendTo(editor);
@@ -317,7 +324,8 @@ Saillog.Widget.StoryMetadataEditor = Saillog.Widget.Editor.extend({
 Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
 
 	render: function () {
-		var container = this._container.empty();
+		this.clear();
+		var container = this._container;
 
 		var editor = $('<div id="editor"><h1>Edit Leg</h1></div>').appendTo(container);
 
