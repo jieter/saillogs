@@ -107,7 +107,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 				.appendTo(container);
 		}, this);
 
-		if (this.isAuthorized) {
+		if (this.isAuthorized && story.length() > 0) {
 			$('<h1></h1>')
 				.append('<button class="create create-leg float-right"><i class="icon-plus"></i></button>')
 				.appendTo(container);
@@ -193,7 +193,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 });
 
 /**
- * Abastract editor functionality
+ * Abstract editor functionality
  */
 Saillog.Widget.Editor = Saillog.Widget.extend({
 

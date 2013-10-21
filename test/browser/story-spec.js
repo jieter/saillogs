@@ -1,15 +1,5 @@
 'use strict';
 
-function countObj(obj) {
-	var count = 0;
-	/*jshint unused:true */
-	for (var i in obj) {
-		count++;
-	}
-	/*jshint unused:false */
-	return count;
-}
-
 var json = {
 	id: 'test-story',
 	type: 'FeatureCollection',
@@ -72,7 +62,7 @@ describe('Saillog.Story', function () {
 	describe('Constructing it', function () {
 		it('can be constructed with json', function () {
 			story.should.be.an.instanceof(Saillog.Story);
-			countObj(story.getLegs()).should.eql(3);
+			story.length().should.eql(3);
 		});
 
 		it('gets default properties', function () {
@@ -117,7 +107,7 @@ describe('Saillog.Story', function () {
 			var id = story.addLeg();
 			story.removeLeg(id).should.equal(story);
 
-			countObj(story.legs).should.eql(3);
+			story.length().should.eql(3);
 		});
 	});
 
@@ -149,8 +139,6 @@ describe('Saillog.Story', function () {
 	describe('emptyStory', function () {
 		it('returns a nice empty story');
 	});
-
-
 
 	describe('Saving it', function () {
 	//  // TODO: fix fakeXHR stuff

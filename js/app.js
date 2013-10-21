@@ -53,8 +53,13 @@ Saillog.App = L.Class.extend({
 				if (hash === '') {
 					app.showIndex();
 				} else {
-					app.loadStory(hash, function () {
-						app.showStory();
+					app.loadStory(hash, function (success) {
+						if (success) {
+							app.showStory();
+						} else {
+							// TODO: notify user.
+							window.location.hash = '#';
+						}
 					});
 				}
 			}).trigger('hashchange');
@@ -193,10 +198,10 @@ Saillog.App = L.Class.extend({
 			dataType: 'json',
 			success: function (response) {
 				app._story = new Saillog.Story(response);
-				callback();
+				callback(true);
 			},
 			error: function () {
-				//TODO communicate network error to user.
+				callback(false);
 			}
 		});
 	}

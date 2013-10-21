@@ -149,6 +149,14 @@ Saillog.Story = L.Class.extend({
 		return this.legs;
 	},
 
+	length: function () {
+		var length = 0;
+		this.each(function () {
+			length++;
+		});
+		return length;
+	},
+
 	removeLeg: function (id) {
 		if (!this.legs[id]) {
 			return this;
