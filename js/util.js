@@ -18,18 +18,16 @@ marked.InlineLexer.prototype.outputLink = function (cap, link) {
 	var title = link.title ? ' title="' + link.title + '"'	: '';
 	var body = cap[1];
 
-	console.log(cap);
 	if (link.href.substr(0, 15) === 'http://youtu.be') {
 		// special case for youtube links.
 		if (body === '') {
 			// no body, full width.
 			return '<iframe id="ytplayer" class="modal_content" type="text/html" ' +
-				'src="http://www.youtube.com/embed/{id}?autoplay=1" frameborder="0"/>'
+				'src="http://www.youtube.com/embed/{id}?autoplay=0" frameborder="0"/>'
 					.replace('{id}', href.substr(-11));
 		} else {
 			return '<span class="youtube" data-youtube-url="' + href + '"' + title + '>' +
 				'<i class="icon-youtube-play"></i> ' + body + '</span>';
-
 		}
 	} else if (cap[0].charAt(0) !== '!') {
 		// normal behaviour

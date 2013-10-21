@@ -20,6 +20,12 @@
 			"visible": true
 		},
 		{
+			"id": "2013-ouderzeilen",
+			"title": "Ouderzeilen 2013",
+			"date": "2013-05-24",
+			"visible": false
+		},
+		{
 			"id": "2012-zomerzeilen",
 			"title": "Zomerzeilen 2012",
 			"date": "2012-07-27",

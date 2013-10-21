@@ -57,7 +57,8 @@
 				"title": "Naar Trintelhaven",
 				"text": "",
 				"date": "2013-05-24",
-				"color": "#3a85e9"
+				"color": "#3a85e9",
+				"startTime": "2013-05-24T17:30:00"
 			}
 		},
 		{
@@ -165,7 +166,8 @@
 				"title": "Lelystad",
 				"text": "",
 				"date": "2013-05-26",
-				"color": "#6dca70"
+				"color": "#6dca70",
+				"startTime": "2013-05-26T12:00:00"
 			}
 		}
 	]
