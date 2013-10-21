@@ -187,8 +187,17 @@ Saillog.Story = L.Class.extend({
 			if (!this.legs[id]) {
 				throw 'No such feature id:' + id;
 			}
+			var leg = this.legs[id];
 
-			this.legs[id].properties = properties;
+			leg.properties = properties;
+
+			// update color
+			if (leg.layer && leg.layer.setStyle) {
+				leg.layer.setStyle({
+					color: properties.color
+				});
+			}
+
 			// geometry is changed, sodate approximated values
 			this._augmentLegProperties(this.legs[id]);
 		}
