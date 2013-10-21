@@ -122,22 +122,22 @@ describe('Saillog.Story', function () {
 	});
 
 	describe('getProperties', function () {
-	 	it('returns story properties without arg', function () {
-	 		var props = story.getProperties();
+		it('returns story properties without arg', function () {
+			var props = story.getProperties();
 			props.should.contain.keys('description', 'title', 'average');
-	 	});
-	 	it('returns leg properties when called with id ', function () {
-	 		var legs = story.getLegs();
-	 		for (var id in legs) {
-	 			var props = story.getProperties(id);
+		});
+		it('returns leg properties when called with id ', function () {
+			var legs = story.getLegs();
+			for (var id in legs) {
+				var props = story.getProperties(id);
 
-	 			props.should.equal(legs[id].properties);
-	 			props.should.contain.keys('id', 'title')
-	 			if (legs[id].geometry) {
-	 				props.should.contain.keys('startTime', 'duration', 'endTime');
-	 			}
-	 		}
-	 	});
+				props.should.equal(legs[id].properties);
+				props.should.contain.keys('id', 'title');
+				if (legs[id].geometry) {
+					props.should.contain.keys('startTime', 'duration', 'endTime');
+				}
+			}
+		});
 	});
 
 	describe('setProperties', function () {
@@ -146,8 +146,13 @@ describe('Saillog.Story', function () {
 		it('returns this');
 	});
 
+	describe('emptyStory', function () {
+		it('returns a nice empty story');
+	});
 
-	// describe('Saving it', function () {
+
+
+	describe('Saving it', function () {
 	//  // TODO: fix fakeXHR stuff
 	// 	// http://sinonjs.org/docs/#respond
 	// 	var xhr, requests;
@@ -180,5 +185,5 @@ describe('Saillog.Story', function () {
 
 	// 		callback.calledOnce.should.be.true;
 	// 	});
-	// });
+	});
 });
