@@ -242,14 +242,13 @@ ul.selector {
 	.transition-linear(background-color, 0.5s);
 	i {
 		display: none;
-
-		height: 33%;
-		vertical-align: middle;
 	}
 
 	&:hover {
 		i {
 			display: block;
+			height: 33%;
+			vertical-align: middle;
 			color: rgba(0, 0, 0, 0.8);
 		}
 		background-color: rgba(255, 255, 255, 0.5);
@@ -296,6 +295,10 @@ ul.selector {
 		&:hover .edit {
 			display: inline;
 		}
+	}
+	iframe {
+		width: 100%;
+		min-height: 400px;
 	}
 
 	.thumb {

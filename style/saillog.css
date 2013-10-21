@@ -1772,8 +1772,6 @@ ul.selector li:hover {
 }
 #sidebar-handle i {
   display: none;
-  height: 33%;
-  vertical-align: middle;
 }
 #sidebar-handle:hover {
   background-color: rgba(255, 255, 255, 0.5);
@@ -1781,6 +1779,8 @@ ul.selector li:hover {
 }
 #sidebar-handle:hover i {
   display: block;
+  height: 33%;
+  vertical-align: middle;
   color: rgba(0, 0, 0, 0.8);
 }
 #sidebar {
@@ -1827,6 +1827,10 @@ ul.selector li:hover {
 #sidebar h1:hover .edit,
 #sidebar h3:hover .edit {
   display: inline;
+}
+#sidebar iframe {
+  width: 100%;
+  min-height: 400px;
 }
 #sidebar .thumb {
   position: relative;
