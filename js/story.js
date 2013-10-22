@@ -219,6 +219,9 @@ Saillog.Story = L.Class.extend({
 			}
 		});
 
+		// add some margin.
+		first = first.substr(0, 11) + '00:00:00';
+
 		return {
 			offset: function (timestamp) {
 				return Saillog.util.timeDiff(timestamp, first);

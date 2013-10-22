@@ -86,9 +86,9 @@ describe('Saillog.Story', function () {
 	describe('getTimes()', function () {
 		it('should report the correct timespan', function () {
 			var times = story.getTimes();
-			times.start.should.eql('2013-08-29T17:45:00');
+			times.start.should.eql('2013-08-29T00:00:00');
 			times.end.should.eql('2013-09-02T13:39:00');
-			times.span.should.eql(330840);
+			times.span.should.eql(394740);
 		});
 	});
 
