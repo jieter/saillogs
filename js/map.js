@@ -35,7 +35,8 @@ Saillog.Map = L.Map.extend({
 		}).addTo(this);
 
 		layers.openseamap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
-			attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
+			attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors',
+			minZoom: 9
 		}).addTo(this);
 	},
 

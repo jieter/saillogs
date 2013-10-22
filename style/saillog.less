@@ -207,7 +207,9 @@ ul.selector {
 			margin-left: -25px;
 		}
 		.daylight {
-			@daylightColor: rgba(255, 255, 0, 0.2);
+			@daylightColor: rgba(255, 255, 0, 0.1);
+			border-left: 1px solid fadein(@daylightColor, 20%);
+			border-right: 1px solid fadein(@daylightColor, 20%);
 			position: absolute;
 			height: @timelineHeight;
 			background-color: @daylightColor;

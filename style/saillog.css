@@ -1736,9 +1736,11 @@ ul.selector li:hover {
   margin-left: -25px;
 }
 #timeline .labels .daylight {
+  border-left: 1px solid rgba(255, 255, 0, 0.30000000000000004);
+  border-right: 1px solid rgba(255, 255, 0, 0.30000000000000004);
   position: absolute;
   height: 40px;
-  background-color: rgba(255, 255, 0, 0.2);
+  background-color: rgba(255, 255, 0, 0.1);
 }
 #timeline .reel {
   position: absolute;

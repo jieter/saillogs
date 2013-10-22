@@ -195,6 +195,9 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 						left: rise + 'px',
 						width: (offset(sunTimes.sunset) - rise) + 'px'
 					})
+					.attr('title',
+						'Sun rises: ' + sunTimes.sunrise.toLocaleTimeString('en-GB') +
+						', sets: ' + sunTimes.sunset.toLocaleTimeString('en-GB'))
 					.appendTo(container);
 			} else {
 				// TODO this parameter needs tuning.
