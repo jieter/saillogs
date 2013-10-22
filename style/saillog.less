@@ -180,20 +180,19 @@ ul.selector {
 			bottom: 0;
 			border-left: 1px solid #999;
 			width: 0px;
-			.drop-shadow(0, 0, 5px, 0.5);
 		}
 		.marker {
 			position: absolute;
 			width: 50px;
 			bottom: 26px;
 			font-size: 12px;
-			color: #888;
+			color: #666;
 			.text-shadow (0 1px 3px rgba(0, 0, 0, 0.6));
 
 			line-height: 1.1em;
 		}
 		.major {
-			color: #444;
+			color: #333;
 			border-color: #444;
 		}
 		.marker.major {
@@ -206,14 +205,14 @@ ul.selector {
 			text-align: center;
 			margin-left: -25px;
 		}
-		.daylight {
-			@daylightColor: rgba(255, 255, 0, 0.1);
-			border-left: 1px solid fadein(@daylightColor, 20%);
-			border-right: 1px solid fadein(@daylightColor, 20%);
+		.night {
+			@nightColor: rgba(0, 0, 0, 0.15);
+
 			position: absolute;
 			height: @timelineHeight;
-			background-color: @daylightColor;
+			background-color: @nightColor;
 		}
+
 	}
 	.reel {
 		position: absolute;

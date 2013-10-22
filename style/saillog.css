@@ -1708,21 +1708,18 @@ ul.selector li:hover {
   bottom: 0;
   border-left: 1px solid #999;
   width: 0px;
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 #timeline .labels .marker {
   position: absolute;
   width: 50px;
   bottom: 26px;
   font-size: 12px;
-  color: #888;
+  color: #666;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   line-height: 1.1em;
 }
 #timeline .labels .major {
-  color: #444;
+  color: #333;
   border-color: #444;
 }
 #timeline .labels .marker.major {
@@ -1735,12 +1732,10 @@ ul.selector li:hover {
   text-align: center;
   margin-left: -25px;
 }
-#timeline .labels .daylight {
-  border-left: 1px solid rgba(255, 255, 0, 0.30000000000000004);
-  border-right: 1px solid rgba(255, 255, 0, 0.30000000000000004);
+#timeline .labels .night {
   position: absolute;
   height: 40px;
-  background-color: rgba(255, 255, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 #timeline .reel {
   position: absolute;

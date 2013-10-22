@@ -187,17 +187,18 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 				// daylight hours.
 				var position = story.closestPosition(label);
-				var sunTimes = SunCalc.getTimes(addDays(label, 0.5), position.lat, position.lng);
+				var today = SunCalc.getTimes(addDays(label, 0.5), position.lat, position.lng);
+				var yesterday = SunCalc.getTimes(addDays(label, -0.5), position.lat, position.lng);
 
-				var rise = offset(sunTimes.sunrise);
-				$('<div class="daylight"></div>')
+				var set = offset(yesterday.sunset);
+				$('<div class="night"></div>')
 					.css({
-						left: rise + 'px',
-						width: (offset(sunTimes.sunset) - rise) + 'px'
+						left: set + 'px',
+						width: (offset(today.sunrise) - set) + 'px'
 					})
 					.attr('title',
-						'Sun rises: ' + sunTimes.sunrise.toLocaleTimeString('en-GB') +
-						', sets: ' + sunTimes.sunset.toLocaleTimeString('en-GB'))
+						'Sun sets: ' + yesterday.sunset.toLocaleTimeString('en-GB') +
+						', rises: ' + today.sunrise.toLocaleTimeString('en-GB'))
 					.appendTo(container);
 			} else {
 				// TODO this parameter needs tuning.
