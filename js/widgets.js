@@ -71,6 +71,8 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 				})
 				.prependTo(list);
 			$('<li class="button primary"><a href="test/index.html">Mocha tests</a></li>').appendTo(list);
+			$('<li class="button primary"><a href="http://jieter.github.io/saillogs/">@github.io</a></li>').appendTo(list);
+			$('<li class="button"><a href="https://github.com/jieter/saillogs/"><i class="icon-github"></i> Repository</a></li>').appendTo(list);
 		}
 
 		list.on('click', '[data-id]', function () {

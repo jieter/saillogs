@@ -78,6 +78,7 @@ html, body, #map {
 	}
 	a {
 		text-decoration: none;
+		color: black;
 	}
 
 }
@@ -120,7 +121,7 @@ ul.selector {
 		margin: 2px;
 		padding: 4px 8px;
 
-		background-color: #fafafa;
+		background-color: @defaultButtonColor
 	}
 	li.disabled:after {
 		content: 'disabled';
@@ -167,8 +168,7 @@ ul.selector {
 	@timelineHeight: 40px;
 	position: relative;
 
-
-	background-color: rgba(177, 184, 184, 0.35);
+	background-color: rgba(177, 184, 184, 0.6);
 	height: @timelineHeight;
 	width: 1000px;
 
@@ -205,9 +205,13 @@ ul.selector {
 		.marker.minor {
 			text-align: center;
 			margin-left: -25px;
-
 		}
-
+		.daylight {
+			@daylightColor: rgba(255, 255, 0, 0.2);
+			position: absolute;
+			height: @timelineHeight;
+			background-color: @daylightColor;
+		}
 	}
 	.reel {
 		position: absolute;

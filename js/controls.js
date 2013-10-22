@@ -144,8 +144,14 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	},
 
 	_updateLabels: function () {
+		var story = this._story;
+
 		function addDays(date, days) {
-			date = new Date(date + 'T00:00:00');
+			if (!(date instanceof Date)) {
+				date = new Date(date + 'T00:00:00');
+			} else {
+				date = new Date(date.getTime());
+			}
 			var DAY = 24 * 60 * 60 * 1000; //ms
 			var UTC2CEST = 2 * 60 * 60 * 1000; // correct for timezone
 			date.setTime(date.getTime() + days * DAY - UTC2CEST);
@@ -162,13 +168,15 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		}
 
 		var offset = function (time) {
-			return Saillog.util.timeDiff(time, times.start) * times.pps;
+			return (Math.round(
+				Saillog.util.timeDiff(time, times.start) * times.pps
+			) * 100) / 100;
 		};
 		var container = $(this._labels);
 
 		labels.forEach(function (label) {
 			var css = {
-				left: (Math.round(offset(label) * 100) / 100) + 'px'
+				left: offset(label) + 'px'
 			};
 
 			var el = $('<div class="marker"></div>');
@@ -176,6 +184,18 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 			// TODO fix timezone assumption here
 			if (label.getHours() === 0) {
 				el.html(label.getDate() + '-' + (label.getMonth() + 1));
+
+				// daylight hours.
+				var position = story.closestPosition(label);
+				var sunTimes = SunCalc.getTimes(addDays(label, 0.5), position.lat, position.lng);
+
+				var rise = offset(sunTimes.sunrise);
+				$('<div class="daylight"></div>')
+					.css({
+						left: rise + 'px',
+						width: (offset(sunTimes.sunset) - rise) + 'px'
+					})
+					.appendTo(container);
 			} else {
 				// TODO this parameter needs tuning.
 				// add time labels if we have enough horzontal space

@@ -198,7 +198,7 @@ Saillog.Story = L.Class.extend({
 				});
 			}
 
-			// geometry is changed, sodate approximated values
+			// geometry is changed, update approximated values
 			this._augmentLegProperties(this.legs[id]);
 		}
 		return this;
@@ -323,6 +323,22 @@ Saillog.Story = L.Class.extend({
 
 	addTo: function (map) {
 		this.onAdd(map);
+	},
+
+	closestPosition: function (date) {
+		date = new Date(date);
+
+		var ret;
+		this.each(function (leg) {
+			var within = date >= (new Date(leg.properties.startTime)) &&
+			             date <= (new Date(leg.properties.endTime));
+
+			if (within) {
+				ret = leg.layer.getBounds().getCenter();
+			}
+		});
+
+		return ret || this.getBounds().getCenter();
 	}
 });
 
