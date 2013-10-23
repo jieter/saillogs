@@ -245,11 +245,21 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 	},
 
 	_input: function (name, label, type) {
+		var input;
+
 		label = label || name;
-		type = type || 'text';
 
-		var input = $('<input type="' + type + '" name="' + name + '" />');
+		if (typeof type === 'object') {
+			input = $('<select name="' + name + '"></select>');
+			for (var key in type) {
+				input.append($('<option value="' + key + '">' + type[key] + '</option>'));
+			}
 
+			type = 'select';
+		} else {
+			type = type || 'text';
+			input = $('<input type="' + type + '" name="' + name + '" />');
+		}
 		return $('<div class="group group-' + type + '"></div>').append(
 			$('<label for="' + name + '">' + label + '</label>'),
 			input
@@ -328,15 +338,32 @@ Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
 	render: function () {
 		this.clear();
 		var container = this._container;
+		var widget = this;
 
 		var editor = $('<div id="editor"><h1>Edit Leg</h1></div>').appendTo(container);
-
-		// TODO: choose type of geometry.
-		//$('<span class="type"></span>').appendTo(editor);
-
 		this._input('title', 'Titel').appendTo(editor);
 		this._input('date', 'Datum', 'date').appendTo(editor);
-		this._input('color', 'Color', 'color').appendTo(editor);
+
+		// geometry type.
+		this._input('type', 'Type', {
+			'nothing': 'Just text',
+			'marker': 'Place',
+			'line': 'Leg'
+		})
+			.appendTo(editor)
+			.find('select').on('change', function () {
+				widget.fire('change-type', {
+					geometry: $(this).val()
+				});
+			});
+
+		this._input('color', 'Color', 'color')
+			.appendTo(editor)
+			.find('input').on('change', function () {
+				widget.fire('update-color', {
+					color: $(this).val()
+				});
+			});
 		this._initEpicEditor('text', 'Verhaal', editor);
 
 		this._buttons().append(

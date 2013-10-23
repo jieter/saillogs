@@ -91,7 +91,7 @@ Saillog.Control.Calendar = Saillog.Control.extend({
 			.html(day);
 
 		var diff = null;
-		// TODO: use absolute positioning to place legs
+		// TODO: use absolute positioning to place legs and make fillers obsolete
 		if (container.children().length < 1) {
 			item.css('margin-left', (date.getDay() * 21) + 'px');
 		} else {
@@ -146,14 +146,14 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	_updateLabels: function () {
 		var story = this._story;
 
-		function addDays(date, days) {
+		function addDays(date, days, noTimezoneAdjust) {
 			if (!(date instanceof Date)) {
 				date = new Date(date + 'T00:00:00');
 			} else {
 				date = new Date(date.getTime());
 			}
 			var DAY = 24 * 60 * 60 * 1000; //ms
-			var UTC2CEST = 2 * 60 * 60 * 1000; // correct for timezone
+			var UTC2CEST = noTimezoneAdjust ? 0 : 2 * 60 * 60 * 1000; // correct for timezone
 			date.setTime(date.getTime() + days * DAY - UTC2CEST);
 			return date;
 		}
@@ -182,13 +182,16 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 			var el = $('<div class="marker"></div>');
 
 			// TODO fix timezone assumption here
+			// TODO fix magic numbers for pixels per second here.
 			if (label.getHours() === 0) {
-				el.html(label.getDate() + '-' + (label.getMonth() + 1));
+				if (times.pps > 0.0005) {
+					el.html(label.getDate() + '-' + (label.getMonth() + 1));
+				}
 
 				// daylight hours.
 				var position = story.closestPosition(label);
-				var today = SunCalc.getTimes(addDays(label, 0.5), position.lat, position.lng);
-				var yesterday = SunCalc.getTimes(addDays(label, -0.5), position.lat, position.lng);
+				var today = SunCalc.getTimes(addDays(label, 0.5, true), position.lat, position.lng);
+				var yesterday = SunCalc.getTimes(addDays(label, -0.5, true), position.lat, position.lng);
 
 				var set = offset(yesterday.sunset);
 				$('<div class="night"></div>')
@@ -201,8 +204,6 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 						', rises: ' + today.sunrise.toLocaleTimeString('en-GB'))
 					.appendTo(container);
 			} else {
-				// TODO this parameter needs tuning.
-				// add time labels if we have enough horzontal space
 				if (times.pps > 0.003) {
 					el.html(label.getHours() + ':00');
 				}

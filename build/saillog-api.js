@@ -106,11 +106,11 @@ module.exports = function (connect) {
 			});
 
 			router.post('/api/save/:id', function (req, res, next) {
-				console.log('API save ' + req.params.id);
 
 				var id = req.params.id;
 				var json = JSON.parse(req.body.data);
 
+				console.log('API save ' + req.params.id, ', features:', json.features.length);
 				actions.save(id, json, function (err) {
 					reply(res, err, {
 						success: true,

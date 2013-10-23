@@ -74,6 +74,7 @@ describe('Saillog.Story', function () {
 			var legs = story.getLegs();
 			for (var id in legs) {
 				if (legs[id].geometry && legs[id].geometry.type === 'LineString') {
+					console.log(story.getProperties(id));
 					story.getProperties(id).should.contain.keys('distance', 'duration');
 				} else {
 					story.getProperties(id).should.not.contain.key('distance', 'duration');
@@ -109,6 +110,31 @@ describe('Saillog.Story', function () {
 
 			story.length().should.eql(3);
 		});
+	});
+
+	describe('replaceLayer', function () {
+		it('should add replace the geometry', function () {
+			var id = story.addLeg({
+				type: 'Feature',
+				geometry: {
+					type: 'Point',
+					coordinates: [1, 1]
+				},
+				properties: {
+					title: 'testPoint'
+				}
+			});
+
+			var newLayer = L.marker([2, 2]);
+
+			story.replaceLayer(id, newLayer).should.equal(story);
+
+			var latlng = story.getLayer(id).getLatLng();
+
+			latlng.lat.should.equal(2);
+			latlng.lng.should.equal(2);
+		});
+
 	});
 
 	describe('getProperties', function () {

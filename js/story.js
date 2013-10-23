@@ -47,24 +47,25 @@ Saillog.Story = L.Class.extend({
 				type: 'Feature',
 				properties: {}
 			};
+		} else {
+			leg.properties._isSaved = true;
 		}
 
 		if (leg.geometry) {
-			leg.layer = L.geoJson(leg, {
-				style: this._legStyle
-			}).getLayers()[0];
+			leg.layer = this._makeLayer(leg);
 
 			this.layer.addLayer(leg.layer);
-
-			leg.properties.id = L.stamp(leg.layer);
-		} else {
-			leg.properties.id = L.stamp({});
 		}
+		leg.properties.id =  L.stamp(leg.layer || {});
 
 		this._augmentLegProperties(leg);
 
 		this.legs[leg.properties.id] = leg;
 		return leg.properties.id;
+	},
+
+	_makeLayer: function (leg) {
+		return L.geoJson(leg, { style: this._legStyle }).getLayers()[0];
 	},
 
 	_augmentLegProperties: function (leg) {
@@ -81,7 +82,9 @@ Saillog.Story = L.Class.extend({
 			leg.properties.distance = leg.layer.getDistance('nautical');
 			leg.properties._isApprox = ['distance'];
 
-			if (!leg.properties.startTime && leg.properties.date) {
+			var hasDate = leg.properties.date || leg.properties.date === '';
+
+			if (!leg.properties.startTime && hasDate) {
 				leg.properties.startTime = leg.properties.date + 'T08:00:00';
 				leg.properties._isApprox.push('startTime');
 			}
@@ -89,9 +92,6 @@ Saillog.Story = L.Class.extend({
 			if (!leg.properties.endTime) {
 				var d = new Date(leg.properties.startTime);
 				var duration = (leg.properties.distance / this.properties.average) * 60 * 60;
-				if (isNaN(duration)) {
-					throw 'error in duration calculation';
-				}
 				d.setTime(d.getTime() + duration * 1000);
 				leg.properties.endTime = d.toJSON().substr(0, 19);
 				leg.properties._isApprox.push('endTime');
@@ -104,6 +104,14 @@ Saillog.Story = L.Class.extend({
 				leg.properties._isApprox.push('duration');
 			}
 		}
+	},
+
+	each: function (fn, context) {
+		context = context || this;
+		for (var key in this.legs) {
+			fn.call(context, this.legs[key]);
+		}
+		return this;
 	},
 
 	save: function (callback) {
@@ -126,6 +134,7 @@ Saillog.Story = L.Class.extend({
 				});
 				delete legData.properties._isApprox;
 			}
+			delete legData.properties._isSaved;
 
 			data.features.push(legData);
 		});
@@ -193,9 +202,7 @@ Saillog.Story = L.Class.extend({
 
 			// update color
 			if (leg.layer && leg.layer.setStyle) {
-				leg.layer.setStyle({
-					color: properties.color
-				});
+				this.updateColor(id, properties.color);
 			}
 
 			// geometry is changed, update approximated values
@@ -208,6 +215,43 @@ Saillog.Story = L.Class.extend({
 		return this.legs[id].layer;
 	},
 
+	replaceLayer: function (id, newLayer) {
+		var leg = this.getLegs()[id];
+		var geojson = newLayer.toGeoJSON();
+
+		if (leg.geometry && leg.geometry.type === geojson.geometry.type) {
+			if (leg.geometry.type === 'Point') {
+				leg.layer.setLatLng(newLayer.getLatLng());
+			} else if (leg.geometry.type === 'LineString') {
+				leg.layer.setLatLngs(newLayer.getLatLngs());
+			}
+		} else {
+			// replace layer, but set original leaflet_id
+			this.layer.removeLayer(leg.layer);
+
+			newLayer = this._makeLayer(geojson);
+			newLayer['_leaflet_id'] = (id + 0);
+
+			leg.layer = newLayer;
+			leg.geometry = geojson.geometry;
+
+			this.layer.addLayer(newLayer);
+			this._augmentLegProperties(leg);
+		}
+
+		return this;
+	},
+
+	updateColor: function (id, color) {
+		var leg = this.getLegs(id);
+
+		if (leg.layer && leg.layer.setStyle) {
+			this.getLegs()[id].layer.setStyle({
+				color: color
+			});
+		}
+	},
+
 	getTimes: function () {
 		var first, last;
 		this.each(function (leg) {
@@ -215,12 +259,15 @@ Saillog.Story = L.Class.extend({
 				first = leg.properties.startTime;
 			}
 			if (leg.properties.endTime) {
-				last = leg.properties.endTime;
+				if (!last || leg.properties.endTime > last) {
+					last = leg.properties.endTime;
+
+				}
 			}
 		});
 
 		// add some margin.
-		first = first.substr(0, 11) + '00:00:00';
+		first = first ? first.substr(0, 11) + '00:00:00' : first;
 
 		return {
 			offset: function (timestamp) {
@@ -232,13 +279,6 @@ Saillog.Story = L.Class.extend({
 		};
 	},
 
-	each: function (fn, context) {
-		context = context || this;
-		for (var key in this.legs) {
-			fn.call(context, this.legs[key]);
-		}
-		return this;
-	},
 
 	highlight: function (id) {
 		var self = this;

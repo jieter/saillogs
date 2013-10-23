@@ -5,53 +5,81 @@ Saillog.Editor = {
 		if (!this._story) {
 			return;
 		}
-		console.log('editing', id);
 
 		this._edit = id;
+		var story = this._story;
+
+		console.log('start editing', id, JSON.stringify(story.getProperties(id).title));
 
 		this.sidebar.addClass('wide');
 		if (id === 'metadata') {
 			this._editorWidget =
 				new Saillog.Widget.StoryMetadataEditor(this.sidebar)
-					.update(this._story.getProperties());
+					.update(story.getProperties());
 		} else {
-			this._editLayer = this._story.getLayer(id);
+			this._editLayer = story.getLayer(id);
 
 			this._editorWidget =
 				new Saillog.Widget.LegMetadataEditor(this.sidebar)
-					.update(this._story.getProperties(id));
+					.update(story.getProperties(id));
 
 			this._startMapEditor();
 		}
 
-		this._editorWidget.once({
-			'save': function () {
-				this._save();
-				this._stopEditing();
-			},
-			'cancel': function () {
+		this._editorWidget
+			.once({
+				'save': function () {
+					this._save();
+					this._stopEditing();
+				},
+				'cancel': function () {
+					// TODO throw away unsaved edits, revert to original state
+					// if leg was already saved.
 
-				// this._story.removeLeg(id);
-				// delete this._edit;
+					// story.removeLeg(id);
+					// delete this._edit;
 
-				this._stopEditing();
-			},
-			'delete': function () {
-				console.log('delete');
-				this._story.removeLeg(id);
-				delete this._edit;
-				// todo refactor into _save
-				this._story.save(function () {
+					this._stopEditing();
+				},
+				'delete': function () {
+					console.log('delete');
+					story.removeLeg(id);
 
-				});
-				this._stopEditing();
-			}
-		}, this);
+					this._stopEditing();
+					this._save();
+				}
+			}, this)
+			.on({
+				'update-color': function (event) {
+					story.updateColor(id, event.color);
+				},
+				'change-type': function (event) {
+					this._stopMapEditor();
+					if (event.geometry === 'marker') {
+						this._editLayer = new L.Draw.Marker(this._map);
+					} else if (event.geometry === 'line') {
+						this._editLayer = new L.Draw.Polyline(this._map);
+					}
+					this._editLayer.enable();
+
+					this._map.once('draw:created', function (event) {
+						story.replaceLayer(this._edit, event.layer);
+
+						//this._startMapEditor();
+					}, this);
+					return event;
+				}
+			}, this);
 	},
 
 	_save: function () {
-		var id = this._edit;
 		var story = this._story;
+
+		var id = this._edit;
+
+		if (id === undefined) {
+			return;
+		}
 
 		if (id === 'metadata') {
 			story.setProperties(L.extend(
@@ -69,7 +97,7 @@ Saillog.Editor = {
 
 		story.save(function () {
 			// TODO: notify user
-			console.log('saved');
+			console.log('saved', id);
 		});
 	},
 
@@ -110,7 +138,7 @@ Saillog.Editor = {
 		}
 		if (layer.dragging) {
 			layer.dragging.disable();
-		} else {
+		} else if (layer.editing) {
 			layer.editing.disable();
 		}
 	}

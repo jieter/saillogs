@@ -13,6 +13,7 @@ Saillog.Map = L.Map.extend({
 		L.Map.prototype.initialize.call(this, 'map');
 
 		this.initLayers();
+		//this.initControls();
 	},
 
 	initControls: function () {
@@ -21,7 +22,7 @@ Saillog.Map = L.Map.extend({
 		}, {
 			position: 'bottomleft',
 			collapsed: false
-		}).addTo(this._map);
+		}).addTo(this);
 	},
 
 	initLayers: function () {

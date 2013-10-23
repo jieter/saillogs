@@ -217,7 +217,7 @@ $(function () {
 
 		window.setTimeout(function () {
 			if (window.location.hash === '#2013-zomerzeilen') {
-				window.saillog.showEditor('metadata');
+				window.saillog.showEditor(23);
 			}
 		}, 500);
 	}
