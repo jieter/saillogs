@@ -167,10 +167,19 @@
 			},
 			"properties": {
 				"title": "Terug naar Lelystad",
-				"text": "![Drijfsijs](DSCN3583.thumb.jpg \"inline\")\n![Kor en Pa](DSCN3627.thumb.JPG \"inline\")",
+				"text": "![Drijfsijs](DSCN3583.thumb.JPG \"inline\")\n![Kor en Pa](DSCN3627.thumb.JPG \"inline\")",
 				"date": "2013-05-26",
 				"color": "#22ff22",
 				"startTime": "2013-05-26T12:00:00"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"title": "",
+				"text": "<table>\n  <tr>\n    <td class=\"meta\">Boot:</td>\n    <td>Beneteau First 34 'Brocky'</td>\n  </tr>\n  <tr>\n    <td class=\"meta\">Gevaren: </td>\n    <td>&plusmn; 50NM</td>\n  </tr>\n</table>",
+				"date": "",
+				"color": "#ffffff"
 			}
 		}
 	]
