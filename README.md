@@ -5,10 +5,10 @@ A nice way to present stories about sailing.
 
 http://jieter.github.io/saillogs/
 
-### Start server
+## Start server
 After `npm install` run `grunt`. For the read-only case, every static webserver should work.
 
-### Attribution
+## Attribution
  - Leaflet https://github.com/Leaflet/Leaflet
  - Leaflet.draw https://github.com/Leaflet/Leaflet.draw
  - Map tiles from https://github.com/geoiq/acetate, http://openseamap.org/

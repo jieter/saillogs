@@ -9,7 +9,7 @@ Saillog.Editor = {
 		this._edit = id;
 		var story = this._story;
 
-		console.log('start editing', id, JSON.stringify(story.getProperties(id).title));
+		console.log('start editing', id);
 
 		this.sidebar.addClass('wide');
 		if (id === 'metadata') {

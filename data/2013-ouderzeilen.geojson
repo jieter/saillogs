@@ -1,17 +1,20 @@
 {
 	"id": "2013-ouderzeilen",
 	"properties": {
-		"title": "2013-ouderzeilen",
+		"title": "Ouderszeilen 2013",
 		"description": "",
 		"average": 5,
-		"showTimeline": true
+		"showTimeline": true,
+		"showTrack": false
 	},
 	"features": [
 		{
 			"type": "Feature",
 			"properties": {
 				"title": "",
-				"text": "[](http://youtu.be/lAJIx4v9Pr4)"
+				"text": "[](http://youtu.be/lAJIx4v9Pr4)",
+				"date": "",
+				"color": "#ffffff"
 			}
 		},
 		{

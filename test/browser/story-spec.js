@@ -73,11 +73,12 @@ describe('Saillog.Story', function () {
 		it('adds distance to the properties of LineStrings', function () {
 			var legs = story.getLegs();
 			for (var id in legs) {
+				var properties = story.getProperties(id);
+
 				if (legs[id].geometry && legs[id].geometry.type === 'LineString') {
-					console.log(story.getProperties(id));
-					story.getProperties(id).should.contain.keys('distance', 'duration');
+					properties.should.contain.keys('distance', 'duration');
 				} else {
-					story.getProperties(id).should.not.contain.key('distance', 'duration');
+					properties.should.not.contain.key('distance', 'duration');
 				}
 			}
 		});

@@ -140,7 +140,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 	_recalculateWidth: function () {
 		this._width = $(window).innerWidth() - ($('#sidebar').width() + 40);
-		this.container().css('width', (this._width + 60) + 'px');
+		this.container().css('width', (this._width + 200) + 'px');
 	},
 
 	_updateLabels: function () {
@@ -161,7 +161,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		var times = this._times;
 		var spanDays = times.span / (24 * 60 * 60);
 		var labels = [];
-		for (var i = 0.25; i < spanDays + 0.75; i = i + 0.25) {
+		for (var i = 0.25; i < spanDays + 0.5; i = i + 0.25) {
 			labels.push(
 				addDays(times.start.substr(0, 10), i)
 			);
