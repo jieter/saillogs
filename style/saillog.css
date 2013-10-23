@@ -1836,15 +1836,23 @@ ul.selector li:hover {
   min-height: 400px;
 }
 #sidebar .thumb {
-  position: relative;
-  float: left;
-  clear: both;
-  width: 202px;
-  min-height: 142px;
-  margin-left: -230px;
-  margin-bottom: 8px;
   border: 1px solid #aaaaaa;
   background-color: #eee;
+  margin-bottom: 8px;
+  float: left;
+  width: 202px;
+}
+#sidebar .side-thumb {
+  position: relative;
+  clear: both;
+  min-height: 142px;
+  margin-left: -230px;
+}
+#sidebar .inline-thumb {
+  width: 49%;
+}
+#sidebar .inline-thumb + .inline-thumb {
+  margin-left: 2%;
 }
 #sidebar .leg,
 #sidebar .preface {

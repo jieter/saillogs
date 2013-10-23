@@ -81,17 +81,19 @@ Saillog.Editor = {
 			return;
 		}
 
+		var values = this._editorWidget.values();
+
 		if (id === 'metadata') {
 			story.setProperties(L.extend(
 				{},
 				story.getProperties(),
-				this._editorWidget.values()
+				values
 			));
 		} else {
 			story.setProperties(id, L.extend(
 				{},
 				story.getProperties(id),
-				this._editorWidget.values()
+				values
 			));
 		}
 

@@ -23,7 +23,7 @@ marked.InlineLexer.prototype.outputLink = function (cap, link) {
 		if (body === '') {
 			// no body, full width.
 			return '<iframe id="ytplayer" class="modal_content" type="text/html" ' +
-				'src="http://www.youtube.com/embed/{id}?autoplay=0" frameborder="0"/>'
+				'src="http://www.youtube.com/embed/{id}?autoplay=0&wmode=transparent" frameborder="0"/>'
 					.replace('{id}', href.substr(-11));
 		} else {
 			return '<span class="youtube" data-youtube-url="' + href + '"' + title + '>' +
@@ -34,9 +34,12 @@ marked.InlineLexer.prototype.outputLink = function (cap, link) {
 		return '<a href="' + href + title + '>'	+ this.output(body) + '</a>';
 	} else {
 		// images get prefixed.
-		href = Saillog.util.imagePrefix + href;
-		var alt = body ? ' alt="' + body	+ '"' : '';
-		return '<img src="' + href + '"' + alt + ' class="thumb"' + title + ' />';
+		return L.Util.template('<img src="{href}" {alt} class="{className}" {title} />', {
+			href: href = Saillog.util.imagePrefix + href,
+			alt: body ? ' alt="' + body	+ '"' : '',
+			className: 'thumb ' +  (link.title === 'inline' ? ' inline-thumb' : 'side-thumb'),
+			title: title
+		});
 	}
 };
 

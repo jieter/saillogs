@@ -307,16 +307,24 @@ ul.selector {
 	}
 
 	.thumb {
-		position: relative;
-		float: left;
-		clear: both;
-
-		width: 202px;
-		min-height: 142px;
-		margin-left: -230px;
-		margin-bottom: 8px;
 		border: @borderStyle;
 		background-color: #eee;
+		margin-bottom: 8px;
+		float: left;
+		width: 202px;
+	}
+	.side-thumb {
+		position: relative;
+		clear: both;
+
+		min-height: 142px;
+		margin-left: -230px;
+	}
+	.inline-thumb {
+		width: 49%;
+	}
+	.inline-thumb + .inline-thumb {
+		margin-left: 2%;
 	}
 
 	.leg, .preface {
