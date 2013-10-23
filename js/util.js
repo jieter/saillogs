@@ -15,8 +15,9 @@ if (!('console' in window)) {
 /* globals marked:true */
 marked.InlineLexer.prototype.outputLink = function (cap, link) {
 	var href = link.href;
+
 	var title = link.title ? ' title="' + link.title + '"'	: '';
-	var body = cap[1];
+	var body = cap[1] || '';
 
 	if (link.href.substr(0, 15) === 'http://youtu.be') {
 		// special case for youtube links.
@@ -34,11 +35,11 @@ marked.InlineLexer.prototype.outputLink = function (cap, link) {
 		return '<a href="' + href + title + '>'	+ this.output(body) + '</a>';
 	} else {
 		// images get prefixed.
-		return L.Util.template('<img src="{href}" {alt} class="{className}" {title} />', {
+		return L.Util.template('<img src="{href}" {alt} class="{className}" title="{title}" />', {
 			href: href = Saillog.util.imagePrefix + href,
 			alt: body ? ' alt="' + body	+ '"' : '',
 			className: 'thumb ' +  (link.title === 'inline' ? ' inline-thumb' : 'side-thumb'),
-			title: title
+			title: link.title === 'inline' ? body : title
 		});
 	}
 };
