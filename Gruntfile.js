@@ -81,6 +81,10 @@ module.exports = function (grunt) {
 					spawn: false,
 					livereload: true
 				}
+			},
+			images: {
+				files: ['data/**/orig/*'],
+				tasks: ['saillog-thumbs']
 			}
 		},
 		copy: {
