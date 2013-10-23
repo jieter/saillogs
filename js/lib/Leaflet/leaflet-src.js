@@ -151,7 +151,7 @@ L.Util = {
 		return cache[str](data);
 	},
 
-	isArray: function (obj) {
+	isArray: Array.isArray || function (obj) {
 		return (Object.prototype.toString.call(obj) === '[object Array]');
 	},
 
@@ -510,7 +510,7 @@ L.Mixin.Events.fire = L.Mixin.Events.fireEvent;
 
 (function () {
 
-	var ie = !!window.ActiveXObject,
+	var ie = 'ActiveXObject' in window,
 	    ie6 = ie && !window.XMLHttpRequest,
 	    ie7 = ie && !document.querySelector,
 		ielt9 = ie && !document.addEventListener,
@@ -524,8 +524,10 @@ L.Mixin.Events.fire = L.Mixin.Events.fireEvent;
 	    android23 = ua.search('android [23]') !== -1,
 
 	    mobile = typeof orientation !== undefined + '',
-	    msTouch = window.navigator && window.navigator.msPointerEnabled &&
-	              window.navigator.msMaxTouchPoints,
+	    msPointer = window.navigator && window.navigator.msPointerEnabled &&
+	              window.navigator.msMaxTouchPoints && !window.PointerEvent,
+		pointer = (window.PointerEvent && window.navigator.pointerEnabled && window.navigator.maxTouchPoints) ||
+				  msPointer,
 	    retina = ('devicePixelRatio' in window && window.devicePixelRatio > 1) ||
 	             ('matchMedia' in window && window.matchMedia('(min-resolution:144dpi)') &&
 	              window.matchMedia('(min-resolution:144dpi)').matches),
@@ -545,8 +547,8 @@ L.Mixin.Events.fire = L.Mixin.Events.fireEvent;
 
 		var startName = 'ontouchstart';
 
-		// IE10+ (We simulate these into touch* events in L.DomEvent and L.DomEvent.MsTouch) or WebKit, etc.
-		if (msTouch || (startName in doc)) {
+		// IE10+ (We simulate these into touch* events in L.DomEvent and L.DomEvent.Pointer) or WebKit, etc.
+		if (pointer || (startName in doc)) {
 			return true;
 		}
 
@@ -594,7 +596,8 @@ L.Mixin.Events.fire = L.Mixin.Events.fireEvent;
 		mobileOpera: mobile && window.opera,
 
 		touch: touch,
-		msTouch: msTouch,
+		msPointer: msPointer,
+		pointer: pointer,
 
 		retina: retina
 	};
@@ -1567,11 +1570,16 @@ L.Map = L.Class.extend({
 
 	// replaced by animation-powered implementation in Map.PanAnimation.js
 	setView: function (center, zoom) {
+		zoom = zoom === undefined ? this.getZoom() : zoom;
 		this._resetView(L.latLng(center), this._limitZoom(zoom));
 		return this;
 	},
 
 	setZoom: function (zoom, options) {
+		if (!this._loaded) {
+			this._zoom = this._limitZoom(zoom);
+			return this;
+		}
 		return this.setView(this.getCenter(), zoom, {zoom: options});
 	},
 
@@ -1608,6 +1616,8 @@ L.Map = L.Class.extend({
 		    swPoint = this.project(bounds.getSouthWest(), zoom),
 		    nePoint = this.project(bounds.getNorthEast(), zoom),
 		    center = this.unproject(swPoint.add(nePoint).divideBy(2).add(paddingOffset), zoom);
+
+		zoom = options && options.maxZoom ? Math.min(options.maxZoom, zoom) : zoom;
 
 		return this.setView(center, zoom, options);
 	},
@@ -2612,7 +2622,7 @@ L.TileLayer = L.Class.extend({
 			this._updateZIndex();
 
 			if (this._animated) {
-				var className = 'leaflet-tile-container leaflet-zoom-animated';
+				var className = 'leaflet-tile-container';
 
 				this._bgBuffer = L.DomUtil.create('div', className, this._container);
 				this._tileContainer = L.DomUtil.create('div', className, this._container);
@@ -2918,6 +2928,11 @@ L.TileLayer = L.Class.extend({
 
 	_tileLoaded: function () {
 		this._tilesToLoad--;
+
+		if (this._animated) {
+			L.DomUtil.addClass(this._tileContainer, 'leaflet-zoom-animated');
+		}
+
 		if (!this._tilesToLoad) {
 			this.fire('load');
 
@@ -3433,6 +3448,7 @@ L.Marker = L.Class.extend({
 	options: {
 		icon: new L.Icon.Default(),
 		title: '',
+		alt: '',
 		clickable: true,
 		draggable: false,
 		keyboard: true,
@@ -3547,6 +3563,10 @@ L.Marker = L.Class.extend({
 			if (options.title) {
 				icon.title = options.title;
 			}
+			
+			if (options.alt) {
+				icon.alt = options.alt;
+			}
 		}
 
 		L.DomUtil.addClass(icon, classToAdd);
@@ -3631,7 +3651,7 @@ L.Marker = L.Class.extend({
 	},
 
 	_animateZoom: function (opt) {
-		var pos = this._map._latLngToNewLayerPoint(this._latlng, opt.zoom, opt.center);
+		var pos = this._map._latLngToNewLayerPoint(this._latlng, opt.zoom, opt.center).round();
 
 		this._setPos(pos);
 	},
@@ -3882,10 +3902,18 @@ L.Popup = L.Class.extend({
 		}
 	},
 
+	getLatLng: function () {
+		return this._latlng;
+	},
+
 	setLatLng: function (latlng) {
 		this._latlng = L.latLng(latlng);
 		this.update();
 		return this;
+	},
+
+	getContent: function () {
+		return this._content;
 	},
 
 	setContent: function (content) {
@@ -3954,9 +3982,10 @@ L.Popup = L.Class.extend({
 		L.DomEvent.disableClickPropagation(wrapper);
 
 		this._contentNode = L.DomUtil.create('div', prefix + '-content', wrapper);
-		L.DomEvent.on(this._contentNode, 'mousewheel', L.DomEvent.stopPropagation);
-		L.DomEvent.on(this._contentNode, 'MozMousePixelScroll', L.DomEvent.stopPropagation);
+
+		L.DomEvent.disableScrollPropagation(this._contentNode);
 		L.DomEvent.on(wrapper, 'contextmenu', L.DomEvent.stopPropagation);
+
 		this._tipContainer = L.DomUtil.create('div', prefix + '-tip-container', container);
 		this._tip = L.DomUtil.create('div', prefix + '-tip', this._tipContainer);
 	},
@@ -4192,6 +4221,10 @@ L.Marker.include({
 			this._popupHandlersAdded = false;
 		}
 		return this;
+	},
+
+	getPopup: function () {
+		return this._popup;
 	},
 
 	_movePopup: function (e) {
@@ -5593,10 +5626,12 @@ L.Polygon = L.Polyline.extend({
 	},
 
 	initialize: function (latlngs, options) {
-		var i, len, hole;
-
 		L.Polyline.prototype.initialize.call(this, latlngs, options);
+		this._initWithHoles(latlngs);
+	},
 
+	_initWithHoles: function (latlngs) {
+		var i, len, hole;
 		if (latlngs && L.Util.isArray(latlngs[0]) && (typeof latlngs[0][0] !== 'number')) {
 			this._latlngs = this._convertLatLngs(latlngs[0]);
 			this._holes = latlngs.slice(1);
@@ -5634,6 +5669,15 @@ L.Polygon = L.Polyline.extend({
 			for (j = 0, len2 = this._holes[i].length; j < len2; j++) {
 				this._holePoints[i][j] = this._map.latLngToLayerPoint(this._holes[i][j]);
 			}
+		}
+	},
+
+	setLatLngs: function (latlngs) {
+		if (latlngs && L.Util.isArray(latlngs[0]) && (typeof latlngs[0][0] !== 'number')) {
+			this._initWithHoles(latlngs);
+			return this.redraw();
+		} else {
+			return L.Polyline.prototype.setLatLngs.call(this, latlngs);
 		}
 	},
 
@@ -6033,7 +6077,7 @@ L.GeoJSON = L.FeatureGroup.extend({
 
 		if (options.filter && !options.filter(geojson)) { return; }
 
-		var layer = L.GeoJSON.geometryToLayer(geojson, options.pointToLayer, options.coordsToLatLng);
+		var layer = L.GeoJSON.geometryToLayer(geojson, options.pointToLayer, options.coordsToLatLng, options);
 		layer.feature = L.GeoJSON.asFeature(geojson);
 
 		layer.defaultOptions = layer.options;
@@ -6073,7 +6117,7 @@ L.GeoJSON = L.FeatureGroup.extend({
 });
 
 L.extend(L.GeoJSON, {
-	geometryToLayer: function (geojson, pointToLayer, coordsToLatLng) {
+	geometryToLayer: function (geojson, pointToLayer, coordsToLatLng, vectorOptions) {
 		var geometry = geojson.type === 'Feature' ? geojson.geometry : geojson,
 		    coords = geometry.coordinates,
 		    layers = [],
@@ -6095,22 +6139,22 @@ L.extend(L.GeoJSON, {
 
 		case 'LineString':
 			latlngs = this.coordsToLatLngs(coords, 0, coordsToLatLng);
-			return new L.Polyline(latlngs);
+			return new L.Polyline(latlngs, vectorOptions);
 
 		case 'Polygon':
 			if (coords.length === 2 && !coords[1].length) {
 				throw new Error('Invalid GeoJSON object.');
 			}
 			latlngs = this.coordsToLatLngs(coords, 1, coordsToLatLng);
-			return new L.Polygon(latlngs);
+			return new L.Polygon(latlngs, vectorOptions);
 
 		case 'MultiLineString':
 			latlngs = this.coordsToLatLngs(coords, 1, coordsToLatLng);
-			return new L.MultiPolyline(latlngs);
+			return new L.MultiPolyline(latlngs, vectorOptions);
 
 		case 'MultiPolygon':
 			latlngs = this.coordsToLatLngs(coords, 2, coordsToLatLng);
-			return new L.MultiPolygon(latlngs);
+			return new L.MultiPolygon(latlngs, vectorOptions);
 
 		case 'GeometryCollection':
 			for (i = 0, len = geometry.geometries.length; i < len; i++) {
@@ -6119,7 +6163,7 @@ L.extend(L.GeoJSON, {
 					geometry: geometry.geometries[i],
 					type: 'Feature',
 					properties: geojson.properties
-				}, pointToLayer, coordsToLatLng));
+				}, pointToLayer, coordsToLatLng, vectorOptions));
 			}
 			return new L.FeatureGroup(layers);
 
@@ -6299,8 +6343,8 @@ L.DomEvent = {
 			return fn.call(context || obj, e || L.DomEvent._getEvent());
 		};
 
-		if (L.Browser.msTouch && type.indexOf('touch') === 0) {
-			return this.addMsTouchListener(obj, type, handler, id);
+		if (L.Browser.pointer && type.indexOf('touch') === 0) {
+			return this.addPointerListener(obj, type, handler, id);
 		}
 		if (L.Browser.touch && (type === 'dblclick') && this.addDoubleTapListener) {
 			this.addDoubleTapListener(obj, handler, id);
@@ -6352,8 +6396,8 @@ L.DomEvent = {
 
 		if (!handler) { return this; }
 
-		if (L.Browser.msTouch && type.indexOf('touch') === 0) {
-			this.removeMsTouchListener(obj, type, id);
+		if (L.Browser.pointer && type.indexOf('touch') === 0) {
+			this.removePointerListener(obj, type, id);
 		} else if (L.Browser.touch && (type === 'dblclick') && this.removeDoubleTapListener) {
 			this.removeDoubleTapListener(obj, id);
 
@@ -6389,16 +6433,24 @@ L.DomEvent = {
 		return this;
 	},
 
+	disableScrollPropagation: function (el) {
+		var stop = L.DomEvent.stopPropagation;
+
+		return L.DomEvent
+			.on(el, 'mousewheel', stop)
+			.on(el, 'MozMousePixelScroll', stop);
+	},
+
 	disableClickPropagation: function (el) {
 		var stop = L.DomEvent.stopPropagation;
 
 		for (var i = L.Draggable.START.length - 1; i >= 0; i--) {
-			L.DomEvent.addListener(el, L.Draggable.START[i], stop);
+			L.DomEvent.on(el, L.Draggable.START[i], stop);
 		}
 
 		return L.DomEvent
-			.addListener(el, 'click', L.DomEvent._fakeStop)
-			.addListener(el, 'dblclick', stop);
+			.on(el, 'click', L.DomEvent._fakeStop)
+			.on(el, 'dblclick', stop);
 	},
 
 	preventDefault: function (e) {
@@ -6546,11 +6598,13 @@ L.Draggable = L.Class.extend({
 		END: {
 			mousedown: 'mouseup',
 			touchstart: 'touchend',
+			pointerdown: 'touchend',
 			MSPointerDown: 'touchend'
 		},
 		MOVE: {
 			mousedown: 'mousemove',
 			touchstart: 'touchmove',
+			pointerdown: 'touchmove',
 			MSPointerDown: 'touchmove'
 		}
 	},
@@ -6593,15 +6647,9 @@ L.Draggable = L.Class.extend({
 		L.DomUtil.disableImageDrag();
 		L.DomUtil.disableTextSelection();
 
-		var first = e.touches ? e.touches[0] : e,
-		    el = first.target;
-
-		// if touching a link, highlight it
-		if (L.Browser.touch && el.tagName && el.tagName.toLowerCase() === 'a') {
-			L.DomUtil.addClass(el, 'leaflet-active');
-		}
-
 		if (this._moving) { return; }
+
+		var first = e.touches ? e.touches[0] : e;
 
 		this._startPoint = new L.Point(first.clientX, first.clientY);
 		this._startPos = this._newPos = L.DomUtil.getPosition(this._element);
@@ -6612,7 +6660,10 @@ L.Draggable = L.Class.extend({
 	},
 
 	_onMove: function (e) {
-		if (e.touches && e.touches.length > 1) { return; }
+		if (e.touches && e.touches.length > 1) {
+			this._moved = true;
+			return;
+		}
 
 		var first = (e.touches && e.touches.length === 1 ? e.touches[0] : e),
 		    newPoint = new L.Point(first.clientX, first.clientY),
@@ -6956,8 +7007,8 @@ L.Map.addInitHook('addHandler', 'scrollWheelZoom', L.Map.ScrollWheelZoom);
 
 L.extend(L.DomEvent, {
 
-	_touchstart: L.Browser.msTouch ? 'MSPointerDown' : 'touchstart',
-	_touchend: L.Browser.msTouch ? 'MSPointerUp' : 'touchend',
+	_touchstart: L.Browser.msPointer ? 'MSPointerDown' : L.Browser.pointer ? 'pointerdown' : 'touchstart',
+	_touchend: L.Browser.msPointer ? 'MSPointerUp' : L.Browser.pointer ? 'pointerup' : 'touchend',
 
 	// inspired by Zepto touch code by Thomas Fuchs
 	addDoubleTapListener: function (obj, handler, id) {
@@ -6973,7 +7024,7 @@ L.extend(L.DomEvent, {
 		function onTouchStart(e) {
 			var count;
 
-			if (L.Browser.msTouch) {
+			if (L.Browser.pointer) {
 				trackedTouches.push(e.pointerId);
 				count = trackedTouches.length;
 			} else {
@@ -6992,7 +7043,7 @@ L.extend(L.DomEvent, {
 		}
 
 		function onTouchEnd(e) {
-			if (L.Browser.msTouch) {
+			if (L.Browser.pointer) {
 				var idx = trackedTouches.indexOf(e.pointerId);
 				if (idx === -1) {
 					return;
@@ -7001,7 +7052,7 @@ L.extend(L.DomEvent, {
 			}
 
 			if (doubleTap) {
-				if (L.Browser.msTouch) {
+				if (L.Browser.pointer) {
 					// work around .type being readonly with MSPointer* events
 					var newTouch = { },
 						prop;
@@ -7025,15 +7076,15 @@ L.extend(L.DomEvent, {
 		obj[pre + touchstart + id] = onTouchStart;
 		obj[pre + touchend + id] = onTouchEnd;
 
-		// on msTouch we need to listen on the document, otherwise a drag starting on the map and moving off screen
+		// on pointer we need to listen on the document, otherwise a drag starting on the map and moving off screen
 		// will not come through to us, so we will lose track of how many touches are ongoing
-		var endElement = L.Browser.msTouch ? document.documentElement : obj;
+		var endElement = L.Browser.pointer ? document.documentElement : obj;
 
 		obj.addEventListener(touchstart, onTouchStart, false);
 		endElement.addEventListener(touchend, onTouchEnd, false);
 
-		if (L.Browser.msTouch) {
-			endElement.addEventListener('MSPointerCancel', onTouchEnd, false);
+		if (L.Browser.pointer) {
+			endElement.addEventListener(L.DomEvent.POINTER_CANCEL, onTouchEnd, false);
 		}
 
 		return this;
@@ -7043,11 +7094,12 @@ L.extend(L.DomEvent, {
 		var pre = '_leaflet_';
 
 		obj.removeEventListener(this._touchstart, obj[pre + this._touchstart + id], false);
-		(L.Browser.msTouch ? document.documentElement : obj).removeEventListener(
+		(L.Browser.pointer ? document.documentElement : obj).removeEventListener(
 		        this._touchend, obj[pre + this._touchend + id], false);
 
-		if (L.Browser.msTouch) {
-			document.documentElement.removeEventListener('MSPointerCancel', obj[pre + this._touchend + id], false);
+		if (L.Browser.pointer) {
+			document.documentElement.removeEventListener(L.DomEvent.POINTER_CANCEL, obj[pre + this._touchend + id],
+				false);
 		}
 
 		return this;
@@ -7061,83 +7113,90 @@ L.extend(L.DomEvent, {
 
 L.extend(L.DomEvent, {
 
-	_msTouches: [],
-	_msDocumentListener: false,
+	//static
+	POINTER_DOWN: L.Browser.msPointer ? 'MSPointerDown' : 'pointerdown',
+	POINTER_MOVE: L.Browser.msPointer ? 'MSPointerMove' : 'pointermove',
+	POINTER_UP: L.Browser.msPointer ? 'MSPointerUp' : 'pointerup',
+	POINTER_CANCEL: L.Browser.msPointer ? 'MSPointerCancel' : 'pointercancel',
 
-	// Provides a touch events wrapper for msPointer events.
+	_pointers: [],
+	_pointerDocumentListener: false,
+
+	// Provides a touch events wrapper for (ms)pointer events.
 	// Based on changes by veproza https://github.com/CloudMade/Leaflet/pull/1019
+	//ref http://www.w3.org/TR/pointerevents/ https://www.w3.org/Bugs/Public/show_bug.cgi?id=22890
 
-	addMsTouchListener: function (obj, type, handler, id) {
+	addPointerListener: function (obj, type, handler, id) {
 
 		switch (type) {
 		case 'touchstart':
-			return this.addMsTouchListenerStart(obj, type, handler, id);
+			return this.addPointerListenerStart(obj, type, handler, id);
 		case 'touchend':
-			return this.addMsTouchListenerEnd(obj, type, handler, id);
+			return this.addPointerListenerEnd(obj, type, handler, id);
 		case 'touchmove':
-			return this.addMsTouchListenerMove(obj, type, handler, id);
+			return this.addPointerListenerMove(obj, type, handler, id);
 		default:
 			throw 'Unknown touch event type';
 		}
 	},
 
-	addMsTouchListenerStart: function (obj, type, handler, id) {
+	addPointerListenerStart: function (obj, type, handler, id) {
 		var pre = '_leaflet_',
-		    touches = this._msTouches;
+		    pointers = this._pointers;
 
 		var cb = function (e) {
 
 			L.DomEvent.preventDefault(e);
 
 			var alreadyInArray = false;
-			for (var i = 0; i < touches.length; i++) {
-				if (touches[i].pointerId === e.pointerId) {
+			for (var i = 0; i < pointers.length; i++) {
+				if (pointers[i].pointerId === e.pointerId) {
 					alreadyInArray = true;
 					break;
 				}
 			}
 			if (!alreadyInArray) {
-				touches.push(e);
+				pointers.push(e);
 			}
 
-			e.touches = touches.slice();
+			e.touches = pointers.slice();
 			e.changedTouches = [e];
 
 			handler(e);
 		};
 
 		obj[pre + 'touchstart' + id] = cb;
-		obj.addEventListener('MSPointerDown', cb, false);
+		obj.addEventListener(this.POINTER_DOWN, cb, false);
 
-		// need to also listen for end events to keep the _msTouches list accurate
+		// need to also listen for end events to keep the _pointers list accurate
 		// this needs to be on the body and never go away
-		if (!this._msDocumentListener) {
+		if (!this._pointerDocumentListener) {
 			var internalCb = function (e) {
-				for (var i = 0; i < touches.length; i++) {
-					if (touches[i].pointerId === e.pointerId) {
-						touches.splice(i, 1);
+				for (var i = 0; i < pointers.length; i++) {
+					if (pointers[i].pointerId === e.pointerId) {
+						pointers.splice(i, 1);
 						break;
 					}
 				}
 			};
 			//We listen on the documentElement as any drags that end by moving the touch off the screen get fired there
-			document.documentElement.addEventListener('MSPointerUp', internalCb, false);
-			document.documentElement.addEventListener('MSPointerCancel', internalCb, false);
+			document.documentElement.addEventListener(this.POINTER_UP, internalCb, false);
+			document.documentElement.addEventListener(this.POINTER_CANCEL, internalCb, false);
 
-			this._msDocumentListener = true;
+			this._pointerDocumentListener = true;
 		}
 
 		return this;
 	},
 
-	addMsTouchListenerMove: function (obj, type, handler, id) {
+	addPointerListenerMove: function (obj, type, handler, id) {
 		var pre = '_leaflet_',
-		    touches = this._msTouches;
+		    touches = this._pointers;
 
 		function cb(e) {
 
 			// don't fire touch moves when mouse isn't down
-			if (e.pointerType === e.MSPOINTER_TYPE_MOUSE && e.buttons === 0) { return; }
+			if ((e.pointerType === e.MSPOINTER_TYPE_MOUSE || e.pointerType === 'mouse') && e.buttons === 0) { return; }
 
 			for (var i = 0; i < touches.length; i++) {
 				if (touches[i].pointerId === e.pointerId) {
@@ -7153,14 +7212,14 @@ L.extend(L.DomEvent, {
 		}
 
 		obj[pre + 'touchmove' + id] = cb;
-		obj.addEventListener('MSPointerMove', cb, false);
+		obj.addEventListener(this.POINTER_MOVE, cb, false);
 
 		return this;
 	},
 
-	addMsTouchListenerEnd: function (obj, type, handler, id) {
+	addPointerListenerEnd: function (obj, type, handler, id) {
 		var pre = '_leaflet_',
-		    touches = this._msTouches;
+		    touches = this._pointers;
 
 		var cb = function (e) {
 			for (var i = 0; i < touches.length; i++) {
@@ -7177,26 +7236,26 @@ L.extend(L.DomEvent, {
 		};
 
 		obj[pre + 'touchend' + id] = cb;
-		obj.addEventListener('MSPointerUp', cb, false);
-		obj.addEventListener('MSPointerCancel', cb, false);
+		obj.addEventListener(this.POINTER_UP, cb, false);
+		obj.addEventListener(this.POINTER_CANCEL, cb, false);
 
 		return this;
 	},
 
-	removeMsTouchListener: function (obj, type, id) {
+	removePointerListener: function (obj, type, id) {
 		var pre = '_leaflet_',
 		    cb = obj[pre + type + id];
 
 		switch (type) {
 		case 'touchstart':
-			obj.removeEventListener('MSPointerDown', cb, false);
+			obj.removeEventListener(this.POINTER_DOWN, cb, false);
 			break;
 		case 'touchmove':
-			obj.removeEventListener('MSPointerMove', cb, false);
+			obj.removeEventListener(this.POINTER_MOVE, cb, false);
 			break;
 		case 'touchend':
-			obj.removeEventListener('MSPointerUp', cb, false);
-			obj.removeEventListener('MSPointerCancel', cb, false);
+			obj.removeEventListener(this.POINTER_UP, cb, false);
+			obj.removeEventListener(this.POINTER_CANCEL, cb, false);
 			break;
 		}
 
@@ -7432,7 +7491,7 @@ L.Map.Tap = L.Handler.extend({
 	}
 });
 
-if (L.Browser.touch && !L.Browser.msTouch) {
+if (L.Browser.touch && !L.Browser.pointer) {
 	L.Map.addInitHook('addHandler', 'tap', L.Map.Tap);
 }
 
@@ -7917,6 +7976,7 @@ L.Control.Zoom = L.Control.extend({
 		        this.options.zoomOutText, this.options.zoomOutTitle,
 		        zoomName + '-out', container, this._zoomOut, this);
 
+		this._updateDisabled();
 		map.on('zoomend zoomlevelschange', this._updateDisabled, this);
 
 		return container;
@@ -8287,8 +8347,9 @@ L.Control.Layers = L.Control.extend({
 		container.setAttribute('aria-haspopup', true);
 
 		if (!L.Browser.touch) {
-			L.DomEvent.disableClickPropagation(container);
-			L.DomEvent.on(container, 'mousewheel', L.DomEvent.stopPropagation);
+			L.DomEvent
+				.disableClickPropagation(container)
+				.disableScrollPropagation(container);
 		} else {
 			L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
 		}
@@ -8567,7 +8628,7 @@ L.Map.include({
 
 	setView: function (center, zoom, options) {
 
-		zoom = this._limitZoom(zoom);
+		zoom = zoom === undefined ? this._zoom : this._limitZoom(zoom);
 		center = L.latLng(center);
 		options = options || {};
 
@@ -9024,7 +9085,8 @@ L.Map.include({
 
 		var data = {
 			latlng: latlng,
-			bounds: bounds
+			bounds: bounds,
+			timestamp: pos.timestamp
 		};
 
 		for (var i in pos.coords) {
