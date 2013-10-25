@@ -249,7 +249,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	_legCss: function (leg) {
 		var color = Saillog.util.hexToRgb(leg.getProperty('color'));
 
-		var duration = leg.duration || this.options.speed * leg.getProperty('distance') * (60);
+		var duration = leg.getProperty('duration');
 
 		var left = this._times.offset(leg.getProperty('startTime')) * this._times.pps;
 		var width = duration * this._times.pps;

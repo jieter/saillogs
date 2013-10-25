@@ -50,7 +50,7 @@ describe('Saillog.Leg', function () {
 		});
 
 		var expectedDistance = 205.209267;
-		var expectedDuration = (expectedDistance / 5) * 60 * 60;
+		var expectedDuration = 71640;
 
 		it('should get the same id as the layer stamp', function () {
 			leg.id.should.equal(L.stamp(leg.layer));

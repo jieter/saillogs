@@ -104,7 +104,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		}
 
 		story.each(function (leg) {
-			this._renderLeg(leg.getProperties())
+			this._renderLeg(leg)
 				.attr('id', 'leg-story-' + leg.id)
 				.appendTo(container);
 		}, this);
@@ -150,9 +150,8 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		var element = $('<div class="leg">');
 
 		var title = $('<h3></h3>').appendTo(element);
-		if (leg.title) {
-			title.append(leg.title);
-		}
+		title.append(leg.getProperty('title'));
+
 		if (this.isAuthorized) {
 			if (title.html() === '') {
 				title
@@ -162,31 +161,34 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 			title.append('<span class="edit hidden"><i class="icon-edit-sign"></i></span>');
 		}
 
-		if (leg.distance) {
+		var distance = leg.getProperty('distance');
+		if (distance) {
 			var tooltip = 'gevaren ';
-			if (leg.duration) {
-				tooltip += 'in ' + Saillog.util.formatDuration(leg.duration) + ' uur';
+			var duration = leg.getProperty('duration');
+			if (duration) {
+				tooltip += 'in ' + Saillog.util.formatDuration(duration) + ' uur';
 			}
-			if (leg['avg_sog']) {
-				tooltip += ', met een gemiddelde snelheid van ' + leg['avg_sog'] + 'kts';
+			var average = leg.getProperty('avg_sog');
+			if (average) {
+				tooltip += ', met een gemiddelde snelheid van ' + average + 'kts';
 			}
 			title.append('<span class="distance" title="' + tooltip + '">' +
-				Saillog.util.formatDistance(leg.distance) + ' NM</span>');
+				Saillog.util.formatDistance(distance) + ' NM</span>');
 		}
 
-		if (leg.date) {
-			var parts = leg.date.split('-');
-			var date = parseInt(parts[2], 10) + '-' + parseInt(parts[1], 10);
+		var date = leg.getProperty('date');
+		if (date) {
 
-			element.prepend('<div class="date">' + date + '</div>');
+			element.prepend('<div class="date">' + Saillog.util.formatDate(date) + '</div>');
 		}
 
 		if (leg.text !== undefined) {
 			element.append(marked(leg.text));
 		}
 
-		if (leg.color) {
-			var rgb = Saillog.util.hexToRgb(leg.color);
+		var color = leg.getProperty('color');
+		if (color) {
+			var rgb = Saillog.util.hexToRgb(color);
 			element.css('border-left', '4px solid ' + rgb.toRgba(0.5));
 		}
 

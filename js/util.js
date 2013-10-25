@@ -100,6 +100,13 @@ Saillog.util = {
 		return time.getHours() + ':' + (minutes < 10 ? '0' : '') + minutes;
 	},
 
+	formatDate: function formatDate(date) {
+		if (!(date instanceof Date)) {
+			date = new Date(date);
+		}
+		return date.getDay() + '-' + date.getMonth();
+	},
+
 	timeDiff: function timeDiff(a, b) {
 		return Math.abs(new Date(a) - new Date(b)) / 1000;
 	},
