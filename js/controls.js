@@ -38,8 +38,7 @@ Saillog.Control = L.Control.extend({
 
 		this._story.each(function (leg) {
 			if (leg.getProperty('date')) {
-				var type = leg.geometry ? leg.geometry.type : null;
-				this.addLeg(leg, type);
+				this.addLeg(leg);
 			}
 		}, this);
 
@@ -252,7 +251,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 		var duration = leg.duration || this.options.speed * leg.getProperty('distance') * (60);
 
-		var left = this._times.offset(leg.startTime) * this._times.pps;
+		var left = this._times.offset(leg.getProperty('startTime')) * this._times.pps;
 		var width = duration * this._times.pps;
 
 		return {
@@ -262,7 +261,8 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		};
 	},
 
-	addLeg: function (leg, type) {
+	addLeg: function (leg) {
+		var type = leg.getType();
 		if (!type || type === 'Point') {
 			return;
 		}
@@ -270,9 +270,9 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 		var item = $('<div class="leg"></div>')
 			.data({legId: leg.id})
-			.attr('title', leg.title + ' ' +
-				Saillog.util.formatTime(leg.startTime) + ' - ' +
-				Saillog.util.formatTime(leg.endTime))
+			.attr('title', leg.getProperty('title') + ' ' +
+				Saillog.util.formatTime(leg.getProperty('startTime')) + ' - ' +
+				Saillog.util.formatTime(leg.getProperty('endTime')))
 			.css(this._legCss(leg));
 
 		item.appendTo(reel);
