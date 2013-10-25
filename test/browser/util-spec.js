@@ -13,7 +13,7 @@ describe('util', function () {
 
 		it('prefixes image urls', function () {
 			marked('![](image.jpg)').should.eql(
-				'<p><img src="data/image.jpg" class="thumb" /></p>\n'
+				'<p><img src="data/image.jpg" class="thumb side-thumb" title="" /></p>\n'
 			);
 		});
 	});

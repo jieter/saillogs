@@ -28,7 +28,8 @@
     "grunt-contrib-copy": "~0.4.1",
     "geojsonhint": "~0.1.5",
     "sinon": "~1.7.3",
-    "chai": "~1.8.0"
+    "chai": "~1.8.0",
+    "sinon-chai": "~2.4.0"
   },
   "scripts": {
     "test": "mocha -R spec",

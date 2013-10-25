@@ -1,5 +1,7 @@
 'use strict';
 
+var delta = 0.1;
+
 var json = {
 	id: 'test-story',
 	type: 'FeatureCollection',
@@ -66,31 +68,30 @@ describe('Saillog.Story', function () {
 		});
 
 		it('gets default properties', function () {
-
 			story.properties.should.contain.key('description', 'title', 'average');
 		});
-
-		it('adds distance to the properties of LineStrings', function () {
-			var legs = story.getLegs();
-			for (var id in legs) {
-				var properties = story.getProperties(id);
-
-				if (legs[id].geometry && legs[id].geometry.type === 'LineString') {
-					properties.should.contain.keys('distance', 'duration');
-				} else {
-					properties.should.not.contain.key('distance', 'duration');
-				}
-			}
-		});
 	});
-
 
 	describe('getTimes()', function () {
 		it('should report the correct timespan', function () {
 			var times = story.getTimes();
+
 			times.start.should.eql('2013-08-29T00:00:00');
 			times.end.should.eql('2013-09-02T13:39:00');
 			times.span.should.eql(394740);
+		});
+	});
+
+	describe('each()', function () {
+		it('iterates over each leg', function () {
+			var count = 0;
+
+			story.each(function (leg) {
+				leg.should.be.an.instanceof(Saillog.Leg);
+				count++;
+			});
+
+			count.should.equal(story.length());
 		});
 	});
 
@@ -98,8 +99,8 @@ describe('Saillog.Story', function () {
 		it('should add a leg', function () {
 			var id = story.addLeg();
 
-			var leg = story.getLegs()[id];
-			leg.should.contain.keys('type', 'properties');
+			var leg = story.getLeg(id);
+			leg.getType().should.eql('text');
 			leg.properties.should.contain.keys('title', 'date', 'text', 'color');
 		});
 	});
@@ -114,28 +115,51 @@ describe('Saillog.Story', function () {
 	});
 
 	describe('replaceLayer', function () {
-		it('should add replace the geometry', function () {
-			var id = story.addLeg({
+		var id, leg;
+
+		beforeEach(function () {
+			id = story.addLeg({
 				type: 'Feature',
 				geometry: {
 					type: 'Point',
 					coordinates: [1, 1]
 				},
 				properties: {
-					title: 'testPoint'
+					title: 'testPoint',
+					date: '2013-10-25'
 				}
 			});
+			leg = story.getLeg(id);
+		});
+
+		it('should replace the Point with a Point', function () {
+			leg.getType().should.equal('Point');
 
 			var newLayer = L.marker([2, 2]);
-
 			story.replaceLayer(id, newLayer).should.equal(story);
 
-			var latlng = story.getLayer(id).getLatLng();
+			leg.getType().should.equal('Point');
 
+			story.getLeg(id).id.should.equal(id);
+			L.stamp(story.getLeg(id).layer).should.equal(id);
+
+			var latlng = story.getLayer(id).getLatLng();
 			latlng.lat.should.equal(2);
 			latlng.lng.should.equal(2);
 		});
 
+		it('should replace the Point with a LineString', function () {
+			leg.getType().should.equal('Point');
+
+			var newLayer = L.polyline([[1, 1], [2, 2], [3, 3]]);
+			story.replaceLayer(id, newLayer).should.equal(story);
+
+			leg.getType().should.equal('LineString');
+
+			L.stamp(story.getLeg(id).layer).should.equal(id);
+
+			leg.getProperty('distance').should.be.closeTo(170, delta);
+		});
 	});
 
 	describe('getProperties', function () {
@@ -143,23 +167,10 @@ describe('Saillog.Story', function () {
 			var props = story.getProperties();
 			props.should.contain.keys('description', 'title', 'average');
 		});
-		it('returns leg properties when called with id ', function () {
-			var legs = story.getLegs();
-			for (var id in legs) {
-				var props = story.getProperties(id);
-
-				props.should.equal(legs[id].properties);
-				props.should.contain.keys('id', 'title');
-				if (legs[id].geometry) {
-					props.should.contain.keys('startTime', 'duration', 'endTime');
-				}
-			}
-		});
 	});
 
 	describe('setProperties', function () {
 		it('sets properties for story');
-		it('sets properties for legs');
 		it('returns this');
 	});
 
