@@ -154,6 +154,7 @@ Saillog.App = L.Class.extend({
 	},
 
 	_highlight: function (id) {
+		console.log(id);
 		[
 			this._story,
 			this.storyWidget,

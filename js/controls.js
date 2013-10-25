@@ -37,9 +37,9 @@ Saillog.Control = L.Control.extend({
 		}
 
 		this._story.each(function (leg) {
-			if (leg.properties.date) {
+			if (leg.getProperty('date')) {
 				var type = leg.geometry ? leg.geometry.type : null;
-				this.addLeg(leg.properties, type);
+				this.addLeg(leg, type);
 			}
 		}, this);
 
@@ -81,13 +81,13 @@ Saillog.Control.Calendar = Saillog.Control.extend({
 	addLeg: function (leg) {
 		var container = this.container();
 
-		var parts = leg.date.split('-');
+		var parts = leg.getProperty('date').split('-');
 		var date = new Date(parts[0], parts[1] - 1, parts[2]);
 		var day = parseInt(parts[2], 10);
 
 		var item = $('<div class="leg"></div>')
 			.data({'legId': leg.id})
-			.attr('title', leg.title)
+			.attr('title', leg.getProperty('title'))
 			.html(day);
 
 		var diff = null;
@@ -241,16 +241,16 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	},
 
 	show: function () {
-		if (this._story.properties.showTimeline) {
+		if (this._story.getProperty('showTimeline')) {
 			return Saillog.Control.prototype.show.call(this);
 		}
 		return this;
 	},
 
 	_legCss: function (leg) {
-		var color = Saillog.util.hexToRgb(leg.color);
+		var color = Saillog.util.hexToRgb(leg.getProperty('color'));
 
-		var duration = leg.duration || this.options.speed * leg.distance * (60);
+		var duration = leg.duration || this.options.speed * leg.getProperty('distance') * (60);
 
 		var left = this._times.offset(leg.startTime) * this._times.pps;
 		var width = duration * this._times.pps;

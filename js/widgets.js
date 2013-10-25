@@ -91,7 +91,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		var container = this._container;
 		var story = this._data;
 
-		var title = $('<h1></h1>').html(story.properties.title).appendTo(container);
+		var title = $('<h1></h1>').html(story.getProperty('title')).appendTo(container);
 
 		if (this.isAuthorized) {
 			$('<span class="edit hidden"><i class="icon-edit-sign"></i></span>')
@@ -104,8 +104,8 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		}
 
 		story.each(function (leg) {
-			this._renderLeg(leg.properties)
-				.attr('id', 'leg-story-' + leg.properties.id)
+			this._renderLeg(leg.getProperties())
+				.attr('id', 'leg-story-' + leg.id)
 				.appendTo(container);
 		}, this);
 

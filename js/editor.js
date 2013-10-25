@@ -21,7 +21,7 @@ Saillog.Editor = {
 
 			this._editorWidget =
 				new Saillog.Widget.LegMetadataEditor(this.sidebar)
-					.update(story.getProperties(id));
+					.update(story.getLeg(id).getProperties());
 
 			this._startMapEditor();
 		}

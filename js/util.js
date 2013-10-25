@@ -35,9 +35,9 @@ marked.InlineLexer.prototype.outputLink = function (cap, link) {
 		return '<a href="' + href + title + '>'	+ this.output(body) + '</a>';
 	} else {
 		// images get prefixed.
-		return L.Util.template('<img src="{href}" {alt} class="{className}" title="{title}" />', {
+		return L.Util.template('<img src="{href}"{alt} class="{className}" title="{title}" />', {
 			href: href = Saillog.util.imagePrefix + href,
-			alt: body ? ' alt="' + body	+ '"' : '',
+			alt: body ? 'alt="' + body	+ '"' : '',
 			className: 'thumb ' +  (link.title === 'inline' ? ' inline-thumb' : 'side-thumb'),
 			title: link.title === 'inline' ? body : title
 		});
