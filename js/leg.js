@@ -101,7 +101,6 @@ Saillog.Leg = Saillog.Model.extend({
 			break;
 		case 'duration':
 			if (this.hasProperty('startTime') && this.hasProperty('endTime')) {
-				console.log('foo');
 				return Saillog.util.timeDiff(
 					this.getProperty('startTime'),
 					this.getProperty('endTime')

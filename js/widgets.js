@@ -182,8 +182,9 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 			element.prepend('<div class="date">' + Saillog.util.formatDate(date) + '</div>');
 		}
 
-		if (leg.text !== undefined) {
-			element.append(marked(leg.text));
+		var text = leg.getProperty('text');
+		if (text !== undefined) {
+			element.append(marked(text));
 		}
 
 		var color = leg.getProperty('color');

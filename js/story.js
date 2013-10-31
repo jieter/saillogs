@@ -171,7 +171,6 @@ Saillog.Story = Saillog.Model.extend({
 	},
 
 	highlight: function (id) {
-		var self = this;
 		this.each(function (leg) {
 			if (id !== undefined && leg.id === id) {
 				leg.highlight();

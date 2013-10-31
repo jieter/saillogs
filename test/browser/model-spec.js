@@ -15,8 +15,30 @@ describe('Saillog.Model', function () {
 			bar: 'baz'
 		};
 
-		it('getProperty', function () {
-			model.getProperty('foo').should.equal('bar');
+		describe('hasProperty', function () {
+			it('has properties', function () {
+				model.hasProperty('foo').should.be.true;
+				model.hasProperty('bar').should.be.true;
+			});
+
+			it('does not have properties', function () {
+				model.hasProperty('cats').should.be.false;
+				model.hasProperty('dogs').should.be.false;
+			});
+		});
+
+		describe('getProperty', function () {
+			it('returns the value', function () {
+				model.getProperty('foo').should.equal('bar');
+			});
+
+			it('Throws an exception for non-existant keys', function () {
+				var foo = function () {
+					model.getProperty('cavia');
+				};
+
+				foo.should.throw;
+			});
 		});
 
 		describe('setProperty', function () {

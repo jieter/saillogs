@@ -162,16 +162,11 @@ describe('Saillog.Story', function () {
 		});
 	});
 
-	describe('getProperties', function () {
+	describe('properties', function () {
 		it('returns story properties without arg', function () {
 			var props = story.getProperties();
 			props.should.contain.keys('description', 'title', 'average');
 		});
-	});
-
-	describe('setProperties', function () {
-		it('sets properties for story');
-		it('returns this');
 	});
 
 	describe('emptyStory', function () {
