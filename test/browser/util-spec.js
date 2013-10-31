@@ -108,8 +108,8 @@ describe('util', function () {
 				// leap day.
 				date('2012-02-29').should.equal('29-2');
 				date('2014-02-29').should.equal('1-3');
-			})
-		})
+			});
+		});
 	});
 
 

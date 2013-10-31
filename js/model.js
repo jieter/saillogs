@@ -58,7 +58,7 @@ Saillog.Model = L.Class.extend({
 						self.getProperty(parts[0])
 					);
 				}
-				throw Error('unknown formatter');
+				throw 'unknown formatter';
 			} else {
 				return self.getProperty(key);
 			}
