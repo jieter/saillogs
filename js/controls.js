@@ -262,11 +262,9 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	},
 
 	addLeg: function (leg) {
-		var type = leg.getType();
-		if (type !== 'LineString') {
+		if (leg.getType() !== 'LineString') {
 			return;
 		}
-		var reel = $(this._reel);
 
 		var item = $('<div class="leg"></div>')
 			.data({legId: leg.id})
@@ -275,7 +273,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 				Saillog.util.formatTime(leg.getProperty('endTime')))
 			.css(this._legCss(leg));
 
-		item.appendTo(reel);
+		item.appendTo(this._reel);
 	}
 });
 
