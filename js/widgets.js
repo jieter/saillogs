@@ -178,7 +178,6 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 
 		var date = leg.getProperty('date');
 		if (date) {
-
 			element.prepend('<div class="date">' + Saillog.util.formatDate(date) + '</div>');
 		}
 

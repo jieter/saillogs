@@ -263,7 +263,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 	addLeg: function (leg) {
 		var type = leg.getType();
-		if (!type || type === 'Point') {
+		if (type !== 'LineString') {
 			return;
 		}
 		var reel = $(this._reel);
