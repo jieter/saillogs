@@ -136,29 +136,4 @@ Saillog.Leg = Saillog.Model.extend({
 
 		return style;
 	}
-
-/*
-	if (!leg) {
-			leg = {
-				type: 'Feature',
-				properties: {}
-			};
-		} else {
-			leg.properties._isSaved = true;
-		}
-
-		if (leg.geometry) {
-			leg.layer = this._makeLayer(leg);
-
-			this.layer.addLayer(leg.layer);
-		}
-		leg.properties.id =  L.stamp(leg.layer || {});
-
-		this._augmentLegProperties(leg);
-
-		this.legs[leg.properties.id] = leg;
-		return leg.properties.id;
-	},
-*/
-
 });

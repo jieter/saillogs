@@ -8,12 +8,16 @@ describe('Saillog.Model', function () {
 
 
 	describe('Constructing it without args', function () {
-		var model = new Saillog.Model();
+		var model;
 
-		model.properties = {
-			foo: 'bar',
-			bar: 'baz'
-		};
+		beforeEach(function () {
+			model = new Saillog.Model();
+
+			model.properties = {
+				foo: 'bar',
+				bar: 'baz'
+			};
+		});
 
 		describe('hasProperty', function () {
 			it('has properties', function () {
@@ -55,6 +59,19 @@ describe('Saillog.Model', function () {
 				model.setProperty('foo', 'cheese');
 
 				spy.should.have.been.calledOnce;
+			});
+		});
+
+		describe('template', function () {
+			it('replaces properties in string', function () {
+				model.template('test {foo}, {bar}').should.eql('test bar, baz');
+			});
+
+			it('formats replaced strings', function () {
+				model.setProperty('test', '2013-08-28T18:10:00');
+
+				//TODO fix timezone assumption
+				model.template('test {test|time}').should.equal('test 20:10');
 			});
 		});
 	});

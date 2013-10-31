@@ -79,32 +79,34 @@ Saillog.util = {
 		);
 	},
 
-	formatDistance: function formatDistance(distance) {
-		distance = L.Util.formatNum(distance, 1).toString().split('.');
-		if (!distance[1]) {
-			distance[1] = 0;
+	format: {
+		distance: function formatDistance(distance) {
+			distance = L.Util.formatNum(distance, 1).toString().split('.');
+			if (!distance[1]) {
+				distance[1] = 0;
+			}
+			return distance.join('.');
+		},
+
+		duration: function formatDuration(seconds) {
+			var HOUR = 60 * 60;
+			var hours = Math.floor(seconds / HOUR);
+			var minutes = Math.floor((seconds - hours * HOUR) / 60);
+			return hours + ':' + (minutes < 10 ? '0' : '') + minutes;
+		},
+
+		time: function formatTime(time) {
+			time = new Date(time);
+			var minutes = time.getMinutes();
+			return time.getHours() + ':' + (minutes < 10 ? '0' : '') + minutes;
+		},
+
+		date: function formatDate(date) {
+			if (!(date instanceof Date)) {
+				date = new Date(date);
+			}
+			return date.getDate() + '-' + (date.getMonth() + 1);
 		}
-		return distance.join('.');
-	},
-
-	formatDuration: function formatDuration(seconds) {
-		var HOUR = 60 * 60;
-		var hours = Math.floor(seconds / HOUR);
-		var minutes = Math.floor((seconds - hours * HOUR) / 60);
-		return hours + ':' + (minutes < 10 ? '0' : '') + minutes;
-	},
-
-	formatTime: function formatTime(time) {
-		time = new Date(time);
-		var minutes = time.getMinutes();
-		return time.getHours() + ':' + (minutes < 10 ? '0' : '') + minutes;
-	},
-
-	formatDate: function formatDate(date) {
-		if (!(date instanceof Date)) {
-			date = new Date(date);
-		}
-		return date.getDay() + '-' + date.getMonth();
 	},
 
 	timeDiff: function timeDiff(a, b) {

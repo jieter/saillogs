@@ -268,9 +268,7 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 
 		var item = $('<div class="leg"></div>')
 			.data({legId: leg.id})
-			.attr('title', leg.getProperty('title') + ' ' +
-				Saillog.util.formatTime(leg.getProperty('startTime')) + ' - ' +
-				Saillog.util.formatTime(leg.getProperty('endTime')))
+			.attr('title', leg.template('{title} {startTime|time} - {endTime|time}'))
 			.css(this._legCss(leg));
 
 		item.appendTo(this._reel);

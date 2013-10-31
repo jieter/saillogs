@@ -64,39 +64,52 @@ describe('util', function () {
 	});
 
 	describe('formatters', function () {
-		describe('formatDistance', function () {
-			var formatDistance = Saillog.util.formatDistance;
+		describe('distance', function () {
+			var distance = Saillog.util.format.distance;
 
 			it('formats numbers with one decimal', function () {
-				formatDistance(4.1234).should.eql('4.1');
-				formatDistance(0.8).should.eql('0.8');
-				formatDistance(1.004).should.eql('1.0');
+				distance(4.1234).should.eql('4.1');
+				distance(0.8).should.eql('0.8');
+				distance(1.004).should.eql('1.0');
 			});
 		});
 
-		describe('formatDuration', function () {
+		describe('duration', function () {
 			var HOUR = 60 * 60;
-			var formatDuration = Saillog.util.formatDuration;
+			var duration = Saillog.util.format.duration;
 
 			it('formats seconds to hours:minutes', function () {
-				formatDuration(1).should.eql('0:00');
-				formatDuration(60).should.eql('0:01');
-				formatDuration(HOUR).should.eql('1:00');
-				formatDuration(HOUR * 3.5).should.eql('3:30');
-				formatDuration(HOUR * 46.25).should.eql('46:15');
+				duration(1).should.eql('0:00');
+				duration(60).should.eql('0:01');
+				duration(HOUR).should.eql('1:00');
+				duration(HOUR * 3.5).should.eql('3:30');
+				duration(HOUR * 46.25).should.eql('46:15');
 
 			});
 		});
 
-		describe('formatTime', function () {
-			var formatTime = Saillog.util.formatTime;
+		describe('time', function () {
+			var time = Saillog.util.format.time;
 
 			it('formats hh:mm for from dates', function () {
-				formatTime(0).should.equal('1:00');
-				formatTime('2011-10-21T18:00:00').should.equal('20:00');
-				formatTime('2011-10-21T18:12:00').should.equal('20:12');
+				time(0).should.equal('1:00');
+				time('2011-10-21T18:00:00').should.equal('20:00');
+				time('2011-10-21T18:12:00').should.equal('20:12');
 			});
 		});
+
+		describe('date', function () {
+			var date = Saillog.util.format.date;
+
+			it('formats d-m from dates', function () {
+
+				date('2012-06-18').should.equal('18-6');
+
+				// leap day.
+				date('2012-02-29').should.equal('29-2');
+				date('2014-02-29').should.equal('1-3');
+			})
+		})
 	});
 
 

@@ -164,21 +164,20 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		var distance = leg.getProperty('distance');
 		if (distance) {
 			var tooltip = 'gevaren ';
-			var duration = leg.getProperty('duration');
-			if (duration) {
-				tooltip += 'in ' + Saillog.util.formatDuration(duration) + ' uur';
+
+			if (leg.getProperty('duration')) {
+				tooltip += leg.template('in {duration|duration} uur');
 			}
-			var average = leg.getProperty('avg_sog');
-			if (average) {
-				tooltip += ', met een gemiddelde snelheid van ' + average + 'kts';
+			if (leg.getProperty('avg_sog')) {
+				tooltip += leg.template(', met een gemiddelde snelheid van {avg_sog}kts');
 			}
-			title.append('<span class="distance" title="' + tooltip + '">' +
-				Saillog.util.formatDistance(distance) + ' NM</span>');
+			title.append(
+				leg.template('<span class="distance" title="' + tooltip + '">{distance|distance} NM</span>')
+			);
 		}
 
-		var date = leg.getProperty('date');
-		if (date) {
-			element.prepend('<div class="date">' + Saillog.util.formatDate(date) + '</div>');
+		if (leg.getProperty('date')) {
+			element.prepend(leg.template('<div class="date">{date|date}</div>'));
 		}
 
 		var text = leg.getProperty('text');
