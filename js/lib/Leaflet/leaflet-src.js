@@ -137,10 +137,10 @@ L.Util = {
 
 	compileTemplate: function (str, data) {
 		// based on https://gist.github.com/padolsey/6008842
-		str = str.replace(/"/g, '\\\"');
-		str = str.replace(/\{ *([\w_]+) *\}/g, function (str, key) {
-			return '" + o["' + key + '"]' + (typeof data[key] === 'function' ? '(o)' : '') + ' + "';
-		});
+		str = str.replace(/"/g, '\\\"')
+			     .replace(/\{ *([\w_]+) *\}/g, function (str, key) {
+					return '" + o["' + key + '"]' + (typeof data[key] === 'function' ? '(o)' : '') + ' + "';
+				});
 		// jshint evil: true
 		return new Function('o', 'return "' + str + '";');
 	},
@@ -341,7 +341,7 @@ L.Mixin.Events = {
 		if (L.Util.invokeEach(types, this.addEventListener, this, fn, context)) { return this; }
 
 		var events = this[eventsKey] = this[eventsKey] || {},
-		    contextId = context && L.stamp(context),
+		    contextId = context && context !== this && L.stamp(context),
 		    i, len, event, type, indexKey, indexLenKey, typeIndex;
 
 		// types can be a string of space-separated words
@@ -354,7 +354,7 @@ L.Mixin.Events = {
 			};
 			type = types[i];
 
-			if (context) {
+			if (contextId) {
 				// store listeners of a particular context in a separate hash (if it has an id)
 				// gives a major performance boost when removing thousands of map layers
 
@@ -401,7 +401,7 @@ L.Mixin.Events = {
 		if (L.Util.invokeEach(types, this.removeEventListener, this, fn, context)) { return this; }
 
 		var events = this[eventsKey],
-		    contextId = context && L.stamp(context),
+		    contextId = context && context !== this && L.stamp(context),
 		    i, len, type, listeners, j, indexKey, indexLenKey, typeIndex, removed;
 
 		types = L.Util.splitWords(types);
@@ -417,9 +417,10 @@ L.Mixin.Events = {
 				// clear all listeners for a type if function isn't specified
 				delete events[type];
 				delete events[indexKey];
+				delete events[indexLenKey];
 
 			} else {
-				listeners = context && typeIndex ? typeIndex[contextId] : events[type];
+				listeners = contextId && typeIndex ? typeIndex[contextId] : events[type];
 
 				if (listeners) {
 					for (j = listeners.length - 1; j >= 0; j--) {
@@ -462,7 +463,7 @@ L.Mixin.Events = {
 			listeners = events[type].slice();
 
 			for (i = 0, len = listeners.length; i < len; i++) {
-				listeners[i].action.call(listeners[i].context || this, event);
+				listeners[i].action.call(listeners[i].context, event);
 			}
 		}
 
@@ -474,7 +475,7 @@ L.Mixin.Events = {
 
 			if (listeners) {
 				for (i = 0, len = listeners.length; i < len; i++) {
-					listeners[i].action.call(listeners[i].context || this, event);
+					listeners[i].action.call(listeners[i].context, event);
 				}
 			}
 		}
@@ -522,6 +523,7 @@ L.Mixin.Events.fire = L.Mixin.Events.fireEvent;
 	    phantomjs = ua.indexOf('phantom') !== -1,
 	    android = ua.indexOf('android') !== -1,
 	    android23 = ua.search('android [23]') !== -1,
+		gecko = ua.indexOf('gecko') !== -1,
 
 	    mobile = typeof orientation !== undefined + '',
 	    msPointer = window.navigator && window.navigator.msPointerEnabled &&
@@ -578,6 +580,7 @@ L.Mixin.Events.fire = L.Mixin.Events.fireEvent;
 		ie7: ie7,
 		ielt9: ielt9,
 		webkit: webkit,
+		gecko: gecko && !webkit && !window.opera && !ie,
 
 		android: android,
 		android23: android23,
@@ -888,8 +891,7 @@ L.DomUtil = {
 		    el = element,
 		    docBody = document.body,
 		    docEl = document.documentElement,
-		    pos,
-		    ie7 = L.Browser.ie7;
+		    pos;
 
 		do {
 			top  += el.offsetTop  || 0;
@@ -935,19 +937,6 @@ L.DomUtil = {
 
 			top  -= el.scrollTop  || 0;
 			left -= el.scrollLeft || 0;
-
-			// webkit (and ie <= 7) handles RTL scrollLeft different to everyone else
-			// https://code.google.com/p/closure-library/source/browse/trunk/closure/goog/style/bidi.js
-			if (!L.DomUtil.documentIsLtr() && (L.Browser.webkit || ie7)) {
-				left += el.scrollWidth - el.clientWidth;
-
-				// ie7 shows the scrollbar by default and provides clientWidth counting it, so we
-				// need to add it back in if it is visible; scrollbar is on the left as we are RTL
-				if (ie7 && L.DomUtil.getStyle(el, 'overflow-y') !== 'hidden' &&
-				           L.DomUtil.getStyle(el, 'overflow') !== 'hidden') {
-					left += 17;
-				}
-			}
 
 			el = el.parentNode;
 		} while (el);
@@ -2924,6 +2913,11 @@ L.TileLayer = L.Class.extend({
 
 		this._adjustTilePoint(tilePoint);
 		tile.src     = this.getTileUrl(tilePoint);
+
+		this.fire('tileloadstart', {
+			tile: tile,
+			url: tile.src
+		});
 	},
 
 	_tileLoaded: function () {
@@ -3027,7 +3021,9 @@ L.TileLayer.WMS = L.TileLayer.extend({
 
 		this._crs = this.options.crs || map.options.crs;
 
-		var projectionKey = parseFloat(this.wmsParams.version) >= 1.3 ? 'crs' : 'srs';
+		this._wmsVersion = parseFloat(this.wmsParams.version);
+
+		var projectionKey = this._wmsVersion >= 1.3 ? 'crs' : 'srs';
 		this.wmsParams[projectionKey] = this._crs.code;
 
 		L.TileLayer.prototype.onAdd.call(this, map);
@@ -3043,7 +3039,9 @@ L.TileLayer.WMS = L.TileLayer.extend({
 
 		    nw = this._crs.project(map.unproject(nwPoint, tilePoint.z)),
 		    se = this._crs.project(map.unproject(sePoint, tilePoint.z)),
-		    bbox = [nw.x, se.y, se.x, nw.y].join(','),
+		    bbox = this._wmsVersion >= 1.3 && this._crs === L.CRS.EPSG4326 ?
+		        [se.y, nw.x, nw.y, se.x].join(',') :
+		        [nw.x, se.y, se.x, nw.y].join(','),
 
 		    url = L.Util.template(this._url, {s: this._getSubdomain(tilePoint)});
 
@@ -3844,7 +3842,6 @@ L.Popup = L.Class.extend({
 		if (!this._container) {
 			this._initLayout();
 		}
-		this._updateContent();
 
 		var animFade = map.options.fadeAnimation;
 
@@ -5932,6 +5929,10 @@ L.CircleMarker = L.Circle.extend({
 	setRadius: function (radius) {
 		this.options.radius = this._radius = radius;
 		return this.redraw();
+	},
+
+	getRadius: function () {
+		return this._radius;
 	}
 });
 
@@ -6470,11 +6471,14 @@ L.DomEvent = {
 	},
 
 	getMousePosition: function (e, container) {
-
-		var ie7 = L.Browser.ie7,
-		    body = document.body,
+		var body = document.body,
 		    docEl = document.documentElement,
-		    x = e.pageX ? e.pageX - body.scrollLeft - docEl.scrollLeft: e.clientX,
+		    //gecko makes scrollLeft more negative as you scroll in rtl, other browsers don't
+			//ref: https://code.google.com/p/closure-library/source/browse/closure/goog/style/bidi.js
+			x = L.DomUtil.documentIsLtr() ?
+					(e.pageX ? e.pageX - body.scrollLeft - docEl.scrollLeft : e.clientX) :
+						(L.Browser.gecko ? e.pageX - body.scrollLeft - docEl.scrollLeft :
+						 e.pageX ? e.pageX - body.scrollLeft + docEl.scrollLeft : e.clientX),
 		    y = e.pageY ? e.pageY - body.scrollTop - docEl.scrollTop: e.clientY,
 		    pos = new L.Point(x, y);
 
@@ -6485,19 +6489,6 @@ L.DomEvent = {
 		var rect = container.getBoundingClientRect(),
 		    left = rect.left - container.clientLeft,
 		    top = rect.top - container.clientTop;
-
-		// webkit (and ie <= 7) handles RTL scrollLeft different to everyone else
-		// https://code.google.com/p/closure-library/source/browse/trunk/closure/goog/style/bidi.js
-		if (!L.DomUtil.documentIsLtr() && (L.Browser.webkit || ie7)) {
-			left += container.scrollWidth - container.clientWidth;
-
-			// ie7 shows the scrollbar by default and provides clientWidth counting it, so we
-			// need to add it back in if it is visible; scrollbar is on the left as we are RTL
-			if (ie7 && L.DomUtil.getStyle(container, 'overflow-y') !== 'hidden' &&
-			           L.DomUtil.getStyle(container, 'overflow') !== 'hidden') {
-				left += 17;
-			}
-		}
 
 		return pos._subtract(new L.Point(left, top));
 	},
@@ -7269,7 +7260,8 @@ L.extend(L.DomEvent, {
  */
 
 L.Map.mergeOptions({
-	touchZoom: L.Browser.touch && !L.Browser.android23
+	touchZoom: L.Browser.touch && !L.Browser.android23,
+	bounceAtZoomLimits: true
 });
 
 L.Map.TouchZoom = L.Handler.extend({
@@ -7321,6 +7313,11 @@ L.Map.TouchZoom = L.Handler.extend({
 		this._delta = p1._add(p2)._divideBy(2)._subtract(this._startCenter);
 
 		if (this._scale === 1) { return; }
+
+		if (!map.options.bounceAtZoomLimits) {
+			if ((map.getZoom() === map.getMinZoom() && this._scale < 1) ||
+			    (map.getZoom() === map.getMaxZoom() && this._scale > 1)) { return; }
+		}
 
 		if (!this._moved) {
 			L.DomUtil.addClass(map._mapPane, 'leaflet-touching');
@@ -7905,6 +7902,12 @@ L.Control = L.Class.extend({
 		}
 
 		return this;
+	},
+
+	_refocusOnMap: function () {
+		if (this._map) {
+			this._map.getContainer().focus();
+		}
 	}
 });
 
@@ -8007,7 +8010,8 @@ L.Control.Zoom = L.Control.extend({
 		    .on(link, 'mousedown', stop)
 		    .on(link, 'dblclick', stop)
 		    .on(link, 'click', L.DomEvent.preventDefault)
-		    .on(link, 'click', fn, context);
+		    .on(link, 'click', fn, context)
+		    .on(link, 'click', this._refocusOnMap, context);
 
 		return link;
 	},
@@ -8508,6 +8512,8 @@ L.Control.Layers = L.Control.extend({
 		}
 
 		this._handlingClick = false;
+
+		this._refocusOnMap();
 	},
 
 	_expand: function () {
