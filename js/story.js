@@ -46,8 +46,10 @@ Saillog.Story = Saillog.Model.extend({
 	},
 
 	getLeg: function (id) {
-		var ret;
+		// make sure we are comparing numbers
+		id = id - 0;
 
+		var ret;
 		this.each(function (leg) {
 			if (leg.id === id) {
 				ret = leg;
