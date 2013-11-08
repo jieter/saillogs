@@ -1085,27 +1085,39 @@ L.DomUtil.TRANSITION_END =
         L.DomUtil.TRANSITION + 'End' : 'transitionend';
 
 (function () {
-	var userSelectProperty = L.DomUtil.testProp(
-		['userSelect', 'WebkitUserSelect', 'OUserSelect', 'MozUserSelect', 'msUserSelect']);
+    if ('onselectstart' in document) {
+        L.extend(L.DomUtil, {
+            disableTextSelection: function () {
+                L.DomEvent.on(window, 'selectstart', L.DomEvent.preventDefault);
+            },
+
+            enableTextSelection: function () {
+                L.DomEvent.off(window, 'selectstart', L.DomEvent.preventDefault);
+            }
+        });
+    } else {
+        var userSelectProperty = L.DomUtil.testProp(
+            ['userSelect', 'WebkitUserSelect', 'OUserSelect', 'MozUserSelect', 'msUserSelect']);
+
+        L.extend(L.DomUtil, {
+            disableTextSelection: function () {
+                if (userSelectProperty) {
+                    var style = document.documentElement.style;
+                    this._userSelect = style[userSelectProperty];
+                    style[userSelectProperty] = 'none';
+                }
+            },
+
+            enableTextSelection: function () {
+                if (userSelectProperty) {
+                    document.documentElement.style[userSelectProperty] = this._userSelect;
+                    delete this._userSelect;
+                }
+            }
+        });
+    }
 
 	L.extend(L.DomUtil, {
-		disableTextSelection: function () {
-			L.DomEvent.on(window, 'selectstart', L.DomEvent.preventDefault);
-			if (userSelectProperty) {
-				var style = document.documentElement.style;
-				this._userSelect = style[userSelectProperty];
-				style[userSelectProperty] = 'none';
-			}
-		},
-
-		enableTextSelection: function () {
-			L.DomEvent.off(window, 'selectstart', L.DomEvent.preventDefault);
-			if (userSelectProperty) {
-				document.documentElement.style[userSelectProperty] = this._userSelect;
-				delete this._userSelect;
-			}
-		},
-
 		disableImageDrag: function () {
 			L.DomEvent.on(window, 'dragstart', L.DomEvent.preventDefault);
 		},
@@ -1121,16 +1133,20 @@ L.DomUtil.TRANSITION_END =
  * L.LatLng represents a geographical point with latitude and longitude coordinates.
  */
 
-L.LatLng = function (rawLat, rawLng) { // (Number, Number)
-	var lat = parseFloat(rawLat),
-	    lng = parseFloat(rawLng);
+L.LatLng = function (lat, lng, alt) { // (Number, Number, Number)
+	lat = parseFloat(lat);
+	lng = parseFloat(lng);
 
 	if (isNaN(lat) || isNaN(lng)) {
-		throw new Error('Invalid LatLng object: (' + rawLat + ', ' + rawLng + ')');
+		throw new Error('Invalid LatLng object: (' + lat + ', ' + lng + ')');
 	}
 
 	this.lat = lat;
 	this.lng = lng;
+
+	if (alt !== undefined) {
+		this.alt = parseFloat(alt);
+	}
 };
 
 L.extend(L.LatLng, {
@@ -1195,7 +1211,7 @@ L.latLng = function (a, b) { // (LatLng) or ([Number, Number]) or (Number, Numbe
 	}
 	if (L.Util.isArray(a)) {
 		if (typeof a[0] === 'number' || typeof a[0] === 'string') {
-			return new L.LatLng(a[0], a[1]);
+			return new L.LatLng(a[0], a[1], a[2]);
 		} else {
 			return null;
 		}
@@ -1448,6 +1464,11 @@ L.CRS = {
 
 	scale: function (zoom) {
 		return 256 * Math.pow(2, zoom);
+	},
+
+	getSize: function (zoom) {
+		var s = this.scale(zoom);
+		return L.point(s, s);
 	}
 };
 
@@ -2738,8 +2759,8 @@ L.TileLayer = L.Class.extend({
 			var limit = this._getWrapTileNum();
 
 			// don't load if exceeds world bounds
-			if ((options.noWrap && (tilePoint.x < 0 || tilePoint.x >= limit)) ||
-				tilePoint.y < 0 || tilePoint.y >= limit) { return false; }
+			if ((options.noWrap && (tilePoint.x < 0 || tilePoint.x >= limit.x)) ||
+				tilePoint.y < 0 || tilePoint.y >= limit.y) { return false; }
 		}
 
 		if (options.bounds) {
@@ -2856,8 +2877,9 @@ L.TileLayer = L.Class.extend({
 	},
 
 	_getWrapTileNum: function () {
-		// TODO refactor, limit is not valid for non-standard projections
-		return Math.pow(2, this._getZoomForUrl());
+		var crs = this._map.options.crs,
+		    size = crs.getSize(this._getZoomForUrl());
+		return size.divideBy(this.options.tileSize);
 	},
 
 	_adjustTilePoint: function (tilePoint) {
@@ -2866,11 +2888,11 @@ L.TileLayer = L.Class.extend({
 
 		// wrap tile coordinates
 		if (!this.options.continuousWorld && !this.options.noWrap) {
-			tilePoint.x = ((tilePoint.x % limit) + limit) % limit;
+			tilePoint.x = ((tilePoint.x % limit.x) + limit.x) % limit.x;
 		}
 
 		if (this.options.tms) {
-			tilePoint.y = limit - tilePoint.y - 1;
+			tilePoint.y = limit.y - tilePoint.y - 1;
 		}
 
 		tilePoint.z = this._getZoomForUrl();
@@ -3905,7 +3927,10 @@ L.Popup = L.Class.extend({
 
 	setLatLng: function (latlng) {
 		this._latlng = L.latLng(latlng);
-		this.update();
+		if (this._map) {
+			this._updatePosition();
+			this._adjustPan();
+		}
 		return this;
 	},
 
@@ -4425,11 +4450,10 @@ L.FeatureGroup = L.LayerGroup.extend({
 	},
 
 	_propagateEvent: function (e) {
-		if (!e.layer) {
-			e.layer = e.target;
-		}
-		e.target = this;
-
+		e = L.extend({}, e, {
+			layer: e.target,
+			target: this
+		});
 		this.fire(e.type, e);
 	}
 });
@@ -6174,7 +6198,7 @@ L.extend(L.GeoJSON, {
 	},
 
 	coordsToLatLng: function (coords) { // (Array[, Boolean]) -> LatLng
-		return new L.LatLng(coords[1], coords[0]);
+		return new L.LatLng(coords[1], coords[0], coords[2]);
 	},
 
 	coordsToLatLngs: function (coords, levelsDeep, coordsToLatLng) { // (Array[, Number, Function]) -> Array
@@ -6192,8 +6216,13 @@ L.extend(L.GeoJSON, {
 		return latlngs;
 	},
 
-	latLngToCoords: function (latLng) {
-		return [latLng.lng, latLng.lat];
+	latLngToCoords: function (latlng) {
+		var coords = [latlng.lng, latlng.lat];
+
+		if (latlng.alt !== undefined) {
+			coords.push(latlng.alt);
+		}
+		return coords;
 	},
 
 	latLngsToCoords: function (latLngs) {
@@ -6706,7 +6735,9 @@ L.Draggable = L.Class.extend({
 			// ensure drag is not fired after dragend
 			L.Util.cancelAnimFrame(this._animRequest);
 
-			this.fire('dragend');
+			this.fire('dragend', {
+				distance: this._newPos.distanceTo(this._startPos)
+			});
 		}
 
 		this._moving = false;
@@ -6850,14 +6881,14 @@ L.Map.Drag = L.Handler.extend({
 		this._draggable._newPos.x = newX;
 	},
 
-	_onDragEnd: function () {
+	_onDragEnd: function (e) {
 		var map = this._map,
 		    options = map.options,
 		    delay = +new Date() - this._lastTime,
 
 		    noInertia = !options.inertia || delay > options.inertiaThreshold || !this._positions[0];
 
-		map.fire('dragend');
+		map.fire('dragend', e);
 
 		if (noInertia) {
 			map.fire('moveend');
@@ -7825,10 +7856,10 @@ L.Handler.MarkerDrag = L.Handler.extend({
 		    .fire('drag');
 	},
 
-	_onDragEnd: function () {
+	_onDragEnd: function (e) {
 		this._marker
 		    .fire('moveend')
-		    .fire('dragend');
+		    .fire('dragend', e);
 		L.DomUtil.removeClass(this._marker._icon, 'leaflet-marker-dragging');
 	}
 });
@@ -8378,6 +8409,10 @@ L.Control.Layers = L.Control.extend({
 			else {
 				L.DomEvent.on(link, 'focus', this._expand, this);
 			}
+			//Work around for Firefox android issue https://github.com/Leaflet/Leaflet/issues/2033
+			L.DomEvent.on(form, 'click', function () {
+				setTimeout(L.bind(this._onInputClick, this), 0);
+			}, this);
 
 			this._map.on('click', this._collapse, this);
 			// TODO keyboard accessibility
