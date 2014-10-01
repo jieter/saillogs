@@ -192,6 +192,10 @@ Saillog.App = L.Class.extend({
 	loadStory: function (id, callback) {
 		var app = this;
 
+		if (this._story) {
+			this._map.removeLayer(this._story);
+		}
+
 		$.ajax({
 			url: 'data/' + id + '.geojson',
 			method: 'get',

@@ -1,6 +1,9 @@
 TODO
 ----
 
+
+## bugs
+
 ## Essential
 
  - flash messages in UI
@@ -30,6 +33,7 @@ TODO
 
 ## Done.
 
+ - update color in map after (or during) leg edit.
  - round offsets/widths in timeline control
  - visual representation of legs in time
  - augment properties with some speed/time assumptions

@@ -51,7 +51,7 @@ Saillog.Editor = {
 			}, this)
 			.on({
 				'update-color': function (event) {
-					story.updateColor(id, event.color);
+					story.updateColor(this._edit, event.color);
 				},
 				'change-type': function (event) {
 					this._stopMapEditor();

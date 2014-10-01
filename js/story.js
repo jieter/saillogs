@@ -47,7 +47,7 @@ Saillog.Story = Saillog.Model.extend({
 
 	getLeg: function (id) {
 		// make sure we are comparing numbers
-		id = id - 0;
+		id = +id;
 
 		var ret;
 		this.each(function (leg) {
@@ -141,6 +141,11 @@ Saillog.Story = Saillog.Model.extend({
 		newLayer['_leaflet_id'] = id;
 		leg.setLayer(newLayer);
 
+		return this;
+	},
+
+	updateColor: function (id, color) {
+		this.getLeg(id).updateColor(color);
 		return this;
 	},
 

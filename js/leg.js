@@ -56,6 +56,14 @@ Saillog.Leg = Saillog.Model.extend({
 		return this;
 	},
 
+	updateColor: function (color) {
+		if (this.layer) {
+			this.setProperty('color', color);
+			this.layer.setStyle(this._style());
+		}
+
+	},
+
 	toGeoJSON: function () {
 		var json = {
 			type: 'Feature',
