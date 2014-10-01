@@ -2,7 +2,6 @@ module.exports = function (grunt) {
 	'use strict';
 	var scriptExtractor = require('script-extractor');
 
-
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),

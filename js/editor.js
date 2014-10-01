@@ -84,17 +84,11 @@ Saillog.Editor = {
 		var values = this._editorWidget.values();
 
 		if (id === 'metadata') {
-			story.setProperties(L.extend(
-				{},
-				story.getProperties(),
-				values
-			));
+			story.setProperties(L.extend({}, story.getProperties(), values));
 		} else {
-			story.setProperties(id, L.extend(
-				{},
-				story.getProperties(id),
-				values
-			));
+			var leg = story.getLeg(id);
+
+			leg.setProperties(L.extend({}, leg.getProperties(), values));
 		}
 
 		story.save(function () {
@@ -108,6 +102,7 @@ Saillog.Editor = {
 		this.showStory();
 
 		if (this._edit !== 'metadata') {
+			console.log(this._editLayer);
 			if (this._edit !== undefined) {
 				this._scrollTo(this._edit, 0);
 				delete this._edit;

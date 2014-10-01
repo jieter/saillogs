@@ -19,7 +19,7 @@ Saillog.Model = L.Class.extend({
 	},
 
 	getProperty: function (key) {
-		if (this.properties[key]) {
+		if (this.hasProperty(key)) {
 			return this.properties[key];
 		} else {
 			return this._calculatedProperty(key);

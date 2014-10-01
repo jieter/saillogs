@@ -8,6 +8,12 @@
 	"text": "![Jieter](jieter.jpg) Op deze site is een aantal verhalen te vinden van zeiltochten die ik heb gemaakt. Sommigen zijn compleet met beeldmateriaal en een opgenomen tracklog uit de GPS, anderen zijn slechts voorzien van marginaal commentaar...",
 	"logs": [
 		{
+			"id": "2014-pinksterzeilen",
+			"title": "Pinksterzeilen 2014",
+			"date": "2014-06-05",
+			"visible": false
+		},
+		{
 			"id": "2013-eendracht-papa",
 			"title": "Eendrachttocht 2013",
 			"date": "2013-08-26",

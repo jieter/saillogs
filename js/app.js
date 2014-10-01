@@ -53,10 +53,11 @@ Saillog.App = L.Class.extend({
 				if (hash === '') {
 					app.showIndex();
 				} else {
-					app.loadStory(hash, function (success) {
+					app.loadStory(hash, function (success, err) {
 						if (success) {
 							app.showStory();
 						} else {
+							console.log('Story ' + hash + ' could not be loaded: ' + err);
 							// TODO: notify user.
 							window.location.hash = '#';
 						}
@@ -149,12 +150,10 @@ Saillog.App = L.Class.extend({
 	},
 
 	_legHover: function (event) {
-		var legId = event.legId;
-		this._highlight(legId);
+		this._highlight(event.legId);
 	},
 
 	_highlight: function (id) {
-		console.log(id);
 		[
 			this._story,
 			this.storyWidget,
@@ -202,7 +201,7 @@ Saillog.App = L.Class.extend({
 				callback(true);
 			},
 			error: function () {
-				callback(false);
+				callback(false, 'Not found or parser error');
 			}
 		});
 	}
