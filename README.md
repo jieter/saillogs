@@ -8,6 +8,12 @@ http://jieter.github.io/saillogs/
 ## Start server
 After `npm install` run `grunt`. For the read-only case, every static webserver should work.
 
+## grunt tasks
+
+```
+grunt import-sailplanner:<key>
+```
+
 ## Attribution
  - Leaflet https://github.com/Leaflet/Leaflet
  - Leaflet.draw https://github.com/Leaflet/Leaflet.draw

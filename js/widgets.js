@@ -77,7 +77,7 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 
 		list.on('click', '[data-id]', function () {
 			widget.fire('click-story', {
-				id: +$(this).data('id')
+				id: $(this).data('id')
 			});
 		});
 		return this;
@@ -106,6 +106,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		story.each(function (leg) {
 			this._renderLeg(leg)
 				.attr('id', 'leg-story-' + leg.id)
+				.data('legId', leg.id)
 				.appendTo(container);
 		}, this);
 
@@ -126,7 +127,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 				return;
 			}
 			widget.fire(type + '-leg', {
-				legId: +$(this).attr('id').substr(10)
+				legId: $(this).data('legId')
 			});
 		});
 		return this;
