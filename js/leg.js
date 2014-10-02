@@ -59,7 +59,7 @@ Saillog.Leg = Saillog.Model.extend({
 	updateColor: function (color) {
 		if (this.layer) {
 			this.setProperty('color', color);
-			if (this.getType() == 'LineString') {
+			if (this.getType() === 'LineString') {
 				this.layer.setStyle(this._style());
 			}
 		}

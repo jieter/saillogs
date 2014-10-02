@@ -66,6 +66,18 @@
 			"title": "Zomerzeilen 2009",
 			"date": "2009-07-31",
 			"visible": true
+		},
+		{
+			"id": "2008-dehlerweekeinde",
+			"title": "Dehlerweekeinde 2008",
+			"date": "2008-10-17",
+			"visible": true
+		},
+		{
+			"id": "2008-zomerzeilen",
+			"title": "Zomerzeilen 2008",
+			"date": "2008-07-18",
+			"visible": true
 		}
 	]
 }

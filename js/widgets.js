@@ -188,18 +188,18 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 
 		var color = leg.getProperty('color');
 		switch (leg.getType()) {
-			case 'Point':
-				var markerIcon = $($.parseHTML('<i class="icon-map-marker"></i>&nbsp;'));
-				markerIcon.prependTo(title);
-				if (color) {
-					markerIcon.find('i').css('color', color);
-				}
+		case 'Point':
+			var markerIcon = $($.parseHTML('<i class="icon-map-marker"></i>&nbsp;'));
+			markerIcon.prependTo(title);
+			if (color) {
+				markerIcon.find('i').css('color', color);
+			}
 			break;
-			case 'LineString':
-				if (color) {
-					var rgb = Saillog.util.hexToRgb(color);
-					element.css('border-left', '4px solid ' + rgb.toRgba(0.5));
-				}
+		case 'LineString':
+			if (color) {
+				var rgb = Saillog.util.hexToRgb(color);
+				element.css('border-left', '4px solid ' + rgb.toRgba(0.5));
+			}
 			break;
 		}
 
