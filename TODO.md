@@ -11,6 +11,7 @@ TODO
 
 ## Essential
 
+ - highlight markers (possible switch to something more vectoric)
  - flash messages in UI
 
  - observable pattern?

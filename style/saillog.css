@@ -1659,6 +1659,7 @@ ul.selector li.hidden:after {
   background-color: #999;
   padding: 1px 3px;
   border-radius: 4px;
+  margin-right: 4px;
 }
 ul.selector li:hover {
   background-color: #eee;
@@ -1886,14 +1887,14 @@ ul.selector li:hover {
   margin-bottom: 2px;
   text-align: left;
 }
-#sidebar .leg h3 .distance {
-  float: right;
-  color: #ccc;
-  font-size: 12px;
-}
 #sidebar .leg p {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+#sidebar .distance {
+  float: right;
+  color: #ccc;
+  font-size: 12px;
 }
 #sidebar .youtube {
   white-space: nowrap;

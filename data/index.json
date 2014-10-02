@@ -6,102 +6,112 @@
 	"zoom": 8,
 	"title": "Jieters zeilverslagen",
 	"text": "![Jieter](jieter.jpg) Op deze site is een aantal verhalen te vinden van zeiltochten die ik heb gemaakt. Sommigen zijn compleet met beeldmateriaal en een opgenomen tracklog uit de GPS, anderen zijn slechts voorzien van marginaal commentaar...",
-	"logs": [
-		{
-			"id": "2014-pinksterzeilen",
-			"title": "Pinksterzeilen 2014",
-			"date": "2014-06-05",
-			"visible": false
+	"logs": {
+		"2014-pinksterzeilen": {
+			"date": "2014-06-06",
+			"visible": false,
+			"distance": 113,
+			"title": "Pinksterzeilen-2014"
 		},
-		{
-			"id": "2013-eendracht-papa",
-			"title": "Eendrachttocht 2013",
+		"2013-eendracht-papa": {
 			"date": "2013-08-26",
-			"visible": false
+			"visible": false,
+			"distance": 267,
+			"title": "Eendrachttocht 2013"
 		},
-		{
-			"id": "2013-zomerzeilen",
-			"title": "Zomerzeilen 2013",
-			"date": "2013-07-19",
-			"visible": true
+		"2013-zomerzeilen": {
+			"date": "",
+			"visible": true,
+			"distance": 635,
+			"title": "Zomerzeilen 2013"
 		},
-		{
-			"id": "2013-ouderzeilen",
-			"title": "Ouderzeilen 2013",
-			"date": "2013-05-24",
-			"visible": true
+		"2013-ouderzeilen": {
+			"date": "",
+			"visible": true,
+			"distance": 49,
+			"title": "Ouderszeilen 2013"
 		},
-		{
-			"id": "2012-zomerzeilen",
-			"title": "Zomerzeilen 2012",
+		"2012-zomerzeilen": {
 			"date": "2012-07-27",
-			"visible": true
+			"visible": true,
+			"distance": 297,
+			"title": "Zomerzeilen 2012"
 		},
-		{
-			"id": "2012-pinksterzeilen",
-			"title": "Pinksterzeilen 2012",
+		"2012-pinksterzeilen": {
 			"date": "2012-05-25",
-			"visible": true
+			"visible": true,
+			"distance": 150,
+			"title": "Pinksterzeilen 2012."
 		},
-		{
-			"id": "2011-oktober",
-			"title": "Oktoberzeilen 2011",
+		"2011-oktober": {
 			"date": "2011-10-21",
-			"visible": true
+			"visible": true,
+			"distance": 79,
+			"title": "Oktoberzeiltocht Zeeuwse stromen 2011."
 		},
-		{
-			"id": "2011-zomerzeilen",
-			"title": "Zomerzeilen 2011",
-			"date": "2011-07-01",
-			"visible": true
+		"2011-zomerzeilen": {
+			"date": "",
+			"visible": true,
+			"distance": 1265,
+			"title": "Zomerzeilen 2011."
 		},
-		{
-			"id": "2010-koninginnedagzeilen",
-			"title": "Koninginnedagzeilen 2010",
-			"date": "2010-04-29",
-			"visible": true
+		"2010-koninginnedagzeilen": {
+			"visible": true,
+			"distance": 54,
+			"title": "Winterzeilen 2010"
 		},
-		{
-			"id": "2010-zomerzeilen",
-			"title": "Zomerzeilen 2010",
+		"2010-zomerzeilen": {
 			"date": "2010-07-16",
-			"visible": true
+			"visible": true,
+			"distance": 616,
+			"title": "Vakantie zomer 2010"
 		},
-		{
-			"id": "2009-zomerzeilen",
-			"title": "Zomerzeilen 2009",
+		"2009-zomerzeilen": {
 			"date": "2009-07-31",
-			"visible": true
+			"visible": true,
+			"distance": 648,
+			"title": "Zomerzeilen 2009"
 		},
-		{
-			"id": "2009-vjw-beaufort",
-			"title": "Voorjaarsweekeinde Beaufort 2009",
-			"date": "2009-05-16",
-			"visible": true
+		"2009-vjw-beaufort": {
+			"date": "",
+			"visible": true,
+			"distance": 82,
+			"title": "Voorjaarsweekeinde Beaufort 2009"
 		},
-		{
-			"id": "2008-dehlerweekeinde",
-			"title": "Dehlerweekeinde 2008",
-			"date": "2008-10-17",
-			"visible": true
+		"2008-dehlerweekeinde": {
+			"date": "",
+			"visible": true,
+			"distance": 103,
+			"title": "Dehlerzeilen 2008"
 		},
-		{
-			"id": "2008-zomerzeilen",
-			"title": "Zomerzeilen 2008",
+		"2008-zomerzeilen": {
 			"date": "2008-07-18",
-			"visible": true
+			"visible": true,
+			"distance": 149,
+			"title": "Zomerzeilen 2008"
 		},
-		{
-			"id": "2007-zomerzeilen",
-			"title": "Zomerzeilen 2007",
-			"date": "2007-08-01",
-			"visible": true
+		"2007-zomerzeilen": {
+			"visible": true,
+			"distance": 56,
+			"title": "Zomerzeilen 2007"
 		},
-		{
-			"id": "2007-istanbul-liften",
-			"title": "Liften naar Istanbul 2007",
-			"date": "2007-08-01",
-			"visible": true
+		"2007-istanbul-liften": {
+			"date": "2007-07-24",
+			"visible": true,
+			"distance": 2522,
+			"title": "Liften naar Istanbul 2007"
+		},
+		"2009-zzzw-beaufort": {
+			"visible": false,
+			"date": "2009-07-04",
+			"distance": 85,
+			"title": "ZomerZeilZwerfWeek Beaufort 2009"
+		},
+		"2015-zomer": {
+			"visible": false,
+			"date": "2015-07-07",
+			"distance": 1312,
+			"title": "Zomer 2015?"
 		}
-	]
+	}
 }

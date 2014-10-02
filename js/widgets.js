@@ -58,9 +58,13 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 			if (!log.visible && !Saillog.util.isDev()) {
 				return this;
 			}
-			var item = $('<li data-id="' + log.id + '">' + log.title + '</li>').appendTo(list);
+			var item = $('<li data-id="' + key + '">' + log.title + '</li>').appendTo(list);
 			if (!log.visible) {
 				item.addClass('hidden');
+			}
+			console.log(log.distance);
+			if (log.distance) {
+				item.append('<span class="distance">' + log.distance + 'NM</span>');
 			}
 		});
 
