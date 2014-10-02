@@ -1,10 +1,11 @@
 {
 	"id": "2008-dehlerweekeinde",
 	"properties": {
-		"title": "",
+		"title": "Dehlerzeilen 2008",
 		"description": "",
 		"average": 5,
-		"showTimeline": true
+		"showTimeline": true,
+		"showTrack": false
 	},
 	"features": [
 		{

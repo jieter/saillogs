@@ -94,6 +94,11 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		var title = $('<h1></h1>').html(story.getProperty('title')).appendTo(container);
 
 		if (this.isAuthorized) {
+			if (title.html() === '') {
+				title
+					.addClass('untitled')
+					.append('untitled');
+			}
 			$('<span class="edit hidden"><i class="icon-edit-sign"></i></span>')
 				.on('click', function () {
 					widget.fire('edit-metadata');
