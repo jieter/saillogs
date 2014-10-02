@@ -56,6 +56,12 @@
 			"visible": true
 		},
 		{
+			"id": "2010-koninginnedagzeilen",
+			"title": "Koninginnedagzeilen 2010",
+			"date": "2010-04-29",
+			"visible": true
+		},
+		{
 			"id": "2010-zomerzeilen",
 			"title": "Zomerzeilen 2010",
 			"date": "2010-07-16",
@@ -68,6 +74,12 @@
 			"visible": true
 		},
 		{
+			"id": "2009-vjw-beaufort",
+			"title": "Voorjaarsweekeinde Beaufort 2009",
+			"date": "2009-05-16",
+			"visible": true
+		},
+		{
 			"id": "2008-dehlerweekeinde",
 			"title": "Dehlerweekeinde 2008",
 			"date": "2008-10-17",
@@ -77,6 +89,12 @@
 			"id": "2008-zomerzeilen",
 			"title": "Zomerzeilen 2008",
 			"date": "2008-07-18",
+			"visible": true
+		},
+		{
+			"id": "2007-zomerzeilen",
+			"title": "Zomerzeilen 2007",
+			"date": "2007-08-01",
 			"visible": true
 		}
 	]
