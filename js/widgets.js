@@ -60,7 +60,7 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 			}
 			var item = $('<li data-id="' + log.id + '">' + log.title + '</li>').appendTo(list);
 			if (!log.visible) {
-				item.addClass('disabled');
+				item.addClass('hidden');
 			}
 		});
 

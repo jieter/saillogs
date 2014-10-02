@@ -1652,8 +1652,8 @@ ul.selector li {
   padding: 4px 8px;
   background-color: #f5f5f5;
 }
-ul.selector li.disabled:after {
-  content: 'disabled';
+ul.selector li.hidden:after {
+  content: 'hidden';
   float: right;
   color: white;
   background-color: #999;
