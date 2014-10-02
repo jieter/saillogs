@@ -10,6 +10,7 @@ Saillog.Story = Saillog.Model.extend({
 	},
 
 	initialize: function (story) {
+		story.properties = story.properties || {};
 		Saillog.Model.prototype.initialize.call(this, story.properties);
 
 		var self = this;

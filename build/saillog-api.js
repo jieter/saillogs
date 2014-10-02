@@ -79,7 +79,6 @@ module.exports = function (connect) {
 		}
 	}
 
-	console.log(__dirname + '/../');
 	return [
 		//connect.logger('dev'),
 		connect.static(__dirname + '/../'),
@@ -107,10 +106,10 @@ module.exports = function (connect) {
 
 			router.post('/api/save/:id', function (req, res, next) {
 
-				var id = req.params.id;
+				var id = req.params.id.trim();
 				var json = JSON.parse(req.body.data);
 
-				console.log('API save ' + req.params.id, ', features:', json.features.length);
+				console.log('API save ' + id + ', features: ' + json.features.length);
 				actions.save(id, json, function (err) {
 					reply(res, err, {
 						success: true,

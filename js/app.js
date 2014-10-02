@@ -204,8 +204,9 @@ Saillog.App = L.Class.extend({
 				app._story = new Saillog.Story(response);
 				callback(true);
 			},
-			error: function () {
-				callback(false, 'Not found or parser error');
+			error: function (_, err) {
+
+				callback(false, err);
 			}
 		});
 	}

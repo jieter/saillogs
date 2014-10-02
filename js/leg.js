@@ -5,7 +5,7 @@ Saillog.Leg = Saillog.Model.extend({
 		title: '',
 		text: '',
 		date: '',
-		color: '#ffffff',
+		color: '#000000',
 		average: 5
 	},
 
@@ -59,9 +59,10 @@ Saillog.Leg = Saillog.Model.extend({
 	updateColor: function (color) {
 		if (this.layer) {
 			this.setProperty('color', color);
-			this.layer.setStyle(this._style());
+			if (this.getType() == 'LineString') {
+				this.layer.setStyle(this._style());
+			}
 		}
-
 	},
 
 	toGeoJSON: function () {

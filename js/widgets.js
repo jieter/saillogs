@@ -187,9 +187,20 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		}
 
 		var color = leg.getProperty('color');
-		if (color) {
-			var rgb = Saillog.util.hexToRgb(color);
-			element.css('border-left', '4px solid ' + rgb.toRgba(0.5));
+		switch (leg.getType()) {
+			case 'Point':
+				var markerIcon = $($.parseHTML('<i class="icon-map-marker"></i>&nbsp;'));
+				markerIcon.prependTo(title);
+				if (color) {
+					markerIcon.find('i').css('color', color);
+				}
+			break;
+			case 'LineString':
+				if (color) {
+					var rgb = Saillog.util.hexToRgb(color);
+					element.css('border-left', '4px solid ' + rgb.toRgba(0.5));
+				}
+			break;
 		}
 
 		return element;
@@ -362,6 +373,7 @@ Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
 		this._input('color', 'Color', 'color')
 			.appendTo(editor)
 			.find('input').on('change', function () {
+				console.log('color update', $(this).val());
 				widget.fire('update-color', {
 					color: $(this).val()
 				});
