@@ -1438,7 +1438,8 @@
                 ]
             },
             "properties": {
-                "title": "De planning"
+                "title": "De planning",
+                "text": "Dit is een manier, mogelijk ook zuidelijker over München en Zagreb. We zien het wel..."
             }
         },
         {
@@ -1451,1179 +1452,8 @@
                 ]
             },
             "properties": {
-                "title": "Istanbul"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    20.481262,
-                    44.814968,
-                    0
-                ]
-            },
-            "properties": {
-                "title": "Einde etappe 2"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    11.601563,
-                    49.081062,
-                    0
-                ]
-            },
-            "properties": {
-                "title": "Einde etappe 1"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        12.504984,
-                        42.009563,
-                        0
-                    ],
-                    [
-                        12.504995,
-                        42.010082,
-                        0
-                    ],
-                    [
-                        12.503074,
-                        42.010242,
-                        0
-                    ],
-                    [
-                        12.50227,
-                        42.010902,
-                        0
-                    ],
-                    [
-                        12.503343,
-                        42.013988,
-                        0
-                    ],
-                    [
-                        12.504973,
-                        42.016827,
-                        0
-                    ],
-                    [
-                        12.505102,
-                        42.018757,
-                        0
-                    ],
-                    [
-                        12.504973,
-                        42.020596,
-                        0
-                    ],
-                    [
-                        12.505617,
-                        42.021851,
-                        0
-                    ],
-                    [
-                        12.505317,
-                        42.023281,
-                        0
-                    ],
-                    [
-                        12.50492,
-                        42.024883,
-                        0
-                    ],
-                    [
-                        12.50536,
-                        42.027077,
-                        0
-                    ],
-                    [
-                        12.506433,
-                        42.029564,
-                        0
-                    ],
-                    [
-                        12.506647,
-                        42.032227,
-                        0
-                    ],
-                    [
-                        12.506797,
-                        42.034599,
-                        0
-                    ],
-                    [
-                        12.508063,
-                        42.037189,
-                        0
-                    ],
-                    [
-                        12.508932,
-                        42.038448,
-                        0
-                    ],
-                    [
-                        12.511582,
-                        42.04071,
-                        0
-                    ],
-                    [
-                        12.512709,
-                        42.04166,
-                        0
-                    ],
-                    [
-                        12.516078,
-                        42.043331,
-                        0
-                    ],
-                    [
-                        12.51744,
-                        42.04425,
-                        0
-                    ],
-                    [
-                        12.518309,
-                        42.045944,
-                        0
-                    ],
-                    [
-                        12.519286,
-                        42.047955,
-                        0
-                    ],
-                    [
-                        12.520133,
-                        42.049301,
-                        0
-                    ],
-                    [
-                        12.519972,
-                        42.051308,
-                        0
-                    ],
-                    [
-                        12.520916,
-                        42.05307,
-                        0
-                    ],
-                    [
-                        12.523277,
-                        42.055473,
-                        0
-                    ],
-                    [
-                        12.525959,
-                        42.057835,
-                        0
-                    ],
-                    [
-                        12.529328,
-                        42.059998,
-                        0
-                    ],
-                    [
-                        12.532654,
-                        42.063629,
-                        0
-                    ],
-                    [
-                        12.534177,
-                        42.064953,
-                        0
-                    ],
-                    [
-                        12.533855,
-                        42.06736,
-                        0
-                    ],
-                    [
-                        12.535293,
-                        42.071133,
-                        0
-                    ],
-                    [
-                        12.537031,
-                        42.071804,
-                        0
-                    ],
-                    [
-                        12.538362,
-                        42.073158,
-                        0
-                    ],
-                    [
-                        12.540851,
-                        42.075165,
-                        0
-                    ],
-                    [
-                        12.544885,
-                        42.077332,
-                        0
-                    ],
-                    [
-                        12.548575,
-                        42.078777,
-                        0
-                    ],
-                    [
-                        12.549927,
-                        42.080151,
-                        0
-                    ],
-                    [
-                        12.55379,
-                        42.081406,
-                        0
-                    ],
-                    [
-                        12.5563,
-                        42.082203,
-                        0
-                    ],
-                    [
-                        12.562265,
-                        42.087776,
-                        0
-                    ],
-                    [
-                        12.565269,
-                        42.094147,
-                        0
-                    ],
-                    [
-                        12.576942,
-                        42.097523,
-                        0
-                    ],
-                    [
-                        12.580719,
-                        42.100197,
-                        0
-                    ],
-                    [
-                        12.581835,
-                        42.099304,
-                        0
-                    ],
-                    [
-                        12.581406,
-                        42.100197,
-                        0
-                    ],
-                    [
-                        12.587585,
-                        42.109303,
-                        0
-                    ],
-                    [
-                        12.607498,
-                        42.143169,
-                        0
-                    ],
-                    [
-                        12.618484,
-                        42.163277,
-                        0
-                    ],
-                    [
-                        12.604065,
-                        42.17778,
-                        0
-                    ],
-                    [
-                        12.602005,
-                        42.180832,
-                        0
-                    ],
-                    [
-                        12.60458,
-                        42.196732,
-                        0
-                    ],
-                    [
-                        12.601833,
-                        42.201183,
-                        0
-                    ],
-                    [
-                        12.603378,
-                        42.206905,
-                        0
-                    ],
-                    [
-                        12.592049,
-                        42.223942,
-                        0
-                    ],
-                    [
-                        12.59119,
-                        42.235382,
-                        0
-                    ],
-                    [
-                        12.578487,
-                        42.248852,
-                        0
-                    ],
-                    [
-                        12.556515,
-                        42.256096,
-                        0
-                    ],
-                    [
-                        12.550163,
-                        42.269306,
-                        0
-                    ],
-                    [
-                        12.522182,
-                        42.282516,
-                        0
-                    ],
-                    [
-                        12.501068,
-                        42.288864,
-                        0
-                    ],
-                    [
-                        12.492313,
-                        42.305882,
-                        0
-                    ],
-                    [
-                        12.494717,
-                        42.31134,
-                        0
-                    ],
-                    [
-                        12.489223,
-                        42.321747,
-                        0
-                    ],
-                    [
-                        12.4827,
-                        42.32695,
-                        0
-                    ],
-                    [
-                        12.468452,
-                        42.331139,
-                        0
-                    ],
-                    [
-                        12.466736,
-                        42.337864,
-                        0
-                    ],
-                    [
-                        12.471542,
-                        42.358925,
-                        0
-                    ],
-                    [
-                        12.470684,
-                        42.385555,
-                        0
-                    ],
-                    [
-                        12.466736,
-                        42.391644,
-                        0
-                    ],
-                    [
-                        12.449913,
-                        42.407742,
-                        0
-                    ],
-                    [
-                        12.432404,
-                        42.427639,
-                        0
-                    ],
-                    [
-                        12.421246,
-                        42.435875,
-                        0
-                    ],
-                    [
-                        12.416439,
-                        42.446514,
-                        0
-                    ],
-                    [
-                        12.400303,
-                        42.453102,
-                        0
-                    ],
-                    [
-                        12.39378,
-                        42.463741,
-                        0
-                    ],
-                    [
-                        12.356701,
-                        42.468552,
-                        0
-                    ],
-                    [
-                        12.32975,
-                        42.488174,
-                        0
-                    ],
-                    [
-                        12.293358,
-                        42.509438,
-                        0
-                    ],
-                    [
-                        12.282715,
-                        42.517788,
-                        0
-                    ],
-                    [
-                        12.265205,
-                        42.523991,
-                        0
-                    ],
-                    [
-                        12.261944,
-                        42.529301,
-                        0
-                    ],
-                    [
-                        12.23671,
-                        42.594418,
-                        0
-                    ],
-                    [
-                        12.226238,
-                        42.646965,
-                        0
-                    ],
-                    [
-                        12.222118,
-                        42.652393,
-                        0
-                    ],
-                    [
-                        12.223835,
-                        42.659969,
-                        0
-                    ],
-                    [
-                        12.219543,
-                        42.663631,
-                        0
-                    ],
-                    [
-                        12.210617,
-                        42.675117,
-                        0
-                    ],
-                    [
-                        12.210274,
-                        42.689503,
-                        0
-                    ],
-                    [
-                        12.204266,
-                        42.695683,
-                        0
-                    ],
-                    [
-                        12.194481,
-                        42.699345,
-                        0
-                    ],
-                    [
-                        12.182808,
-                        42.699093,
-                        0
-                    ],
-                    [
-                        12.160492,
-                        42.705776,
-                        0
-                    ],
-                    [
-                        12.145042,
-                        42.719021,
-                        0
-                    ],
-                    [
-                        12.111225,
-                        42.732639,
-                        0
-                    ],
-                    [
-                        12.087879,
-                        42.742851,
-                        0
-                    ],
-                    [
-                        12.050114,
-                        42.772598,
-                        0
-                    ],
-                    [
-                        12.047195,
-                        42.797417,
-                        0
-                    ],
-                    [
-                        12.043247,
-                        42.803337,
-                        0
-                    ],
-                    [
-                        12.033978,
-                        42.810764,
-                        0
-                    ],
-                    [
-                        12.033291,
-                        42.818573,
-                        0
-                    ],
-                    [
-                        12.042217,
-                        42.827133,
-                        0
-                    ],
-                    [
-                        12.043076,
-                        42.837833,
-                        0
-                    ],
-                    [
-                        12.037067,
-                        42.851933,
-                        0
-                    ],
-                    [
-                        12.020416,
-                        42.872944,
-                        0
-                    ],
-                    [
-                        11.998444,
-                        42.902126,
-                        0
-                    ],
-                    [
-                        11.955872,
-                        42.93129,
-                        0
-                    ],
-                    [
-                        11.880341,
-                        43.106998,
-                        0
-                    ],
-                    [
-                        11.770477,
-                        43.252205,
-                        0
-                    ],
-                    [
-                        11.753998,
-                        43.390079,
-                        0
-                    ],
-                    [
-                        11.778717,
-                        43.426994,
-                        0
-                    ],
-                    [
-                        11.756744,
-                        43.449928,
-                        0
-                    ],
-                    [
-                        11.732025,
-                        43.480827,
-                        0
-                    ],
-                    [
-                        11.653748,
-                        43.499756,
-                        0
-                    ],
-                    [
-                        11.638641,
-                        43.516689,
-                        0
-                    ],
-                    [
-                        11.604309,
-                        43.518681,
-                        0
-                    ],
-                    [
-                        11.542511,
-                        43.56049,
-                        0
-                    ],
-                    [
-                        11.484833,
-                        43.618183,
-                        0
-                    ],
-                    [
-                        11.461487,
-                        43.638062,
-                        0
-                    ],
-                    [
-                        11.464233,
-                        43.669857,
-                        0
-                    ],
-                    [
-                        11.427155,
-                        43.696674,
-                        0
-                    ],
-                    [
-                        11.392822,
-                        43.702629,
-                        0
-                    ],
-                    [
-                        11.381836,
-                        43.721489,
-                        0
-                    ],
-                    [
-                        11.277466,
-                        43.742329,
-                        0
-                    ],
-                    [
-                        11.236267,
-                        43.721489,
-                        0
-                    ],
-                    [
-                        11.167603,
-                        43.75721,
-                        0
-                    ],
-                    [
-                        11.151123,
-                        43.825611,
-                        0
-                    ],
-                    [
-                        11.206055,
-                        43.921638,
-                        0
-                    ],
-                    [
-                        11.230774,
-                        43.943394,
-                        0
-                    ],
-                    [
-                        11.219788,
-                        44.103367,
-                        0
-                    ],
-                    [
-                        11.192322,
-                        44.258968,
-                        0
-                    ],
-                    [
-                        11.266479,
-                        44.331707,
-                        0
-                    ],
-                    [
-                        11.263733,
-                        44.46711,
-                        0
-                    ],
-                    [
-                        11.228027,
-                        44.50238,
-                        0
-                    ],
-                    [
-                        10.881958,
-                        44.617844,
-                        0
-                    ],
-                    [
-                        10.840759,
-                        44.674515,
-                        0
-                    ],
-                    [
-                        10.255737,
-                        44.859764,
-                        0
-                    ],
-                    [
-                        9.909668,
-                        44.972572,
-                        0
-                    ],
-                    [
-                        9.73938,
-                        45.061882,
-                        0
-                    ],
-                    [
-                        9.253235,
-                        45.392666,
-                        0
-                    ],
-                    [
-                        9.135132,
-                        45.392666,
-                        0
-                    ],
-                    [
-                        9.060974,
-                        45.425446,
-                        0
-                    ],
-                    [
-                        9.077454,
-                        45.502499,
-                        0
-                    ],
-                    [
-                        9.09668,
-                        45.535213,
-                        0
-                    ],
-                    [
-                        9.019775,
-                        45.569832,
-                        0
-                    ],
-                    [
-                        9.052734,
-                        45.790508,
-                        0
-                    ],
-                    [
-                        9.047241,
-                        45.840282,
-                        0
-                    ],
-                    [
-                        8.970337,
-                        45.863239,
-                        0
-                    ],
-                    [
-                        8.926392,
-                        45.995052,
-                        0
-                    ],
-                    [
-                        8.915405,
-                        46.137978,
-                        0
-                    ],
-                    [
-                        9.049988,
-                        46.231152,
-                        0
-                    ],
-                    [
-                        8.849487,
-                        46.428391,
-                        0
-                    ],
-                    [
-                        8.764343,
-                        46.490829,
-                        0
-                    ],
-                    [
-                        8.577576,
-                        46.534302,
-                        0
-                    ],
-                    [
-                        8.591309,
-                        46.715385,
-                        0
-                    ],
-                    [
-                        8.673706,
-                        46.769966,
-                        0
-                    ],
-                    [
-                        8.605042,
-                        46.895863,
-                        0
-                    ],
-                    [
-                        8.547363,
-                        46.948387,
-                        0
-                    ],
-                    [
-                        8.426514,
-                        46.972755,
-                        0
-                    ],
-                    [
-                        8.300171,
-                        46.978378,
-                        0
-                    ],
-                    [
-                        8.283691,
-                        47.075733,
-                        0
-                    ],
-                    [
-                        8.11615,
-                        47.180378,
-                        0
-                    ],
-                    [
-                        7.967834,
-                        47.219566,
-                        0
-                    ],
-                    [
-                        7.918396,
-                        47.305309,
-                        0
-                    ],
-                    [
-                        7.7948,
-                        47.316483,
-                        0
-                    ],
-                    [
-                        7.841492,
-                        47.351849,
-                        0
-                    ],
-                    [
-                        7.737122,
-                        47.537601,
-                        0
-                    ],
-                    [
-                        7.627258,
-                        47.541309,
-                        0
-                    ],
-                    [
-                        7.594299,
-                        47.596905,
-                        0
-                    ],
-                    [
-                        7.514648,
-                        47.678333,
-                        0
-                    ],
-                    [
-                        7.547607,
-                        47.739323,
-                        0
-                    ],
-                    [
-                        7.520142,
-                        47.783634,
-                        0
-                    ],
-                    [
-                        7.591553,
-                        47.91082,
-                        0
-                    ],
-                    [
-                        7.830505,
-                        48.046875,
-                        0
-                    ],
-                    [
-                        7.734375,
-                        48.20454,
-                        0
-                    ],
-                    [
-                        7.808533,
-                        48.37632,
-                        0
-                    ],
-                    [
-                        7.923889,
-                        48.527519,
-                        0
-                    ],
-                    [
-                        7.075195,
-                        49.037868,
-                        0
-                    ],
-                    [
-                        6.262207,
-                        49.145782,
-                        0
-                    ],
-                    [
-                        6.196289,
-                        49.199654,
-                        0
-                    ],
-                    [
-                        6.168823,
-                        49.292889,
-                        0
-                    ],
-                    [
-                        6.188049,
-                        49.33765,
-                        0
-                    ],
-                    [
-                        6.108398,
-                        49.36628,
-                        0
-                    ],
-                    [
-                        6.130371,
-                        49.580444,
-                        0
-                    ],
-                    [
-                        6.089172,
-                        49.587566,
-                        0
-                    ],
-                    [
-                        6.080933,
-                        49.633842,
-                        0
-                    ],
-                    [
-                        5.84198,
-                        49.64629,
-                        0
-                    ],
-                    [
-                        5.732117,
-                        49.694286,
-                        0
-                    ],
-                    [
-                        5.592041,
-                        49.708496,
-                        0
-                    ],
-                    [
-                        5.501404,
-                        49.862778,
-                        0
-                    ],
-                    [
-                        5.237732,
-                        49.917629,
-                        0
-                    ],
-                    [
-                        5.204773,
-                        50.055374,
-                        0
-                    ],
-                    [
-                        5.07843,
-                        50.141705,
-                        0
-                    ],
-                    [
-                        5.031738,
-                        50.264767,
-                        0
-                    ],
-                    [
-                        4.875183,
-                        50.532635,
-                        0
-                    ],
-                    [
-                        4.641724,
-                        50.670353,
-                        0
-                    ],
-                    [
-                        4.468689,
-                        50.800728,
-                        0
-                    ],
-                    [
-                        4.446716,
-                        50.909962,
-                        0
-                    ],
-                    [
-                        4.498901,
-                        50.972263,
-                        0
-                    ],
-                    [
-                        4.402771,
-                        51.189674,
-                        0
-                    ],
-                    [
-                        4.465942,
-                        51.212044,
-                        0
-                    ],
-                    [
-                        4.413757,
-                        51.261913,
-                        0
-                    ],
-                    [
-                        4.647217,
-                        51.359776,
-                        0
-                    ],
-                    [
-                        4.740601,
-                        51.518997,
-                        0
-                    ],
-                    [
-                        4.619751,
-                        51.728729,
-                        0
-                    ],
-                    [
-                        4.649963,
-                        51.774639,
-                        0
-                    ],
-                    [
-                        4.606018,
-                        51.852745,
-                        0
-                    ],
-                    [
-                        4.551086,
-                        51.878185,
-                        0
-                    ],
-                    [
-                        4.545593,
-                        51.907001,
-                        0
-                    ],
-                    [
-                        4.5298,
-                        51.950932,
-                        0
-                    ],
-                    [
-                        4.483795,
-                        51.942253,
-                        0
-                    ],
-                    [
-                        4.460449,
-                        51.938446,
-                        0
-                    ],
-                    [
-                        4.439335,
-                        51.931194,
-                        0
-                    ],
-                    [
-                        4.412127,
-                        51.954636,
-                        0
-                    ],
-                    [
-                        4.401484,
-                        51.9687,
-                        0
-                    ],
-                    [
-                        4.394703,
-                        51.983768,
-                        0
-                    ],
-                    [
-                        4.389467,
-                        51.996666,
-                        0
-                    ],
-                    [
-                        4.358997,
-                        51.989029,
-                        0
-                    ],
-                    [
-                        4.353204,
-                        52.001976,
-                        0
-                    ],
-                    [
-                        4.34844,
-                        52.006786,
-                        0
-                    ]
-                ]
-            },
-            "properties": {
-                "title": "Rome - Delft 2006"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    8.033752,
-                    46.624451,
-                    0
-                ]
-            },
-            "properties": {
-                "title": "Bestemming Dönis en Slobbe 2007"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    4.348869,
-                    52.006336,
-                    0
-                ]
-            },
-            "properties": {
-                "title": "7:45 24-7@Delft, #1"
+                "title": "Istanbul",
+                "text": "Het doel, we hopen donderdag 27 juli hier aan te komen."
             }
         },
         {
@@ -4349,7 +3179,25 @@
                 ]
             },
             "properties": {
-                "title": "Uiteindelijk gelift"
+                "color": "#ff0000",
+                "title": "Uiteindelijk gelift",
+                "text": "Tot Nis (Servië) hebben we gelift, daarna de trein..."
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    4.348869,
+                    52.006336,
+                    0
+                ]
+            },
+            "properties": {
+                "date": "2007-07-24",
+                "title": "7:45 24-7@Delft, #1",
+                "text": "Mart van Wijngaarden, de werkende burger vertrekt naar zijn werk, wij kunnen meerijden tot de Texaco ;)"
             }
         },
         {
@@ -4363,7 +3211,8 @@
                 ]
             },
             "properties": {
-                "title": "8:07 24-7@A13 Delft, #2"
+                "title": "8:07 24-7@A13 Delft, #2",
+                "text": "Met André meegelift naar een pompstation bij Best. Daar aangekomen om 9:14"
             }
         },
         {
@@ -4377,7 +3226,8 @@
                 ]
             },
             "properties": {
-                "title": "9:20 24-7 @A58 Best, #3"
+                "title": "9:20 24-7 @A58 Best, #3",
+                "text": "Vertrokken vanaf pompstation in Best, met een aardige kerel die vertegenwoordiger is bij T-Mobile. Hij deed de gang van zaken van het bedrijf uit de doeken, hoe het voortgekomen is uit Ben. \n\nMeteen ook afgeweken van de route en via Limburg bij Heerlen afgezet om 10:31. Daar begon de eerste lange wachtsessie."
             }
         },
         {
@@ -4391,7 +3241,8 @@
                 ]
             },
             "properties": {
-                "title": "12:48 24-7 @A76 Heerlen, #4"
+                "title": "12:48 24-7 @A76 Heerlen, #4",
+                "text": "Na meer dan twee uur wachten een korte lift met een gehaaste maar erg vriendelijke belg in uniform. Hij blijkt uiteindelijk een piloot te zijn en in Duitsland te vliegen omdat er niet voldoende pilotenwerk in Belgie is. Afgezet net voorbij Aken om 12:55."
             }
         },
         {
@@ -4405,7 +3256,8 @@
                 ]
             },
             "properties": {
-                "title": "13:27 24-7 @A4 Aken, #5"
+                "title": "13:27 24-7 @A4 Aken, #5",
+                "text": "De vorige lift bleek een strategische, Binnen een half uur een aardige lift met een kerel die voor een orgaan binnen de EU werkte. Wat precies was niet helemaal duidelijk, maar van zijn organisatie waren provincies lid.\n\nSimon heeft nog geprobeert hem de snaartheorie bij te brengen, maar of hij dat begreep was niet duidelijk. Het kan ook best aan Simon gelegen hebben, want die lag af en toe al weer lekker te tukken.\n\nOm 15:05 afgezet even voor Frankfurt bij Wiesbaden."
             }
         },
         {
@@ -4419,7 +3271,8 @@
                 ]
             },
             "properties": {
-                "title": "15:55 24-7 @A3 Wiesbaden, #6"
+                "title": "15:55 24-7 @A3 Wiesbaden, #6",
+                "text": "Binnen het uur weer een nieuwe lift, aanvankelijk wat twijfel, maar na dat hij betaalt heeft voor de tankbeurt mogen we mee op voorwaarde dat hij een foto van onze paspoorten mag maken en die naar zijn vrouw mag mms-en. Dat is natuurlijk geen probleem, dus dat gebeurt.\n\nDe man blijkt Wolfgang te heten en een eigen bedrijf in trekbanken te hebben. Hij boert goed met het van zijn vader overkochte bedrijf, en verkoopt trekbanken door heel Europa. Nu is hij op weg naar Graz in Oostenrijk, dus we kunnen een fors eind met hem meerijden.\n\nHij heeft mooie verhalen over het huis wat hij heeft overgekocht van een bekende voetballer waarvan ik de naam alweer kwijt ben. Iets over menselijke botten die hij vond in de kelder, al met al erg gezellig ;). Hij neemt ons mee naar de McDonalds, waar hij zelf vaker geweest lijkt te zijn en we citeren wat Pulp Fiction omdat het McDonalds-personeel niet snapt wat een Quarter pounder is. We besluiten om Voordat hij naar het oosten afslaat uit de auto te stappen op een tankstation 60 km voor Linz, het is dan 20:34."
             }
         },
         {
@@ -4433,7 +3286,8 @@
                 ]
             },
             "properties": {
-                "title": "21:17 24-7 @A8 Wies, #7"
+                "title": "21:17 24-7 @A8 Wies, #7",
+                "text": "Na de lange lift van Wolfgang begint het al wat donker te worden als we proberen een volgende lift te krijgen. Dit tankstation is aan de noordkant van de snelweg, het verkeer van de richting waar wij heenwillen wordt daar ook heengeleid. Ik ga met de duim omhoog staan bij de oprit richting Linz terwijl Simon mensen vraagt bij het tankstation.\n\nUiteindelijk regelt Simon Jordi met een Lexus. Hij koopt de auto's in Duitsland, en verkoopt ze weer in Hongarije of Roemenie. Hij wil ons wel meenemen naar Wenen, maar erg makkelijk gaat de communicatie niet. Uiteindelijk rijdt hij Wenen voorbij en brengt ons nog over de grens met Hongarije. Direct daarna dropt hij ons af met nog een advies voor een hotel aldaar. De naam was hij kwijt, maar \"billige preise\" kon hij goed herhalen. Uiteindelijk komen we niet in het hotel wat hij ons aanraadde terecht, maar in hotel Paprika, we hebben een aardige kamer met eigen douche en goed ontbijt voor € 20 per persoon. Volgende ochtend maar weer verder liften, maar we lopen wel voor op de planning."
             }
         },
         {
@@ -4447,7 +3301,8 @@
                 ]
             },
             "properties": {
-                "title": "Hotel Paprika"
+                "title": "Hotel Paprika",
+                "text": "Einde van liftdag één, lekker slapen in een goed bed."
             }
         },
         {
@@ -4456,12 +3311,13 @@
                 "type": "Point",
                 "coordinates": [
                     17.11627,
-                    47.919449,
-                    0
+                    47.919449
                 ]
             },
             "properties": {
-                "title": "10:08 25-7 @grens, #8"
+                "date": "2007-07-25",
+                "title": "10:08 25-7 @grens, #8",
+                "text": "Na een lekkere nacht in hotel Paprika hier weer begonnen. Het liften ging erg gemakkelijk, we werden door meerdere mensen tegelijk aangesproken. De Roemeen die ons meenam was volgens mij ook auto's aan het kopen in Duitsland.\n\nEr was nauwelijks te communiceren met de beste man, maar uiteindelijk probeerde hij nog € 13 euro te krijgen. Dat hebben we hem maar niet gegeven. Hij zette ons juist onder Budapest af om 12:30"
             }
         },
         {
@@ -4475,7 +3331,8 @@
                 ]
             },
             "properties": {
-                "title": "13:02 25-7 @M5 Budapest, #9"
+                "title": "13:02 25-7 @M5 Budapest, #9",
+                "text": "Na een prima wachttijd weer een aardige lift tot net voor de grens, net voor Szeged. Van het gebrekkige engels begreep ik dat zijn opa eens op Texel geweest was. om 13:50 net voor Szeged afgezet."
             }
         },
         {
@@ -4489,7 +3346,8 @@
                 ]
             },
             "properties": {
-                "title": "16:08 24-7 @M5 Szeged, #10"
+                "title": "16:08 25-7 @M5 Szeged, #10",
+                "text": "Slechte plek dit, lang wachten tot we weer een lift kregen. Nu van een goed geklede medewerker van een Russisch oliebedrijf, die ons eerst nog een koffie aanbiedt.\n\nHij rijdt naar de Hongaars-Serviesche grens om zijn baas op te halen, die door een medewerker uit Servie naar de grens gebracht is. Na wat heen en weergebel regelt hij ook nog dat we met die persoon mee kunnen naar Belgrado. Om 16:21 bij de grens met Servie."
             }
         },
         {
@@ -4503,7 +3361,8 @@
                 ]
             },
             "properties": {
-                "title": "16:21 25-7 @grens H/SRB, #11"
+                "title": "16:21 25-7 @grens H/SRB, #11",
+                "text": "De Roemeense medewerker van het Russische oliebedrijf waarbij we nu in de auto zitten blijkt een humoristische allesweter te zijn. In zijn Octavia rijdt hij knetterhard op de snelweg met één rijbaan en zonder rijbaanscheiding. Tot Belgrado weet hij een gemiddelde van 137 km/h te halen met toppen van 210 km/h op de tom-tom. Hij vertelt verhalen over hoe hij politie steekpenningen aanbiedt om te zorgen dat zijn rijbewijs niet wordt ingenomen. Sinds dien zet hij de cruise-control altijd 5km/h onder de snelheid dat zijn rijbewijs zou worden ingenomen.\n\nVerder nog kostelijke citaten:\n - \"You know, with Serbia it's just like Nokia: every release is getting smaller!\"\n - \"I made my wife another child to keep her busy.\"\n\nHij heeft verder ook nog allerlei kritiek op de manier van ict-onderwijs en brengt ons naar het laatste pompstation in Belgrado, waar we om 18:11 aankomen."
             }
         },
         {
@@ -4517,7 +3376,8 @@
                 ]
             },
             "properties": {
-                "title": "19:31 25-7 @Belgrado, #12"
+                "title": "19:31 25-7 @Belgrado, #12",
+                "text": "Na de prima lift van hiervoor, op hoge snelheid, zijn we aangekomen in het zuiden van Belgrado, op een klein pompstation. Nogsteeds midden in de stad, er komt dan ook een hoop verkeer langs wat direct de stad in gaat.\n\nEerst maar even wat gegeten, maar na het eten wil het liften niet erg lukken. Uiteindelijk regelt een man die de overkapping boven de autogas-pompen aan het verven is een lift voor ons naar het begin van de tolweg, ongeveer 5km verderop. Onze chauffeur praat bijna geen engels, maar herhaalt maar keer op keer dat we de politie moeten vragen, en dat we dan best snel weg zouden kunnen zijn. Hij zet ons even later af op de snelweg, ongeveer 1km voor de tolpoortjes. We moeten dus nog een stuk langs de snelweg kuieren, iets waarin wij niet de eersten zijn gezien het paadje net buiten de vangrail."
             }
         },
         {
@@ -4531,7 +3391,8 @@
                 ]
             },
             "properties": {
-                "title": "20:36 25-7 @Belgrado, #13"
+                "title": "20:36 25-7 @Belgrado, #13",
+                "text": "Bij de tolpoortjes blijken dus meer mensen te liften, ook met meer succes dan wij. Enige dames zijn binnen 5 minuten vertrokken, en ook een drietal kerels in uniform vertrekt zeer snel na aanvang van het proberen. Dat motieveert niet erg, maar uiteindelijk krijgen we ook een lift van Sasha. Een aardige kerel die elke drie maanden twee maanden voor Shell werkt in Oman, en een maand in Servië voor een instantie die zich bezig houdt met het ontwikkelen van de snelwegen. Een prettige man om mee te praten. Hij probeert mij de waanzin van de conflicten waarin Servië verkeert en verkeerde uit te leggen.\n\nSasha was vroeger bij de verkeerspolitie, dus hij probeert bij de tolpoort in Nis nog bij de politie die daar staat een vervolglift voor ons te regelen. Ze zouden dat graag hebben gedaan, ware het niet dat er een hoge chef werd verwacht, dus lieten ze het deze keer maar liever aan zich voorbij gaan. Hij zet ons 1km na het einde van de tolpoort af op een tankstation. Het is inmiddels 22:30 dus we besluiten een slaapplek te gaan zoeken. We vinden een aardige plek op de rand van een mais-veld met een boomgaard, tussen het spoor naar Belgrado en de snelweg in. We eten nog wat knakworstjes, en gaan lekker tukken."
             }
         },
         {
@@ -4545,7 +3406,9 @@
                 ]
             },
             "properties": {
-                "title": "11:30 26-7 @Nis, #14"
+                "date": "2007-07-26",
+                "title": "11:30 26-7 @Nis, #14",
+                "text": "Na een heerlijke nacht tukken staan we vol goede moed vroeg op. We waren toen nog in de veronderstelling in de middag wel in Istanbul aan te komen. Het liep wat anders...\n\nOp het pompstation aangekomen bleek het lekker warm te worden. De auto's die langskwamen waaren hoofdzakelijk nederlandse en duitse auto's, afgetopt met Turken, of spullen en minder Turken. Dat werkt dus niet zo goed. Na een tijdje zijn we een stuk teruggelopen richting de tolpoortjes om ons geluk daar eens te beproeven. De schijnbare vriendelijkheid van de politie de avond ervoor, had plaatsgemaakt voor norsigheid, we mochten daar niet staan. Toen maar 200m verderop gaan staan duimen, daar maakten ze zich kennelijk niet druk over. Ook niet over de locals die tussen ons en de politiepost in stonden te liften trouwens.\n\nOok hier hebben we geen geluk, we besluiten maar weer terug te gaan naar de benzinepomp, en iemand te zoeken die ons in Nis bij het station kan brengen. Dat blijkt een aardige jonge man in een knetterbrakke Lada wel te willen. Na een ritje van 10 minuten staan we om 11:40 voor het station van Nis."
             }
         },
         {
@@ -4559,7 +3422,8 @@
                 ]
             },
             "properties": {
-                "title": "14:00 26-7 @Nis station, #15"
+                "title": "14:00 26-7 @Nis station, #15",
+                "text": "We zijn na de desillusie van deze morgen in de veronderstelling dat de trein wel beter zal zijn. Met nieuwe moed proberen we een kaartje te kopen, wat alleen blijkt te kunnen met contant geld, of een Dinari-pas. Een pinautomaat is niet te vinden op het station, dus we moeten de stad in. \n\nSimon pint ruim geld, zodat we de nodige goederen kunnen inslaan voor tijdens de reis met de trein, die tot 10 uur in de morgen van de volgende dag zou gaan duren. Het blijkt nogal lastig om de 15 euro aan dinari die we daarvoor hadden op te krijgen omdat al het eten knettergoedkoop is. Dan nog maar even in het 'fast'-food-restaurant op het station wat eten scoren. De trein is inmiddels al weer een half uur vertraagt ten opzichte van de eerste keer dat we het vroegen.\n\nHet restaurant is alles behalve fast, en wij zitten ons een beetje te ergeren aan de traagheid van de keuken. Ook het feit dat onze trein snel zou komen lijkt niet veel haast te weeg te brengen. Dat dat ook helemaal niet nodig was snapten wij toen natuurlijk nog niet, want de trein vertrekt uiteindelijk om 14:00, ipv de eerste opgave van 13:10, tegen zulke vertragingen kan de NS niet op!"
             }
         },
         {

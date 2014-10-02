@@ -204,9 +204,9 @@ Saillog.App = L.Class.extend({
 				app._story = new Saillog.Story(response);
 				callback(true);
 			},
-			error: function (_, err) {
+			error: function (_, err, message) {
 
-				callback(false, err);
+				callback(false, err + ': ' + message);
 			}
 		});
 	}

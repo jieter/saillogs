@@ -96,6 +96,12 @@
 			"title": "Zomerzeilen 2007",
 			"date": "2007-08-01",
 			"visible": true
+		},
+		{
+			"id": "2007-istanbul-liften",
+			"title": "Liften naar Istanbul 2007",
+			"date": "2007-08-01",
+			"visible": true
 		}
 	]
 }
