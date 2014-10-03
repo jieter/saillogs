@@ -6,7 +6,8 @@ Saillog.Story = Saillog.Model.extend({
 		title: '',
 		description: '',
 		average: 5,
-		showTimeline: true
+		showTimeline: true,
+		units: 'nm'
 	},
 
 	initialize: function (story) {

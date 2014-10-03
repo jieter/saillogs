@@ -7,7 +7,7 @@ TODO
  - Fix handling of double quotes in stories.
  - <enter> in title of leg should submit form.
  - <esc> should cancel the form.
- - Move back marker to original spot on map after canceling edit
+ - Move back marker to original spot on map after canceling editing the marker
 
 ## Essential
 

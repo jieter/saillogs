@@ -62,7 +62,7 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 			if (!log.visible) {
 				item.addClass('hidden');
 			}
-			console.log(log.distance);
+
 			if (log.distance) {
 				item.append('<span class="distance">' + log.distance + 'NM</span>');
 			}
@@ -176,10 +176,10 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 			var tooltip = 'gevaren ';
 
 			if (leg.getProperty('duration')) {
-				tooltip += leg.template('in {duration|duration} uur');
+				tooltip += 'in {duration|duration} uur';
 			}
 			if (leg.getProperty('avg_sog')) {
-				tooltip += leg.template(', met een gemiddelde snelheid van {avg_sog}kts');
+				tooltip += ', met een gemiddelde snelheid van {avg_sog}kts';
 			}
 			title.append(
 				leg.template('<span class="distance" title="' + tooltip + '">{distance|distance} NM</span>')

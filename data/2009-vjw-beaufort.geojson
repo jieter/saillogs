@@ -4,7 +4,8 @@
 		"title": "Voorjaarsweekeinde Beaufort 2009",
 		"description": "",
 		"average": 5,
-		"showTimeline": true
+		"showTimeline": true,
+		"units": "nm"
 	},
 	"features": [
 		{
@@ -558,7 +559,7 @@
 			"type": "Feature",
 			"properties": {
 				"title": "",
-				"text": "Boot: Harmony 38",
+				"text": "<table><tr><td class=meta>Boot:</td><td>Harmony 38</td></tr></table>",
 				"date": "",
 				"color": "#ffffff",
 				"average": 5

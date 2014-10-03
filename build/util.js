@@ -17,6 +17,23 @@ var swap = function (array) {
 	}
 };
 
+function numberToRadius(number) {
+	return number * Math.PI / 180;
+}
+
+function distanceAB(pt1, pt2) {
+	var lon1 = pt1[0],
+	    lat1 = pt1[1],
+	    lon2 = pt2[0],
+	    lat2 = pt2[1],
+	    dLat = numberToRadius(lat2 - lat1),
+	    dLon = numberToRadius(lon2 - lon1),
+	    a = Math.pow(Math.sin(dLat / 2), 2) + Math.cos(numberToRadius(lat1)) *
+	        Math.cos(numberToRadius(lat2)) * Math.pow(Math.sin(dLon / 2), 2),
+	    c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	return (6371 * c) * 1000; // returns meters
+}
+
 module.exports = {
 	stringify: function (obj) {
 		return JSON.stringify(obj, null, '\t');
@@ -32,6 +49,20 @@ module.exports = {
 		};
 		return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
 	},
-	swap: swap
+
+	swap: swap,
+
+	lineDistance: function lineDistance(coords) {
+		if (coords.length < 2) {
+			return 0;
+		}
+
+		var distance = 0;
+		for (var i = 1; i < coords.length; i++) {
+			distance += distanceAB(coords[i - 1], coords[i]);
+		}
+
+		return Math.round(distance / 1852);
+	}
 };
 
