@@ -4,13 +4,15 @@ TODO
 
 ## bugs
 
- - Fix handling of double quotes in stories.
  - <enter> in title of leg should submit form.
  - <esc> should cancel the form.
- - Move back marker to original spot on map after canceling editing the marker
+ - Move back marker to original spot on map after cancelling editing the marker
  - Show linestring if created.
 
 ## Essential
+ - make index-generation beter:
+  * remove deleted entries.
+  * generate all.json with all LineString-features with the right color set.
 
  - highlight markers (possible switch to something more vectoric)
  - flash messages in UI
