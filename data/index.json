@@ -7,6 +7,12 @@
 	"title": "Jieters zeilverslagen",
 	"text": "![Jieter](jieter.jpg) Op deze site is een aantal verhalen te vinden van zeiltochten die ik heb gemaakt. Sommigen zijn compleet met beeldmateriaal en een opgenomen tracklog uit de GPS, anderen zijn slechts voorzien van marginaal commentaar...",
 	"logs": {
+		"2015-zomer": {
+			"visible": false,
+			"date": "2015-07-07",
+			"distance": 1312,
+			"title": "Zomer 2015?"
+		},
 		"2014-pinksterzeilen": {
 			"date": "2014-06-06",
 			"visible": false,
@@ -20,13 +26,13 @@
 			"title": "Eendrachttocht 2013"
 		},
 		"2013-zomerzeilen": {
-			"date": "",
+			"date": "2013-07-17",
 			"visible": true,
 			"distance": 635,
 			"title": "Zomerzeilen 2013"
 		},
 		"2013-ouderzeilen": {
-			"date": "",
+			"date": "2013-05-24",
 			"visible": true,
 			"distance": 49,
 			"title": "Ouderszeilen 2013"
@@ -36,6 +42,11 @@
 			"visible": true,
 			"distance": 297,
 			"title": "Zomerzeilen 2012"
+		},
+		"2012-CAMR": {
+			"visible": false,
+			"title": "CAMR 2012",
+			"distance": 496
 		},
 		"2012-pinksterzeilen": {
 			"date": "2012-05-25",
@@ -47,10 +58,10 @@
 			"date": "2011-10-21",
 			"visible": true,
 			"distance": 79,
-			"title": "Oktoberzeiltocht Zeeuwse stromen 2011."
+			"title": "Oktoberzeiltocht Zeeuwse stromen 2011"
 		},
 		"2011-zomerzeilen": {
-			"date": "",
+			"date": "2011-07-01",
 			"visible": true,
 			"distance": 1265,
 			"title": "Zomerzeilen 2011."
@@ -72,14 +83,20 @@
 			"distance": 648,
 			"title": "Zomerzeilen 2009"
 		},
+		"2009-zzzw-beaufort": {
+			"visible": false,
+			"date": "2009-07-04",
+			"distance": 85,
+			"title": "ZomerZeilZwerfWeek Beaufort 2009"
+		},
 		"2009-vjw-beaufort": {
-			"date": "",
+			"date": "2009-05-16",
 			"visible": true,
 			"distance": 82,
 			"title": "Voorjaarsweekeinde Beaufort 2009"
 		},
 		"2008-dehlerweekeinde": {
-			"date": "",
+			"date": "2008-10-17",
 			"visible": true,
 			"distance": 103,
 			"title": "Dehlerzeilen 2008"
@@ -100,18 +117,6 @@
 			"visible": true,
 			"distance": 2522,
 			"title": "Liften naar Istanbul 2007"
-		},
-		"2009-zzzw-beaufort": {
-			"visible": false,
-			"date": "2009-07-04",
-			"distance": 85,
-			"title": "ZomerZeilZwerfWeek Beaufort 2009"
-		},
-		"2015-zomer": {
-			"visible": false,
-			"date": "2015-07-07",
-			"distance": 1312,
-			"title": "Zomer 2015?"
 		}
 	}
 }

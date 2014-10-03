@@ -138,8 +138,8 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 	},
 
 	_recalculateWidth: function () {
-		this._width = $(window).innerWidth() - ($('#sidebar').width() + 100);
-		this.container().css('width', (this._width + 200) + 'px');
+		this._width = $(window).innerWidth() - ($('#sidebar').width() + 40);
+		this.container().css('width', (this._width + 150) + 'px');
 	},
 
 	_updateLabels: function () {

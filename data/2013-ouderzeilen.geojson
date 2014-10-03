@@ -1,5 +1,6 @@
 {
 	"id": "2013-ouderzeilen",
+	"type": "FeatureCollection",
 	"properties": {
 		"title": "Ouderszeilen 2013",
 		"description": "",

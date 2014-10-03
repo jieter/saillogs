@@ -2,6 +2,7 @@
     "type": "FeatureCollection",
     "id": "2007-istanbul-liften",
     "properties": {
+        "modality": "road",
         "title": "Liften naar Istanbul 2007"
     },
     "features": [

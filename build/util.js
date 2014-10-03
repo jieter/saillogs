@@ -34,6 +34,10 @@ function distanceAB(pt1, pt2) {
 	return (6371 * c) * 1000; // returns meters
 }
 
+function merge(list) {
+	return require('geojson-merge')(list);
+}
+
 module.exports = {
 	stringify: function (obj) {
 		return JSON.stringify(obj, null, '\t');
@@ -63,6 +67,8 @@ module.exports = {
 		}
 
 		return Math.round(distance / 1852);
-	}
+	},
+
+	merge: merge
 };
 

@@ -1,5 +1,6 @@
 {
 	"id": "2013-zomerzeilen",
+	"type": "FeatureCollection",
 	"properties": {
 		"title": "Zomerzeilen 2013",
 		"showTrack": true,

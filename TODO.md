@@ -8,6 +8,7 @@ TODO
  - <enter> in title of leg should submit form.
  - <esc> should cancel the form.
  - Move back marker to original spot on map after canceling editing the marker
+ - Show linestring if created.
 
 ## Essential
 

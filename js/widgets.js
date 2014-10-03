@@ -395,6 +395,5 @@ Saillog.Widget.LegMetadataEditor = Saillog.Widget.Editor.extend({
 
 
 		return this.load(this._data);
-	},
-
+	}
 });

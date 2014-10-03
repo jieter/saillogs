@@ -60,8 +60,10 @@ module.exports = function (grunt) {
 				grunt.file.write(filename,
 					util.stringify({
 						type: 'FeatureCollection',
-						title: json.data.options.comment,
-						originalURL: json.url,
+						options: {
+							title: json.data.options.comment,
+							originalURL: json.url
+						},
 						features: features
 					})
 				);

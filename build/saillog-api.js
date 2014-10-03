@@ -60,6 +60,7 @@ module.exports = function (connect) {
 
 				json.features[key] = feature;
 			});
+			json.type = 'FeatureCollection';
 
 			fs.writeFile(filename(id), util.stringify(json), callback);
 		},

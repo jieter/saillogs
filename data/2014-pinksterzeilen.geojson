@@ -1,8 +1,7 @@
 {
 	"id": "2014-pinksterzeilen",
+	"type": "FeatureCollection",
 	"properties": {
-		"0": "2",
-		"1": "3",
 		"title": "Pinksterzeilen-2014",
 		"description": "",
 		"average": 5,

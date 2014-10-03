@@ -11,7 +11,8 @@ function storyData(story) {
 	var dist = 0;
 	if ('features' in story) {
 		story.features.forEach(function (item) {
-			if ('date' in item.properties && firstDate > item.properties.date) {
+			if ('date' in item.properties && item.properties.date !== '' &&
+					firstDate > item.properties.date) {
 				firstDate = item.properties.date;
 			}
 
@@ -38,6 +39,7 @@ module.exports = function (grunt) {
 		var logs = index.logs;
 
 		var files = grunt.file.expand('data/*.geojson');
+		var stories = [];
 		files.forEach(function (storyFilename) {
 			var story = grunt.file.readJSON(storyFilename);
 			if (!(story.id in logs)) {
@@ -53,8 +55,24 @@ module.exports = function (grunt) {
 			item.date = data.date;
 			item.distance = data.distance;
 
+			if ('features' in story) {
+				stories.push(story);
+			}
 		});
+
+
+
 		grunt.file.write(filename, util.stringify(index));
+		stories = util.merge(stories);
+
+		stories.features = stories.features.filter(function (feature) {
+			if (feature.geometry && feature.geometry.type === 'LineString') {
+				return true;
+			}
+			return false;
+		});
+
+		grunt.file.write('data/all.json', util.stringify(stories));
 	});
 };
 

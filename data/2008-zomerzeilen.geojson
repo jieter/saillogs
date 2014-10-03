@@ -1,5 +1,6 @@
 {
 	"id": "2008-zomerzeilen",
+	"type": "FeatureCollection",
 	"properties": {
 		"title": "Zomerzeilen 2008",
 		"description": "",
