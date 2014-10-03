@@ -5,15 +5,20 @@ describe('util', function () {
 
 	describe('marked monkeypatch', function () {
 		it('converts youtube links', function () {
-			marked('[foo](http://youtu.be/JIA_D_ZJ1dU)').should.eql(
+			Saillog.util.renderMarkdown('[foo](http://youtu.be/JIA_D_ZJ1dU)').should.eql(
 				'<p><span class="youtube" data-youtube-url="http://youtu.be/JIA_D_ZJ1dU">' +
 				'<i class="icon-youtube-play"></i> foo</span></p>\n'
 			);
 		});
 
 		it('prefixes image urls', function () {
-			marked('![](image.jpg)').should.eql(
+			Saillog.util.renderMarkdown('![](image.jpg)').should.eql(
 				'<p><img src="data/image.jpg" class="thumb side-thumb" title="" /></p>\n'
+			);
+		});
+		it('puts the body in the title attr of the img tag', function () {
+			Saillog.util.renderMarkdown('![foo](image.jpg)').should.eql(
+				'<p><img src="data/image.jpg" class="thumb side-thumb" title="foo" /></p>\n'
 			);
 		});
 	});
