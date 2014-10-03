@@ -13,34 +13,31 @@ if (!('console' in window)) {
 
 // amend Marked to do some custom things:
 /* globals marked:true */
-marked.InlineLexer.prototype.outputLink = function (cap, link) {
-	var href = link.href;
+marked.Renderer.prototype.image = function (href, title, text) {
+	// images get prefixed.
+	return L.Util.template('<img src="{href}" class="{className}" title="{title}" />', {
+		href: href = Saillog.util.imagePrefix + href,
+		className: 'thumb ' +  (title === 'inline' ? 'inline-thumb' : 'side-thumb'),
+		title: text
+	});
+};
 
-	var title = link.title ? ' title="' + link.title + '"'	: '';
-	var body = cap[1] || '';
-
-	if (link.href.substr(0, 15) === 'http://youtu.be') {
+marked.Renderer.prototype.link = function (href, title, text) {
+	console.log(arguments);
+	if (href.substr(0, 15) === 'http://youtu.be') {
 		// special case for youtube links.
-		if (body === '') {
-			// no body, full width.
+		if (text === '') {
+			// no text, full width.
 			return '<iframe id="ytplayer" class="modal_content" type="text/html" ' +
 				'src="http://www.youtube.com/embed/{id}?autoplay=0&wmode=transparent" frameborder="0"/>'
 					.replace('{id}', href.substr(-11));
 		} else {
-			return '<span class="youtube" data-youtube-url="' + href + '"' + title + '>' +
-				'<i class="icon-youtube-play"></i> ' + body + '</span>';
+			return '<span class="youtube" data-youtube-url="' + href + '">' +
+				'<i class="icon-youtube-play"></i> ' + text + '</span>';
 		}
-	} else if (cap[0].charAt(0) !== '!') {
-		// normal behaviour
-		return '<a href="' + href + title + '>'	+ this.output(body) + '</a>';
 	} else {
-		// images get prefixed.
-		return L.Util.template('<img src="{href}"{alt} class="{className}" title="{title}" />', {
-			href: href = Saillog.util.imagePrefix + href,
-			alt: body ? 'alt="' + body	+ '"' : '',
-			className: 'thumb ' +  (link.title === 'inline' ? ' inline-thumb' : 'side-thumb'),
-			title: link.title === 'inline' ? body : title
-		});
+		// normal behaviour
+		return '<a href="' + href + title + '>'	+ this.output(text) + '</a>';
 	}
 };
 
@@ -134,6 +131,12 @@ Saillog.util = {
 	liveReload: function () {
 		var src = 'http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1';
 		L.DomUtil.create('script', '', document.body).src = src;
+	},
+
+	renderMarkdown: function (text) {
+		return marked(text, {
+			renderer: new marked.Renderer()
+		});
 	}
 };
 

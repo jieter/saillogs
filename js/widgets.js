@@ -49,7 +49,7 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 
 		if (index.text) {
 			$('<div class="preface"></div>')
-				.html(marked(index.text))
+				.html(Saillog.util.renderMarkdown(index.text))
 				.appendTo(container);
 		}
 
@@ -192,7 +192,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 
 		var text = leg.getProperty('text');
 		if (text !== undefined) {
-			element.append(marked(text));
+			element.append(Saillog.util.renderMarkdown(text));
 		}
 
 		var color = leg.getProperty('color');

@@ -83,6 +83,8 @@ Saillog.Editor = {
 
 		var values = this._editorWidget.values();
 
+		console.log(values);
+
 		if (id === 'metadata') {
 			story.setProperties(L.extend({}, story.getProperties(), values));
 		} else {
