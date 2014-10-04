@@ -33,6 +33,7 @@ TODO
 ## Further future
 
  - make day/night in timeline more fuzzy
+ - Geocode start/endpoints
 
 ## Maybe?
  - leg story preview in 'real' DOM context

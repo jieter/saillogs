@@ -7,6 +7,7 @@ Saillog.Story = Saillog.Model.extend({
 		description: '',
 		average: 5,
 		showTimeline: true,
+		showCalendar: true,
 		units: 'nm'
 	},
 

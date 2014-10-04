@@ -118,13 +118,13 @@ Saillog.App = L.Class.extend({
 			.addLayer(story)
 			.panTo(story);
 
-		[
-			this.storyWidget,
-			this.calendarControl,
-			this.timelineControl
-		].forEach(function (it) {
-			it.update(story).show();
-		});
+		this.storyWidget.update(story).show();
+		if (story.getProperty('showTimeline')) {
+			this.timelineControl.update(story).show();
+		}
+		if (story.getProperty('showCalendar')) {
+			this.calendarControl.update(story).show();
+		}
 	},
 
 	_attachLegActions: function (emitter) {

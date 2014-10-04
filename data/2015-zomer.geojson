@@ -5,9 +5,10 @@
 		"originalURL": "http://sailplanner.nl/view/key:f03bbc7439",
 		"description": "",
 		"average": 5,
-		"showTimeline": true,
+		"showTimeline": false,
 		"showTrack": false,
-		"units": "nm"
+		"units": "nm",
+		"showCalendar": false
 	},
 	"features": [
 		{
@@ -44,8 +45,8 @@
 						52.40241887397332
 					],
 					[
-						2.6971435546875,
-						54.638876477958
+						2.548828125,
+						54.59752785211386
 					],
 					[
 						-1.1377700000000002,
@@ -68,7 +69,7 @@
 				"departure": "10:00",
 				"color": "#ff0000",
 				"title": "Lerwick - Sognefjord",
-				"text": "sadfasdf\n\nfoo\nbar\n<table><tr><td class=\"meta\">boot</td></tr></table>",
+				"text": "",
 				"date": "2015-07-15",
 				"average": 5,
 				"originalURL": "http://sailplanner.nl/view/key:f03bbc7439",
