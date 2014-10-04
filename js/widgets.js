@@ -33,6 +33,10 @@ Saillog.Widget = L.Class.extend({
 
 	render: function () {
 		throw 'Not implemented';
+	},
+
+	icon: function (t) {
+		return Saillog.util.icon(t);
 	}
 });
 
@@ -69,14 +73,14 @@ Saillog.Widget.Index = Saillog.Widget.extend({
 		});
 
 		if (this.isAuthorized) {
-			$('<li class="button create"><i class="icon-plus"></i> New story</li>')
+			$('<li class="button create">' + this.icon('create') + ' New story</li>')
 				.on('click', function () {
 					widget.fire('create-story');
 				})
 				.prependTo(list);
 			$('<li class="button primary"><a href="test/index.html">Mocha tests</a></li>').appendTo(list);
 			$('<li class="button primary"><a href="http://jieter.github.io/saillogs/">@github.io</a></li>').appendTo(list);
-			$('<li class="button"><a href="https://github.com/jieter/saillogs/"><i class="icon-github"></i> Repository</a></li>').appendTo(list);
+			$('<li class="button"><a href="https://github.com/jieter/saillogs/">' + this.icon('github') + ' Repository</a></li>').appendTo(list);
 		}
 
 		list.on('click', '[data-id]', function () {
@@ -103,12 +107,12 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 					.addClass('untitled')
 					.append('untitled');
 			}
-			$('<span class="edit hidden"><i class="icon-edit-sign"></i></span>')
+			$('<span class="edit hidden">' + this.icon('edit') + '</span>')
 				.on('click', function () {
 					widget.fire('edit-metadata');
 				})
 				.appendTo(title);
-			$('<button class="create create-leg"><i class="icon-plus"></i></button>')
+			$('<button class="create create-leg">' + this.icon('create') + '</i></button>')
 				.appendTo(title);
 		}
 
@@ -121,7 +125,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 
 		if (this.isAuthorized && story.length() > 0) {
 			$('<h1></h1>')
-				.append('<button class="create create-leg float-right"><i class="icon-plus"></i></button>')
+				.append('<button class="create create-leg float-right">' + this.icon('create') + '</button>')
 				.appendTo(container);
 		}
 
@@ -168,7 +172,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 					.addClass('untitled')
 					.append('untitled');
 			}
-			title.append('<span class="edit hidden"><i class="icon-edit-sign"></i></span>');
+			title.append('<span class="edit hidden">' + this.icon('edit') + '</span>');
 		}
 
 		var distance = leg.getProperty('distance');
@@ -198,7 +202,7 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		var color = leg.getProperty('color');
 		switch (leg.getType()) {
 		case 'Point':
-			var markerIcon = $($.parseHTML('<i class="icon-map-marker"></i>&nbsp;'));
+			var markerIcon = $($.parseHTML(this.icon('marker') + '&nbsp;'));
 			markerIcon.prependTo(title);
 			if (color) {
 				markerIcon.find('i').css('color', color);
@@ -344,8 +348,9 @@ Saillog.Widget.StoryMetadataEditor = Saillog.Widget.Editor.extend({
 		var editor = $('<div id="editor"><h1>Edit metadata</h1></div>');
 
 		this._input('title', 'Titel').appendTo(editor);
-		this._input('showTimeline', 'Timeline visible', 'checkbox').appendTo(editor);
-		this._input('showTrack', 'Recorded track visible', 'checkbox').appendTo(editor);
+		this._input('showTimeline', 'Show timeline', 'checkbox').appendTo(editor);
+		this._input('showCalendar', 'Show calendar', 'checkbox').appendTo(editor);
+		this._input('showTrack', 'Show recorded track (track.geojson)', 'checkbox').appendTo(editor);
 
 		this._buttons().appendTo(editor);
 

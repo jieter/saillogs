@@ -73,9 +73,9 @@ Saillog.App = L.Class.extend({
 		// sidebar toggle
 		$('<div id="sidebar-handle">')
 			.prop('title', 'Toggle sidebar')
-			.append('<i class="icon-circle-arrow-right"></i>')
-			.append('<i class="icon-circle-arrow-right"></i>')
-			.append('<i class="icon-circle-arrow-right"></i>')
+			.append(Saillog.util.icon('fa-arrow-circle-right'))
+			.append(Saillog.util.icon('fa-arrow-circle-right'))
+			.append(Saillog.util.icon('fa-arrow-circle-right'))
 			.insertAfter(this.sidebar)
 			.on('click', function () {
 				if (app.sidebar.is(':visible')) {
@@ -84,7 +84,7 @@ Saillog.App = L.Class.extend({
 					app.sidebar.show(500);
 				}
 				$(this).children('i')
-					.toggleClass('icon-circle-arrow-right icon-circle-arrow-left');
+					.toggleClass('fa-arrow-circle-right fa-arrow-circle-left');
 			});
 	},
 

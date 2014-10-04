@@ -11,6 +11,28 @@ if (!('console' in window)) {
 	};
 }
 
+var icon = function (icon) {
+	switch (icon) {
+	case 'edit':
+		icon = 'fa-pencil-square';
+		break;
+	case 'create':
+		icon = 'fa-plus';
+		break;
+	case 'github':
+		icon = 'fa-github';
+		break;
+	case 'marker':
+		icon = 'fa-map-marker';
+		break;
+	case 'youtube':
+		icon = 'fa-youtube-play';
+		break;
+	}
+
+	return '<i class="fa ' + icon + '"></i>';
+};
+
 // amend Marked to do some custom things:
 /* globals marked:true */
 marked.Renderer.prototype.image = function (href, title, text) {
@@ -33,7 +55,7 @@ marked.Renderer.prototype.link = function (href, title, text) {
 					.replace('{id}', href.substr(-11));
 		} else {
 			return '<span class="youtube" data-youtube-url="' + href + '">' +
-				'<i class="icon-youtube-play"></i> ' + text + '</span>';
+				icon('youtube') + ' ' + text + '</span>';
 		}
 	} else {
 		// normal behaviour
@@ -137,7 +159,9 @@ Saillog.util = {
 		return marked(text, {
 			renderer: new marked.Renderer()
 		});
-	}
+	},
+
+	icon: icon
 };
 
 Saillog.defaultStyles = {
