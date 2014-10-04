@@ -13,12 +13,6 @@
 			"distance": 1312,
 			"title": "Zomer 2015?"
 		},
-		"2014-pinksterzeilen": {
-			"date": "2014-06-06",
-			"visible": false,
-			"distance": 113,
-			"title": "Pinksterzeilen-2014"
-		},
 		"2013-eendracht-papa": {
 			"date": "2013-08-26",
 			"visible": false,
@@ -44,7 +38,7 @@
 			"title": "Zomerzeilen 2012"
 		},
 		"2012-CAMR": {
-			"visible": false,
+			"visible": true,
 			"title": "CAMR 2012",
 			"distance": 496
 		},
@@ -66,16 +60,21 @@
 			"distance": 1265,
 			"title": "Zomerzeilen 2011"
 		},
+		"2010-winterzeilen": {
+			"visible": true,
+			"title": "Winterzeilen 2010",
+			"distance": 54
+		},
 		"2010-koninginnedagzeilen": {
 			"visible": true,
-			"distance": 54,
-			"title": "Winterzeilen 2010"
+			"distance": 147,
+			"title": "Koninginnedagzeilen 2010"
 		},
 		"2010-zomerzeilen": {
 			"date": "2010-07-16",
 			"visible": true,
 			"distance": 616,
-			"title": "Vakantie zomer 2010"
+			"title": "Zomerzeilen 2010"
 		},
 		"2009-zomerzeilen": {
 			"date": "2009-07-31",
@@ -84,7 +83,7 @@
 			"title": "Zomerzeilen 2009"
 		},
 		"2009-zzzw-beaufort": {
-			"visible": false,
+			"visible": true,
 			"date": "2009-07-04",
 			"distance": 85,
 			"title": "ZomerZeilZwerfWeek Beaufort 2009"

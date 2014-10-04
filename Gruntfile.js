@@ -56,6 +56,10 @@ module.exports = function (grunt) {
 			}
 		},
 		watch: {
+			data: {
+				files: ['data/**/orig/*.jpg'],
+				tasks: ['saillog-thumbs']
+			},
 			html: {
 				files: ['*.html'],
 				options: {
