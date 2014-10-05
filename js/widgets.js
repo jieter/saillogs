@@ -244,6 +244,18 @@ Saillog.Widget.Editor = Saillog.Widget.extend({
 		if (data.text !== undefined && this._textEditor) {
 			this._textEditor.importFile('story-' + data.id, data.text);
 		}
+
+		var widget = this;
+		this._container.find('input').on('keydown', function (event) {
+			switch (event.keyCode) {
+			case Saillog.util.keyCodes.escape:
+				widget.fire('cancel');
+				break;
+			case Saillog.util.keyCodes.enter:
+				widget.fire('save');
+				break;
+			}
+		});
 		return this;
 	},
 

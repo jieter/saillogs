@@ -69,6 +69,10 @@ L.Icon.Default.imagePath = 'js/lib/Leaflet/images';
 var Saillog = {};
 
 Saillog.util = {
+	keyCodes: {
+		enter: 13,
+		escape: 27
+	},
 	imagePrefix: 'data/',
 
 	// From http://stackoverflow.com/a/5624139

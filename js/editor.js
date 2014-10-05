@@ -45,7 +45,7 @@ Saillog.Editor = {
 					this._stopEditing();
 				},
 				'delete': function () {
-					console.log('delete');
+					console.log('delete', id);
 					story.removeLeg(id);
 
 					this._stopEditing();
