@@ -141,10 +141,15 @@ Saillog.Story = Saillog.Model.extend({
 	replaceLayer: function (id, newLayer) {
 		var leg = this.getLeg(id);
 
+		// If no newLayer supplied, revert to orignal state.
+		if (!newLayer) {
+			newLayer = leg.getOriginalLayer();
+		}
+
 		newLayer['_leaflet_id'] = id;
 		leg.setLayer(newLayer);
 
-		return this;
+		return newLayer;
 	},
 
 	updateColor: function (id, color) {

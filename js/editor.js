@@ -36,11 +36,13 @@ Saillog.Editor = {
 					this._stopEditing();
 				},
 				'cancel': function () {
-					// TODO throw away unsaved edits, revert to original state
-					// if leg was already saved.
+					console.log('cancel', id);
+					story.replaceLayer(id);
 
-					// story.removeLeg(id);
-					// delete this._edit;
+					// if (leg.is_not_yet_saved) {
+					// 	story.removeLeg(id);
+					// 	delete this._edit;
+					// }
 
 					this._stopEditing();
 				},
@@ -54,7 +56,7 @@ Saillog.Editor = {
 			}, this)
 			.on({
 				'update-color': function (event) {
-					story.updateColor(this._edit, event.color);
+					story.updateColor(id, event.color);
 				},
 				'change-type': function (event) {
 					this._stopMapEditor();
@@ -66,7 +68,7 @@ Saillog.Editor = {
 					this._editLayer.enable();
 
 					this._map.once('draw:created', function (event) {
-						story.replaceLayer(this._edit, event.layer);
+						story.replaceLayer(id, event.layer);
 
 						//this._startMapEditor();
 					}, this);
@@ -110,7 +112,7 @@ Saillog.Editor = {
 				delete this._edit;
 			}
 
-			this._stopMapEditor(this._editLayer);
+			this._stopMapEditor();
 			delete this._editLayer;
 		}
 	},
@@ -131,15 +133,15 @@ Saillog.Editor = {
 	},
 
 	_stopMapEditor: function () {
-		var layer = this._editLayer;
-		if (!layer) {
+		var oldLayer = this._editLayer;
+		if (!oldLayer) {
 			return;
 		}
-		if (layer.dragging) {
-			layer.dragging.disable();
-		} else if (layer.editing) {
-			layer.editing.disable();
-		}
+		this._map.removeLayer(oldLayer);
+
+		var id = L.stamp(oldLayer);
+		var newLayer = this._story.getLayer(id);
+		this._map.addLayer(newLayer);
 	}
 };
 

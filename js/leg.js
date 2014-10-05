@@ -13,6 +13,7 @@ Saillog.Leg = Saillog.Model.extend({
 		json = json || {
 			properties: {}
 		};
+		this._originalJson = json;
 
 		Saillog.Model.prototype.initialize.call(this, json.properties);
 
@@ -24,6 +25,10 @@ Saillog.Leg = Saillog.Model.extend({
 
 	getType: function () {
 		return this.geometry.type || 'text';
+	},
+
+	getOriginalLayer: function () {
+		return this._makeLayer(this._originalJson);
 	},
 
 	getLayer: function () {
