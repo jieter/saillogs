@@ -7,7 +7,7 @@ describe('util', function () {
 		it('converts youtube links', function () {
 			Saillog.util.renderMarkdown('[foo](http://youtu.be/JIA_D_ZJ1dU)').should.eql(
 				'<p><span class="youtube" data-youtube-url="http://youtu.be/JIA_D_ZJ1dU">' +
-				'<i class="icon-youtube-play"></i> foo</span></p>\n'
+				'<i class="fa fa-youtube-play"></i> foo</span></p>\n'
 			);
 		});
 

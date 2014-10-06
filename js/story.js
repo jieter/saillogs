@@ -145,9 +145,11 @@ Saillog.Story = Saillog.Model.extend({
 		if (!newLayer) {
 			newLayer = leg.getOriginalLayer();
 		}
+		if (newLayer) {
+			newLayer['_leaflet_id'] = id;
+			leg.setLayer(newLayer);
+		}
 
-		newLayer['_leaflet_id'] = id;
-		leg.setLayer(newLayer);
 
 		return newLayer;
 	},

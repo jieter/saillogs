@@ -136,7 +136,7 @@ describe('Saillog.Story', function () {
 			leg.getType().should.equal('Point');
 
 			var newLayer = L.marker([2, 2]);
-			story.replaceLayer(id, newLayer).should.equal(story);
+			story.replaceLayer(id, newLayer);
 
 			leg.getType().should.equal('Point');
 
@@ -152,7 +152,7 @@ describe('Saillog.Story', function () {
 			leg.getType().should.equal('Point');
 
 			var newLayer = L.polyline([[1, 1], [2, 2], [3, 3]]);
-			story.replaceLayer(id, newLayer).should.equal(story);
+			story.replaceLayer(id, newLayer);
 
 			leg.getType().should.equal('LineString');
 

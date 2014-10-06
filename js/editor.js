@@ -141,7 +141,9 @@ Saillog.Editor = {
 
 		var id = L.stamp(oldLayer);
 		var newLayer = this._story.getLayer(id);
-		this._map.addLayer(newLayer);
+		if (newLayer) {
+			this._map.addLayer(newLayer);
+		}
 	}
 };
 

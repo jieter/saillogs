@@ -8,6 +8,7 @@ TODO
  - <esc> should cancel the form.
  - Move back marker to original spot on map after cancelling editing the marker
  - Show linestring if created.
+ - fix panning to markers.
 
 ## Essential
  - make index-generation beter:
