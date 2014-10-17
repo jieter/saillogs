@@ -10,8 +10,14 @@
 		"2015-zomer": {
 			"visible": false,
 			"date": "2015-07-07",
-			"distance": 1312,
+			"distance": 1311,
 			"title": "Zomer 2015?"
+		},
+		"2014-beaufort-njw": {
+			"visible": false,
+			"title": "Beaufort Najaarsweekeinde 2014",
+			"distance": 94,
+			"date": "2014-10-18"
 		},
 		"2013-eendracht-papa": {
 			"date": "2013-08-26",
