@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
 	'use strict';
-	var scriptExtractor = require('script-extractor');
+	var scriptExtractor = require('./build/script-extractor.js');
 
 	// Project configuration.
 	grunt.initConfig({
@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 			},
 			build: {
 				files: {
-					'dist/saillogs.min.js': scriptExtractor('index.html')
+					'dist/saillogs.min.js': scriptExtractor('index.html', '', 'view')
 				}
 			}
 		},
@@ -98,7 +98,7 @@ module.exports = function (grunt) {
 							return content;
 						}
 						return content
-							.replace(/(<script(.*)? src="(.*)"><\/script>(\n)?)/g, '')
+							.replace(/(\t*)(<script(.*)? src="(.*)"><\/script>(\n*)?)/g, '')
 							.replace('</body>', '\t<script src="saillogs.min.js' + '"></script>\n</body>');
 					},
 					processContentExclude: ['**/*.{png,gif,jpg,ico,psd,JPG,ttf,woff}']
