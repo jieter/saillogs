@@ -45,7 +45,7 @@ marked.Renderer.prototype.image = function (href, title, text) {
 };
 
 marked.Renderer.prototype.link = function (href, title, text) {
-	console.log(arguments);
+	// console.log(arguments);
 	if (href.substr(0, 15) === 'http://youtu.be') {
 		// special case for youtube links.
 		if (text === '') {
@@ -59,7 +59,8 @@ marked.Renderer.prototype.link = function (href, title, text) {
 		}
 	} else {
 		// normal behaviour
-		return '<a href="' + href + title + '>'	+ this.output(text) + '</a>';
+		title = title ? ' title="' + title + '"' : '';
+		return '<a href="' + href + '"' + title + '>'	+ text + '</a>';
 	}
 };
 

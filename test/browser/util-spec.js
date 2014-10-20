@@ -21,6 +21,11 @@ describe('util', function () {
 				'<p><img src="data/image.jpg" class="thumb side-thumb" title="foo" /></p>\n'
 			);
 		});
+		it('converts normal links', function () {
+			Saillog.util.renderMarkdown('Test-\nhttp://jieter.nl/ Foo').should.eql(
+				'<p>Test-\n<a href="http://jieter.nl/">http://jieter.nl/</a> Foo</p>\n'
+			);
+		});
 	});
 
 	describe('hexToRgb', function () {

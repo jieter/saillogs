@@ -29,8 +29,6 @@ function storyData(story) {
 }
 
 module.exports = function (grunt) {
-
-
 	grunt.registerTask('makeindex', 'Update index', function () {
 		var filename = 'data/index.json';
 
@@ -55,11 +53,12 @@ module.exports = function (grunt) {
 			item.date = data.date;
 			item.distance = data.distance;
 
+
 			if ('features' in story) {
+				story.type = 'FeatureCollection';
 				stories.push(story);
 			}
 		});
-
 
 
 		grunt.file.write(filename, util.stringify(index));
