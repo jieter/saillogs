@@ -9,9 +9,9 @@
 	"logs": {
 		"2015-zomer": {
 			"visible": true,
-			"date": "2015-07-08",
-			"distance": 1241,
-			"title": "Zomer 2015?"
+			"distance": 1205,
+			"title": "Zomer 2015",
+			"date": "2015-07-08"
 		},
 		"2014-njw-beaufort": {
 			"visible": true,
