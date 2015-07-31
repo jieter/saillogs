@@ -125,6 +125,9 @@ Saillog.App = L.Class.extend({
 		if (story.getProperty('showCalendar')) {
 			this.calendarControl.update(story).show();
 		}
+		if (story.getProperty('baselayer')) {
+			this._map.replaceBaseLayer(story.getProperty('baselayer'));
+		}
 	},
 
 	_attachLegActions: function (emitter) {

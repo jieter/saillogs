@@ -8,7 +8,8 @@ Saillog.Story = Saillog.Model.extend({
 		average: 5,
 		showTimeline: true,
 		showCalendar: true,
-		units: 'nm'
+		units: 'nm',
+		baselayer: false
 	},
 
 	initialize: function (story) {
@@ -39,6 +40,9 @@ Saillog.Story = Saillog.Model.extend({
 		}
 	},
 
+	_layerAdd: function (e) {
+		this.layer.addTo(e.target);
+	},
 
 	each: function (fn, context) {
 		this.legs.forEach(fn, context);

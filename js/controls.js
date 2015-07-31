@@ -274,4 +274,3 @@ Saillog.Control.Timeline = Saillog.Control.extend({
 		item.appendTo(this._reel);
 	}
 });
-

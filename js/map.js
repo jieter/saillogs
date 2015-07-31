@@ -26,19 +26,27 @@ Saillog.Map = L.Map.extend({
 	},
 
 	initLayers: function () {
-		var layers = this.layers = {};
-
-		layers.base = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+		this.layers = {};
+		this.layers.base = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 			attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 			subdomains: '0123',
 			minZoom: 2,
 			maxZoom: 18
 		}).addTo(this);
 
-		layers.openseamap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
-			attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors',
-			minZoom: 9
-		}).addTo(this);
+		// this.layers.openseamap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+		// 	attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors',
+		// 	minZoom: 9
+		// }).addTo(this);
+	},
+
+	replaceBaseLayer: function (layer) {
+		var base = this.layers.base;
+
+		for (var key in layer.options) {
+			base.options[key] = layer.options[key];
+		}
+		base.setUrl(layer.url);
 	},
 
 	fitBounds: function (bounds) {
