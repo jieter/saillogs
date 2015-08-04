@@ -34,10 +34,10 @@ Saillog.Map = L.Map.extend({
 			maxZoom: 18
 		}).addTo(this);
 
-		// this.layers.openseamap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
-		// 	attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors',
-		// 	minZoom: 9
-		// }).addTo(this);
+		this.layers.openseamap = L.tileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+			attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors',
+			minZoom: 9
+		}).addTo(this);
 	},
 
 	replaceBaseLayer: function (layer) {

@@ -132,11 +132,12 @@ Saillog.Widget.Story = Saillog.Widget.extend({
 		container.on('click', '.create-leg', function () {
 			widget.fire('create-leg');
 		});
+
 		container.on('click mouseover mouseout', '.leg', function (event) {
 			var target = $(event.target);
 			var type = target.is('.edit') || target.parent().is('.edit') ? 'edit' : event.type;
 
-			if (type === 'edit' && event.type !== 'click') {
+			if (type === 'edit' && event.type !== 'click' || target.hasClass('thumb')) {
 				return;
 			}
 			widget.fire(type + '-leg', {

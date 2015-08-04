@@ -3,10 +3,7 @@ TODO
 
 
 ## bugs
-
- - <enter> in title of leg should submit form.
- - <esc> should cancel the form.
- - Move back marker to original spot on map after cancelling editing the marker
+ - record global keypresses.
  - Show linestring if created.
  - fix panning to markers.
 
@@ -43,6 +40,9 @@ TODO
 
 
 ## Done.
+ - Move back marker to original spot on map after cancelling editing the marker
+ - <enter> in title of leg should submit form.
+ - <esc> should cancel the form.
 
  - update color in map after (or during) leg edit.
  - round offsets/widths in timeline control

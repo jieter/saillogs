@@ -149,6 +149,7 @@ Saillog.App = L.Class.extend({
 		this._highlight(legId);
 		this._map.panTo(this._story.getLayer(legId));
 
+		console.log(event);
 		this._scrollTo(legId);
 	},
 
