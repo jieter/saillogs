@@ -11,763 +11,240 @@
 		"showCalendar": true,
 		"baselayer": false
 	},
-	"features": [
-		{
-			"type": "Feature",
-			"properties": {
-				"text": "Na een zomervakantie met de auto kriebelt het weer om met de boot weg te gaan. Deze keer weer eens naar het noorden, [Shetland is het idee](http://jieter.github.io/saillogs/#2015-zomer-plan).\n\nDinsdag ruimen we de laatste dingen op van de bruiloft van maandag en Paul en Pauli doen boodschappen. De autorit via Den Haag naar Hellevoetsluis gaat niet bepaald vanzelf. De auto zit rammend vol en het verkeer werkt niet mee. Omdat we door de vertraging niet echt zin hebben in koken rijden we naar Hellevoetsluis om daar een nederlandse Fish & Chips te eten, samen met de ouders van Jieter.",
-				"title": "",
-				"color": "#ffffff",
-				"date": "",
-				"average": 5
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					4.11962,
-					51.82262
-				]
-			}
+	"features": [{
+		"type": "Feature",
+		"properties": {
+			"text": "Na een zomervakantie met de auto kriebelt het weer om met de boot weg te gaan. Deze keer weer eens naar het noorden, [Shetland is het idee](http://jieter.github.io/saillogs/#2015-zomer-plan).\n\nDinsdag ruimen we de laatste dingen op van de bruiloft van maandag en Paul en Pauli doen boodschappen. De autorit via Den Haag naar Hellevoetsluis gaat niet bepaald vanzelf. De auto zit rammend vol en het verkeer werkt niet mee. Omdat we door de vertraging niet echt zin hebben in koken rijden we naar Hellevoetsluis om daar een nederlandse Fish & Chips te eten, samen met de ouders van Jieter.",
+			"title": "",
+			"color": "#ffffff",
+			"date": "",
+			"average": 5
 		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Onverwachts in Maassluis",
-				"text": "Het waait behoorlijk en uit de verkeerde hoek, dus erg veel zin hebben we nog niet om te vertrekken. We zijn de hele dag een beetje bezig met bijkomen, opruimen en inrichten, maar blijven liggen is suf en we hebben nog reservediesel nodig, dus op naar Stellendam waar de watersportzaak een pomp heeft aan het water. \nDoor het getreuzel zijn we daar te laat en is de zaak al dicht. We eten pastasalade en besluiten maar gewoon te gaan varen om te zien hoe het is en te kijken hoe ver we komen. \nHet Slijkgat ligt in de wind en we besluiten om eruit te motoren. Eenmaal op zee gaat het zeil omhoog en trotseren we de onprettige golven aan lage wal. Omdat we allemaal nog niet lekker zijn uitgerust besluiten we aan het begin van de nacht dat we maar stuurboord uit de Maasmond ingaan. Helaas duurt het dan nog wel behoorlijk lang voor we ergens kunnen aanleggen, zeker met een knoop of 3,5 stroom tegen.\nTegen vieren varen we de voorhaven van Maassluis binnen, niet bepaald een vriendelijke plek voor jachten. We leggen aan langzij een werkboot waar niet echt activiteit op zien. Ze zullen het wel laten horen als ze weg moeten, nu eerst slapen!",
-				"date": "2015-07-08",
-				"color": "#ff0000",
-				"average": 5
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						4.118156433105468,
-						51.82103101804979
-					],
-					[
-						4.114894866943359,
-						51.81455800703693
-					],
-					[
-						4.049320220947266,
-						51.82368362277163
-					],
-					[
-						4.0450286865234375,
-						51.82071269498748
-					],
-					[
-						4.031124114990234,
-						51.82856400738683
-					],
-					[
-						4.036788940429687,
-						51.833019548947135
-					],
-					[
-						4.0338706970214835,
-						51.84914068201114
-					],
-					[
-						4.021339416503906,
-						51.85719908388728
-					],
-					[
-						4.002285003662109,
-						51.85857735020976
-					],
-					[
-						3.9736175537109375,
-						51.84892859931685
-					],
-					[
-						3.939285278320312,
-						51.84670167069022
-					],
-					[
-						3.9027214050292964,
-						51.85507859171898
-					],
-					[
-						3.9276123046874996,
-						51.95569164116401
-					],
-					[
-						3.9918136596679683,
-						51.99566238276494
-					],
-					[
-						4.072151184082031,
-						51.98593733733687
-					],
-					[
-						4.129829406738281,
-						51.97176881859014
-					],
-					[
-						4.1782379150390625,
-						51.94913218923517
-					],
-					[
-						4.221067428588867,
-						51.931617984993466
-					],
-					[
-						4.236001968383789,
-						51.91986746696141
-					],
-					[
-						4.244327545166016,
-						51.91596317943724
-					],
-					[
-						4.245829582214355,
-						51.915433758378875
-					],
-					[
-						4.2484259605407715,
-						51.9174058201392
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"text": "Na een kort nachtje klopt de buurman op het dak om te vertellen dat we absoluut niet aan hem mogen liggen omdat hij stand-by staat voor de werkzaamheden aan de berging van de Baltic Ace.\n\n![Brand spankin' nieuwe jachthaven van Maassluis](maassluis.jpg) We moeten dus verkassen en om 8:30 blijken de ambtenaren van Maassluis wakker te worden om de bruggen te bedienen voor jachtjesmensen. We roepen ze op via de Marifoon en varen naar binnen. Eenmaal in de splinternieuwe haven krijgen we wat uitleg over Maassluis en het bericht dat we de eerste passant zijn in de nieuwe haven. Omdat de tarieven nog niet bekend zijn hoeven we ook niets te betalen ;).\n\nMet de uitleg van de beide havenmeesters maken we een rondje door het centrum. Joris en Jieter bezoeken het Nationale sleepvaartmuseum, Paul stuurt kaarten naar huis en we eten lekker ijs van melk van koeien uit Guernsey. Iets met carroteen ofzo.\n\nAls ik om half vijf in het haventoilet een grote boodschap probeer af te leveren wordt er ineens aan het slot gedraaid. Het is voor de havenmeesters annex ordehandhavers tijd om naar huis te gaan en onderdeel van het afsluitritueel is het afsluiten van de douche-/toiletwagen. Gelukkig willen ze nog even wachten en mag ik er nog uit.\n\n![Diesel](maassluis-diesel.jpg) Omdat er in Maassluis geen diesel aan het water wordt verkocht loop ik samen met Paul naar de benzinepomp die het dichtste bij is. Met lege 25l-jerrycans gaat dat prima, maar op de terugweg is het toch erg fijn dat Joris ons van deze last komt verlossen met de bijboot.",
-				"title": "Passantenhaven Maassluis",
-				"color": "#ffffff",
-				"date": "2015-07-09",
-				"average": 5
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					4.24896240234375,
-					51.921931969900356
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Op naar Shetland",
-				"text": "Met 550 mijl voor de boeg vertrekken we zodra de ambtenaren het toestaan: klokslag 8:30 roepen we de brug op en even later passeren we de drie bruggen en draaien stuurboord uit de Nieuwe waterweg op.\nHet zeil kon in de buitenhaven al omhoog en we varen met een kalm gangetje richting zee. Het is best druk en we melden ons keurig bij Sector Maasmond.Na verloop van tijd roept de sector ons op om te vragen of we meer richting bakboord naar het noorden willen komen. Ik vaar al strak stuurboordswal en vraag wat hij precies bedoelt. Hij blijft er bij dat ik naar het noorden en naar bakboord moet komen.\nAls het weer wat rustiger is krijgen we zelfs een berisping dat we wel naar hem moeten luisteren, of vertellen dat we iets anders beslissen te doen. Als ik reageer met dat ik werkelijk niet begrijp wat hij bedoelt en dat ik gewoon stuurboordswal heb aangehouden is het even stil en biedt hij zijn excuses aan: hij heeft ons met een ander bootje verwisselt, wat inderdaad aan de zuidkant van de geul vreemde dingen deed.\n\nEenmaal in het gebied van Pilot Maas blijkt dat we weer iets lastigs hebben bedacht voor de heren: onze track naar een waypoint net west van de ingang van Maas North TSS gaat nogal dicht langs de pilot boarding area. En daar worden ze een beetje zenuwachtig van. Gelukkig luisteren wij braaf naar wat ze zeggen en kijken we ook nog goed op de AIS. Als we zijn gebied verlaten bedankt de meneer van Pilot Maas ons voor de medewerking en wenst ons een goede reis.\n\n![Vreemd stilliggend schip](heenweg-raar-schip.jpg) Rond een uur of acht zien we een jacht wat niet echt vaart. We verleggen de koers een klein beetje om zo wat dichter bij hem langs te varen. Als hij door heeft dat we op hem afkomen start hij de motor en gaat er vandoor, haaks op onze koers. We zien niemand aan boord, maar wel een fok waar de flarden bij hangen en een giek zonder grootzeil. Hier kan je van alles van denken, maar ik vond het vooral erg vreemd.\n\n![](heenweg-joris1.jpg \"inline\") \n![](heenweg-joris2.jpg \"inline\")\n\n![Koken op zee: Aardappels, groente, vlees.](heenweg-koken.jpg) \n![Brood bakken](heenweg-broodbakken.jpg)\n![Soms is het gewoon prachtig leeg...](heenweg-zee.jpg) De verdere tocht is een soort opwekkingslied: 'sturen, eten, slapen' 16x. Maar wel echt tot rust komen, genieten van dolfijnen om de boot, ![lege horizons](http://youtu.be/w-9uVUQMVZg) met prachtige wolken er boven, windstiltes. Tot we op de ochtend van 14 juli weer land zien: Eerst Fair Isle, later ook Sumburg Head. Steeds meer details verschijnen Horse I, een hobbeltjes worden bergen.\n\nOm even voor zeven lijkt de wind wat aan te trekken, maar tegen de tijd dat de Genua op dek ligt is de wind weer een tijdje onder de 10kts. Dan maar weer omhoog ermee. \n\nWe varen binnendoor tussen Mainlaind en Mousa door, genieten van het uitzicht op Mousa Broch, de vissende vogels en de prachtige verschillende kleuren op de heuvels van Shetland. Cool om er nu echt te zijn!\n\n![Begraafplaats van Lerwick. Hier lig je wel goed, met zeezicht.](heenweg-aanloop-lerwick.jpg) Dat het een beetje begint de regenen mag de pret niet drukken en we varen rond 11:11 LT Bressay sound binnen, langs de begraafplats, het hoekje om. De havenmeester vertelt ons vriendelijk dat we om de boeg van een grote blauwe boot heen moeten en daar een plekje mogen zoeken. We zijn er! in 100 uur, 570 NM op het log.\n\n![Fish & Chips](fish-chips.jpg)Paul vindt het hoog tijd voor Fish en Chips, dus we lopen via het havenkantoor naar de stad. Na advies van de aardige havenmevrouw zitten we binnen de kortste keren in de vensterbank van 'Fort Cafe & Take away' aan een enorme bak friet met een groot stuk vis er bovenop.",
-				"date": "2015-07-10",
-				"color": "#171bc6",
-				"average": 5
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						4.2510223388671875,
-						51.91504992420809
-					],
-					[
-						4.248275756835937,
-						51.91166145264695
-					],
-					[
-						4.1809844970703125,
-						51.94553466305084
-					],
-					[
-						4.085540771484375,
-						51.98318857213821
-					],
-					[
-						4.0450286865234375,
-						51.9891087798712
-					],
-					[
-						3.7298583984375004,
-						52.12294980913476
-					],
-					[
-						2.76031494140625,
-						53.34891180394271
-					],
-					[
-						0.19775390625,
-						57.48040333923341
-					],
-					[
-						-1.153564453125,
-						59.55380845543803
-					],
-					[
-						-1.2490081787109375,
-						59.83895049741693
-					],
-					[
-						-1.18927001953125,
-						59.985593412687976
-					],
-					[
-						-1.20574951171875,
-						60.00859805562542
-					],
-					[
-						-1.1624908447265625,
-						60.029185654654505
-					],
-					[
-						-1.1281585693359375,
-						60.15073347299117
-					],
-					[
-						-1.1377716064453125,
-						60.15654283139454
-					],
-					[
-						-1.1418914794921875,
-						60.1541508669647
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Shetland",
-				"date": "2015-07-15",
-				"text": "![](shetland-puffin.jpg \"inline\") ![](shetland-stninians.jpg \"inline\")\n\n![](shetland-stninians2.jpg \"inline\") ![](shetland-uitzicht.jpg \"inline\")",
-				"color": "#000000",
-				"average": 5
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-1.1418914794921875,
-					60.1541508669647
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Via Mousa broch naar Takkie",
-				"text": "De [Mousa broch](https://en.wikipedia.org/wiki/Broch_of_Mousa) blijft intrigreren, dus we besluiten daar op onze route naar Fair Isle eens even polshoogte te nemen. We proberen eerst de ankerplek East Ham, maar daar wil het anker niet lekker pakken, is het vrij krap en er komt ook nog aardige swell binnen. Als we het anker weer willen optrekken wordt duidelijk dat de ankerlier niet werkt: het anker moet dus maar met de hand omhoog worden getrokken...\n\n![](fairisle-heenweg.jpg \"inline\")\n![](fairisle-heenweg-wier.jpg \"inline\")\n\n\nWe varen om de noordpunt heen en proberen West Ham. Daar is het veel rustiger en het anker grijpt er ook meteen echt goed. We tuigen de bijboot op en ik vaar in twee keer iedereen naar de kant. Daar wandelen we door de verlatenheid in het gezelschap van heel wat schaapjes naar de Broch. Dit bouwwerk, wat ruim 2000 jaar oud is bestaat alleen uit gestapelde stenen. Aan de voet is de doorsnede ongeveer 15m en de muren zijn zo breed dat er een soort wenteltrap in zit waarmee je omhoog kunt lopen. Bizar om zo'n oud gebouw in zo'n staat te zien en te beklimmen.\n\n![](mousa-broch.jpg \"inline\")\n![](mousa-broch2.jpg \"inline\")\n\n\n![](mousa-terugmarcheren.jpg) Omdat ik nog niet zo vaak heb geankerd wordt ik als de wind wat aantrekt wat zenuwachtig. Eigenlijk niet relaxed om geen zicht op de boot te hebben. Omdat de rest nog niet klaar is met het aanschouwen van de Broch, marcheer ik alvast terug.\n\nDe toeristenferry blokkeert inmiddels de uitgang voor ons bijbootje, maar gelukkig ligt Equilibre nog vredig achter haar anker. De bemanning van de ferry zit in een stenen gebouwtje bij de 'haven' te lunchen: aardappels met gerookte vis. Tijdens het kletsen duurt het niet lang of ik krijg ook een stuk vis aangeboden.\n\n\n![](fairisle-heenweg-cupcakes.jpg) Na dit uitstapje is het tijd voor de volgende 30NM naar Fair Isle. Het is inmiddels ruim tijd voor thee, en Marleen heeft vanmorgen in Lerwick nog cupcakes gekocht. Omdat niemand kan of wil kiezen houden we een soort cupcake-proeverij. hmm.\n\n![](fairisle-heenweg-pauli.jpg \"inline\") ![](fairisle-aanloop.jpg \"inline\")\n\nFair Isle komt steeds beter in zicht. De invaaraanwijzing is simpel: houdt de grote rots voor de haven in lijn met de linkerkant van Sheep Rock, een zeer karakteristieke klif aan de zuidwestkant van het eiland.\n\nEenmaal in de haven is het superbeschut. Omdat we naast een ander jacht aan de Good Shepherd IV liggen breng ik met het bijbootje een landvat naar de kant. Vrijwel direct komen de zeehonden een kijkje nemen. Ze komen hier echt dichtbij, en snuiven wat. Hier snapte ik voor het eerst waarom zeehonden zeehonden heten: ze kijken naar je alsof je zometeen een tennisbal gaat weggooien... Voor als je er nog eens komt: die ene met dat witte vlekje op zijn neus heet Takkie.\n\n![](fairisle-aanloop2.jpg \"inline\") ![](fairisle-borrel.jpg \"inline\")\n\n",
-				"date": "2015-07-16",
-				"color": "#000000",
-				"average": 5
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						-1.1420631408691406,
-						60.15466344542324
-					],
-					[
-						-1.1414623260498047,
-						60.15607299497492
-					],
-					[
-						-1.1377716064453125,
-						60.15594485660407
-					],
-					[
-						-1.130218505859375,
-						60.15077619260828
-					],
-					[
-						-1.1363983154296875,
-						60.12645975954683
-					],
-					[
-						-1.1669540405273435,
-						60.03313014690289
-					],
-					[
-						-1.1766529083251953,
-						60.003878258021096
-					],
-					[
-						-1.1793136596679688,
-						60.00308440770832
-					],
-					[
-						-1.1790132522583006,
-						60.00415717387798
-					],
-					[
-						-1.182403564453125,
-						60.00842643842314
-					],
-					[
-						-1.1864805221557617,
-						60.008576603523835
-					],
-					[
-						-1.196136474609375,
-						60.009284515528016
-					],
-					[
-						-1.1913299560546875,
-						60.00130353904603
-					],
-					[
-						-1.1873817443847656,
-						60.00147519321306
-					],
-					[
-						-1.1913299560546875,
-						59.99623934036446
-					],
-					[
-						-1.19476318359375,
-						59.947446028167285
-					],
-					[
-						-1.3300323486328125,
-						59.59623077551906
-					],
-					[
-						-1.6053771972656248,
-						59.5419763100415
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Fair Isle",
-				"date": "2015-07-17",
-				"text": "![Kliffen op Fair Isle](fairisle-cliffs.jpg \"inline\")\n![Uitzicht op de boot](fairisle-uitzicht.jpg \"inline\")",
-				"color": "#000000",
-				"average": 5
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-1.613616943359375,
-					59.54128017205441
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Naar Peterhead",
-				"text": "De volgende bestemming is Peterhead, door sommigen consequent uitgesproken als Petershead. Arme Peter.De voorspelling was dat de wind gunstig zou draaien en in de loop van de komende nacht zou afnemen, dus we vertrekken zo laat dat Joris het nog nodig vindt om naar de *North light* te lopen. Uiteindelijk staat in het log dat we om 14:20 vertrekken. Het waait aardig dus we zetten het eerste rif. In de avond neemt de wind nog verder toe, dus het tweede rif gaat er in, we varen in 7 beaufort met vlagen van 36kts.\nGraag deel ik nog twee logboekregels opgeschreven door Bertus:\n```\n2210: veel golven  echt heul veel\n2316: Jieter flikkert over tafel\n```\nTerwijl Bertus heerlijk lag te pitten op de kajuitbank trok ik mijn zeilbroek aan, zittend op de tafel. Door een onverwachte golf, waar er dus heul veel van waren, val ik over de tafel heen, half op Bertus. Ik heb er hartelijk om gelachen, Bertus geloof ik uiteindelijk ook wel.",
-				"date": "2015-07-18",
-				"color": "#000000",
-				"average": 5
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						-1.6031455993652344,
-						59.538582501502255
-					],
-					[
-						-1.6010856628417969,
-						59.5419763100415
-					],
-					[
-						-1.5967941284179688,
-						59.542672433646004
-					],
-					[
-						-1.5906143188476562,
-						59.5399748745622
-					],
-					[
-						-1.5919876098632812,
-						59.50828415043603
-					],
-					[
-						-1.571044921875,
-						59.136499487320734
-					],
-					[
-						-1.021728515625,
-						58.802361927759456
-					],
-					[
-						-0.9777832031250001,
-						58.309488840677645
-					],
-					[
-						-1.7138671875,
-						57.468589192089325
-					],
-					[
-						-1.7804718017578125,
-						57.49996211862384
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Peterhead",
-				"text": "OK captain\n\nNo problem captain",
-				"date": "2015-07-20",
-				"color": "#000000",
-				"average": 5
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-1.7887115478515623,
-					57.500699980656535
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Naar Eyemouth",
-				"text": "Nu Joris en Marleen ons hebben verlaten, en Patrick er bij is gekomen, zijn we even met zijn vieren. Dat levert een iets minder relaxed wachtschema op van vier uur op, vier uur af. In eerste instantie is de bestemming ook nog in de wind en moeten we een met tegenstroom opkruisen. Onze 'buren' van de *Jager* hadden dat beter bekeken en zijn een beetje later vertrokken: stroom mee, en een bezeilde koers dicht bij de kust zorgen er voor dat zij er eerder zijn dan wij.\n\n![Big orange vessel, aldus iemand anders over de marifoon](peterhead-vertrek.jpg) Bij het verlaten van de haven moeten we even wachten omdat er een 'big orange vessel' bezig is met manouvreren in de havenkom. Blijft toch een imposant gezicht om voor de boeg van zo'n boot langs te varen. Als wij naar buiten varen zien we een solozeiler net binnenkomen.\n\nDe aanloop van Eyemouth is prachtig in de vroege morgen wat onze gaarheid weer goed maakt. Helaas past volgens Bertus de kleur van de lucht niet bij de kleur van de zee \"echt heel irritant\". Tja, je kunt je als architect overal druk over maken.\n\nAls we voor het douchen bij de havenmeester langs gaan neemt hij er de tijd voor en vertelt ons van alles over de geschiedenis van de haven. \n\n",
-				"date": "2015-07-21",
-				"color": "#000000",
-				"average": 5
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						-1.7811584472656248,
-						57.497748443029806
-					],
-					[
-						-1.7324066162109375,
-						57.47265073604842
-					],
-					[
-						-2.0894622802734375,
-						55.87454041761713
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Makrelen en een luidruchtige Ier",
-				"text": "",
-				"date": "2015-07-22",
-				"color": "#000000",
-				"average": 5
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-2.0861148834228516,
-					55.87280692104722
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Holy Island",
-				"text": "Om tien voor zeven beginnen onze buren onrustig te worden en starten de motor en kloppen op het dak. Voordat wij weg kunnen moeten eerst onze buren losgooien. Dat gaat niet helemaal vanzelf, maar even later varen we rustig naar de bunkerplek om onze dieseltank af te toppen.\n\nDaarna ontbijten we rustig en maken het plan voor vandaag. Pauli bedacht om Jieter een keer niet het plan te laten maken, dus zij maakt met Bertus en Patrick het plan om naar Holy Island te varen.\n\nIn de haven lijkt het een rustig dagje te worden, maar zodra we het havengeultje uit zijn en het grootzeil met het eerste rif staat besluiten we al snel om er ook maar een tweede rif in te trekken. Na Jieter's eerdere onrustige ankerervaring met wat wind in de baai bij Holy Island twijfelt hij of het een goed idee is daar een nacht te slapen, maar de rest haalt hem over en Bertus vaart de boot met behulp van de stenen bakens de baai van Holy Island binnen. Patrick geeft van achter de laptop aanwijzingen en Jieter gooit het anker uit als we op een mooi plekje voor The Heugh liggen.",
-				"date": "2015-07-23",
-				"color": "#18eb08",
-				"average": 5
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						-2.0859646797180176,
-						55.87248188182487
-					],
-					[
-						-2.086458206176758,
-						55.873541258902996
-					],
-					[
-						-2.0878314971923824,
-						55.87488951520345
-					],
-					[
-						-2.087874412536621,
-						55.87882567421509
-					],
-					[
-						-2.07916259765625,
-						55.87954786189979
-					],
-					[
-						-1.7506027221679688,
-						55.70138778301519
-					],
-					[
-						-1.7045974731445312,
-						55.68261722603089
-					],
-					[
-						-1.7159271240234375,
-						55.65279803318956
-					],
-					[
-						-1.7912864685058592,
-						55.65948028202839
-					],
-					[
-						-1.7996978759765625,
-						55.66722638916236
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Newcastle",
-				"text": "![Tijdens de aanloop wordt er nog gestudeerd op hoe het er precies uitziet.](newcastle-aanloop.jpg \"inline\")\n![Eenmaal binnen de pieren is het een kwestie van het volgen van de vaargeul](newcastle-tynemouth.jpg \"inline\")\n\n![Prachtige avondluchten!](newcastle-haven.jpg \"inline\")\n![Arie en Leo komen met de ferry aan op zondagmorgen](newcastle-nieuwe-crew.jpg \"inline\")\n",
-				"date": "2015-07-24",
-				"color": "#bd3fbd",
-				"average": 5
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						-1.800384521484375,
-						55.66906586432125
-					],
-					[
-						-1.778411865234375,
-						55.658996099428364
-					],
-					[
-						-1.717987060546875,
-						55.654347641744216
-					],
-					[
-						-1.679534912109375,
-						55.60550550374784
-					],
-					[
-						-1.5847778320312498,
-						55.563592347410776
-					],
-					[
-						-1.51336669921875,
-						55.32914440840507
-					],
-					[
-						-1.391143798828125,
-						55.019362669629714
-					],
-					[
-						-1.4089965820312498,
-						55.01227627898974
-					],
-					[
-						-1.4339733123779295,
-						55.007502101516295
-					],
-					[
-						-1.4418697357177734,
-						55.00597621361476
-					],
-					[
-						-1.4438438415527342,
-						54.999478234616326
-					],
-					[
-						-1.4465045928955078,
-						54.99679504990879
-					],
-					[
-						-1.4480924606323242,
-						54.99667196373706
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"text": "![Relaxed met een koffie luisteren naar oude liedjes](newcastle-zangers.jpg \"inline\")",
-				"title": "North shields en Tynemouth",
-				"color": "#ffffff",
-				"date": "2015-07-25",
-				"average": 5
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					4.11962,
-					51.82262
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Red arrows",
-				"text": "![Red Arrows](http://youtu.be/s0uIIxglG28)",
-				"date": "2015-07-26",
-				"color": "#000000",
-				"average": 5
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						-1.4487361907958984,
-						54.99657349452778
-					],
-					[
-						-1.4461612701416013,
-						54.9969673699149
-					],
-					[
-						-1.442556381225586,
-						54.997459708711595
-					],
-					[
-						-1.4408397674560547,
-						55.00366265994137
-					],
-					[
-						-1.4391231536865234,
-						55.004942514634955
-					],
-					[
-						-1.4257335662841797,
-						55.00863417438293
-					],
-					[
-						-1.4006710052490234,
-						55.012227063564595
-					],
-					[
-						-1.3896846771240234,
-						55.01252235520929
-					],
-					[
-						-1.314239501953125,
-						54.98234215326033
-					],
-					[
-						-1.3414478302001953,
-						54.922505533777404
-					],
-					[
-						-1.3509750366210938,
-						54.920433809029525
-					],
-					[
-						-1.3601160049438477,
-						54.9183496449595
-					],
-					[
-						-1.366875171661377,
-						54.91698069739749
-					],
-					[
-						-1.3674545288085938,
-						54.919447235942755
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "Terug",
-				"text": "![Bertus' meest relaxte paprikasnijhouding](http://youtu.be/6Eim7cXgAs4)",
-				"date": "2015-07-27",
-				"color": "#000000",
-				"average": 5
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						-1.3674116134643555,
-						54.919385574321666
-					],
-					[
-						-1.3667893409729004,
-						54.91645037186351
-					],
-					[
-						-1.3636565208435059,
-						54.91737535372437
-					],
-					[
-						-1.352219581604004,
-						54.919743210408626
-					],
-					[
-						-1.318359375,
-						54.916882032711015
-					],
-					[
-						-0.15106201171874997,
-						54.287675324266324
-					],
-					[
-						3.3267974853515625,
-						52.07781801208549
-					],
-					[
-						3.4284210205078125,
-						51.89895240691636
-					],
-					[
-						3.697586059570312,
-						51.834504631516054
-					],
-					[
-						3.9646911621093746,
-						51.84765608216451
-					],
-					[
-						4.005889892578125,
-						51.85953150985473
-					],
-					[
-						4.038848876953125,
-						51.84511093992763
-					],
-					[
-						4.041595458984375,
-						51.82813964710642
-					],
-					[
-						4.04571533203125,
-						51.82219818336938
-					],
-					[
-						4.063568115234375,
-						51.82219818336938
-					],
-					[
-						4.11163330078125,
-						51.816255935957535
-					],
-					[
-						4.12811279296875,
-						51.82559340146247
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"title": "",
-				"text": "<table>\n<tr><td class=\"meta\">Boot</td><td>Equilibre, Spirit 36</td></tr>\n<tr><td class=\"meta\">Gevaren</td><td>1300NM</td></tr>\n<tr><td class=\"meta\">Foto's</td><td>Jieter, Pauli, Joris, Patrick</td></tr>\n</table>\n\n![](menukaart.jpg \"inline\")\n![](bijboot.jpg \"inline\")\n![](jieter-slaapt.jpg \"inline\")\n\n\n",
-				"date": "",
-				"color": "#000000",
-				"average": 5
-			}
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.11962,51.82262]
 		}
-	],
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Onverwachts in Maassluis",
+			"text": "Het waait behoorlijk en uit de verkeerde hoek, dus erg veel zin hebben we nog niet om te vertrekken. We zijn de hele dag een beetje bezig met bijkomen, opruimen en inrichten, maar blijven liggen is suf en we hebben nog reservediesel nodig, dus op naar Stellendam waar de watersportzaak een pomp heeft aan het water. \nDoor het getreuzel zijn we daar te laat en is de zaak al dicht. We eten pastasalade en besluiten maar gewoon te gaan varen om te zien hoe het is en te kijken hoe ver we komen. \nHet Slijkgat ligt in de wind en we besluiten om eruit te motoren. Eenmaal op zee gaat het zeil omhoog en trotseren we de onprettige golven aan lage wal. Omdat we allemaal nog niet lekker zijn uitgerust besluiten we aan het begin van de nacht dat we maar stuurboord uit de Maasmond ingaan. Helaas duurt het dan nog wel behoorlijk lang voor we ergens kunnen aanleggen, zeker met een knoop of 3,5 stroom tegen.\nTegen vieren varen we de voorhaven van Maassluis binnen, niet bepaald een vriendelijke plek voor jachten. We leggen aan langzij een werkboot waar niet echt activiteit op zien. Ze zullen het wel laten horen als ze weg moeten, nu eerst slapen!",
+			"date": "2015-07-08",
+			"color": "#ff0000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[4.118156433105468,51.82103101804979],[4.114894866943359,51.81455800703693],[4.049320220947266,51.82368362277163],[4.0450286865234375,51.82071269498748],[4.031124114990234,51.82856400738683],[4.036788940429687,51.833019548947135],[4.0338706970214835,51.84914068201114],[4.021339416503906,51.85719908388728],[4.002285003662109,51.85857735020976],[3.9736175537109375,51.84892859931685],[3.939285278320312,51.84670167069022],[3.9027214050292964,51.85507859171898],[3.9276123046874996,51.95569164116401],[3.9918136596679683,51.99566238276494],[4.072151184082031,51.98593733733687],[4.129829406738281,51.97176881859014],[4.1782379150390625,51.94913218923517],[4.221067428588867,51.931617984993466],[4.236001968383789,51.91986746696141],[4.244327545166016,51.91596317943724],[4.245829582214355,51.915433758378875],[4.2484259605407715,51.9174058201392]]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"text": "Na een kort nachtje klopt de buurman op het dak om te vertellen dat we absoluut niet aan hem mogen liggen omdat hij stand-by staat voor de werkzaamheden aan de berging van de Baltic Ace.\n\n![Brand spankin' nieuwe jachthaven van Maassluis](maassluis.jpg) We moeten dus verkassen en om 8:30 blijken de ambtenaren van Maassluis wakker te worden om de bruggen te bedienen voor jachtjesmensen. We roepen ze op via de Marifoon en varen naar binnen. Eenmaal in de splinternieuwe haven krijgen we wat uitleg over Maassluis en het bericht dat we de eerste passant zijn in de nieuwe haven. Omdat de tarieven nog niet bekend zijn hoeven we ook niets te betalen ;).\n\nMet de uitleg van de beide havenmeesters maken we een rondje door het centrum. Joris en Jieter bezoeken het Nationale sleepvaartmuseum, Paul stuurt kaarten naar huis en we eten lekker ijs van melk van koeien uit Guernsey. Iets met carroteen ofzo.\n\nAls ik om half vijf in het haventoilet een grote boodschap probeer af te leveren wordt er ineens aan het slot gedraaid. Het is voor de havenmeesters annex ordehandhavers tijd om naar huis te gaan en onderdeel van het afsluitritueel is het afsluiten van de douche-/toiletwagen. Gelukkig willen ze nog even wachten en mag ik er nog uit.\n\n![Diesel](maassluis-diesel.jpg) Omdat er in Maassluis geen diesel aan het water wordt verkocht loop ik samen met Paul naar de benzinepomp die het dichtste bij is. Met lege 25l-jerrycans gaat dat prima, maar op de terugweg is het toch erg fijn dat Joris ons van deze last komt verlossen met de bijboot.",
+			"title": "Passantenhaven Maassluis",
+			"color": "#ffffff",
+			"date": "2015-07-09",
+			"average": 5
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.24896240234375,51.921931969900356]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Op naar Shetland",
+			"text": "Met 550 mijl voor de boeg vertrekken we zodra de ambtenaren het toestaan: klokslag 8:30 roepen we de brug op en even later passeren we de drie bruggen en draaien stuurboord uit de Nieuwe waterweg op.\nHet zeil kon in de buitenhaven al omhoog en we varen met een kalm gangetje richting zee. Het is best druk en we melden ons keurig bij Sector Maasmond.Na verloop van tijd roept de sector ons op om te vragen of we meer richting bakboord naar het noorden willen komen. Ik vaar al strak stuurboordswal en vraag wat hij precies bedoelt. Hij blijft er bij dat ik naar het noorden en naar bakboord moet komen.\nAls het weer wat rustiger is krijgen we zelfs een berisping dat we wel naar hem moeten luisteren, of vertellen dat we iets anders beslissen te doen. Als ik reageer met dat ik werkelijk niet begrijp wat hij bedoelt en dat ik gewoon stuurboordswal heb aangehouden is het even stil en biedt hij zijn excuses aan: hij heeft ons met een ander bootje verwisselt, wat inderdaad aan de zuidkant van de geul vreemde dingen deed.\n\nEenmaal in het gebied van Pilot Maas blijkt dat we weer iets lastigs hebben bedacht voor de heren: onze track naar een waypoint net west van de ingang van Maas North TSS gaat nogal dicht langs de pilot boarding area. En daar worden ze een beetje zenuwachtig van. Gelukkig luisteren wij braaf naar wat ze zeggen en kijken we ook nog goed op de AIS. Als we zijn gebied verlaten bedankt de meneer van Pilot Maas ons voor de medewerking en wenst ons een goede reis.\n\n![Vreemd stilliggend schip](heenweg-raar-schip.jpg) Rond een uur of acht zien we een jacht wat niet echt vaart. We verleggen de koers een klein beetje om zo wat dichter bij hem langs te varen. Als hij door heeft dat we op hem afkomen start hij de motor en gaat er vandoor, haaks op onze koers. We zien niemand aan boord, maar wel een fok waar de flarden bij hangen en een giek zonder grootzeil. Hier kan je van alles van denken, maar ik vond het vooral erg vreemd.\n\n![](heenweg-joris1.jpg \"inline\") \n![](heenweg-joris2.jpg \"inline\")\n\n![Koken op zee: Aardappels, groente, vlees.](heenweg-koken.jpg) \n![Brood bakken](heenweg-broodbakken.jpg)\n![Soms is het gewoon prachtig leeg...](heenweg-zee.jpg) De verdere tocht is een soort opwekkingslied: 'sturen, eten, slapen' 16x. Maar wel echt tot rust komen, genieten van dolfijnen om de boot, ![lege horizons](http://youtu.be/w-9uVUQMVZg) met prachtige wolken er boven, windstiltes. Tot we op de ochtend van 14 juli weer land zien: Eerst Fair Isle, later ook Sumburg Head. Steeds meer details verschijnen Horse I, een hobbeltjes worden bergen.\n\nOm even voor zeven lijkt de wind wat aan te trekken, maar tegen de tijd dat de Genua op dek ligt is de wind weer een tijdje onder de 10kts. Dan maar weer omhoog ermee. \n\nWe varen binnendoor tussen Mainlaind en Mousa door, genieten van het uitzicht op Mousa Broch, de vissende vogels en de prachtige verschillende kleuren op de heuvels van Shetland. Cool om er nu echt te zijn!\n\n![Begraafplaats van Lerwick. Hier lig je wel goed, met zeezicht.](heenweg-aanloop-lerwick.jpg) Dat het een beetje begint de regenen mag de pret niet drukken en we varen rond 11:11 LT Bressay sound binnen, langs de begraafplats, het hoekje om. De havenmeester vertelt ons vriendelijk dat we om de boeg van een grote blauwe boot heen moeten en daar een plekje mogen zoeken. We zijn er! in 100 uur, 570 NM op het log.\n\n![Fish & Chips](fish-chips.jpg)Paul vindt het hoog tijd voor Fish en Chips, dus we lopen via het havenkantoor naar de stad. Na advies van de aardige havenmevrouw zitten we binnen de kortste keren in de vensterbank van 'Fort Cafe & Take away' aan een enorme bak friet met een groot stuk vis er bovenop.",
+			"date": "2015-07-10",
+			"color": "#171bc6",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[4.2510223388671875,51.91504992420809],[4.248275756835937,51.91166145264695],[4.1809844970703125,51.94553466305084],[4.085540771484375,51.98318857213821],[4.0450286865234375,51.9891087798712],[3.7298583984375004,52.12294980913476],[2.76031494140625,53.34891180394271],[0.19775390625,57.48040333923341],[-1.153564453125,59.55380845543803],[-1.2490081787109375,59.83895049741693],[-1.18927001953125,59.985593412687976],[-1.20574951171875,60.00859805562542],[-1.1624908447265625,60.029185654654505],[-1.1281585693359375,60.15073347299117],[-1.1377716064453125,60.15654283139454],[-1.1418914794921875,60.1541508669647]]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Shetland",
+			"date": "2015-07-15",
+			"text": "![](shetland-puffin.jpg \"inline\") ![](shetland-stninians.jpg \"inline\")\n\n![](shetland-stninians2.jpg \"inline\") ![](shetland-uitzicht.jpg \"inline\")",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-1.1418914794921875,60.1541508669647]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Via Mousa broch naar Takkie",
+			"text": "De [Mousa broch](https://en.wikipedia.org/wiki/Broch_of_Mousa) blijft intrigreren, dus we besluiten daar op onze route naar Fair Isle eens even polshoogte te nemen. We proberen eerst de ankerplek East Ham, maar daar wil het anker niet lekker pakken, is het vrij krap en er komt ook nog aardige swell binnen. Als we het anker weer willen optrekken wordt duidelijk dat de ankerlier niet werkt: het anker moet dus maar met de hand omhoog worden getrokken...\n\n![](fairisle-heenweg.jpg \"inline\")\n![](fairisle-heenweg-wier.jpg \"inline\")\n\n\nWe varen om de noordpunt heen en proberen West Ham. Daar is het veel rustiger en het anker grijpt er ook meteen echt goed. We tuigen de bijboot op en ik vaar in twee keer iedereen naar de kant. Daar wandelen we door de verlatenheid in het gezelschap van heel wat schaapjes naar de Broch. Dit bouwwerk, wat ruim 2000 jaar oud is bestaat alleen uit gestapelde stenen. Aan de voet is de doorsnede ongeveer 15m en de muren zijn zo breed dat er een soort wenteltrap in zit waarmee je omhoog kunt lopen. Bizar om zo'n oud gebouw in zo'n staat te zien en te beklimmen.\n\n![](mousa-broch.jpg \"inline\")\n![](mousa-broch2.jpg \"inline\")\n\n\n![](mousa-terugmarcheren.jpg) Omdat ik nog niet zo vaak heb geankerd wordt ik als de wind wat aantrekt wat zenuwachtig. Eigenlijk niet relaxed om geen zicht op de boot te hebben. Omdat de rest nog niet klaar is met het aanschouwen van de Broch, marcheer ik alvast terug.\n\nDe toeristenferry blokkeert inmiddels de uitgang voor ons bijbootje, maar gelukkig ligt Equilibre nog vredig achter haar anker. De bemanning van de ferry zit in een stenen gebouwtje bij de 'haven' te lunchen: aardappels met gerookte vis. Tijdens het kletsen duurt het niet lang of ik krijg ook een stuk vis aangeboden.\n\n\n![](fairisle-heenweg-cupcakes.jpg) Na dit uitstapje is het tijd voor de volgende 30NM naar Fair Isle. Het is inmiddels ruim tijd voor thee, en Marleen heeft vanmorgen in Lerwick nog cupcakes gekocht. Omdat niemand kan of wil kiezen houden we een soort cupcake-proeverij. hmm.\n\n![](fairisle-heenweg-pauli.jpg \"inline\") ![](fairisle-aanloop.jpg \"inline\")\n\nFair Isle komt steeds beter in zicht. De invaaraanwijzing is simpel: houdt de grote rots voor de haven in lijn met de linkerkant van Sheep Rock, een zeer karakteristieke klif aan de zuidwestkant van het eiland.\n\nEenmaal in de haven is het superbeschut. Omdat we naast een ander jacht aan de Good Shepherd IV liggen breng ik met het bijbootje een landvat naar de kant. Vrijwel direct komen de zeehonden een kijkje nemen. Ze komen hier echt dichtbij, en snuiven wat. Hier snapte ik voor het eerst waarom zeehonden zeehonden heten: ze kijken naar je alsof je zometeen een tennisbal gaat weggooien... Voor als je er nog eens komt: die ene met dat witte vlekje op zijn neus heet Takkie.\n\n![](fairisle-aanloop2.jpg \"inline\") ![](fairisle-borrel.jpg \"inline\")\n\n",
+			"date": "2015-07-16",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[-1.1420631408691406,60.15466344542324],[-1.1414623260498047,60.15607299497492],[-1.1377716064453125,60.15594485660407],[-1.130218505859375,60.15077619260828],[-1.1363983154296875,60.12645975954683],[-1.1669540405273435,60.03313014690289],[-1.1766529083251953,60.003878258021096],[-1.1793136596679688,60.00308440770832],[-1.1790132522583006,60.00415717387798],[-1.182403564453125,60.00842643842314],[-1.1864805221557617,60.008576603523835],[-1.196136474609375,60.009284515528016],[-1.1913299560546875,60.00130353904603],[-1.1873817443847656,60.00147519321306],[-1.1913299560546875,59.99623934036446],[-1.19476318359375,59.947446028167285],[-1.3300323486328125,59.59623077551906],[-1.6053771972656248,59.5419763100415]]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Fair Isle",
+			"date": "2015-07-17",
+			"text": "![Kliffen op Fair Isle](fairisle-cliffs.jpg \"inline\")\n![Uitzicht op de boot](fairisle-uitzicht.jpg \"inline\")",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-1.613616943359375,59.54128017205441]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Naar Peterhead",
+			"text": "De volgende bestemming is Peterhead, door sommigen consequent uitgesproken als Petershead. Arme Peter.De voorspelling was dat de wind gunstig zou draaien en in de loop van de komende nacht zou afnemen, dus we vertrekken zo laat dat Joris het nog nodig vindt om naar de *North light* te lopen. Uiteindelijk staat in het log dat we om 14:20 vertrekken. Het waait aardig dus we zetten het eerste rif. In de avond neemt de wind nog verder toe, dus het tweede rif gaat er in, we varen in 7 beaufort met vlagen van 36kts.\nGraag deel ik nog twee logboekregels opgeschreven door Bertus:\n```\n2210: veel golven  echt heul veel\n2316: Jieter flikkert over tafel\n```\nTerwijl Bertus heerlijk lag te pitten op de kajuitbank trok ik mijn zeilbroek aan, zittend op de tafel. Door een onverwachte golf, waar er dus heul veel van waren, val ik over de tafel heen, half op Bertus. Ik heb er hartelijk om gelachen, Bertus geloof ik uiteindelijk ook wel.",
+			"date": "2015-07-18",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[-1.6031455993652344,59.538582501502255],[-1.6010856628417969,59.5419763100415],[-1.5967941284179688,59.542672433646004],[-1.5906143188476562,59.5399748745622],[-1.5919876098632812,59.50828415043603],[-1.571044921875,59.136499487320734],[-1.021728515625,58.802361927759456],[-0.9777832031250001,58.309488840677645],[-1.7138671875,57.468589192089325],[-1.7804718017578125,57.49996211862384]]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Peterhead",
+			"text": "OK captain\n\nNo problem captain",
+			"date": "2015-07-20",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-1.7887115478515623,57.500699980656535]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Naar Eyemouth",
+			"text": "Nu Joris en Marleen ons hebben verlaten, en Patrick er bij is gekomen, zijn we even met zijn vieren. Dat levert een iets minder relaxed wachtschema op van vier uur op, vier uur af. In eerste instantie is de bestemming ook nog in de wind en moeten we een met tegenstroom opkruisen. Onze 'buren' van de *Jager* hadden dat beter bekeken en zijn een beetje later vertrokken: stroom mee, en een bezeilde koers dicht bij de kust zorgen er voor dat zij er eerder zijn dan wij.\n\n![Big orange vessel, aldus iemand anders over de marifoon](peterhead-vertrek.jpg) Bij het verlaten van de haven moeten we even wachten omdat er een 'big orange vessel' bezig is met manouvreren in de havenkom. Blijft toch een imposant gezicht om voor de boeg van zo'n boot langs te varen. Als wij naar buiten varen zien we een solozeiler net binnenkomen.\n\nDe aanloop van Eyemouth is prachtig in de vroege morgen wat onze gaarheid weer goed maakt. Helaas past volgens Bertus de kleur van de lucht niet bij de kleur van de zee \"echt heel irritant\". Tja, je kunt je als architect overal druk over maken.\n\nAls we voor het douchen bij de havenmeester langs gaan neemt hij er de tijd voor en vertelt ons van alles over de geschiedenis van de haven. \n\n",
+			"date": "2015-07-21",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[-1.7811584472656248,57.497748443029806],[-1.7324066162109375,57.47265073604842],[-2.0894622802734375,55.87454041761713]]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Makrelen en een luidruchtige Ier",
+			"text": "",
+			"date": "2015-07-22",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-2.0861148834228516,55.87280692104722]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Holy Island",
+			"text": "Om tien voor zeven beginnen onze buren onrustig te worden en starten de motor en kloppen op het dak. Voordat wij weg kunnen moeten eerst onze buren losgooien. Dat gaat niet helemaal vanzelf, maar even later varen we rustig naar de bunkerplek om onze dieseltank af te toppen.\n\nDaarna ontbijten we rustig en maken het plan voor vandaag. Pauli bedacht om Jieter een keer niet het plan te laten maken, dus zij maakt met Bertus en Patrick het plan om naar Holy Island te varen.\n\nIn de haven lijkt het een rustig dagje te worden, maar zodra we het havengeultje uit zijn en het grootzeil met het eerste rif staat besluiten we al snel om er ook maar een tweede rif in te trekken. Na Jieter's eerdere onrustige ankerervaring met wat wind in de baai bij Holy Island twijfelt hij of het een goed idee is daar een nacht te slapen, maar de rest haalt hem over en Bertus vaart de boot met behulp van de stenen bakens de baai van Holy Island binnen. Patrick geeft van achter de laptop aanwijzingen en Jieter gooit het anker uit als we op een mooi plekje voor The Heugh liggen.",
+			"date": "2015-07-23",
+			"color": "#18eb08",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[-2.0859646797180176,55.87248188182487],[-2.086458206176758,55.873541258902996],[-2.0878314971923824,55.87488951520345],[-2.087874412536621,55.87882567421509],[-2.07916259765625,55.87954786189979],[-1.7506027221679688,55.70138778301519],[-1.7045974731445312,55.68261722603089],[-1.7159271240234375,55.65279803318956],[-1.7912864685058592,55.65948028202839],[-1.7996978759765625,55.66722638916236]]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Newcastle",
+			"text": "![Tijdens de aanloop wordt er nog gestudeerd op hoe het er precies uitziet.](newcastle-aanloop.jpg \"inline\")\n![Eenmaal binnen de pieren is het een kwestie van het volgen van de vaargeul](newcastle-tynemouth.jpg \"inline\")\n\n![Prachtige avondluchten!](newcastle-haven.jpg \"inline\")\n![Arie en Leo komen met de ferry aan op zondagmorgen](newcastle-nieuwe-crew.jpg \"inline\")\n",
+			"date": "2015-07-24",
+			"color": "#bd3fbd",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[-1.800384521484375,55.66906586432125],[-1.778411865234375,55.658996099428364],[-1.717987060546875,55.654347641744216],[-1.679534912109375,55.60550550374784],[-1.5847778320312498,55.563592347410776],[-1.51336669921875,55.32914440840507],[-1.391143798828125,55.019362669629714],[-1.4089965820312498,55.01227627898974],[-1.4339733123779295,55.007502101516295],[-1.4418697357177734,55.00597621361476],[-1.4438438415527342,54.999478234616326],[-1.4465045928955078,54.99679504990879],[-1.4480924606323242,54.99667196373706]]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"text": "![Relaxed met een koffie luisteren naar oude liedjes](newcastle-zangers.jpg \"inline\")",
+			"title": "North shields en Tynemouth",
+			"color": "#ffffff",
+			"date": "2015-07-25",
+			"average": 5
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.11962,51.82262]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Red arrows",
+			"text": "![Red Arrows](http://youtu.be/s0uIIxglG28)",
+			"date": "2015-07-26",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[-1.4487361907958984,54.99657349452778],[-1.4461612701416013,54.9969673699149],[-1.442556381225586,54.997459708711595],[-1.4408397674560547,55.00366265994137],[-1.4391231536865234,55.004942514634955],[-1.4257335662841797,55.00863417438293],[-1.4006710052490234,55.012227063564595],[-1.3896846771240234,55.01252235520929],[-1.314239501953125,54.98234215326033],[-1.3414478302001953,54.922505533777404],[-1.3509750366210938,54.920433809029525],[-1.3601160049438477,54.9183496449595],[-1.366875171661377,54.91698069739749],[-1.3674545288085938,54.919447235942755]]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Terug",
+			"text": "![Bertus' meest relaxte paprikasnijhouding](http://youtu.be/6Eim7cXgAs4)",
+			"date": "2015-07-27",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[-1.3674116134643555,54.919385574321666],[-1.3667893409729004,54.91645037186351],[-1.3636565208435059,54.91737535372437],[-1.352219581604004,54.919743210408626],[-1.318359375,54.916882032711015],[-0.15106201171874997,54.287675324266324],[3.3267974853515625,52.07781801208549],[3.4284210205078125,51.89895240691636],[3.697586059570312,51.834504631516054],[3.9646911621093746,51.84765608216451],[4.005889892578125,51.85953150985473],[4.038848876953125,51.84511093992763],[4.041595458984375,51.82813964710642],[4.04571533203125,51.82219818336938],[4.063568115234375,51.82219818336938],[4.11163330078125,51.816255935957535],[4.12811279296875,51.82559340146247]]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "",
+			"text": "<table>\n<tr><td class=\"meta\">Boot</td><td>Equilibre, Spirit 36</td></tr>\n<tr><td class=\"meta\">Gevaren</td><td>1300NM</td></tr>\n<tr><td class=\"meta\">Foto's</td><td>Jieter, Pauli, Joris, Patrick</td></tr>\n</table>\n\n![](menukaart.jpg \"inline\")\n![](bijboot.jpg \"inline\")\n![](jieter-slaapt.jpg \"inline\")\n\n\n",
+			"date": "",
+			"color": "#000000",
+			"average": 5
+		}
+	}		]
+,
 	"type": "FeatureCollection"
 }
