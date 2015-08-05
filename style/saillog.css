@@ -2216,8 +2216,9 @@ table td.meta {
   top: 12px;
   right: 12px;
   display: block;
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
   color: black;
   cursor: pointer;
   z-index: 2;

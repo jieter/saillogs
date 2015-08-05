@@ -36,16 +36,6 @@ var icon = function (icon) {
 // amend Marked to do some custom things:
 /* globals marked:true */
 marked.Renderer.prototype.image = function (href, title, text) {
-	// images get prefixed.
-	return L.Util.template('<img src="{href}" class="{className}" title="{title}" />', {
-		href: href = Saillog.util.imagePrefix + href,
-		className: 'thumb ' +  (title === 'inline' ? 'inline-thumb' : 'side-thumb'),
-		title: text
-	});
-};
-
-marked.Renderer.prototype.link = function (href, title, text) {
-	// console.log(arguments);
 	if (href.substr(0, 15) === 'http://youtu.be') {
 		// special case for youtube links.
 		if (text === '') {
@@ -58,9 +48,12 @@ marked.Renderer.prototype.link = function (href, title, text) {
 				icon('youtube') + ' ' + text + '</span>';
 		}
 	} else {
-		// normal behaviour
-		title = title ? ' title="' + title + '"' : '';
-		return '<a href="' + href + '"' + title + '>'	+ text + '</a>';
+		// images get prefixed.
+		return L.Util.template('<img src="{href}" class="{className}" title="{title}" />', {
+			href: href = Saillog.util.imagePrefix + href,
+			className: 'thumb ' +  (title === 'inline' ? 'inline-thumb' : 'side-thumb'),
+			title: text
+		});
 	}
 };
 
