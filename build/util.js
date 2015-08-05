@@ -38,9 +38,16 @@ function merge(list) {
 	return require('geojson-merge')(list);
 }
 
-function stringify(obj, indent, flat) {
-	var i, ret, key, first = true;
-	indent = indent || 0;
+function indent(count) {
+	var ret = '';
+	for (var i = 0; i <= count; i++) {
+		ret += '\t';
+	}
+	return ret;
+}
+function stringify(obj, level, flat) {
+	var ret, key, first = true;
+	level = level || 0;
 
 	if (flat) {
 		return JSON.stringify(obj);
@@ -51,17 +58,11 @@ function stringify(obj, indent, flat) {
 			if (first) {
 				first = false;
 			} else {
-				ret += ', \n';
-				for (i = 0; i < indent; i++) {
-					ret += '\t';
-				}
+				ret += ', \n' + indent(level - 1);
 			}
-			ret += stringify(obj[key], indent);
+			ret += stringify(obj[key], level);
 		}
-		for (i = 0; i <= indent; i++) {
-			ret += '\t';
-		}
-		return ret + ']\n';
+		return ret + indent(level) + ']\n';
 	} else if (obj instanceof Object) {
 		ret = '{\n';
 		for (key in obj) {
@@ -73,18 +74,11 @@ function stringify(obj, indent, flat) {
 			} else {
 				ret += ',\n';
 			}
-			for (i = 0; i <= indent; i++) {
-				ret += '\t';
-			}
-
+			ret += indent(level);
 			flat = (key === 'coordinates' || key === 'center');
-			ret += '"' + key + '": ' + stringify(obj[key], indent + 1, flat);
+			ret += '"' + key + '": ' + stringify(obj[key], level + 1, flat);
 		}
-		ret += '\n';
-		for (i = 0; i < indent; i++) {
-			ret += '\t';
-		}
-		return ret + '}';
+		return ret + '\n' + indent(level - 1) + '}';
 	} else {
 		return JSON.stringify(obj);
 	}
