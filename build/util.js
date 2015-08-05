@@ -38,10 +38,60 @@ function merge(list) {
 	return require('geojson-merge')(list);
 }
 
+function stringify(obj, indent, flat) {
+	var i, ret, key, first = true;
+	indent = indent || 0;
+
+	if (flat) {
+		return JSON.stringify(obj);
+	} else if (obj instanceof Array) {
+
+		ret = '[';
+		for (key in obj) {
+			if (first) {
+				first = false;
+			} else {
+				ret += ', \n';
+				for (i = 0; i < indent; i++) {
+					ret += '\t';
+				}
+			}
+			ret += stringify(obj[key], indent);
+		}
+		for (i = 0; i <= indent; i++) {
+			ret += '\t';
+		}
+		return ret + ']\n';
+	} else if (obj instanceof Object) {
+		ret = '{\n';
+		for (key in obj) {
+			if (obj[key] === undefined) {
+				continue;
+			}
+			if (first) {
+				first = false;
+			} else {
+				ret += ',\n';
+			}
+			for (i = 0; i <= indent; i++) {
+				ret += '\t';
+			}
+
+			flat = (key === 'coordinates' || key === 'center');
+			ret += '"' + key + '": ' + stringify(obj[key], indent + 1, flat);
+		}
+		ret += '\n';
+		for (i = 0; i < indent; i++) {
+			ret += '\t';
+		}
+		return ret + '}';
+	} else {
+		return JSON.stringify(obj);
+	}
+}
+
 module.exports = {
-	stringify: function (obj) {
-		return JSON.stringify(obj, null, '\t');
-	},
+	stringify: stringify,
 
 	// return a YYYY-mm-dd string for the current date or
 	// for a supplied date string.
@@ -71,4 +121,3 @@ module.exports = {
 
 	merge: merge
 };
-

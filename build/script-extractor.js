@@ -19,10 +19,8 @@ module.exports = function (htmlFile, prefix, target) {
 	var scripts = [];
 	tags.forEach(function (tag) {
 		var parts = tag.split(SCRIPT_RE);
-		if (target !== false && parts[4] !== undefined) {
-			if (parts[4].indexOf(target) === -1) {
-				return;
-			}
+		if (target !== false && parts[4] !== undefined && parts[4].indexOf(target) === -1) {
+			return;
 		}
 		scripts.push(prefix + parts[2]);
 	});
