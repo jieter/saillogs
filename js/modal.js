@@ -78,12 +78,7 @@ $.fn['mediaModal'] = function (options) {
 		var jumpFrom = function (el, direction) {
 			var thumbs = container.find(options.selector);
 			var currentId = thumbs.index(el);
-			var other;
-			if (direction > 0) {
-				other = thumbs.eq(currentId + 1);
-			} else {
-				other = thumbs.eq(currentId - 1);
-			}
+			var other = thumbs.eq(currentId + ((direction > 0) ? 1 : -1));
 			if (other && other.length === 1) {
 				load(other).on('load', resize);
 

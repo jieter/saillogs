@@ -101,6 +101,7 @@ module.exports = {
 	swap: swap,
 
 	lineDistance: function lineDistance(coords) {
+		// returns Nautical miles
 		if (coords.length < 2) {
 			return 0;
 		}
