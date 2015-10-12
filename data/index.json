@@ -5,7 +5,7 @@
 	"text": "![Jieter](jieter.jpg) Op deze site is een aantal verhalen te vinden van zeiltochten die ik heb gemaakt. Sommigen zijn compleet met beeldmateriaal en een opgenomen tracklog uit de GPS, anderen zijn slechts voorzien van marginaal commentaar...",
 	"logs": {
 		"2015-njw-beaufort": {
-			"visible": false,
+			"visible": true,
 			"title": "Beaufort NJW 2015",
 			"distance": 0,
 			"date": "2015-10-10"
