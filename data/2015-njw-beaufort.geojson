@@ -13,7 +13,7 @@
 	"features": [{
 		"type": "Feature",
 		"properties": {
-			"title": "Vertrek",
+			"title": "Vertrekhaven Ee",
 			"text": "",
 			"date": "",
 			"color": "#000000",
@@ -70,7 +70,7 @@
 		"type": "Feature",
 		"properties": {
 			"title": "",
-			"text": "Op de platbodem \"Femke\"",
+			"text": "![](1.jpg \"inline\") ![](2.jpg \"inline\")\n\n![](3.jpg \"inline\") ![](4.jpg \"inline\")\n\n Op de platbodem \"Femke\" via [Cor Fey Platbodemverhuur](http://www.corfeyplatbodemverhuur.nl/nl/home)",
 			"date": "",
 			"color": "#000000",
 			"average": 5
