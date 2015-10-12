@@ -131,6 +131,12 @@
 			"title": "Zomer 2015?",
 			"date": "2015-07-08",
 			"distance": 1241
+		},
+		"2015-zomer-plan": {
+			"visible": false,
+			"title": "Zomer 2015?",
+			"date": "2015-07-08",
+			"distance": 1241
 		}
 	}
 }
