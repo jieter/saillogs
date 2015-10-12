@@ -37,8 +37,8 @@ $.fn['mediaModal'] = function (options) {
 		}
 
 		// add caption
+		var caption = modal.find('.caption').html('');
 		if (el.attr('title') && el.attr('title') !== '') {
-			var caption = modal.find('.caption');
 			if (caption.length !== 1) {
 				caption = $('<span class="caption"></span>').prependTo(modal);
 			}

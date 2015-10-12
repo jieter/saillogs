@@ -1152,80 +1152,86 @@
 	}, 
 	{
 		"type": "Feature",
-		"geometry": {
-			"type": "LineString",
-			"coordinates": [[4.12605,51.82177],[4.12331,51.81774],[4.04743,51.82199],[4.03404,51.8345],[4.04228,51.83896],[4.02443,51.85529],[3.99799,51.85677],[3.40988,51.8188],[2.96219,51.73043],[2.42386,51.79418],[2.211,51.85275],[2.06818,51.86123],[1.89926,51.8222],[1.47903,51.92394],[1.30188,51.92902],[1.306,51.94638],[1.27579,51.95611]]
-		},
 		"properties": {
 			"date": "2012-07-27",
 			"title": "Shotley",
 			"color": "#ff7777",
-			"text": "Achterlijk van genua blijft bij overstag haken achter zaling en scheurt bijna helemaal los..."
+			"text": "Achterlijk van genua blijft bij overstag haken achter zaling en scheurt bijna helemaal los...\n\nRenier van boord bij de Halfpenny pier Harwich.",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[4.12605,51.82177],[4.12331,51.81774],[4.04743,51.82199],[4.03404,51.8345],[4.04228,51.83896],[4.02443,51.85529],[3.99799,51.85677],[3.40988,51.8188],[2.96219,51.73043],[2.42386,51.79418],[2.211,51.85275],[2.06818,51.86123],[1.89926,51.8222],[1.47903,51.92394],[1.30188,51.92902],[1.306,51.94638],[1.27579,51.95611]]
 		}
 	}, 
 	{
 		"type": "Feature",
+		"properties": {
+			"date": "2012-07-30",
+			"title": "Ipswich",
+			"color": "#ff0000",
+			"text": "Na contact met de zeilmaker wordt de Genua in de haven opgehaald. Twee dagen later halen we hem weer op in Suffolk Yacht Harbour.",
+			"average": 5
+		},
 		"geometry": {
 			"type": "LineString",
 			"coordinates": [[1.27682,51.95643],[1.283,51.95294],[1.27321,51.98668],[1.26188,51.99249],[1.22961,51.99894],[1.20712,52.00613],[1.18034,52.01542],[1.16558,52.02578],[1.15614,52.03433],[1.16215,52.04985]]
-		},
-		"properties": {
-			"date": "2012-07-30",
-			"title": "Ipswitch",
-			"color": "#ff0000",
-			"text": ""
 		}
 	}, 
 	{
 		"type": "Feature",
-		"geometry": {
-			"type": "LineString",
-			"coordinates": [[1.16215,52.05006],[1.15562,52.03401],[1.18034,52.01574],[1.19717,52.00792]]
-		},
 		"properties": {
 			"date": "2012-07-31",
 			"title": "Pin Mill",
 			"color": "#00ff00",
-			"text": ""
+			"text": "Modder!",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[1.16215,52.05006],[1.15562,52.03401],[1.18034,52.01574],[1.19717,52.00792]]
 		}
 	}, 
 	{
 		"type": "Feature",
-		"geometry": {
-			"type": "LineString",
-			"coordinates": [[1.19682,52.00813],[1.21056,52.00539],[1.22034,51.99957],[1.25364,51.99482],[1.26394,51.99229],[1.26892,51.99535],[1.26433,51.99228],[1.27673,51.9843],[1.28806,51.95225],[1.30523,51.94368],[1.28772,51.91547],[1.27167,51.89535],[1.36574,51.88094],[1.33175,51.85677],[1.34102,51.83493],[1.43166,51.82687],[1.41998,51.68022],[1.3781,51.6372],[1.37054,51.5839],[1.43166,51.56939],[1.46942,51.34648],[1.41792,51.32761]]
-		},
 		"properties": {
 			"date": "2012-08-01",
 			"title": "Ramsgate",
 			"color": "#aaff00",
-			"text": ""
+			"text": "",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[1.19682,52.00813],[1.21056,52.00539],[1.22034,51.99957],[1.25364,51.99482],[1.26394,51.99229],[1.26892,51.99535],[1.26433,51.99228],[1.27673,51.9843],[1.28806,51.95225],[1.30523,51.94368],[1.28772,51.91547],[1.27167,51.89535],[1.36574,51.88094],[1.33175,51.85677],[1.34102,51.83493],[1.43166,51.82687],[1.41998,51.68022],[1.3781,51.6372],[1.37054,51.5839],[1.43166,51.56939],[1.46942,51.34648],[1.41792,51.32761]]
 		}
 	}, 
 	{
 		"type": "Feature",
-		"geometry": {
-			"type": "LineString",
-			"coordinates": [[1.42136,51.32332],[1.78391,51.33619],[1.72005,51.49293],[2.20413,51.67256],[2.55981,51.66915],[3.08578,51.76699],[3.42499,51.79418],[3.68179,51.85359],[4.02512,51.85784],[4.0416,51.83153]]
-		},
 		"properties": {
 			"date": "2012-08-03",
 			"title": "Stellendam",
 			"color": "#aa00ff",
-			"text": ""
+			"text": "",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[1.42136,51.32332],[1.78391,51.33619],[1.72005,51.49293],[2.20413,51.67256],[2.55981,51.66915],[3.08578,51.76699],[3.42499,51.79418],[3.68179,51.85359],[4.02512,51.85784],[4.0416,51.83153]]
 		}
 	}, 
 	{
 		"type": "Feature",
-		"geometry": {
-			"type": "LineString",
-			"coordinates": [[4.03919,51.82899],[4.04469,51.82114],[4.1209,51.81753],[4.1264,51.82156]]
-		},
 		"properties": {
 			"date": "2012-08-04",
 			"title": "Hellevoetsluis",
 			"color": "#a0000f",
-			"text": ""
+			"text": "",
+			"average": 5
+		},
+		"geometry": {
+			"type": "LineString",
+			"coordinates": [[4.03919,51.82899],[4.04469,51.82114],[4.1209,51.81753],[4.1264,51.82156]]
 		}
 	}, 
 	{
@@ -1798,7 +1804,7 @@
 		"type": "Feature",
 		"properties": {
 			"title": "Via Mousa broch naar Takkie",
-			"text": "De [Mousa broch](https://en.wikipedia.org/wiki/Broch_of_Mousa) blijft intrigreren, dus we besluiten daar op onze route naar Fair Isle eens even polshoogte te nemen. We proberen eerst de ankerplek East Ham, maar daar wil het anker niet lekker pakken, is het vrij krap en er komt ook nog aardige swell binnen. Als we het anker weer willen optrekken wordt duidelijk dat de ankerlier niet werkt: het anker moet dus maar met de hand omhoog worden getrokken...\n\n![](fairisle-heenweg.jpg \"inline\")\n![](fairisle-heenweg-wier.jpg \"inline\")\n\n\nWe varen om de noordpunt heen en proberen West Ham. Daar is het veel rustiger en het anker grijpt er ook meteen echt goed. We tuigen de bijboot op en ik vaar in twee keer iedereen naar de kant. Daar wandelen we door de verlatenheid in het gezelschap van heel wat schaapjes naar de Broch. Dit bouwwerk, wat ruim 2000 jaar oud is bestaat alleen uit gestapelde stenen. Aan de voet is de doorsnede ongeveer 15m en de muren zijn zo breed dat er een soort wenteltrap in zit waarmee je omhoog kunt lopen. Bizar om zo'n oud gebouw in zo'n staat te zien en te beklimmen.\n\n![](mousa-broch.jpg \"inline\")\n![](mousa-broch2.jpg \"inline\")\n\n\n![](mousa-terugmarcheren.jpg) Omdat ik nog niet zo vaak heb geankerd wordt ik als de wind wat aantrekt wat zenuwachtig. Eigenlijk niet relaxed om geen zicht op de boot te hebben. Omdat de rest nog niet klaar is met het aanschouwen van de Broch, marcheer ik alvast terug.\n\nDe toeristenferry blokkeert inmiddels de uitgang voor ons bijbootje, maar gelukkig ligt Equilibre nog vredig achter haar anker. De bemanning van de ferry zit in een stenen gebouwtje bij de 'haven' te lunchen: aardappels met gerookte vis. Tijdens het kletsen duurt het niet lang of ik krijg ook een stuk vis aangeboden.\n\n\n![](fairisle-heenweg-cupcakes.jpg) Na dit uitstapje is het tijd voor de volgende 30NM naar Fair Isle. Het is inmiddels ruim tijd voor thee, en Marleen heeft vanmorgen in Lerwick nog cupcakes gekocht. Omdat niemand kan of wil kiezen houden we een soort cupcake-proeverij. hmm.\n\n![](fairisle-heenweg-pauli.jpg \"inline\") ![](fairisle-aanloop.jpg \"inline\")\n\nFair Isle komt steeds beter in zicht. De invaaraanwijzing is simpel: houdt de grote rots voor de haven in lijn met de linkerkant van Sheep Rock, een zeer karakteristieke klif aan de zuidwestkant van het eiland.\n\nEenmaal in de haven is het superbeschut. Omdat we naast een ander jacht aan de Good Shepherd IV liggen breng ik met het bijbootje een landvat naar de kant. Vrijwel direct komen de zeehonden een kijkje nemen. Ze komen hier echt dichtbij, en snuiven wat. Hier snapte ik voor het eerst waarom zeehonden zeehonden heten: ze kijken naar je alsof je zometeen een tennisbal gaat weggooien... Voor als je er nog eens komt: die ene met dat witte vlekje op zijn neus heet Takkie.\n\n![](fairisle-aanloop2.jpg \"inline\") ![](fairisle-borrel.jpg \"inline\")\n\n",
+			"text": "De [Mousa broch](https://en.wikipedia.org/wiki/Broch_of_Mousa) blijft intrigreren, dus we besluiten daar op onze route naar Fair Isle eens even polshoogte te nemen. We proberen eerst de ankerplek East Ham, maar daar wil het anker niet lekker pakken, is het vrij krap en er komt ook nog aardige swell binnen. Als we het anker weer willen optrekken wordt duidelijk dat de ankerlier niet werkt: het anker moet dus maar met de hand omhoog worden getrokken...\n\n![Lol aan boord](fairisle-heenweg.jpg \"inline\")\n![Zeewier opgeankerd uit east ham](fairisle-heenweg-wier.jpg \"inline\")\n\n\nWe varen om de noordpunt heen en proberen West Ham. Daar is het veel rustiger en het anker grijpt er ook meteen echt goed. We tuigen de bijboot op en ik vaar in twee keer iedereen naar de kant. Daar wandelen we door de verlatenheid in het gezelschap van heel wat schaapjes naar de Broch. Dit bouwwerk, wat ruim 2000 jaar oud is bestaat alleen uit gestapelde stenen. Aan de voet is de doorsnede ongeveer 15m en de muren zijn zo breed dat er een soort wenteltrap in zit waarmee je omhoog kunt lopen. Bizar om zo'n oud gebouw in zo'n staat te zien en te beklimmen.\n\n![Mousa Broch](mousa-broch.jpg \"inline\")\n![Mousa Broch](mousa-broch2.jpg \"inline\")\n\n\n![Jieter marcheert terug om een oogje in het zeil te houden.](mousa-terugmarcheren.jpg) Omdat ik nog niet zo vaak heb geankerd wordt ik als de wind wat aantrekt wat zenuwachtig. Eigenlijk niet relaxed om geen zicht op de boot te hebben. Omdat de rest nog niet klaar is met het aanschouwen van de Broch, marcheer ik alvast terug.\n\nDe toeristenferry blokkeert inmiddels de uitgang voor ons bijbootje, maar gelukkig ligt Equilibre nog vredig achter haar anker. De bemanning van de ferry zit in een stenen gebouwtje bij de 'haven' te lunchen: aardappels met gerookte vis. Tijdens het kletsen duurt het niet lang of ik krijg ook een stuk vis aangeboden.\n\n\n![](fairisle-heenweg-cupcakes.jpg) Na dit uitstapje is het tijd voor de volgende 30NM naar Fair Isle. Het is inmiddels ruim tijd voor thee, en Marleen heeft vanmorgen in Lerwick nog cupcakes gekocht. Omdat niemand kan of wil kiezen houden we een soort cupcake-proeverij. hmm.\n\n![](fairisle-heenweg-pauli.jpg \"inline\") ![](fairisle-aanloop.jpg \"inline\")\n\nFair Isle komt steeds beter in zicht. De invaaraanwijzing is simpel: houdt de grote rots voor de haven in lijn met de linkerkant van Sheep Rock, een zeer karakteristieke klif aan de zuidwestkant van het eiland.\n\nEenmaal in de haven is het superbeschut. Omdat we naast een ander jacht aan de Good Shepherd IV liggen breng ik met het bijbootje een landvat naar de kant. Vrijwel direct komen de zeehonden een kijkje nemen. Ze komen hier echt dichtbij, en snuiven wat. Hier snapte ik voor het eerst waarom zeehonden zeehonden heten: ze kijken naar je alsof je zometeen een tennisbal gaat weggooien... Voor als je er nog eens komt: die ene met dat witte vlekje op zijn neus heet Takkie.\n\n![](fairisle-aanloop2.jpg \"inline\") ![](fairisle-borrel.jpg \"inline\")\n\n",
 			"date": "2015-07-16",
 			"color": "#000000",
 			"average": 5

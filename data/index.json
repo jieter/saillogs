@@ -4,6 +4,12 @@
 	"title": "Jieters zeilverslagen",
 	"text": "![Jieter](jieter.jpg) Op deze site is een aantal verhalen te vinden van zeiltochten die ik heb gemaakt. Sommigen zijn compleet met beeldmateriaal en een opgenomen tracklog uit de GPS, anderen zijn slechts voorzien van marginaal commentaar...",
 	"logs": {
+		"2015-njw-beaufort": {
+			"visible": false,
+			"title": "Beaufort NJW 2015",
+			"distance": 0,
+			"date": "2015-10-10"
+		},
 		"2015-zomerzeilen": {
 			"visible": true,
 			"distance": 1210,
@@ -119,12 +125,6 @@
 			"visible": true,
 			"distance": 2522,
 			"title": "Liften naar Istanbul 2007"
-		},
-		"2015-zomer": {
-			"visible": false,
-			"title": "Zomer 2015?",
-			"date": "2015-07-08",
-			"distance": 1241
 		}
 	}
 }

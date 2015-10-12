@@ -1,0 +1,43 @@
+{
+	"id": "2015-njw-beaufort",
+	"properties": {
+		"title": "Beaufort NJW 2015",
+		"units": "nm",
+		"showTrack": true,
+		"description": "",
+		"average": 5,
+		"showTimeline": true,
+		"showCalendar": true,
+		"baselayer": false
+	},
+	"features": [{
+		"type": "Feature",
+		"properties": {
+			"title": "Droogvalplek",
+			"text": "",
+			"date": "",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [6.183822154998779,53.4273711818962]
+		}
+	}, 
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Vertrek",
+			"text": "",
+			"date": "",
+			"color": "#000000",
+			"average": 5
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [6.102046966552734,53.32287606523678]
+		}
+	}		]
+,
+	"type": "FeatureCollection"
+}
