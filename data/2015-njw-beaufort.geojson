@@ -6,8 +6,8 @@
 		"showTrack": true,
 		"description": "",
 		"average": 5,
-		"showTimeline": true,
-		"showCalendar": true,
+		"showTimeline": false,
+		"showCalendar": false,
 		"baselayer": false
 	},
 	"features": [{
@@ -70,7 +70,7 @@
 		"type": "Feature",
 		"properties": {
 			"title": "",
-			"text": "![](1.jpg \"inline\") ![](2.jpg \"inline\")\n\n![](3.jpg \"inline\") ![](4.jpg \"inline\")\n\n Op de platbodem \"Femke\" via [Cor Fey Platbodemverhuur](http://www.corfeyplatbodemverhuur.nl/nl/home)",
+			"text": "![](1.jpg \"inline\") ![](2.jpg \"inline\")\n\n![](3.jpg \"inline\") ![](4.jpg \"inline\")\n\n Op de platbodem \"Femke\" via [Cor Fey Platbodemverhuur](http://www.corfeyplatbodemverhuur.nl/nl/home)\n\n[.GPX van deze tocht](data/2015-njw-beaufort/track.gpx)",
 			"date": "",
 			"color": "#000000",
 			"average": 5
