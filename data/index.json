@@ -133,9 +133,10 @@
 			"distance": 1241
 		},
 		"2016-pinksterzeilen": {
-			"visible": false,
+			"visible": true,
 			"title": "Pinksterzeilen 2016",
-			"distance": 0
+			"distance": 25,
+			"date": "2016-05-13"
 		}
 	}
 }
