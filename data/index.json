@@ -131,6 +131,11 @@
 			"title": "Zomer 2015?",
 			"date": "2015-07-08",
 			"distance": 1241
+		},
+		"2016-pinksterzeilen": {
+			"visible": false,
+			"title": "Pinksterzeilen 2016",
+			"distance": 0
 		}
 	}
 }
