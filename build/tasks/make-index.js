@@ -53,7 +53,6 @@ module.exports = function (grunt) {
 			item.date = data.date;
 			item.distance = data.distance;
 
-
 			if ('features' in story) {
 				story.type = 'FeatureCollection';
 				stories.push(story);
@@ -74,5 +73,3 @@ module.exports = function (grunt) {
 		grunt.file.write('data/all.json', util.stringify(stories));
 	});
 };
-
-
