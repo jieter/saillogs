@@ -153,7 +153,7 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('dev', [
 		'less:development',
-		'jshint',
+		// 'jshint',
 		'makeindex',
 		'connect:server',
 		'watch'

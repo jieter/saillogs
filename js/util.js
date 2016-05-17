@@ -4,6 +4,8 @@
 
 'use strict';
 
+var Saillog = {};
+
 // make sure console exists
 if (!('console' in window)) {
 	window.console = {
@@ -60,7 +62,6 @@ marked.Renderer.prototype.image = function (href, title, text) {
 // explicit imagePath for Leaflet, needed when uglified with the rest.
 L.Icon.Default.imagePath = 'js/lib/Leaflet/images';
 
-var Saillog = {};
 
 Saillog.util = {
 	keyCodes: {
