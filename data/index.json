@@ -4,6 +4,12 @@
 	"title": "Jieters zeilverslagen",
 	"text": "![Jieter](jieter.jpg) Op deze site is een aantal verhalen te vinden van zeiltochten die ik heb gemaakt. Sommigen zijn compleet met beeldmateriaal en een opgenomen tracklog uit de GPS, anderen zijn slechts voorzien van marginaal commentaar...",
 	"logs": {
+		"2017-zomerzeilen": {
+			"visible": true,
+			"title": "Zomerzeilen 2017",
+			"date": "2017-07-31",
+			"distance": 370
+		},
 		"2016-pinksterzeilen": {
 			"visible": true,
 			"title": "Pinksterzeilen 2016",
