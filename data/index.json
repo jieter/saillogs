@@ -137,6 +137,12 @@
 			"title": "Zomer 2015?",
 			"date": "2015-07-08",
 			"distance": 1241
+		},
+		"Zomerzeilen-2017": {
+			"visible": false,
+			"title": "Zomerzeilen-2017",
+			"date": "2017-07-31",
+			"distance": 370
 		}
 	}
 }
