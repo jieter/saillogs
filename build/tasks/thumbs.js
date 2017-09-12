@@ -79,7 +79,7 @@ var run = function (options) {
 		imageOptions.source = options.source + '/' + image;
 
 		// only one thumb per image:
-		if (typeof options.width === 'Number') {
+		if (typeof options.width === 'number') {
 			addToQueue(imageOptions);
 		} else {
 			for (var i in options.width) {

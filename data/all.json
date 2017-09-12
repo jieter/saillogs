@@ -1893,7 +1893,7 @@
 			"title": "Hellevoetsluis - Lowestoft",
 			"text": "",
 			"date": "2017-07-31",
-			"color": "#000000",
+			"color": "#ff0",
 			"average": 5
 		},
 		"geometry": {
@@ -1907,7 +1907,7 @@
 			"title": "Lowestoft - Southwold",
 			"text": "",
 			"date": "2017-08-03",
-			"color": "#000000",
+			"color": "#0ff",
 			"average": 5
 		},
 		"geometry": {
@@ -1921,7 +1921,7 @@
 			"title": "Southwold - Woodbridge",
 			"text": "",
 			"date": "",
-			"color": "#000000",
+			"color": "#0fe",
 			"average": 5
 		},
 		"geometry": {

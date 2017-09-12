@@ -73,9 +73,15 @@ Saillog.util = {
 	// From http://stackoverflow.com/a/5624139
 	hexToRgb: function hexToRgb(hex) {
 		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+		var result3 = /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(hex);
 		if (!result) {
-			return null;
+			if (!result3) {
+				return null;
+			} else {
+				result = result3;
+			}
 		}
+
 		var RGB = function (r, g, b) {
 			this.r = r;
 			this.g = g;
